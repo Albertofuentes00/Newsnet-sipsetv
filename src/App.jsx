@@ -6,8 +6,10 @@ import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Auth from "./Auth"
 
-
 import logosipse from './images/noticias.png'
+import Texto from './Components/Texto'
+import Contador from './Components/Contador/'
+import Datetime from './Components/Datetime/DatetimeText'
 
 //Puede usar function o const para retornar componentes 
 
@@ -19,7 +21,17 @@ function App() {
         <img src={logosipse} className="App-logo-sipse" alt="logo" />
 
       </header>
+    
       <body className="App-body">
+
+      <div className='DateTime'>
+        <TextSample
+          name= "Alberto"
+          apellidos= "Fuentes"
+        />
+      </div>
+
+
 
         <div className="Auth-form-container">
           <form className="Auth-form">
@@ -49,12 +61,17 @@ function App() {
             </div>
           </form>
         </div>
+        
+        <div>
+          <contador />
 
-        <TextSample
-          name= "Alberto"
-          apellidos= "Fuentes"
-          
-          />
+        </div>
+
+          <Texto name= "Alberto" apellidos= "Fuentes"/>
+          <Texto name= "Alejandro" apellidos= "Perez"/>
+          <Contador/>
+
+
       </body>
 
 
@@ -81,27 +98,16 @@ function App() {
 
 const TextSample = (props) => {
   console.log(props)
-  console.log(today)
-  var today = new Date()
-  var fecha = today.getDate() + '-' + ( today.getMonth() + 1 ) + '-' + today.getFullYear();
-  var hora = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-  var fechaYHora = fecha + ' ' + hora;
 
   return (
 
     <div className="TextSample">
-    <p>Bienvenido: {props.name} {props.apellidos} hoy es {actual_date} </p>
+    <p>Bienvenido: {props.name} {props.apellidos}, <Datetime /> </p>
     </div>
      )
 
 }
 
-const to_day = new Date();
-const day = to_day.getDate();
-const month = to_day.getMonth()+1;
-const year =  to_day.getFullYear();
-const actual_date = String(day+'/'+month+'/'+year);
-const new_date = new Date(actual_date);
 
 
 export default App;
