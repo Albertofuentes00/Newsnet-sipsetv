@@ -10,6 +10,7 @@ import logosipse from './images/noticias.png'
 import Texto from './Components/Texto'
 import Contador from './Components/Contador/'
 import Datetime from './Components/Datetime/DatetimeText'
+import Login from './Components/LoginView/LoginView';
 
 //Puede usar function o const para retornar componentes 
 
@@ -31,36 +32,7 @@ function App() {
         />
       </div>
 
-
-
-        <div className="Auth-form-container">
-          <form className="Auth-form">
-            <div className="Auth-form-content">
-              <h3 className="Auth-form-title">Iniciar sesion</h3>
-              <div className="form-group mt-3">
-                <label>Username</label>
-                <input
-                  type="user"
-                  className="form-control mt-1"
-                  placeholder="Username"
-                />
-              </div>
-              <div className="form-group mt-3">
-                <label>Contraseña</label>
-                <input
-                  type="password"
-                  className="form-control mt-1"
-                  placeholder="Contraseña"
-                />
-              </div>
-              <div className="d-grid gap-2 mt-3">
-                <button type="submit" className="btn btn-primary">
-                  Ingresar
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+      < Login/> 
         
         <div>
           <contador />
@@ -68,7 +40,6 @@ function App() {
         </div>
 
           <Texto name= "Alberto" apellidos= "Fuentes"/>
-          <Texto name= "Alejandro" apellidos= "Perez"/>
           <Contador/>
 
 
@@ -78,7 +49,6 @@ function App() {
       <footer className='App-footer'>
           <h4>Grupo SIPSE 2023 © Todos los derechos reservados </h4>
           <h5>Powered by Beto & Tommy ...</h5>
-
       </footer>
     </div>
 

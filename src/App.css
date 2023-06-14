@@ -12,10 +12,14 @@
   
 }
 
-.TextSample{
+.DateTime{
   text-align: left;
   color: antiquewhite;
-  size: 5px;
+  font-size: smaller;
+  font-weight: 400;
+  position: fixed;
+  right: 0%;
+  top: 0%;
 
 }
 
