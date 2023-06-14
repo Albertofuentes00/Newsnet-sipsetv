@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Auth from "./Auth"
+import Menu from './Components/MainMenu/MainMenu';
 
 import logosipse from './images/noticias.png'
 import Texto from './Components/Texto'
@@ -32,7 +33,9 @@ function App() {
         />
       </div>
 
-      < Login/> 
+      <Menu />
+
+      {/* < Login/>  */}
         
         <div>
           <contador />
@@ -40,8 +43,6 @@ function App() {
         </div>
 
           <Texto name= "Alberto" apellidos= "Fuentes"/>
-          <Contador/>
-
 
       </body>
 
@@ -57,14 +58,6 @@ function App() {
   );
 }
 
-// function TextSample (props){
-//   return (
-
-//       <div className="TextSample">
-//       <p>Sample Text, Bienvenido:</p>
-//       </div>
-//        )
-// }
 
 const TextSample = (props) => {
   console.log(props)
