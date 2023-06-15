@@ -9,9 +9,12 @@ import Menu from './Components/MainMenu/MainMenu';
 
 import logosipse from './images/noticias.png'
 import Texto from './Components/Texto'
-import Contador from './Components/Contador/'
+
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
+import Bitacora from './Components/Bitacora/BitacoraView';
+import NuevaNota from './Components/Bitacora/CrearNota';
+
 
 //Puede usar function o const para retornar componentes 
 
@@ -33,16 +36,14 @@ function App() {
         />
       </div>
 
-      <Menu />
+      {/* <Bitacora />  */}
 
-      {/* < Login/>  */}
+       {/* <NuevaNota/>  */}
+
+       <Menu />  
+
+       {/* < Login/>   */}
         
-        <div>
-          <contador />
-
-        </div>
-
-          <Texto name= "Alberto" apellidos= "Fuentes"/>
 
       </body>
 
