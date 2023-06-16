@@ -14,6 +14,7 @@ import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
 import Bitacora from './Components/Bitacora/BitacoraView';
 import NuevaNota from './Components/Bitacora/CrearNota';
+import MiFormulario from './Components/Menuprueba/MiComponente';
 
 
 //Puede usar function o const para retornar componentes 
@@ -36,11 +37,13 @@ function App() {
         />
       </div>
 
-      {/* <Bitacora />  */}
+       {/* <Bitacora />   */}
 
-       {/* <NuevaNota/>  */}
+        <NuevaNota/> 
 
-       <Menu />  
+        {/* <MiFormulario/> */}
+
+       {/* <Menu />   */}
 
        {/* < Login/>   */}
         

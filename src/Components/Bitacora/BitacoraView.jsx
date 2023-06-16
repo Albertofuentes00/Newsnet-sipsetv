@@ -1,6 +1,11 @@
 import React from "react";
 
 
+import { FaEdit } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
+import {FaAngleLeft} from 'react-icons/fa';
+import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 function Bitacora() {
 
@@ -13,9 +18,9 @@ function Bitacora() {
 
             <div>
                 <form className="Button-form">
-                    <button type="button" class="btn btn-dark">Regresar</button>
-                    <button type="button" class="btn btn-success">Agregar Nota</button>
-                    <button type="button" class="btn btn-primary">Buscar</button>
+                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
+                    <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                 </form>
             </div>
 
@@ -41,8 +46,9 @@ function Bitacora() {
                             <th>TX</th>
                             <th>Brito</th>
                             <th>11-06-23</th>
-                            <th className="buttons-th"> <button type="button" class="btn btn-warning"> Editar</button> 
-                                 <button type="button" class="btn btn-danger">Eliminar</button> 
+                            <th className="buttons-th"> 
+                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             </th>
                         </tr>
                         <tr>
@@ -52,8 +58,9 @@ function Bitacora() {
                             <th>TX</th>
                             <th>Brito</th>
                             <th>11-06-23</th>
-                            <th className="buttons-th"> <button type="button" class="btn btn-warning"> Editar</button> 
-                                 <button type="button" class="btn btn-danger">Eliminar</button> 
+                            <th className="buttons-th"> 
+                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
+                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             </th>
                         </tr>
                         <tr>

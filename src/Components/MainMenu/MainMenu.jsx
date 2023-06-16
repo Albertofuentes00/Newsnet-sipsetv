@@ -1,6 +1,10 @@
 import React from "react";
 import Texto from "../Texto";
-
+import { FaHeart } from 'react-icons/fa';
+import { FaList } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
+import { FaFileAlt } from "react-icons/fa"
+import {FaUser} from 'react-icons/fa'
 
 
 function Menu() {
@@ -34,13 +38,15 @@ function Menu() {
                     <h4 className='Auth-form-subtitle'>Escoge una opción</h4>
                         <div className= 'Menu-form'>
                             <div className= 'Row'>
-                                <button type="button" class="btn btn-light" > Bitacora</button>
-                                <button type="button" class="btn btn-light">Escaletas</button>
+                                <button type="button" class="btn btn-light" > <FaBook size={15} color="white" /> Bitacora</button>
+                                <button type="button" class="btn btn-light"> <FaList size={20} color="white" /> Escaletas</button>
                             </div>
                             <div className= 'Row'>
-                                <button type="button" class="btn btn-light">Notas</button>
-                                <button type="button" class="btn btn-light">Administrador</button>
+                                <button type="button" class="btn btn-light"> <FaFileAlt size={20} color="white" /> Notas</button>
+                                <button type="button" class="btn btn-light"> <FaUser size={20} color="white"/> Administrador</button>
                             </div>
+
+
 
                         </div>
                 </div>
