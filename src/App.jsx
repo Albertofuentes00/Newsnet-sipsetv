@@ -15,7 +15,8 @@ import Login from './Components/LoginView/LoginView';
 import Bitacora from './Components/Bitacora/BitacoraView';
 import NuevaNota from './Components/Bitacora/CrearNota';
 import MiFormulario from './Components/Menuprueba/MiComponente';
-
+import Escaletas from './Components/Escaletas/EscaletasView';
+import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 
 //Puede usar function o const para retornar componentes 
 
@@ -26,34 +27,38 @@ function App() {
       <header className='App-header'> 
         <img src={logosipse} className="App-logo-sipse" alt="logo" />
 
-      </header>
-    
-      <body className="App-body">
-
-      <div className='DateTime'>
+        <div className='DateTime'>
         <TextSample
           name= "Alberto"
           apellidos= "Fuentes"
         />
       </div>
 
-       {/* <Bitacora />   */}
+      </header>
+    
+      <body className="App-body">
 
-        <NuevaNota/> 
+
+        {/* <Escaletas/> */}
+
+        {/* <Bitacora />    */}
+
+         <NuevaNota/> 
 
         {/* <MiFormulario/> */}
 
-       {/* <Menu />   */}
+        {/* <Menu />    */}
 
        {/* < Login/>   */}
         
+       {/* <NuevaEscaleta/>  */}
 
       </body>
 
 
       <footer className='App-footer'>
           <h4>Grupo SIPSE 2023 © Todos los derechos reservados </h4>
-          <h5>Powered by Beto & Tommy ...</h5>
+          <h5>Powered by Beto & Tommy</h5>
       </footer>
     </div>
 

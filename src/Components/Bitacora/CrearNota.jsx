@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { FaSave } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi'
+
 
 function NuevaNota() {
 
@@ -26,27 +29,26 @@ function NuevaNota() {
                     <div className= 'Grid'>
                         <label>Categoría</label>
                         <select  class="form-control mt-1" />
-                            <option value="">Seleccionar categoría</option>
+                        <br />
                         <label>Reportero</label>
                         <select class="form-control mt-1" />
-                            <option value="">Seleccionar reportero</option>
                     </div>
+                    <br />
                     <div className= 'Grid'>
                         <label>Formato</label>
-                        <select value={selectedOption} onChange={handleSelectChange} class="form-control mt-1" />
-                            <option value="">Seleccionar formato</option>
-                        <label>Fecha</label>
                         <select  class="form-control mt-1" />
-                            <option value="">Seleccionar fecha</option>
-
-                        
+                        <br />
+                        <label>Fecha</label>
+                        <select  class="form-control mt-1" />                        
                     </div>
                 </div>
 
             </div>
-
-            <button type="button" class="btn btn-success"> Guardar </button>
-            <button type="button" class="btn btn-danger"> Cancelar </button>
+                <br />
+            <div>
+                <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+            </div>
             
             </form>
         </div>
