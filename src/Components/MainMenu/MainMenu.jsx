@@ -38,12 +38,12 @@ function Menu() {
                     <h4 className='Auth-form-subtitle'>Escoge una opción</h4>
                         <div className= 'Menu-form'>
                             <div className= 'Row'>
-                                <button type="button" class="btn btn-light" > <FaBook size={15} color="white" /> Bitacora</button>
-                                <button type="button" class="btn btn-light"> <FaList size={20} color="white" /> Escaletas</button>
+                                <button type="button" class="btn btn-light" > <FaBook size={30} color="white" /> Bitacora</button>
+                                <button type="button" class="btn btn-light"> <FaList size={30} color="white" /> Escaletas</button>
                             </div>
                             <div className= 'Row'>
-                                <button type="button" class="btn btn-light"> <FaFileAlt size={20} color="white" /> Notas</button>
-                                <button type="button" class="btn btn-light"> <FaUser size={20} color="white"/> Administrador</button>
+                                <button type="button" class="btn btn-light"> <FaFileAlt size={30} color="white" /> Notas</button>
+                                <button type="button" class="btn btn-light"> <FaUser size={30} color="white"/> Administrador</button>
                             </div>
 
 

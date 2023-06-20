@@ -17,6 +17,11 @@ import NuevaNota from './Components/Bitacora/CrearNota';
 import MiFormulario from './Components/Menuprueba/MiComponente';
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
+import GuionesNotas from './Components/Notas/NotasGuiones';
+import NuevoGuion from './Components/Notas/CrearGuion';
+import VerEscaleta from './Components/Escaletas/VerEscaleta';
+import PruebaDragDrop from './Components/Menuprueba/Principal';
+
 
 //Puede usar function o const para retornar componentes 
 
@@ -41,17 +46,26 @@ function App() {
 
         {/* <Escaletas/> */}
 
-        {/* <Bitacora />    */}
+         {/* <Bitacora />  */}
 
-         <NuevaNota/> 
+          {/* <GuionesNotas /> */}
+
+         {/* <NuevaNota/>  */}
 
         {/* <MiFormulario/> */}
 
-        {/* <Menu />    */}
+        {/* <VerEscaleta /> */}
+
+         {/* <Menu />     */}
 
        {/* < Login/>   */}
         
+        {/* <NuevoGuion /> */}
+
        {/* <NuevaEscaleta/>  */}
+
+       <PruebaDragDrop/>
+
 
       </body>
 
