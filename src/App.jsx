@@ -21,6 +21,8 @@ import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
 import VerEscaleta from './Components/Escaletas/VerEscaleta';
 import PruebaDragDrop from './Components/Menuprueba/Principal';
+import DragDrop from './Components/Escaletas/DragDrop';
+import pruebados from './Components/Escaletas/VerEscaleta';
 
 
 //Puede usar function o const para retornar componentes 
@@ -50,21 +52,24 @@ function App() {
 
           {/* <GuionesNotas /> */}
 
-         {/* <NuevaNota/>  */}
+          {/* <NuevaNota/>  */}
 
         {/* <MiFormulario/> */}
 
         {/* <VerEscaleta /> */}
 
+        <DragDrop />
+
+
          {/* <Menu />     */}
 
-       {/* < Login/>   */}
+        {/* < Login/>    */}
         
         {/* <NuevoGuion /> */}
+{/* 
+        <NuevaEscaleta/>   */}
 
-       {/* <NuevaEscaleta/>  */}
-
-       <PruebaDragDrop/>
+       {/* <PruebaDragDrop/> */}
 
 
       </body>

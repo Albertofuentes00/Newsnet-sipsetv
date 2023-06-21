@@ -1,22 +1,41 @@
 import React from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import DragDrop from './DragDrop';
+import { FaAngleLeft } from 'react-icons/fa';
 
 
 
-function VerEscaleta(){
+function pruebados(){
 
-
-//     return(
+    return(
         
-//         <div className="Auth-form-container-Main">
-             
-//             <butt
-//             </div>
+        <body>
+            <div>
+            <form className="Auth-form-escaleta">
+                <div className="Auth-form-content"> 
+                <div> 
+                    <form className="Button-form">
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                        <button type="button" class="btn btn-success">  Agregar Nota</button>
+                        <button type="button" class="btn btn-primary">  Buscar</button>
+                    </form>
+                </div>
+            </div>
+            </form>
+
+            </div>
+
+            <DragDrop />
+        </body>
+
+    )
 
 
-//         </div>    
-//     )
+
+
 }
 
 
-export default VerEscaleta
+
+
+export default pruebados

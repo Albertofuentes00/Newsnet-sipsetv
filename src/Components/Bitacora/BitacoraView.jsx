@@ -85,6 +85,7 @@ function Bitacora() {
                 
             </form>
         </div>
+        
         </body>
     )
 }
