@@ -19,13 +19,15 @@ import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
-import VerEscaleta from './Components/Escaletas/VerEscaleta';
-import PruebaDragDrop from './Components/Menuprueba/Principal';
-import DragDrop from './Components/Escaletas/DragDrop';
-import pruebados from './Components/Escaletas/VerEscaleta';
+
+
+import EscaletaMove from './Components/Escaletas/EscaletaOpen';
+
+import React, {useState} from 'react';
 
 
 //Puede usar function o const para retornar componentes 
+
 
 function App() {
   return (
@@ -46,6 +48,9 @@ function App() {
       <body className="App-body">
 
 
+         <EscaletaMove />
+
+
         {/* <Escaletas/> */}
 
          {/* <Bitacora />  */}
@@ -58,18 +63,15 @@ function App() {
 
         {/* <VerEscaleta /> */}
 
-        <DragDrop />
-
-
          {/* <Menu />     */}
 
         {/* < Login/>    */}
         
         {/* <NuevoGuion /> */}
-{/* 
-        <NuevaEscaleta/>   */}
 
-       {/* <PruebaDragDrop/> */}
+       {/*  <NuevaEscaleta/>   */}
+
+
 
 
       </body>

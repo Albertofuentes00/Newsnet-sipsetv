@@ -3,9 +3,6 @@ import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi'
 
 
-
-
-
 function NuevaEscaleta() {
 
 

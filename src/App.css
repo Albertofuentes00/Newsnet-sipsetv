@@ -37,7 +37,7 @@
   background: #6a11cb;
   background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)); 
   background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)); 
-  min-height: 100vh;
+  min-height:fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,6 +133,19 @@
   font-size: smaller;
   font-weight: 600;
 
+}
+
+.Auth-form-escaleta{
+  width: 1020px;
+  height: auto;
+  margin-top: -100px;
+  margin-bottom: 10px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
 }
 
 label {
@@ -253,4 +266,29 @@ button.btn.btn-light:hover{
   flex-basis: 100%;
   flex-grow: 1;
   padding: 10px;
+}
+
+
+/*   DRAG AND DROP STYLE 2*/
+
+
+.dnd {
+  list-style: none;
+  width: 1000px;
+  min-height: 200px;
+  margin: auto;
+  align-items: start;
+  position: relative;
+}
+.dnd li {
+  cursor: move;
+  background-color: rgb(192, 192, 192);
+  color: #000000;
+  padding: 3px;
+  font-size: smaller;
+  margin-bottom: 1px;
+  transition: all 0.2s;
+}
+.dnd li:hover {
+  background-color: rgb(125, 125, 125);
 }
