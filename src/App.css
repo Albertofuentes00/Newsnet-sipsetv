@@ -269,7 +269,7 @@ button.btn.btn-light:hover{
 }
 
 
-/*   DRAG AND DROP STYLE 2*/
+/*   Drag and Drop style*/
 
 
 .dnd {
@@ -291,4 +291,31 @@ button.btn.btn-light:hover{
 }
 .dnd li:hover {
   background-color: rgb(125, 125, 125);
+}
+
+
+
+
+/* Dashboard style */
+
+
+.Dashboard {
+  align-self: start;
+  background-color: #0E0F25;
+  min-width: 8px;
+  color: #ffffff;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  min-height: fit-content;
+  font-size: smaller;
+}
+
+
+.widget {
+  background-color: #0b0c26;
+  padding: 10px;
+}
+
+.widget:hover{
+  background-color: #585968;
 }

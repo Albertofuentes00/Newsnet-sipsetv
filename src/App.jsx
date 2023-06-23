@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css'
-
 import "bootstrap/dist/css/bootstrap.min.css"
-import "./App.css"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
 
@@ -19,12 +18,12 @@ import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
-
-
+import Dashboard from './Components/Admin/Dashboard';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
 
 import React, {useState} from 'react';
-
+import { Link } from 'react-router-dom';
 
 //Puede usar function o const para retornar componentes 
 
@@ -48,7 +47,10 @@ function App() {
       <body className="App-body">
 
 
-         <EscaletaMove />
+         {/* <EscaletaMove /> */}
+
+            {/* <Dashboard /> */}
+
 
 
         {/* <Escaletas/> */}
@@ -65,7 +67,7 @@ function App() {
 
          {/* <Menu />     */}
 
-        {/* < Login/>    */}
+         < Login/>   
         
         {/* <NuevoGuion /> */}
 
@@ -76,6 +78,14 @@ function App() {
 
       </body>
 
+      {/* <Routes>
+        <Route path='Menu' element= {<MainMenu/>}>
+
+        </Route>
+        
+      </Routes>
+      
+      <Link to='/Menu'>Menu <Link/> */}
 
       <footer className='App-footer'>
           <h4>Grupo SIPSE 2023 © Todos los derechos reservados </h4>
