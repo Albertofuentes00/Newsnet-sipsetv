@@ -14,6 +14,13 @@
   padding: 0%;
 }
 
+.Logo-BT{
+  height: 8vmin;
+  position: sticky;
+  align-self: center;
+  padding: 0%;
+}
+
 .DateTime{
   align-self: end;
   text-align: center;
@@ -57,7 +64,7 @@
 
 .App-footer{
   background-color: #202530;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: VCR OSD Mono;
   font-weight: 10vh;
   min-height: 25vh;
   display: flex;

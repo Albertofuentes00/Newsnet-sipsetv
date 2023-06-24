@@ -2,11 +2,14 @@ import logo from './logo.svg';
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+import { Routes, Route } from 'react-router-dom';
+
 import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
 
 import logosipse from './images/noticias.png'
+import Beto from './images/LOGO_Scale.png'
+
 import Texto from './Components/Texto'
 
 import Datetime from './Components/Datetime/DatetimeText'
@@ -19,11 +22,12 @@ import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
 import Dashboard from './Components/Admin/Dashboard';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
 
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+
+// import { Link } from 'react-router-dom';
 
 //Puede usar function o const para retornar componentes 
 
@@ -73,6 +77,15 @@ function App() {
 
        {/*  <NuevaEscaleta/>   */}
 
+       <Routes>
+          <Route path="/Menu" element={<Menu />}>
+            <Route path="Bitacora" element={<Bitacora />}/>
+            {/* <Route path="Usuario" element={<Usuario />}/> */}
+            {/* <Route path="Categoria" element={<CrearCategoria />}/> */}
+            {/* <Route path="*" element={<Default />}/> */}
+      </Route>
+      </Routes>
+
 
 
 
@@ -88,8 +101,11 @@ function App() {
       <Link to='/Menu'>Menu <Link/> */}
 
       <footer className='App-footer'>
-          <h4>Grupo SIPSE 2023 © Todos los derechos reservados </h4>
-          <h5>Powered by Beto & Tommy</h5>
+          <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>
+          <div>
+            <h7>Powered by</h7>
+            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto & Tommy</h6>
+          </div>
       </footer>
     </div>
 
