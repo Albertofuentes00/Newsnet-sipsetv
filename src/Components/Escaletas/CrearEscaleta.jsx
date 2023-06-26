@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi'
 
+import { Link } from "react-router-dom";
+
 
 function NuevaEscaleta() {
 
@@ -66,8 +68,12 @@ function NuevaEscaleta() {
             </div>
             <br />
             <div>
-                <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                <Link to='/Escaletas'>
+                    <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+                </Link>                
+                <Link to='/Escaletas'>
+                    <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                </Link>
             </div>
             </form>
         </div>

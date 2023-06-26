@@ -55,7 +55,10 @@ function Menu() {
                                 <Link to='/Notas'>
                                     <button type="button" class="btn btn-light" Link to="/Notas"> <FaFileAlt size={30} color="white" /> Notas</button>
                                 </Link>
-                                <button type="button" class="btn btn-light"> <FaUser size={30} color="white"/> Administrador</button>
+
+                                <Link to='/Admin'> 
+                                    <button type="button" class='btn btn-light' Link to='/Admin'> <FaUser size={30} color='white' />   Administrador </button>
+                                </Link>
                             </div>
 
 

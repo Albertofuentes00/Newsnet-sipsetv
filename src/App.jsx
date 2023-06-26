@@ -16,7 +16,6 @@ import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
 import Bitacora from './Components/Bitacora/BitacoraView';
 import NuevaNota from './Components/Bitacora/CrearNota';
-import MiFormulario from './Components/Menuprueba/MiComponente';
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -24,7 +23,7 @@ import NuevoGuion from './Components/Notas/CrearGuion';
 import Dashboard from './Components/Admin/Dashboard';
 
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
-
+import CrearUsuario from './Components/Admin/NuevoUsuario';
 import React, {useState} from 'react';
 
 // import { Link } from 'react-router-dom';
@@ -55,7 +54,7 @@ function App() {
 
             {/* <Dashboard /> */}
 
-
+        {/* <Dashboard /> */}
 
         {/* <Escaletas/> */}
 
@@ -71,15 +70,22 @@ function App() {
 
           {/* <Menu />  */}
 
+          
+        <CrearUsuario />
 
 
        <Routes>
           <Route path="/" element={<Login/>}/>
             <Route path='MainMenu' element={<Menu/>}/>
+
             <Route path="Escaletas" element={<Escaletas />}/>
+            <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path="Bitacora" element={<Bitacora />}/>
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='CrearNota' element={<NuevaNota/>}/>
+
+            <Route path='Admin' element={<Dashboard />} />
+            <Route path='ListaUsuarios' element={<CrearUsuario />} />
       </Routes>
 
 
@@ -87,14 +93,7 @@ function App() {
 
       </body>
 
-      {/* <Routes>
-        <Route path='Menu' element= {<MainMenu/>}>
-
-        </Route>
-        
-      </Routes>
       
-      <Link to='/Menu'>Menu <Link/> */}
 
       <footer className='App-footer'>
           <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>

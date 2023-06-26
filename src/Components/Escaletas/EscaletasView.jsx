@@ -7,6 +7,8 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa';
 
+import { Outlet, Link } from "react-router-dom";
+
 function Escaletas(){
 
     return(
@@ -17,8 +19,13 @@ function Escaletas(){
 
             <div>
                 <form className="Button-form">
-                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>
+                    <Link to='/MainMenu'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    </Link>
+
+                    <Link to='/NuevaEscaleta'>
+                        <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
+                    </Link>
                     <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                 </form>
             </div>
@@ -71,6 +78,8 @@ function Escaletas(){
                 
             </form>
         </div>
+
+        <Outlet/>
 
         </body>
 
