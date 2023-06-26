@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "../MainMenu/MainMenu";
 
+import { Link } from "react-router-dom";
 
 
 function Login() {
@@ -27,9 +27,11 @@ function Login() {
             </div>
             <div className="d-grid gap-2 mt-3">
               
-              <button type="submit" className="btn btn-primary" component={Menu} to='/Menu'> 
-                Ingresar
-              </button>
+              <Link to='MainMenu'>
+                <button type="submit" className="btn btn-primary">
+                  Ingresar 
+                </button>
+              </Link>
             </div>
           </div>
         </form>

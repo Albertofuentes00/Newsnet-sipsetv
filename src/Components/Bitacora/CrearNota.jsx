@@ -28,18 +28,20 @@ function NuevaNota() {
 
                     <div className= 'Grid'>
                         <label>Categoría</label>
-                        <select  class="form-control mt-1" />
+                        <select class="form-control mt-1" placeholder="Categoria" type="user"/>
                         <br />
                         <label>Reportero</label>
-                        <select class="form-control mt-1" />
+                        <select class="form-control mt-1"  placeholder="Reportero" type="user"/>
                     </div>
-                    <br />
+                    <div class= 'Grid'>
+
+                    </div>
                     <div className= 'Grid'>
                         <label>Formato</label>
-                        <select  class="form-control mt-1" />
+                        <select  class="form-control mt-1" placeholder="Formato" type="user"/>
                         <br />
                         <label>Fecha</label>
-                        <select  class="form-control mt-1" />                        
+                        <select  class="form-control mt-1" placeholder="DD/MM/AAAA"/>                        
                     </div>
                 </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 
 
 import { FaEdit } from 'react-icons/fa';
@@ -19,8 +20,12 @@ function Bitacora() {
 
             <div>
                 <form className="Button-form">
-                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
+                    <Link to='/MainMenu'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    </Link>
+                    <Link to='/CrearNota'>
+                        <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
+                    </Link>
                     <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                 </form>
             </div>
@@ -85,7 +90,7 @@ function Bitacora() {
                 
             </form>
         </div>
-        
+        <Outlet/>
         </body>
     )
 }

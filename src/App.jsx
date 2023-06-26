@@ -69,21 +69,17 @@ function App() {
 
         {/* <VerEscaleta /> */}
 
-         {/* <Menu />     */}
+          {/* <Menu />  */}
 
-         < Login/>   
-        
-        {/* <NuevoGuion /> */}
 
-       {/*  <NuevaEscaleta/>   */}
 
        <Routes>
-          <Route path="/Menu" element={<Menu />}>
+          <Route path="/" element={<Login/>}/>
+            <Route path='MainMenu' element={<Menu/>}/>
+            <Route path="Escaletas" element={<Escaletas />}/>
             <Route path="Bitacora" element={<Bitacora />}/>
-            {/* <Route path="Usuario" element={<Usuario />}/> */}
-            {/* <Route path="Categoria" element={<CrearCategoria />}/> */}
-            {/* <Route path="*" element={<Default />}/> */}
-      </Route>
+            <Route path="Notas" element={<GuionesNotas/>}/>
+            <Route path='CrearNota' element={<NuevaNota/>}/>
       </Routes>
 
 
