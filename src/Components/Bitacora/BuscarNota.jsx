@@ -7,6 +7,51 @@ import { FaSearch } from 'react-icons/fa'
 
 function BuscarNotas(){
 
+    const formatosList = [
+        {
+            id: 1,
+            value: 'TX'
+        }, {
+            id: 2,
+            value: 'INS'
+        }, {
+            id: 3,
+            value: 'FT'
+        }
+        ];
+
+    const CategoriasList = [
+        {
+            id: 1, 
+            value: 'Noticias'
+        }, {
+            id: 2, 
+            value: 'Deportes'
+        }, {
+            id: 3,
+            value: 'General'
+        }
+        ];
+
+    const ReporterosList = [
+        {
+            id: 1,
+            value: 'Brito'
+        }, {
+            id: 2, 
+            value: 'Pluma'
+        }
+        ];
+
+        function Options({ options }) {
+            return (
+                options.map(option => 
+                            <option key={option.id} value={option.value}>                                   
+                            {option.value}
+                            </option>)
+                           );
+        }
+
     return( 
     
     <div className="Auth-form-container">
@@ -24,15 +69,21 @@ function BuscarNotas(){
 
                 <div className= 'Grid'>
                     <label>Categoría</label>
-                    <select class="form-control mt-1" placeholder="Categoria" type="user"/>
+                    <select class="form-control mt-1" placeholder="Categoria" type="user">
+                        <Options options={CategoriasList}/>
+                    </select>
                 </div>
                 <div className= 'Grid'>
                     <label>Reportero</label>
-                    <select class="form-control mt-1"  placeholder="Reportero" type="user"/>                
+                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
+                        <Options options={ReporterosList} />
+                    </select>                
                 </div>
                 <div className="Grid">
-                    <label>Reportero</label>
-                    <select class="form-control mt-1"  placeholder="Reportero" type="user"/>
+                    <label>Formato</label>
+                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
+                        <Options options={formatosList} />
+                    </select>
                 </div>
             </div>
 

@@ -6,6 +6,62 @@ import { GiCancel } from 'react-icons/gi'
 
 function NuevaNota() {
 
+
+    const formatosList = [
+        {
+            id: 1,
+            value: 'TX'
+        }, {
+            id: 2,
+            value: 'INS'
+        }, {
+            id: 3,
+            value: 'FT'
+        }
+        ];
+
+    const CategoriasList = [
+        {
+            id: 1, 
+            value: 'Noticias'
+        }, {
+            id: 2, 
+            value: 'Deportes'
+        }, {
+            id: 3,
+            value: 'General'
+        }
+        ];
+
+    const ReporterosList = [
+        {
+            id: 1,
+            value: 'Brito'
+        }, {
+            id: 2, 
+            value: 'Pluma'
+        }
+        ];
+
+        function Options({ options }) {
+            return (
+                options.map(option => 
+                            <option key={option.id} value={option.value}>                                   
+                            {option.value}
+                            </option>)
+                           );
+        }
+        
+        // <select
+        // name="programa"
+        // className="form-control">
+        // <Options options={programasList} />
+        // </select>
+
+    const [value, onChange] = useState(new Date());
+
+
+
     const [selectedOption, setSelectedOption] = useState('');
 
     const handleSelectChange = (event) => {
@@ -28,17 +84,24 @@ function NuevaNota() {
 
                     <div className= 'Grid'>
                         <label>Categoría</label>
-                        <select class="form-control mt-1" placeholder="Categoria" type="user"/>
+                        <select class="form-control mt-1" placeholder="Categoria" type="user">
+                        <Options options={CategoriasList}/>
+                        </select>
+
                         <br />
                         <label>Reportero</label>
-                        <select class="form-control mt-1"  placeholder="Reportero" type="user"/>
+                        <select class="form-control mt-1"  placeholder="Reportero" type="user">
+                        <Options options={ReporterosList} />
+                        </select>
                     </div>
                     <div class= 'Grid'>
 
                     </div>
                     <div className= 'Grid'>
                         <label>Formato</label>
-                        <select  class="form-control mt-1" placeholder="Formato" type="user"/>
+                        <select  class="form-control mt-1" placeholder="Formato" type="user">
+                        <Options options={formatosList} />
+                        </select>
                         <br />
                         <label>Fecha</label>
                         <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/>                     
