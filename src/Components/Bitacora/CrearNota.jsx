@@ -41,7 +41,7 @@ function NuevaNota() {
                         <select  class="form-control mt-1" placeholder="Formato" type="user"/>
                         <br />
                         <label>Fecha</label>
-                        <select  class="form-control mt-1" placeholder="DD/MM/AAAA"/>                        
+                        <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/>                     
                     </div>
                 </div>
 

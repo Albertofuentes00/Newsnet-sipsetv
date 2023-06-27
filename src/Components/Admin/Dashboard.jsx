@@ -20,7 +20,7 @@ function AdminMenu(){
             <Link to='/MainMenu'>
                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={30} color="white" /> Regresar</button>
             </Link>
-            <Link to='/Admin/ListaUsuarios'>
+            <Link to='/ListaUsuarios'>
                 <button type="button" class="btn btn-primary"> <FaUsers size={30} color="white" /> Usuarios</button>
             </Link>
             <Link>
@@ -34,44 +34,10 @@ function AdminMenu(){
             </Link>
 
             <Outlet/>
+            
         </div>
+        
     )
-
-    // function Usuario(){
-
-    //     return(
-    //         <div className="Auth-form-container-Main">
-    //         <form className='Table-form'>
-    //         <table class="table">
-    //                 <thead>
-    //                     <tr>
-    //                         <th scope="col">No. Usuario</th>
-    //                         <th scope="col">User</th>
-    //                         <th scope="col">Nombre</th>
-    //                         <th scope="col">Apellidos</th>
-    //                         <th scope="col">     </th>
-    //                     </tr>
-    //                 </thead>
-    //                 <tbody>
-    //                     <tr>
-    //                         <td scope="row">1</td>
-    //                         <td>brito</td>
-    //                         <td>Javier</td>
-    //                         <td>Brito</td>
-    //                         <td className="buttons-th"> 
-    //                              <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-    //                              <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-    //                         </td>
-    //                     </tr>
-    //                 </tbody>
-    //             </table>
-                
-    //         </form>
-    //     </div>
-
-
-    //     )
-    // }
 
 
 }

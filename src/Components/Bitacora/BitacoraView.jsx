@@ -26,7 +26,10 @@ function Bitacora() {
                     <Link to='/CrearNota'>
                         <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
                     </Link>
-                    <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+
+                    <Link to='/BuscarNota'>
+                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                    </Link>
                 </form>
             </div>
 

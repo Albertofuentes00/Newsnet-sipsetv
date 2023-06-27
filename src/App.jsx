@@ -21,9 +21,10 @@ import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
 import Dashboard from './Components/Admin/Dashboard';
-
+import BuscarNotas from './Components/Bitacora/BuscarNota';
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
 import CrearUsuario from './Components/Admin/NuevoUsuario';
+import Usuario from './Components/Admin/ListaUsuarios';
 import React, {useState} from 'react';
 
 // import { Link } from 'react-router-dom';
@@ -80,12 +81,17 @@ function App() {
 
             <Route path="Escaletas" element={<Escaletas />}/>
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
+
             <Route path="Bitacora" element={<Bitacora />}/>
+            <Route path='CrearNota' element={<NuevaNota/>} />
+            <Route path='BuscarNota' element={<BuscarNotas/>}/>
+
+
             <Route path="Notas" element={<GuionesNotas/>}/>
-            <Route path='CrearNota' element={<NuevaNota/>}/>
+
 
             <Route path='Admin' element={<Dashboard />} />
-            <Route path='ListaUsuarios' element={<CrearUsuario />} />
+            <Route path='ListaUsuarios' element={<Usuario />} />
       </Routes>
 
 

@@ -155,6 +155,18 @@
   position: relative;
 }
 
+.Auth-form-Search{
+  width: 650px;
+  margin-top: -100px;
+  margin-bottom: 10px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+
+}
+
 label {
   font-size: 14px;
   font-weight: 600;
@@ -199,6 +211,11 @@ button.btn.btn-light:hover{
   margin-bottom: 10px; /* Espacio entre filas */
 }
 
+
+.Grid{
+  padding-left: 12px;
+
+}
 /* Formato de tablas */
 
 .Table-form{
