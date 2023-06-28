@@ -15,27 +15,31 @@ import Usuario from "./ListaUsuarios";
 function AdminMenu(){
 
     return(
-        
-        <div className="MenuHeader">
+
+        <header>
+             <div className="MenuHeader">
             <Link to='/MainMenu'>
                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={30} color="white" /> Regresar</button>
             </Link>
-            <Link to='/ListaUsuarios'>
+            <Link to='ListaUsuarios'>
                 <button type="button" class="btn btn-primary"> <FaUsers size={30} color="white" /> Usuarios</button>
             </Link>
-            <Link>
+            <Link to='ListaProgramas'>
                 <button type='button' class='btn btn-primary'> <BiCameraMovie size={30} color="white" /> Programas </button>
             </Link>
-            <Link>
+            <Link to='ListaCategorias'>
                 <button type='button' class='btn btn-primary'> <BiCategory size={30} color="white" />  Categorías </button>
             </Link>
-            <Link>
+            <Link to='ListaFormatos'>
                 <button type="button" class='btn btn-primary'> <FaMicrophone size={30} color="white" /> Formatos </button>
             </Link>
 
             <Outlet/>
             
-        </div>
+            </div>
+        </header>
+        
+       
         
     )
 

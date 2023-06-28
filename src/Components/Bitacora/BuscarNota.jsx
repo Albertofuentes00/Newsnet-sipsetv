@@ -89,9 +89,14 @@ function BuscarNotas(){
 
             <div className="FromDateToDate">
                 <div className= 'Grid'>
-                    <label>Del <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/> </label>
+                    <label>Del</label>
                 </div>
-
+                <div className= 'Grid'>
+                    <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/>
+                </div>
+                <div className= 'Grid' >
+                    <label> Al </label>
+                </div>
                 <div className="Grid">
                     <label>Al <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/> </label>
                 </div>

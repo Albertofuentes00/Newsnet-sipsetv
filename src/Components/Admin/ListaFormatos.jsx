@@ -8,22 +8,18 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
 
-function ListaUsuarios(){
+function ListaFormatos(){
 
     return(
         <body>
              <div>
-                <h3>Lista de Usuarios</h3>
+                <h3>Lista de Formatos</h3>
             </div>
 
             <div>
                 <form className="Button-form">
                     <Link to='NuevoUsuario'>
-                        <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
-                    </Link>
-
-                    <Link to='BuscarUsuario'>
-                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                        <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
                     </Link>
                 </form>
             </div>
@@ -33,21 +29,31 @@ function ListaUsuarios(){
             <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">No. Usuario</th>
+                            <th scope="col">No. Formato</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellidos</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Contraseña</th>
                             <th scope="col">     </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td scope="row">1</td>          {/* <td> {{ nota.iD_Nota }} </td>    */}
-                            <td>Javier</td>
-                            <td>Brito</td>
-                            <td>jbrito</td>
-                            <td>12345</td>
+                            <td>TX</td>
+                            <td className="buttons-th"> 
+                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>          {/* <td> {{ nota.iD_Nota }} </td>    */}
+                            <td>IN / TX</td>
+                            <td className="buttons-th"> 
+                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">3</td>          {/* <td> {{ nota.iD_Nota }} </td>    */}
+                            <td>FT</td>
                             <td className="buttons-th"> 
                                  <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                  <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
@@ -65,4 +71,4 @@ function ListaUsuarios(){
 }
 
 
-export default ListaUsuarios
+export default ListaFormatos

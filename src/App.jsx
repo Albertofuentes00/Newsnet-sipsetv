@@ -7,24 +7,38 @@ import { Routes, Route } from 'react-router-dom';
 import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
 
+/* IMAGES */
 import logosipse from './images/noticias.png'
 import Beto from './images/LOGO_Scale.png'
 
 import Texto from './Components/Texto'
 
+
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
+
+/* BITACORA SECTION */
 import Bitacora from './Components/Bitacora/BitacoraView';
 import NuevaNota from './Components/Bitacora/CrearNota';
+import BuscarNotas from './Components/Bitacora/BuscarNota';
+
+/* ESCALETAS SECTION */
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
+import EscaletaMove from './Components/Escaletas/EscaletaOpen';
+
+/* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
+
+/* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
-import BuscarNotas from './Components/Bitacora/BuscarNota';
-import EscaletaMove from './Components/Escaletas/EscaletaOpen';
-import CrearUsuario from './Components/Admin/NuevoUsuario';
-import Usuario from './Components/Admin/ListaUsuarios';
+import NuevoUsuario from './Components/Admin/NuevoUsuario';
+import ListaUsuarios from './Components/Admin/ListaUsuarios';
+import ListaProgramas from './Components/Admin/ListaProgramas';
+import ListaCategorias from './Components/Admin/ListaCategorias';
+import ListaFormatos from './Components/Admin/ListaFormatos';
+
 import React, {useState} from 'react';
 
 // import { Link } from 'react-router-dom';
@@ -51,33 +65,10 @@ function App() {
       <body className="App-body">
 
 
-         {/* <EscaletaMove /> */}
-
-            {/* <Dashboard /> */}
-
-        {/* <Dashboard /> */}
-
-        {/* <Escaletas/> */}
-
-         {/* <Bitacora />  */}
-
-          {/* <GuionesNotas /> */}
-
-          {/* <NuevaNota/>  */}
-
-        {/* <MiFormulario/> */}
-
-        {/* <VerEscaleta /> */}
-
-          {/* <Menu />  */}
-
-          
-        <CrearUsuario />
-
 
        <Routes>
           <Route path="/" element={<Login/>}/>
-            <Route path='MainMenu' element={<Menu/>}/>
+          <Route path='MainMenu' element={<Menu/>}/>
 
             <Route path="Escaletas" element={<Escaletas />}/>
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
@@ -90,8 +81,17 @@ function App() {
             <Route path="Notas" element={<GuionesNotas/>}/>
 
 
-            <Route path='Admin' element={<Dashboard />} />
-            <Route path='ListaUsuarios' element={<Usuario />} />
+            <Route path='Admin' element={<Dashboard />}>
+              <Route path='ListaProgramas' element= {<ListaProgramas/>} />
+              <Route path='ListaCategorias' element= {<ListaCategorias/>} />
+              <Route path='ListaFormatos' element= {<ListaFormatos/>} />
+              <Route path='ListaUsuarios' element={<ListaUsuarios />}>
+                <Route path='NuevoUsuario' element= {<NuevoUsuario/>} />
+              </Route>
+
+
+
+            </Route>
       </Routes>
 
 
