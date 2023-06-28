@@ -33,7 +33,7 @@ function Menu() {
         //     </form>
         // </div>
         
-        <div className="Auth-form-container-Main">
+        <div className="Auth-form-MainMenu">
             <form className='Auth-form-Main'>
                 <div className='Main-Welcome' >
                     <h3 className="Auth-form-title"><Texto 

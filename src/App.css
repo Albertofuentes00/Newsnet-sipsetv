@@ -90,12 +90,31 @@
 
 /* CSS LOGIN */
 
+.Auth-Maintable{
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.form-control-mt-1-date{
+  width: 15px;
+}
+
 .Auth-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
+}
+
+.Auth-form-MainMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 45px;
+  padding-bottom: 45px;
+  width: auto;
+  height: auto;
 }
 
 .Auth-form-Main {
@@ -355,4 +374,8 @@ button.btn.btn-light:hover{
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+}
+
+.FromDateToDate{
+
 }

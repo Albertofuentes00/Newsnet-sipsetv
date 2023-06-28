@@ -8,6 +8,8 @@ import {FaFilePdf} from 'react-icons/fa'
 import { FaEdit } from 'react-icons/fa';
 import {BsFillSignpostFill} from 'react-icons/bs'
 
+import { Outlet, Link } from 'react-router-dom';
+
 
 
 
@@ -59,6 +61,9 @@ return(
   <div className="Auth-form-content">
       <h3 className="Auth-form-title">Cancun Vive 22-06-23</h3>
       <form className="Button-form">
+            <Link to=''>
+            
+            </Link>
               <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
               <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
               <button type="button" class="btn btn-primary"> <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>

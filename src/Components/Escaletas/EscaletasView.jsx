@@ -26,7 +26,10 @@ function Escaletas(){
                     <Link to='/NuevaEscaleta'>
                         <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
                     </Link>
-                    <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+
+                    <Link to='/EscaletaView'>
+                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>                
+                    </Link>
                 </form>
             </div>
 
@@ -47,7 +50,9 @@ function Escaletas(){
                             <td>SIPSE Noticias edicion matutina</td>
                             <td>19-06-23</td>
                             <td className="buttons-th"> 
-                                 <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                            <Link to='/EscaletasMove'>
+                                <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                            </Link>
                                  <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                  <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             </td>

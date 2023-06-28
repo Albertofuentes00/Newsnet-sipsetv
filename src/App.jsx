@@ -71,6 +71,7 @@ function App() {
           <Route path='MainMenu' element={<Menu/>}/>
 
             <Route path="Escaletas" element={<Escaletas />}/>
+            <Route path='EscaletasMove' element={<EscaletaMove/>} />
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
 
             <Route path="Bitacora" element={<Bitacora />}/>

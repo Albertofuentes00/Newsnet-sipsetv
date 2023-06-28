@@ -89,16 +89,16 @@ function BuscarNotas(){
 
             <div className="FromDateToDate">
                 <div className= 'Grid'>
-                    <label>Del</label>
+                    <label>Buscar entre fechas</label>
                 </div>
                 <div className= 'Grid'>
-                    <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/>
+                    <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/>
                 </div>
-                <div className= 'Grid' >
+                {/* <div className= 'Grid' >
                     <label> Al </label>
-                </div>
+                </div> */}
                 <div className="Grid">
-                    <label>Al <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/> </label>
+                    <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/> 
                 </div>
             </div>
                 

@@ -7,6 +7,8 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
 
+import { Outlet, Link } from "react-router-dom";
+
 
 function GuionesNotas(){
     
@@ -20,8 +22,12 @@ function GuionesNotas(){
 
             <div>
                 <form className="Button-form">
-                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                    <Link to='/MainMenu'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>                
+                    </Link>
+                    <Link to='/BuscarNotas'>
+                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>                
+                    </Link>
                 </form>
             </div>
 
@@ -81,6 +87,7 @@ function GuionesNotas(){
                 
             </form>
         </div>
+        <Outlet />
         
         </body>
     )
