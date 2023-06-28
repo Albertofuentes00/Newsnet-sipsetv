@@ -13,7 +13,7 @@ function Bitacora() {
 
     return (
         
-        <body>
+           
 
             <div className='Auth-Maintable'>
                     <div>
@@ -34,9 +34,10 @@ function Bitacora() {
                             </Link>
                         </form>
                     </div>
+                    <br />
 
                 <div className="Auth-form-container-Main">
-                    <form className='Table-form'>
+                    
                     <table class="table">
                             <thead>
                                 <tr>
@@ -64,7 +65,7 @@ function Bitacora() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td scope="row">1</td>    {/* <td> {{ nota.iD_Nota }} </td>    */}
+                                    <td scope="row">1</td>    
                                     <td>Manifestacion</td>
                                     <td>Noticias</td>
                                     <td>TX</td>
@@ -93,7 +94,7 @@ function Bitacora() {
                             </tbody>
                         </table>
                         
-                    </form>
+                    
                 </div>
                 <Outlet/>
 
@@ -102,9 +103,12 @@ function Bitacora() {
 
 
             
-        </body>
+        
     )
 }
 
 
 export default Bitacora
+
+
+{/* <td> {{ nota.iD_Nota }} </td>    */}

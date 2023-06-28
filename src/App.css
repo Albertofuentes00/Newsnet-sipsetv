@@ -93,6 +93,7 @@
 .Auth-Maintable{
   padding-top: 45px;
   padding-bottom: 45px;
+
 }
 
 .form-control-mt-1-date{
@@ -115,6 +116,11 @@
   padding-bottom: 45px;
   width: auto;
   height: auto;
+}
+
+.Auth-form-container-Main{
+  border-radius: 25px;
+
 }
 
 .Auth-form-Main {
@@ -236,6 +242,15 @@ button.btn.btn-light:hover{
 
 }
 /* Formato de tablas */
+
+table.table{
+  --bs-table-bg: #e7e7e7;
+  font-size: smaller;
+  width: 100%;
+  margin-bottom: 12vh;
+  vertical-align: top;
+  border-radius: 50px;
+}
 
 .Table-form{
   width: 1200px;
