@@ -11,25 +11,25 @@ import { FaSearch } from "react-icons/fa";
 function ListaUsuarios(){
 
     return(
-        <body>
-             <div>
-                <h3>Lista de Usuarios</h3>
+<div className="Auth-form-container">
+
+<form className="Auth-form-table">
+    <div className='Auth-Maintable'>
+            <div>
+                <h3>Lista de usuarios</h3>
             </div>
 
             <div>
                 <form className="Button-form">
-                    <Link to='NuevoUsuario'>
+         <Link to='NuevoUsuario'>
                         <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
-                    </Link>
-
-                    <Link to='BuscarUsuario'>
-                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                     </Link>
                 </form>
             </div>
+            <br />
 
         <div className="Auth-form-container-Main">
-            <form className='Table-form'>
+            
             <table class="table">
                     <thead>
                         <tr>
@@ -43,23 +43,38 @@ function ListaUsuarios(){
                     </thead>
                     <tbody>
                         <tr>
-                            <td scope="row">1</td>          {/* <td> {{ nota.iD_Nota }} </td>    */}
+                            <td scope="row">1</td>          
                             <td>Javier</td>
                             <td>Brito</td>
                             <td>jbrito</td>
                             <td>12345</td>
                             <td className="buttons-th"> 
-                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
+                                <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">2</td>
+                            <td>Iliana</td>
+                            <td>Pluma</td>
+                            <td>lilpluma</td>
+                            <td>2468</td>
+                            <td className="buttons-th">
+                                <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
+                                <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 
-            </form>
+            
         </div>
         <Outlet/>
-        </body>
+
+
+    </div>
+</form>
+</div>
     )
 
 }

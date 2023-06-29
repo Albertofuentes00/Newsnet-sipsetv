@@ -21,11 +21,14 @@ import Login from './Components/LoginView/LoginView';
 import Bitacora from './Components/Bitacora/BitacoraView';
 import NuevaNota from './Components/Bitacora/CrearNota';
 import BuscarNotas from './Components/Bitacora/BuscarNota';
+import EditarNota from './Components/Bitacora/EditarNota';
 
 /* ESCALETAS SECTION */
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
+import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
+import PruebaMove from './Components/Escaletas/PruebaEscaletamove';
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -73,10 +76,13 @@ function App() {
             <Route path="Escaletas" element={<Escaletas />}/>
             <Route path='EscaletasMove' element={<EscaletaMove/>} />
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
+            <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
+            <Route path='PruebaMove' element={<PruebaMove/>} />
 
             <Route path="Bitacora" element={<Bitacora />}/>
             <Route path='CrearNota' element={<NuevaNota/>} />
             <Route path='BuscarNota' element={<BuscarNotas/>}/>
+            <Route path='EditarNota' element={<EditarNota/>} />
 
 
             <Route path="Notas" element={<GuionesNotas/>}/>

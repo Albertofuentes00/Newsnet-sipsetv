@@ -17,16 +17,16 @@ function EscaletaMove() {
 
   const [dragItem, setDragItem] = useState();
 const [list, setList] = useState([
-  <td> "The Call Of Ktulu" </td>,
+  <td> Javier Manifestacion Iliana   TX </td>,
   <td> "For Whom The Bell Tolls" </td>,
   <td> "For Whom The Bell Tolls 2" </td> ,
   <td> "The Day That Never Comes" </td>,
   <td>"The Memory Remains" </td>,
   <td>"Confusion" </td>,
   <td>"Moth Into Flame" </td>,
-  <td>"The Outlaw Torn" </td>,
-  <td>"No Leaf Clover" </td>,
-  <td>"Halo on Fire" </td>,
+  'Javier' + '       ' +   'Trafico en centro' +  '        ' + 'Iliana' + '          ' + 'TX',
+  'CORTINILLA',
+  'CORTE COMERCIAL',
 ]);
 
 
@@ -61,10 +61,9 @@ return(
   <div className="Auth-form-content">
       <h3 className="Auth-form-title">Cancun Vive 22-06-23</h3>
       <form className="Button-form">
-            <Link to=''>
-            
-            </Link>
+            <Link to='Escaletas'>
               <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+            </Link>
               <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
               <button type="button" class="btn btn-primary"> <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
               <button type="button" class="btn btn-success">  Agregar Nota</button>
@@ -101,42 +100,7 @@ return(
 </div>
 
 
-    //  <div className="Auth-form-container">
-    //         <form className="Auth-form">
-    //             <div className="Auth-form-content"> 
-    //             <h3>Cancun Vive 22-06-23</h3>
-    //             <br />
-    //             <div> 
-    //                 <form className="Button-form">
-    //                     <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-    //                     <button type='button' class='btn btn-warning'> Editar Escaleta</button>
-    //                     <button type="button" class="btn btn-primary"> Agregar Indicación</button>
-    //                     <button type="button" class="btn btn-success">  Agregar Nota</button>
-    //                     <button type='button' class='btn btn-danger'> Generar PDF </button>
-    //                 </form>
-    //             </div>
-    //             </div>
-    //             <br />
-
-    //             <ul className="dnd">
-    //               {list &&
-    //                 list.map((item, index) => (
-    //                 <li
-    //                 draggable
-    //                 key={index}
-    //                 onDragStart={() => handleDragStart(index)}
-    //                 onDragEnter={(e) => handleDragEnter(e, index)}
-    //                 onDragLeave={(e) => handleDragLeave(e)}
-    //                 onDrop={(e) => handleDrop(e)}
-    //                 onDragOver={(e) => e.preventDefault()}
-    //               >
-    //                 {item}
-    //               </li>
-    //             ))}
-    //             </ul>
-
-    //         </form>
-    //   </div>
+    
 
 
 )

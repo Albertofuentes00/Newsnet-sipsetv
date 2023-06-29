@@ -15,7 +15,7 @@ import Usuario from "./ListaUsuarios";
 function AdminMenu(){
 
     return(
-        <body>
+        <body className="App-body">
         <header>
                     <div className="MenuHeader">
             <Link to='/MainMenu'>
@@ -35,12 +35,8 @@ function AdminMenu(){
             </Link>    
         </div>
         </header> 
-
-        <body className="App-body">
-        <p>hola</p>
         
-        </body>
-        <Outlet></Outlet>
+        <Outlet />
         </body>
         
        
