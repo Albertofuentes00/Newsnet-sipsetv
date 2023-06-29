@@ -12,81 +12,89 @@ import { Outlet, Link } from "react-router-dom";
 function Escaletas(){
 
     return(
-        <body>
-            <div>
-                <h3> Escaletas </h3>
-            </div>
+        <div className="Auth-form-container">
 
-            <div>
-                <form className="Button-form">
-                    <Link to='/MainMenu'>
-                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    </Link>
+        <form className="Auth-form-table">
+            <div className='Auth-Maintable'>
+                    <div>
+                        <h1>Escaletas</h1>
+                        <h6>En esta sección puede consultar la informacion acerca de las escaletas de un programa, editar el contenido de dichas 
+                            escaletas, generar formato .PDF y prompt, asi como eliminar y crear escaletas
+                        </h6>
+                    </div>
 
-                    <Link to='/NuevaEscaleta'>
-                        <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
-                    </Link>
-
-                    <Link to='/EscaletaView'>
-                        <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>                
-                    </Link>
-                </form>
-            </div>
-
-            <div className="Auth-form-container-Main">
-            <form className='Table-form'>
-            <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Programa</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">     </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>SIPSE Noticias edicion matutina</td>
-                            <td>19-06-23</td>
-                            <td className="buttons-th"> 
-                            <Link to='/EscaletasMove'>
-                                <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                    <div>
+                        <form className="Button-form">
+                            <Link to='/MainMenu'>
+                                <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
+
+ 		            <Link to='/NuevaEscaleta'>
+                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
+                    	    </Link>
+
+                            <Link to='/EscaletaView'>
+                                <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                            </Link>
+                        </form>
+                    </div>
+                    <br />
+
+                <div className="Auth-form-container-Main">
+                    
+                    <table class="table">
+                            <thead>
+                                <tr>
+				   <th scope="col">#</th>
+                            	   <th scope="col">Programa</th>
+                            	   <th scope="col">Fecha</th>
+                            	   <th scope="col">     </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                     <td scope="row">1</td>
+                            	     <td>SIPSE Noticias edicion matutina</td>
+                                     <td>19-06-23</td>
+                                     <td className="buttons-th"> 
+                            	<Link to='/EscaletasMove'>
+                                	<button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                            	</Link>
                                  <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                  <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>SIPSE Noticias edicion vespertina</td>
-                            <td>19-06-23</td>
-                            <td className="buttons-th"> 
-                                 <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Cancun Vive</td>
-                            <td>19-06-23</td>
-                            <td className="buttons-th"> 
-                                 <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                            </td>
-                        </tr>
+                            	     </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">2</td>
+                            	    <td>SIPSE Noticias edicion vespertina</td>
+                                    <td>19-06-23</td>
+                                    <td className="buttons-th"> 
+                                      <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                                      <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                      <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">2</td>
+                                    <td>Cancun Vive</td>
+                                    <td>19-06-23</td>
+                                    <td className="buttons-th"> 
+                                       <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                                       <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                       <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         
-                    </tbody>
-                </table>
-                
-            </form>
-        </div>
+                    
+                </div>
+                <Outlet/>
 
-        <Outlet/>
 
-        </body>
+            </div>
+        </form>
+    </div>
 
     )
 }

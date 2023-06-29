@@ -90,11 +90,11 @@
 
 /* CSS LOGIN */
 
-.Auth-Maintable{
+/* .Auth-Maintable{
   padding-top: 45px;
   padding-bottom: 45px;
 
-}
+} */
 
 .form-control-mt-1-date{
   width: 15px;
@@ -144,7 +144,22 @@
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
-  background-color: white;
+  background-color: #e7e7e7;
+}
+
+.Auth-form-table {
+  width: 990px;
+  height: 500px;
+  position: static;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+  background-color: #e7e7e7;
 }
 
 .Auth-form-content {
@@ -170,14 +185,14 @@
 .Auth-form-escaleta{
   width: 1020px;
   height: auto;
-  margin-top: -100px;
+  margin-top: 10px;
   margin-bottom: 10px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
-  background-color: white;
-  position: relative;
+  background-color: #e7e7e7;
+  position: static;
 }
 
 .Auth-form-Search{
@@ -337,6 +352,7 @@ table.table{
   margin: auto;
   align-items: start;
   position: relative;
+  margin-left: -125px;
 }
 .dnd li {
   cursor: move;

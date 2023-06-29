@@ -13,11 +13,15 @@ function Bitacora() {
 
     return (
         
-           
+    <div className="Auth-form-container">
 
+        <form className="Auth-form-table">
             <div className='Auth-Maintable'>
                     <div>
                         <h3>Bitácora de notas</h3>
+                        <h6>En esta sección hará gestion de la creación, lectura, edición y eliminación de las notas y sus guiones, así como 
+                            la búsqueda de una nota en especifico
+                        </h6>
                     </div>
 
                     <div>
@@ -100,9 +104,8 @@ function Bitacora() {
 
 
             </div>
-
-
-            
+        </form>
+    </div>
         
     )
 }

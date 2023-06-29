@@ -70,7 +70,7 @@ return(
               <button type="button" class="btn btn-success">  Agregar Nota</button>
               <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </form>
-
+      <br />
 
       <div>
           <ul className="dnd">
