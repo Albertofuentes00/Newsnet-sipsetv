@@ -7,6 +7,7 @@ import { FaTrash } from "react-icons/fa";
 import { BiCameraMovie } from 'react-icons/bi'
 import { FaMicrophone } from 'react-icons/fa'
 import { BiCategory } from 'react-icons/bi'
+import { FaUserCog } from 'react-icons/fa'
 
 import { Outlet, Link } from "react-router-dom";
 
@@ -32,7 +33,10 @@ function AdminMenu(){
             </Link>
             <Link to='ListaFormatos'>
                 <button type="button" class='btn btn-primary'> <FaMicrophone size={30} color="white" /> Formatos </button>
-            </Link>    
+            </Link>  
+            <Link>
+                <button type="button" class='btn btn-primary'>  <FaUserCog size={30} color='white'/> Roles </button>
+            </Link>  
         </div>
         </header> 
         
