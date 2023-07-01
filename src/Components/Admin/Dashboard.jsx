@@ -34,7 +34,7 @@ function AdminMenu(){
             <Link to='ListaFormatos'>
                 <button type="button" class='btn btn-primary'> <FaMicrophone size={30} color="white" /> Formatos </button>
             </Link>  
-            <Link>
+            <Link to='ListaRoles'>
                 <button type="button" class='btn btn-primary'>  <FaUserCog size={30} color='white'/> Roles </button>
             </Link>  
         </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { FaAngleLeft } from 'react-icons/fa';
 
+import { FaAngleLeft } from 'react-icons/fa';
+import { FaPlusSquare } from "react-icons/fa";
 import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
 import {FaFilePdf} from 'react-icons/fa'
@@ -10,15 +11,25 @@ import {BsFillSignpostFill} from 'react-icons/bs';
 import { FaTrash } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
 
-
 import { Outlet, Link } from 'react-router-dom';
-
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 
+
+// const handleAddRow = () => {
+//   const newRow = {
+//     id: "New indicator"
+//   };
+//  setRows([...rows, newRow]);
+//   };
+
     function Table () {
+
+        const Save = () => {
+          setRows.Save()
+        }
+
         const [dragItem, setDragItem] = useState();
         const [rows, setRows] = useState([
           { id: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
@@ -27,16 +38,16 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
           { id: '4', content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
         ]);
 
-        const [list, setList] = useState([
-          <td> Javier Manifestacion Iliana   TX </td>,
-          <td> "For Whom The Bell Tolls" </td>,
-          <td> "For Whom The Bell Tolls 2" </td> ,
-          <td> "The Day That Never Comes" </td>,
-
-        ]);
-
         
-      
+        const handleAddRow = () => {
+          const newRow = {
+             id: rows.length + 1, content: '-', title: 'INDICACION', reportero: '-', format: '-' 
+          };
+
+          setRows([...rows, newRow]);
+        };
+        
+
         const handleDragEnd = (result) => {
           if (!result.destination) return;
       
@@ -68,6 +79,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
         const handleDrop = (e) => {
           e.target.style.backgroundColor = "rgb(192, 192, 192)";
         };
+
       
         return (
           <div className="Auth-form-container">
@@ -78,9 +90,10 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
             <Link to='/Escaletas'>
               <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
             </Link>
+              <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
-              <button type="button" class="btn btn-primary"> <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
-              <button type="button" class="btn btn-success">  Agregar Nota</button>
+              <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
+              <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
               <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </form>
       <br />
@@ -146,7 +159,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
   </div>
       <br />
 
-      <ul className="dnd">
+      {/* <ul className="dnd">
                    {list &&
                      list.map((item, index) => (
                      <li
@@ -161,12 +174,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
                      {item}
                    </li>
                  ))}
-          </ul>
+          </ul> */}
 
-  <div>
-      <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-      <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
-  </div>
   
   </form>
 </div>

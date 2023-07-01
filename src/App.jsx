@@ -29,6 +29,7 @@ import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
 import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
 import PruebaMove from './Components/Escaletas/PruebaEscaletamove';
+import Table from './Components/Escaletas/prueba2';
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -41,6 +42,7 @@ import ListaUsuarios from './Components/Admin/ListaUsuarios';
 import ListaProgramas from './Components/Admin/ListaProgramas';
 import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
+import ListaRoles from './Components/Admin/ListaRoles';
 
 import React, {useState} from 'react';
 
@@ -78,6 +80,8 @@ function App() {
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
             <Route path='PruebaMove' element={<PruebaMove/>} />
+            <Route path='Prueba' element={<Table/>} />
+
 
             <Route path="Bitacora" element={<Bitacora />}/>
             <Route path='CrearNota' element={<NuevaNota/>} />
@@ -92,7 +96,9 @@ function App() {
               <Route path='ListaProgramas' element= {<ListaProgramas/>} />
               <Route path='ListaCategorias' element= {<ListaCategorias/>} />
               <Route path='ListaFormatos' element= {<ListaFormatos/>} />
+              <Route path='ListaRoles' element={<ListaRoles/>} />
               <Route path='ListaUsuarios' element={<ListaUsuarios />}>
+              
                 <Route path='NuevoUsuario' element= {<NuevoUsuario/>} />
               </Route>
 

@@ -281,6 +281,7 @@ table.table{
 .Button-form{
   justify-content: left;
   margin-right: 5%;
+  width: 900px;
 }
 
 .btn{
@@ -306,6 +307,7 @@ table.table{
 
 .Button-form{
   margin-right: 0%;
+  margin-left: -50px;
 }
 
 

@@ -8,7 +8,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
 
-function ListaFormatos(){
+function ListaRoles(){
 
     return(
         <div className="Auth-form-container">
@@ -16,13 +16,13 @@ function ListaFormatos(){
         <form className="Auth-form-table">
             <div className='Auth-Maintable'>
                     <div>
-                        <h3>Lista de formatos</h3>
+                        <h3>Lista de Roles</h3>
                     </div>
         
                     <div>
                         <form className="Button-form">
                  <Link>
-                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
+                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
                             </Link>
                         </form>
                     </div>
@@ -33,7 +33,7 @@ function ListaFormatos(){
                     <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No. Formato</th>
+                                    <th scope="col"># Rol</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">     </th>
                                 </tr>
@@ -41,7 +41,7 @@ function ListaFormatos(){
                             <tbody>
                                 <tr>
                                     <td scope="row">1</td>          
-                                    <td>TX</td>
+                                    <td>Administrador</td>
                                     <td className="buttons-th"> 
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
@@ -49,7 +49,7 @@ function ListaFormatos(){
                                 </tr>
                                 <tr>
                                     <td scope="row">2</td>
-                                    <td>TX/IN</td>
+                                    <td>Reportero</td>
                                     <td className="buttons-th">
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
@@ -57,7 +57,7 @@ function ListaFormatos(){
                                 </tr>
                     <tr>
                                     <td scope="row">3</td>
-                                    <td>FT</td>
+                                    <td>Responsable</td>
                                     <td className="buttons-th">
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
@@ -79,4 +79,4 @@ function ListaFormatos(){
 }
 
 
-export default ListaFormatos
+export default ListaRoles
