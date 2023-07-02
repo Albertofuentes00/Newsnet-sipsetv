@@ -45,6 +45,7 @@ import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
 
 import React, {useState} from 'react';
+import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 
 // import { Link } from 'react-router-dom';
 
@@ -79,6 +80,8 @@ function App() {
             <Route path='EscaletasMove' element={<EscaletaMove/>} />
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
+            <Route path='AgregarNotas' element={<AddNotes/>} />
+
             <Route path='PruebaMove' element={<PruebaMove/>} />
             <Route path='Prueba' element={<Table/>} />
 
@@ -90,6 +93,7 @@ function App() {
 
 
             <Route path="Notas" element={<GuionesNotas/>}/>
+            <Route path='CrearGuion' element={<NuevoGuion/>} />
 
 
             <Route path='Admin' element={<Dashboard />}>

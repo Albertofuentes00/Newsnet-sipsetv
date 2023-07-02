@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
+
 
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
@@ -7,29 +10,35 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
 
-import { Outlet, Link } from "react-router-dom";
+function AddNotes() {
 
 
-function GuionesNotas(){
-    
+    const CheckboxExample = () => {
+        const [isChecked, setChecked] = useState(false);
+      
+        const handleCheckboxChange = () => {
+          setChecked(!isChecked);
+        };
+    }
     return (
         
-        
-        <div className="Auth-form-container">
+    <div className="Auth-form-container">
 
         <form className="Auth-form-table">
             <div className='Auth-Maintable'>
                     <div>
-                        <h1>Bitácora de notas</h1>
-                        <h6>En esta sección podrá asignar un guión a una nota en caso de que dicha nota no tenga una; 
-                            visualizar, editar y/o eliminar un guión existente asignado a una nota
+                        <h3>Agregar notas a Escaleta</h3>
+                        <h6>Selecciona las notas que desea colocar en la escaleta
                         </h6>
                     </div>
 
                     <div>
                         <form className="Button-form">
-                            <Link to='/MainMenu'>
+                            <Link to='/PruebaMove'>
                                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                            </Link>
+                            <Link to='/CrearNota'>
+                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Notas</button>
                             </Link>
 
                             <Link to='/BuscarNota'>
@@ -61,10 +70,9 @@ function GuionesNotas(){
                                     <td>TX</td>
                                     <td>Brito</td>
                                     <td>11-06-23</td>
-                                    <td className="buttons-th"> 
-                                        <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                    <td> 
+                                        <input
+                                        type="checkbox"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,12 +82,9 @@ function GuionesNotas(){
                                     <td>TX</td>
                                     <td>Brito</td>
                                     <td>11-06-23</td>
-                                    <td className="buttons-th"> 
-					<Link to='/CrearGuion'>
-                    <button type="button" class='btn btn-success'>  <FaPlusSquare size={20} color="white"/> Crear guión </button>
-                    </Link>
-                    
-                    
+                                    <td> 
+                                        <input
+                                        type="checkbox"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -89,8 +94,9 @@ function GuionesNotas(){
                                     <td>TX</td>
                                     <td>Brito</td>
                                     <td>11-06-23</td>
-                                    <td className="buttons-th">
-					<button type="button" class='btn btn-success'>  <FaPlusSquare size={20} color="white"/> Crear guión </button>
+                                    <td>
+                                        <input
+                                        type="checkbox"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -99,11 +105,15 @@ function GuionesNotas(){
                     
                 </div>
                 <Outlet/>
+
+
             </div>
         </form>
     </div>
-
+        
     )
 }
 
-export default GuionesNotas
+
+export default AddNotes
+

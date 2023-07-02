@@ -91,14 +91,21 @@ function BuscarNotas(){
                 <div className= 'Grid'>
                     <label>Buscar entre fechas</label>
                 </div>
-                <div className= 'Grid'>
-                    <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/>
-                </div>
-                {/* <div className= 'Grid' >
+
+
+                <div className="Row">
+                    <div className="Grid">
+                        <label> Del </label>
+                    </div>
+                    <div className= 'Grid'>
+                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/>
+                    </div>
+                    <div className= 'Grid' >
                     <label> Al </label>
-                </div> */}
-                <div className="Grid">
-                    <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/> 
+                    </div>
+                    <div className="Grid">
+                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/> 
+                    </div>
                 </div>
             </div>
                 

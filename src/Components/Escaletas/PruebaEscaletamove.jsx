@@ -32,10 +32,10 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
         const [dragItem, setDragItem] = useState();
         const [rows, setRows] = useState([
-          { id: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
-          { id: '2', content: 'Javier', title: 'Fuga de agua', reportero: 'Iliana', format: 'FT' },
-          { id: '3', content: 'Javier', title: 'Incendio', reportero: 'Iliana', format: 'TX/IN' },
-          { id: '4', content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
+          { id: '1', order: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
+          { id: '2', order: '2' ,content: 'Javier', title: 'Fuga de agua', reportero: 'Iliana', format: 'FT' },
+          { id: '3', order: '3', content: 'Javier', title: 'Incendio', reportero: 'Iliana', format: 'TX/IN' },
+          { id: '4', order:'4',content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
         ]);
 
         
@@ -79,7 +79,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
         const handleDrop = (e) => {
           e.target.style.backgroundColor = "rgb(192, 192, 192)";
         };
-
       
         return (
           <div className="Auth-form-container">
@@ -88,13 +87,16 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
       <h3 className="Auth-form-title">Cancun Vive 22-06-23</h3>
       <form className="Button-form">
             <Link to='/Escaletas'>
-              <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+              <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
             </Link>
               <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
               <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
+              
+            <Link to='/AgregarNotas'>
               <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-              <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+            </Link>
+            <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </form>
       <br />
 
@@ -107,6 +109,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
                       
                         <tr >
                             <th scope="col">#</th>
+                            <th scope='col'>Orden</th>
                             <th scope="col">Conductor</th>
                             <th scope="col">Titulo</th>
                             <th scope="col">Reportero</th>
@@ -138,11 +141,15 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
                             
                           >
                             <td> {row.id} </td>
+                            <td> {row.order} </td>
                             <td>{row.content}</td>
                             <td> {row.title} </td>
                             <td> {row.reportero} </td>
                             <td> {row.format} </td>
-                            <td>                </td>
+                            <td>    
+                              <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                              <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                            </td>
 
 
                           </tr>

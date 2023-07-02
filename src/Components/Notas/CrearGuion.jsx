@@ -1,5 +1,6 @@
 import React from "react";
-import { utils, writeFile } from 'xlsx';
+
+import { useState } from "react";
 
 
 import {FaAngleLeft} from 'react-icons/fa';
@@ -24,6 +25,15 @@ import { FaMinusSquare } from 'react-icons/fa'
 
 function NuevoGuion(){
 
+
+    const ExcelCellInput = () => {
+        const [value, setValue] = useState('');
+      
+        const handleInputChange = (event) => {
+          setValue(event.target.value);
+        };
+    }
+
     return(
         <div className="Auth-form-container">
         <form className="Auth-form">
@@ -41,8 +51,10 @@ function NuevoGuion(){
             </div>
 
             <div className="Row">
-                <input type="cell" />
-                <input type="cell" />
+                <input  type="text"
+                        className="excel-cell-input" />
+                <input  type="text"
+                        className="excel-cell-input"/>
             </div>
 
         </div>

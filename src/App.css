@@ -281,7 +281,7 @@ table.table{
 .Button-form{
   justify-content: left;
   margin-right: 5%;
-  width: 900px;
+  
 }
 
 .btn{
@@ -409,6 +409,11 @@ table.table{
   font-size: calc(10px + 2vmin);
 }
 
-.FromDateToDate{
+/* CELDAS DE EXCEL */
 
+.excel-cell-input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 14px;
+  width: 800px;
 }
