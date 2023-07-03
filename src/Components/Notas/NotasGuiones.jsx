@@ -62,7 +62,9 @@ function GuionesNotas(){
                                     <td>Brito</td>
                                     <td>11-06-23</td>
                                     <td className="buttons-th"> 
-                                        <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                                        <Link to='/LeerGuion'>
+                                            <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                                        </Link>
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>

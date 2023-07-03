@@ -26,7 +26,7 @@ import { FaMinusSquare } from 'react-icons/fa'
 // writeFile(workbook, 'output.xlsx');
 
 
-function NuevoGuion(){
+function LeerGuion(){
 
 
     const ExcelCellInput = () => {
@@ -37,32 +37,41 @@ function NuevoGuion(){
         };
     }
 
+    const text1 = "VOZ EN OFF";
+    const text2 = 'LA MAÑANA DE ESTE LUNES SE REALIZO A CABO UNA BLABLABLABLABLABLABLA'
+
     return(
         <div className="Auth-form-container">
         <form className="Auth-form-Guion">
         <div className="Auth-form-content">
-            <h2 className="Auth-form-title">Crear guión</h2>
-            <h3 className="Text-helper">Escriba en las cuadrillas a continuación los guiones que desea agregar a la nota </h3>
-            <div>
-                <h3>TITULO: SAMPLE TEXT </h3>
-
+            <h2 className="Auth-form-title">Guión Cancun Vive 03/07/23</h2>
+            <div className="Row">
+                <div className="Grid">
+                    <h5> Reportero: reportero  </h5>
+                </div>
+                <div className="Grid">
+                    <h5> Categoria: categoria </h5>
+                </div>
+                <div className="Grid">
+                    <h5> Formato: formato </h5>
+                </div>
             </div>
             <br />
             <div>
                 <form className="Button-form">
                     <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    <button type="button" class='btn btn-success'> <FaSave size={20} color="white"/> Guardar cambios </button>
-                    <button type="button" class="btn btn-primary"> <FaPlusSquare  size={20} color="white"/> Agregar Celda</button>
-                    <button type="button" class="btn btn-danger"> <FaMinusSquare  size={20} color="white"/> Quitar Celda</button>
-
                 </form>
             </div>
             <br />
             <div className="Row">
-                <input  type="text"
-                        className="excel-cell-input"/>
-                <input  type="text"
-                        className="excel-cell-input"/>
+                <textarea  type="text"
+                        className="excel-cell-input"
+                        value={text1}
+                        disabled='true'
+                        />
+                <textarea  type="text"
+                        className="excel-cell-input"
+                        value={text2} disabled='true' Resize='none'/>
             </div>
 
         </div>
@@ -74,7 +83,7 @@ function NuevoGuion(){
     
 }
 
- export default NuevoGuion
+ export default LeerGuion
 
 
 

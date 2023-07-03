@@ -34,6 +34,7 @@ import Table from './Components/Escaletas/prueba2';
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
 import NuevoGuion from './Components/Notas/CrearGuion';
+import LeerGuion from './Components/Notas/VerNotaGuion';
 
 /* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
@@ -94,6 +95,7 @@ function App() {
 
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='CrearGuion' element={<NuevoGuion/>} />
+            <Route path='LeerGuion' element= {<LeerGuion/> } />
 
 
             <Route path='Admin' element={<Dashboard />}>
