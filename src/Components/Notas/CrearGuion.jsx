@@ -58,11 +58,16 @@ function NuevoGuion(){
                 </form>
             </div>
             <br />
-            <div className="Row">
-                <input  type="text"
-                        className="excel-cell-input"/>
-                <input  type="text"
-                        className="excel-cell-input"/>
+            <div className="Row-Guion">
+                <textarea  type="text"
+                        className="excel-cell-input"
+                        
+                />
+                <textarea  type="text"
+                        className="excel-cell-input"
+                        
+                        
+                />
             </div>
 
         </div>

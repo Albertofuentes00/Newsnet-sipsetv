@@ -20,7 +20,7 @@ function ListaProgramas(){
 
             <div>
                 <form className="Button-form">
-         <Link>
+                    <Link to='/NewProgram' >
                         <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
                     </Link>
                 </form>
@@ -42,7 +42,6 @@ function ListaProgramas(){
                             <td scope="row">1</td>          
                             <td>Cancun Vive</td>
                             <td className="buttons-th"> 
-                                <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             </td>
                         </tr>
@@ -50,7 +49,6 @@ function ListaProgramas(){
                             <td scope="row">2</td>
                             <td>Sipse Noticias Edicion Matutina</td>
                             <td className="buttons-th">
-                                <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                             </td>
                         </tr>
@@ -58,7 +56,6 @@ function ListaProgramas(){
                             <td scope="row">2</td>
                             <td>Sipse Noticias Edicion Vespertina</td>
                             <td className="buttons-th">
-                                <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                             </td>
                         </tr>

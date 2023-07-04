@@ -21,7 +21,7 @@ function ListaRoles(){
         
                     <div>
                         <form className="Button-form">
-                 <Link>
+                            <Link to= '/NewRol'>
                                 <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
                             </Link>
                         </form>
@@ -43,15 +43,13 @@ function ListaRoles(){
                                     <td scope="row">1</td>          
                                     <td>Administrador</td>
                                     <td className="buttons-th"> 
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td scope="row">2</td>
                                     <td>Reportero</td>
-                                    <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
+                                    <td className="buttons-th"> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -59,7 +57,6 @@ function ListaRoles(){
                                     <td scope="row">3</td>
                                     <td>Responsable</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>

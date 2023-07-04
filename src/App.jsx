@@ -38,15 +38,24 @@ import LeerGuion from './Components/Notas/VerNotaGuion';
 
 /* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
-import NuevoUsuario from './Components/Admin/NuevoUsuario';
+
+import NewUser from './Components/Admin/NuevoUsuario';
+import NewCategory from './Components/Admin/NuevaCategoria';
+import NewProgram from './Components/Admin/NuevoPrograma';
+import NewFormat from './Components/Admin/NuevoFormato';
+import NewRol from './Components/Admin/NuevoRol';
+
 import ListaUsuarios from './Components/Admin/ListaUsuarios';
 import ListaProgramas from './Components/Admin/ListaProgramas';
 import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
 
+import DynamicTextAreaComponent from './Components/Notas/PRUEBACELDA';
+
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
+
 
 // import { Link } from 'react-router-dom';
 
@@ -96,6 +105,7 @@ function App() {
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='CrearGuion' element={<NuevoGuion/>} />
             <Route path='LeerGuion' element= {<LeerGuion/> } />
+            <Route path='PruebaGuion' element= {<DynamicTextAreaComponent/>} />
 
 
             <Route path='Admin' element={<Dashboard />}>
@@ -103,14 +113,13 @@ function App() {
               <Route path='ListaCategorias' element= {<ListaCategorias/>} />
               <Route path='ListaFormatos' element= {<ListaFormatos/>} />
               <Route path='ListaRoles' element={<ListaRoles/>} />
-              <Route path='ListaUsuarios' element={<ListaUsuarios />}>
-              
-                <Route path='NuevoUsuario' element= {<NuevoUsuario/>} />
-              </Route>
-
-
-
+              <Route path='ListaUsuarios' element={<ListaUsuarios />}/>
             </Route>
+            <Route path='NewUser' element={<NewUser/>} />
+            <Route path='NewCategory' element= {<NewCategory/>} />
+            <Route path='NewProgram' element= {<NewProgram/>} />
+            <Route path='NewFormat' element= {<NewFormat/>} />
+            <Route path='NewRol' element= {<NewRol/>}/>
       </Routes>
 
 

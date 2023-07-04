@@ -21,7 +21,7 @@ function ListaCategorias(){
         
                     <div>
                         <form className="Button-form">
-                 <Link>
+                            <Link to='/NewCategory'>
                                 <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nueva Categoría</button>
                             </Link>
                         </form>
@@ -43,7 +43,6 @@ function ListaCategorias(){
                                     <td scope="row">1</td>          
                                     <td>Noticias</td>
                                     <td className="buttons-th"> 
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -51,7 +50,6 @@ function ListaCategorias(){
                                     <td scope="row">2</td>
                                     <td>Deportes</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -59,7 +57,6 @@ function ListaCategorias(){
                                     <td scope="row">3</td>
                                     <td>Espectaculos</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -67,7 +64,6 @@ function ListaCategorias(){
                                     <td scope="row">4</td>
                                     <td>Internacional</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>

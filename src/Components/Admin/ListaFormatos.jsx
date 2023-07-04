@@ -21,7 +21,7 @@ function ListaFormatos(){
         
                     <div>
                         <form className="Button-form">
-                 <Link>
+                            <Link to= '/NewFormat'> 
                                 <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
                             </Link>
                         </form>
@@ -43,7 +43,6 @@ function ListaFormatos(){
                                     <td scope="row">1</td>          
                                     <td>TX</td>
                                     <td className="buttons-th"> 
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -51,7 +50,6 @@ function ListaFormatos(){
                                     <td scope="row">2</td>
                                     <td>TX/IN</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -59,7 +57,6 @@ function ListaFormatos(){
                                     <td scope="row">3</td>
                                     <td>FT</td>
                                     <td className="buttons-th">
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black"/> Editar</button> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>
                                 </tr>

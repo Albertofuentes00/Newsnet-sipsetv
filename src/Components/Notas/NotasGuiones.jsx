@@ -65,7 +65,10 @@ function GuionesNotas(){
                                         <Link to='/LeerGuion'>
                                             <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
                                         </Link>
+
+                                        <Link to='/PruebaGuion' >
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                        </Link>
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>

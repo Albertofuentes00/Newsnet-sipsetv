@@ -18,8 +18,9 @@ function Escaletas(){
             <div className='Auth-Maintable'>
                     <div>
                         <h1>Escaletas</h1>
-                        <h6>En esta sección puede consultar la informacion acerca de las escaletas de un programa, editar el contenido de dichas 
-                            escaletas, generar formato .PDF y prompt, asi como eliminar y crear escaletas
+                        <h6>En esta sección puede gestionar las escaletas de un programa, da Click en "Agregar Nueva Escaleta" y "Buscar" para realizar
+                            tareas de creacion y busqueda de Escaletas respectivamente, da Click en "Ver" para visualizar y 
+                            editar el contenido de la escaleta deseada, da Click "Eliminar" para eliminar dicha escaleta 
                         </h6>
                     </div>
 
@@ -60,7 +61,6 @@ function Escaletas(){
                             	<Link to='/EscaletasMove'>
                                 	<button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
                             	</Link>
-                                 <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                  <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             	     </td>
                                 </tr>
@@ -72,7 +72,6 @@ function Escaletas(){
                                     <Link to='/PruebaMove'>
                                         <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
                                     </Link>
-                                      <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                       <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>
@@ -84,7 +83,6 @@ function Escaletas(){
                                        <Link to='/Prueba'>
                                         <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
                                        </Link>
-                                       <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>

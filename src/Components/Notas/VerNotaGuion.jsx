@@ -63,7 +63,7 @@ function LeerGuion(){
                 </form>
             </div>
             <br />
-            <div className="Row">
+            <div className="Row-Guion">
                 <textarea  type="text"
                         className="excel-cell-input"
                         value={text1}

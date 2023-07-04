@@ -1,14 +1,21 @@
 import React from "react"
 import { Outlet, Link } from "react-router-dom"
+import { FaSave } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi'
 
 
-function NuevoUsuario(){
+
+function NewUser(){
+
+
+  return(
+    
 
     <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Nuevo Usuario</h3>
-            <h2>Ingresa los datos requeridos para crear un nuevo usuario</h2>
+            <h6>Ingresa los datos requeridos para crear un nuevo usuario</h6>
 
             <div className= 'Grid'>
                 <label>Nombre</label>
@@ -41,14 +48,14 @@ function NuevoUsuario(){
                     className="form-control mt-1"
                     placeholder="Ingrese la contraseña"/>
           </div>
+          <br />
 
 
-            <div className="d-grid gap-2 mt-3">
-              <Link to='MainMenu'>
-                <button type="submit" className="btn btn-primary">
-                  Cerrar 
-                </button>
+            <div className="Button-form">
+              <Link to='/MainMenu'>
+              <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
               </Link>
+                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
             </div>
 
 
@@ -57,9 +64,11 @@ function NuevoUsuario(){
     <Outlet/>
   </div>
 
+  )
+
 
 
 }
 
 
-export default NuevoUsuario
+export default NewUser
