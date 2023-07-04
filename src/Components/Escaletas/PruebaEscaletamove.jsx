@@ -57,6 +57,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
       
           setRows(newRows);
         };
+        
 
         const handleDragStart = (index) => {
           setDragItem(index);

@@ -67,14 +67,24 @@ function App() {
     <div className="App">
 
       <header className='App-header'> 
-        <img src={logosipse} className="App-logo-sipse" alt="logo" />
+
+        <div className='logo'>
+            <img src={logosipse} className="App-logo-sipse" alt="logo" />
+        </div>
+        
 
         <div className='DateTime'>
-        <TextSample
+        {/* <TextSample
           name= "Alberto"
           apellidos= "Fuentes"
-        />
-      </div>
+        /> */}
+
+          <div className="options">
+            <a href="#">Cerrar Sesión</a>
+            <a href="#">Ayuda</a>
+          </div>
+
+         </div>
 
       </header>
     
@@ -150,7 +160,7 @@ const TextSample = (props) => {
   return (
 
     <div className="TextSample">
-    <p>Bienvenido: {props.name} {props.apellidos}, <Datetime /> </p>
+    <p>Bienvenido: {props.name} {props.apellidos} <Datetime /> </p>
     </div>
      )
 

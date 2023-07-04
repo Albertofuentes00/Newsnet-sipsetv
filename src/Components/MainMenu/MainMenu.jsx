@@ -44,20 +44,20 @@ function Menu() {
                         <div className= 'Menu-form'>
                             <div className= 'Row'>
                                 <Link to='/Bitacora'>
-                                    <button type="button" class="btn btn-light" Link to="/Bitacora" > <FaBook size={30} color="white" /> Bitacora</button>
+                                    <button type="button" class="btn btn-light" > <FaBook size={30} color="white" /> Bitacora</button>
                                 </Link>
 
                                 <Link to='/Escaletas'>
-                                    <button type="button" class="btn btn-light" Link to="/Escaletas" > <FaList size={30} color="white" /> Escaletas</button>
+                                    <button type="button" class="btn btn-light"  > <FaList size={30} color="white" /> Escaletas</button>
                                 </Link>
                             </div>
                             <div className= 'Row'>
                                 <Link to='/Notas'>
-                                    <button type="button" class="btn btn-light" Link to="/Notas"> <FaFileAlt size={30} color="white" /> Notas</button>
+                                    <button type="button" class="btn btn-light"> <FaFileAlt size={30} color="white" /> Notas</button>
                                 </Link>
 
                                 <Link to='/Admin/ListaUsuarios'> 
-                                    <button type="button" class='btn btn-light' Link to='/Admin'> <FaUser size={30} color='white' />   Administrador </button>
+                                    <button type="button" class='btn btn-light'> <FaUser size={30} color='white' />   Administrador </button>
                                 </Link>
                             </div>
 
