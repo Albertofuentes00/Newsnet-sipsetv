@@ -3,6 +3,7 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import { Routes, Route } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
@@ -51,10 +52,16 @@ import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
 
+
+
+/* HELP SECTION */
+import HelpMenu from './Components/Ayuda/HelpDashboard';
+
 import DynamicTextAreaComponent from './Components/Notas/PRUEBACELDA';
 
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
+import Introduccion from './Components/Ayuda/Introduction';
 
 
 // import { Link } from 'react-router-dom';
@@ -80,8 +87,10 @@ function App() {
         /> */}
 
           <div className="options">
+            <Link to='/HelpDashboard/Introduccion'>
+               <a href="#">Ayuda</a>
+            </Link>
             <a href="#">Cerrar Sesión</a>
-            <a href="#">Ayuda</a>
           </div>
 
          </div>
@@ -130,6 +139,12 @@ function App() {
             <Route path='NewProgram' element= {<NewProgram/>} />
             <Route path='NewFormat' element= {<NewFormat/>} />
             <Route path='NewRol' element= {<NewRol/>}/>
+
+
+            <Route path='HelpDashboard' element={<HelpMenu/>} >
+                <Route path='Introduccion' element={<Introduccion/>}/>
+            
+            </Route>
       </Routes>
 
 

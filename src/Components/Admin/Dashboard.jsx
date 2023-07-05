@@ -2,8 +2,7 @@ import React from "react";
 import {FaUsers} from 'react-icons/fa'
 import {HiDocumentText} from 'react-icons/hi'
 import {FaAngleLeft} from 'react-icons/fa'
-import { FaEdit } from 'react-icons/fa';
-import { FaTrash } from "react-icons/fa";
+
 import { BiCameraMovie } from 'react-icons/bi'
 import { FaMicrophone } from 'react-icons/fa'
 import { BiCategory } from 'react-icons/bi'
