@@ -56,6 +56,13 @@ import ListaRoles from './Components/Admin/ListaRoles';
 
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
+import About from './Components/Ayuda/AboutNewsnet';
+import adminHelp from './Components/Ayuda/AdminHelp';
+import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
+import GuionesHelp from './Components/Ayuda/GuionesHelp';
+import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
+
+
 
 import DynamicTextAreaComponent from './Components/Notas/PRUEBACELDA';
 
@@ -143,7 +150,11 @@ function App() {
 
             <Route path='HelpDashboard' element={<HelpMenu/>} >
                 <Route path='Introduccion' element={<Introduccion/>}/>
-            
+                <Route path='BitacoraHelp' element={<BitacoraHelp/>}/>
+                <Route path='EscaletasHelp' element={<EscaletasHelp/>}/>
+                <Route path='GuionesHelp' element={<GuionesHelp/>}/>
+                <Route path='AdminHelp' element={<adminHelp/>}/>
+                <Route path='About' element={<About/>} />
             </Route>
       </Routes>
 

@@ -309,6 +309,15 @@ button.btn.btn-light:hover{
 
 .textIntroduction{
   align-content: baseline;
+  text-align: left;
+  font-size: smaller;
+  color: #ffffff;
+}
+
+.FinalIntroduction{
+  font-size: larger;
+  color: #ffffff;
+
 }
 
 .HelpMenu {
@@ -594,4 +603,11 @@ tbody{
     font-size: calc(10px + 2vmin);
 }
 
+h1.TitleHelp{
+  font-size: 75px;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: #000000;
+  
 
+}

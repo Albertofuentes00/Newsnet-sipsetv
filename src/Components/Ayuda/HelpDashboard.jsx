@@ -16,7 +16,8 @@ function HelpMenu(){
 
     return(
 
-    <body className="App-body" >
+<body className="App-body" >
+    <div className="Row">
         <div className="HelpMenu">
 
             <Link to='Introduccion'>
@@ -25,31 +26,31 @@ function HelpMenu(){
                 </li>
             </Link>  
 
-            <Link to=''>
+            <Link to='BitacoraHelp'>
                 <li> 
                     Bitácora 
                 </li>
             </Link>  
 
-            <Link to=''>
+            <Link to='EscaletasHelp'>
                 <li> 
                     Escaletas 
                 </li>
             </Link>  
 
-            <Link to=''>
+            <Link to='GuionesHelp'>
                 <li> 
                     Guiones/Notas 
                 </li>
             </Link>  
 
-            <Link to=''>
+            <Link to='AdminHelp'>
                 <li> 
                     Administrador 
                 </li>
             </Link>  
 
-            <Link to=''>
+            <Link to='About'>
                 <li>
                     Acerca de SIPSE NewsNet
                 </li>
@@ -59,7 +60,8 @@ function HelpMenu(){
             
         </div>
         <Outlet />
-    </body>
+    </div>
+</body>
     )
 }
 
