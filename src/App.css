@@ -166,12 +166,15 @@ a:visited {
 }
 
 .Auth-form-Guion {
+  height: auto;
   width: 800px;
+  position: static;
   max-height: 500px;
   margin-top: -100px;
   margin-bottom: 10px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
+  overflow-y: auto;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: #e7e7e7;
@@ -582,7 +585,6 @@ width: 300px;
   justify-content: space-between;
   margin-bottom: 10px;
   max-height: 250px;
-  overflow-y: auto;
 }
 
 tbody{

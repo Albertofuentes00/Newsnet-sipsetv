@@ -36,9 +36,19 @@ class DynamicTextAreaComponent extends React.Component {
       return (
         <div>
           {this.state.textAreas.map((text, index) => (
-            <div key={index}>
+            <div className="Row-Guion" key={index}>
               <textarea
-                value={text}
+                type="text"
+                className="excel-cell-input"
+                // value={text}
+                onChange={(event) => this.handleChange(event, index)}
+                rows={10}
+                style={{ width: "100%", resize: "none" }}
+              />
+               <textarea
+                type="text"
+                className="excel-cell-input"
+                // value={text}
                 onChange={(event) => this.handleChange(event, index)}
                 rows={10}
                 style={{ width: "100%", resize: "none" }}
