@@ -6,7 +6,7 @@ function EscaletasHelp() {
     return(
 
             <body className="App-body">
-                <div className="Row"> 
+                <div className="Main"> 
                     <div className="HelpTexts">
                         <h1 className="TitleHelp">►Escaletas</h1>
                         <br />
@@ -14,6 +14,61 @@ function EscaletasHelp() {
                         En esta sección hará gestión de las escaletas y su información, así como la edición, eliminación y exportación de estas
                         </h4>
                             <br />
+                        
+                        <div className="section">
+                            <h3>Agregar Escaleta</h3>
+                            <h5>Para crear una escaleta nueva:</h5>
+
+                            <h6>Haga click en el boton <u>Agregar Escaleta</u> e ingrese los datos requeridos, posteriormente haga Click en <u>Guardar</u> para crear la nota.</h6>
+                            <h6>Para cancelar o regresar a la pantalla de bitácora, haga click en Cancelar</h6>                            
+                        </div>
+
+                        <div className="section">
+                            <h3>Buscar Escaleta</h3>
+                            <h5>Para buscar una escaleta existente:</h5>
+
+                            <h6>Haga click en el boton <u>Buscar</u> e ingrese los datos que usted requiere, posteriormente haga click en <u>Buscar</u> para efectuar la búsqueda en el sistema </h6>            
+                        </div>
+
+                        <div className="section">
+                            <h3>Ver Escaleta</h3>
+                            <h5>Para leer una escaleta existente:</h5>
+
+                            <h6>Haga click en el boton <u>Ver</u> de la escaleta deseada para leer y editar los datos de esta</h6>            
+                        </div>
+
+                        <div className="section">
+                            <h3>Ordenar notas</h3>
+                            <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
+                            <br />
+                            <h3>Agregar notas a escaleta</h3>
+                            <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
+
+                            <h3>Agregar indicación</h3>
+                            <h5>Para agregar una indicacion a la escaleta, haga click en el boton <u>Agregar Indicacion</u> para agregar una nueva fila a la tabla con el nombre de INDICACION, usted puede realizar cambios en esta para renombrarla de acuerdo a sus necesidades</h5>
+
+                            <h3>Generar PDF</h3>
+                            <h5>Para generar un archivo PDF de la escaleta actual, haga click en el botón <u>Generar PDF</u> para abrir un archivo descargable que usted puede imprimir</h5>
+
+                            <h3>Editar o Eliminar filas</h3>
+                            <h5>Para eliminar una fila con una nota en una escaleta, haga click en <u>Eliminar</u> de la nota que desea. </h5>
+                            <h5>Para editar o renombrar una indicacion dentro de una escaleta, haga click en el boton <u>Editar</u> para renombrar dicha indicacion </h5>
+                            <h5>De igual manera puede eliminar una indicacion dando click en el boton <u>Eliminar</u> a un lado del boton de Eliminar </h5>
+                            
+                            
+                            
+                            <h6>Haga click en el boton <u>Ver</u> de la escaleta deseada para leer y editar los datos de esta</h6>            
+                        </div>
+
+
+
+
+
+
+
+
+
+
                         <h4 className="textIntroduction">Para crear una escaleta nueva haga click en el botón <u> Agregar Nueva Escaleta</u>, ingrese los datos requeridos
                         para una escaleta (Programa y Fecha) da click en <u>Guardar</u> para crear la escaleta</h4>
                             <br />

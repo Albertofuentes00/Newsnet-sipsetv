@@ -137,6 +137,21 @@ a:visited {
   height: 100vh;
 }
 
+.Main{
+  padding-top: 5%;
+  padding-left: 1%;
+  height: 700px;
+  max-height: 800px;
+  background: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  
+
+}
+
+.section{
+  color: #ffffff;
+}
+
 .Auth-form-MainMenu {
   display: flex;
   justify-content: center;
@@ -609,7 +624,13 @@ h1.TitleHelp{
   font-size: 75px;
   text-align: left;
   color: #ffffff;
-  text-shadow: #000000;
+  text-shadow:  1px 1px 8px black;
   
 
+}
+
+
+p{
+
+  text-shadow: 1px 1px 3px black;
 }

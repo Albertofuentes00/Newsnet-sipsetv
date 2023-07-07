@@ -30,7 +30,7 @@ import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import EscaletaMove from './Components/Escaletas/EscaletaOpen';
 import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
 import PruebaMove from './Components/Escaletas/PruebaEscaletamove';
-import Table from './Components/Escaletas/prueba2';
+
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -119,7 +119,6 @@ function App() {
             <Route path='AgregarNotas' element={<AddNotes/>} />
 
             <Route path='PruebaMove' element={<PruebaMove/>} />
-            <Route path='Prueba' element={<Table/>} />
 
 
             <Route path="Bitacora" element={<Bitacora />}/>

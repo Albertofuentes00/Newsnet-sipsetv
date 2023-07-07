@@ -7,7 +7,7 @@ function Introduccion() {
     return(
 
             <body className="App-body">
-                <div className="Row"> 
+                <div className="Main"> 
                     <div className="HelpTexts">
                         <h1 className="TitleHelp">Bienvenidos a NewsNet</h1>
                         <br />

@@ -7,7 +7,7 @@ function GuionesHelp() {
     return(
 
             <body className="App-body">
-                <div className="Row"> 
+                <div className="Main"> 
                     <div className="HelpTexts">
                         <h1 className="TitleHelp">►Guiones/Notas</h1>
                         <br />

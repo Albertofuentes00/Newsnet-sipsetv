@@ -18,10 +18,6 @@ function Escaletas(){
             <div className='Auth-Maintable'>
                     <div>
                         <h1>Escaletas</h1>
-                        <h6>En esta sección puede gestionar las escaletas de un programa, da Click en "Agregar Nueva Escaleta" y "Buscar" para realizar
-                            tareas de creacion y busqueda de Escaletas respectivamente, da Click en "Ver" para visualizar y 
-                            editar el contenido de la escaleta deseada, da Click "Eliminar" para eliminar dicha escaleta 
-                        </h6>
                     </div>
 
                     <div>
@@ -80,10 +76,9 @@ function Escaletas(){
                                     <td>Cancun Vive</td>
                                     <td>19-06-23</td>
                                     <td className="buttons-th"> 
-                                       <Link to='/Prueba'>
+                                       
                                         <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                       </Link>
-                                       <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
                                 </tr>
                             </tbody>

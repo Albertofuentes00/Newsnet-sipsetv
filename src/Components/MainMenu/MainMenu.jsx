@@ -44,7 +44,7 @@ function Menu() {
                         <div className= 'Menu-form'>
                             <div className= 'Row'>
                                 <Link to='/Bitacora'>
-                                    <button type="button" class="btn btn-light" > <FaBook size={30} color="white" /> Bitacora</button>
+                                    <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitacora</button>
                                 </Link>
 
                                 <Link to='/Escaletas'>

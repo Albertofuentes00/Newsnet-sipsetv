@@ -20,44 +20,49 @@ function HelpMenu(){
     <div className="Row">
         <div className="HelpMenu">
 
-            <Link to='Introduccion'>
-                <li> 
-                    Introducción 
-                </li>
-            </Link>  
+            <ul>
+                <Link to='/MainMenu'>
+                    <li> 
+                    <a>Regresar</a> 
+                    </li>
+                </Link> 
 
-            <Link to='BitacoraHelp'>
-                <li> 
-                    Bitácora 
-                </li>
-            </Link>  
+                <Link to='Introduccion'>
+                    <li> 
+                    <a>Introducción</a> 
+                    </li>
+                </Link>  
 
-            <Link to='EscaletasHelp'>
-                <li> 
-                    Escaletas 
-                </li>
-            </Link>  
+                <Link to='BitacoraHelp'>
+                    <li> 
+                    <a>Bitácora</a> 
+                    </li>
+                </Link>  
 
-            <Link to='GuionesHelp'>
-                <li> 
-                    Guiones/Notas 
-                </li>
-            </Link>  
+                <Link to='EscaletasHelp'>
+                    <li> 
+                    <a>Escaletas</a> 
+                    </li>
+                </Link>  
 
-            <Link to='AdminHelp'>
-                <li> 
-                    Administrador 
-                </li>
-            </Link>  
+                <Link to='GuionesHelp'>
+                    <li> 
+                    <a>Guiones/Notas</a> 
+                    </li>
+                </Link>  
 
-            <Link to='About'>
-                <li>
-                    Acerca de SIPSE NewsNet
-                </li>
-            </Link>  
+                <Link to='AdminHelp'>
+                    <li> 
+                    <a>Administrador </a>
+                    </li>
+                </Link>  
 
-
-            
+                <Link to='About'>
+                    <li>
+                        <a>Acerca de </a>
+                    </li>
+                </Link>  
+            </ul>                  
         </div>
         <Outlet />
     </div>
