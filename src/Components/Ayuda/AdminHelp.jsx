@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 
-function adminHelp() {
+function AdminHelp() {
 
     return(
 
@@ -35,4 +35,4 @@ function adminHelp() {
 }
 
 
-export default adminHelp
+export default AdminHelp

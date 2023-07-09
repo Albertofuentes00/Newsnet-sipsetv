@@ -38,6 +38,7 @@ function ListaUsuarios(){
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">User</th>
                                     <th scope="col">Contraseña</th>
+                                    <th scope="col">Rol</th>
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
@@ -48,6 +49,7 @@ function ListaUsuarios(){
                                     <td>Brito</td>
                                     <td>jbrito</td>
                                     <td>12345</td>
+                                    <td>Admin</td>
                                     <td className="buttons-th"> 
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
@@ -58,6 +60,7 @@ function ListaUsuarios(){
                                     <td>Pluma</td>
                                     <td>lilpluma</td>
                                     <td>2468</td>
+                                    <td>Reportero</td>
                                     <td className="buttons-th">
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
                                     </td>

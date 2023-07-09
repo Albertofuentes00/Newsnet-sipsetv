@@ -7,11 +7,25 @@
   pointer-events: none;
 }
 
-.App-logo-sipse{
+/* .App-logo-sipse{
   height: 13vmin;
   position: sticky;
   align-self: center;
   padding: 0%;
+} */
+
+
+.logo img {
+  width: auto;
+  height: 75px;
+  align-content: baseline;
+}
+
+.separator {
+  width: 8px;
+  height: 20px;
+  color: rgb(255, 255, 255);
+  margin: 0 10px;
 }
 
 .Logo-BT{
@@ -22,7 +36,6 @@
 }
 
 .DateTime{
-  align-self: end;
   text-align: center;
   justify-self: end;
   color: rgb(255, 255, 255);
@@ -37,11 +50,17 @@
 
 }
 
-.options {
+/* .options {
   display: flex;
   gap: 10px;
   color: rgb(40, 13, 13);
   margin-left: auto;
+} */
+
+.options a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #333;
 }
 
 a:link {
@@ -81,13 +100,11 @@ a:visited {
   background-color: #202530;
   min-height: 3%;
   display: flex;
-
+  height: 100px;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-
   flex-direction:inherit;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
 }
 

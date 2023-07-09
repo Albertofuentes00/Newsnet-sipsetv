@@ -9,7 +9,8 @@ import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
 
 /* IMAGES */
-import logosipse from './images/noticias.png'
+import SIPSENewsLogo from './images/noticias.png'
+import NewsnetLogo from './images/white-logo.png'
 import Beto from './images/LOGO_Scale.png'
 
 import Texto from './Components/Texto'
@@ -57,7 +58,8 @@ import ListaRoles from './Components/Admin/ListaRoles';
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
 import About from './Components/Ayuda/AboutNewsnet';
-import adminHelp from './Components/Ayuda/AdminHelp';
+// import AdminHelp from '/Components/Ayuda/AdminHelp';
+
 import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
 import GuionesHelp from './Components/Ayuda/GuionesHelp';
 import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
@@ -83,7 +85,9 @@ function App() {
       <header className='App-header'> 
 
         <div className='logo'>
-            <img src={logosipse} className="App-logo-sipse" alt="logo" />
+            <img src={SIPSENewsLogo} alt="logo" />
+            <span className="separator"></span>
+            <img src={NewsnetLogo} alt="logo" />
         </div>
         
 
@@ -97,7 +101,7 @@ function App() {
             <Link to='/HelpDashboard/Introduccion'>
                <a href="#">Ayuda</a>
             </Link>
-            <a href="#">Cerrar Sesión</a>
+               <a href="#">Cerrar Sesión</a>
           </div>
 
          </div>
@@ -152,7 +156,7 @@ function App() {
                 <Route path='BitacoraHelp' element={<BitacoraHelp/>}/>
                 <Route path='EscaletasHelp' element={<EscaletasHelp/>}/>
                 <Route path='GuionesHelp' element={<GuionesHelp/>}/>
-                <Route path='AdminHelp' element={<adminHelp/>}/>
+                {/* <Route path='AdminHelp' element={<AdminHelp/>}/> */}
                 <Route path='About' element={<About/>} />
             </Route>
       </Routes>

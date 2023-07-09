@@ -21,9 +21,6 @@ function GuionesNotas(){
             <div className='Auth-Maintable'>
                     <div>
                         <h1>Bitácora de notas</h1>
-                        <h6>En esta sección podrá asignar un guión a una nota en caso de que dicha nota no tenga una; 
-                            visualizar, editar y/o eliminar un guión existente asignado a una nota
-                        </h6>
                     </div>
 
                     <div>

@@ -12,11 +12,30 @@ function GuionesHelp() {
                         <h1 className="TitleHelp">►Guiones/Notas</h1>
                         <br />
                         <h4 className="textIntroduction">
-                        En esta sección podrá asignar un guión a una nota en caso de que dicha nota no tenga una; visualizar, editar y/o eliminar un guión existente asignado a una nota
+                        En esta sección podrá asignar un guión a una nota en caso de que dicha nota no tenga una; visualizar, editar y/o eliminar un guión existente asignado a una nota 
+                        <br />
+                        <br />
+                        En la sección observará una tabla de las notas existentes, similar a la bitácora de notas; las notas sin un guión 
+                        se mostrarán con un boton de <u>Crear Guion</u>, las notas con un guion existente o ya creado se mostrarán con tres botones, las cuales son <u> 
+                        Ver, Editar y Eliminar</u>  
                         </h4>
                             <br />
-                        <h4  className="textIntroduction" >Para realizar una busqueda personalizada de una nota y su guion, haga click en el botón <u>Buscar</u> e ingrese los</h4>
+                        <div className="section">
+                            <h3>Buscar Nota</h3>
+                            <h5>Para realizar una busqueda personalizada de una nota y su guion:</h5>
+
+                            <h6>Haga click en el boton <u>Buscar</u> e ingrese los datos requeridos.</h6>
+                            <h6>Para cancelar o regresar a la pantalla de bitácora, haga click en <u>Cancelar</u> </h6>
+                        </div>
                             <br />
+                        <div className="section">
+                            <h3>Buscar Nota</h3>
+                            <h5>Para realizar una busqueda personalizada de una nota y su guion:</h5>
+
+                            <h6>Haga click en el boton <u>Buscar</u> e ingrese los datos requeridos.</h6>
+                            <h6>Para cancelar o regresar a la pantalla de bitácora, haga click en <u>Cancelar</u> </h6>
+                        </div>
+
                         <h4 className="textIntroduction">En la sección observará una tabla de las notas existentes, similar a la bitácora de notas; las notas sin un guión 
                         se mostrarán con un boton de <u>Crear Guion</u>, las notas con un guion existente o ya creado se mostrarán con tres botones, las cuales son <u> 
                             Ver, Editar y Eliminar</u>  </h4>
