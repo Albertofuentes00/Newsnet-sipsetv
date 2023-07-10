@@ -6,6 +6,8 @@ import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa';
+import { FaSave } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi'
 
 import { Outlet, Link } from "react-router-dom";
 
@@ -26,12 +28,12 @@ function Escaletas(){
                                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
 
- 		                    <Link to='/NuevaEscaleta'>
-                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
+ 		                    <Link >
+                                <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
                     	    </Link>
 
-                            <Link to='/BuscarEscaleta'>
-                                <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                            <Link >
+                                <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                             </Link>
                         </form>
                     </div>
@@ -86,12 +88,80 @@ function Escaletas(){
                         
                     
                 </div>
-                <Outlet/>
-
-
             </div>
         </form>
+
+        <div id='modaldefault' className='modal fade' aria-hidden='true'>
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                                <h3 className="Auth-form-title">Crear escaleta</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className='modal-body'>
+                        <h3 className="Text-helper">Ingresa los datos requeridos para una nueva escaleta</h3>
+                        <br />
+                        <div className="Menu-form">
+                                        <label>Programa</label>
+                                        <select name="programa" className="form-control"></select>
+                        </div>
+                        <br />
+                        <div className= 'Grid'>
+                            <label>Fecha</label>
+                            <input
+                            type="date"
+                            className="form-control mt-1"
+                            placeholder="Selecciona la fecha"
+                            >
+                            </input>
+                        </div>
+                        <br />
+                        <div>
+                            <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+                            <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                        </div>         
+                    </div>                             
+                </div>
+            </div>
+            <br />
+        </div>
+        
+
+        <div id='modalsearch' className='modal fade' aria-hidden='true'>
+                    <div className='modal-dialog'>
+                        <div className='modal-content'>
+                            <div className='modal-header'>
+                                <h3 className="Auth-form-title">Buscar escaleta</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className='modal-body'>
+                            <h3 className="Text-helper">Ingresa los datos requeridos para buscar una escaleta existente</h3>
+                            <br />
+                                <div className="Menu-form">
+                                    <label>Programa</label>
+                                    <select name="programa" className="form-control"></select>
+                                </div>
+                                <br />
+                                <div className= 'Grid'>
+                                    <label>Fecha</label>
+                                    <input
+                                    type="date"
+                                    className="form-control mt-1"
+                                    placeholder="Selecciona la fecha"
+                                    >
+                                    </input>
+                                </div>
+                                <br />
+                                <div>
+                                    <button type="button" class="btn btn-primary"> <FaSearch size={20} color="white"/> Buscar </button>
+                                    <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                                </div>    
+                            </div>
+                    </div>
+            </div>
+        </div>
     </div>
+    
 
     )
 }

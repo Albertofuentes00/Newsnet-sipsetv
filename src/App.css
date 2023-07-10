@@ -224,6 +224,11 @@ a:visited {
   background-color: #e7e7e7;
 }
 
+.modal-content{
+  background-color: #e7e7e7;
+
+}
+
 .Auth-form-table {
   width: 990px;
   height: 500px;
@@ -480,7 +485,7 @@ table.table{
 }
 
 .Text-helper{
-  font-size: medium;
+  font-size: large;
 
 }
 
