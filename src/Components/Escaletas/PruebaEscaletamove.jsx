@@ -98,6 +98,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
               <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
             </Link>
             <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+            <button type='button' class='btn btn-danger' color='#530108'> Generar Prompt</button>
       </form>
       <br />
 

@@ -152,7 +152,7 @@ function Bitacora() {
                                 <br />
                             <div>
                                 <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-                                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"> <GiCancel size={20} color="white"/> Cancelar </button>
                             </div>
                                 
                         </div>                

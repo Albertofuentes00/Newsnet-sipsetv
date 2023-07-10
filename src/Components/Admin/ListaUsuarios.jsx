@@ -23,8 +23,8 @@ function ListaUsuarios(){
                                                                         {/* data-bs-toggle='modal' data-bs-target='#modaldefault' */}
                     <div>
                         <form className="Button-form">                      
-                            <Link to='/NewUser'>
-                                <button /*onClick={()=> OpenModal(1)}*/ type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
+                            <Link>
+                                <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
                             </Link>
                         </form>
                     </div>
@@ -87,54 +87,53 @@ function ListaUsuarios(){
                         </div>
                         <div className='modal-body'>
                         <h3 className="Text-helper">Ingresa los datos requeridos para crear un nuevo usuario</h3>
-                        <div className="Menu-form">
-                                        <label>Título</label>
-                                        <input
-                                            type="user"
-                                            className="form-control mt-1"
-                                            placeholder="Título"
-                                        />
 
-                                        <div className= 'Grid'>
-                                            <label>Categoría</label>
-                                            <select class="form-control mt-1" placeholder="Categoria" type="user">
-                                            {/* <Options options={CategoriasList}/> */}
-                                            </select>
+                        <div className= 'Grid'>
+                            <label>Nombre</label>
+                            <input
+                                type="user"
+                                className="form-control mt-1"
+                                placeholder="Ingrese el nombre"/>
+            
+                            <label>Apellidos</label>
+                            <input
+                                type="user"
+                                className="form-control mt-1"
+                                placeholder="Ingrese los apellidos"/>
+                        </div>
 
-                                            <br />
-                                            <label>Reportero</label>
-                                            <select class="form-control mt-1"  placeholder="Reportero" type="user">
-                                            {/* <Options options={ReporterosList} /> */}
-                                            </select>
-                                        </div>
-                                    <div class= 'Grid'>
+                                
+                        <div class= 'Grid'>
+                            <label>Username</label>
+                                <input
+                                    type="user"
+                                    className="form-control mt-1"
+                                    placeholder="Ingrese el username"
+                                />
 
-                                    </div>
-                                        <div className= 'Grid'>
-                                            <label>Formato</label>
-                                            <select  class="form-control mt-1" placeholder="Formato" type="user">
-                                            {/* <Options options={formatosList} /> */}
-                                            </select>
-                                            <br />
-                                            <label>Fecha</label>
-                                            <input type="date" className="form-control mt-1"placeholder="Selecciona la fecha"/>                     
-                                        </div>
-                                    </div>
-                                <br />
-                            <div>
-                                <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-                                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
-                            </div>
+                            <label>Contraseña</label>
+                                    <input
+                                    type="user"
+                                    className="form-control mt-1"
+                                    placeholder="Ingrese la contraseña"/>
+                        </div>
+                        <br />
+                        
+                        
+                        <div className="Button-form">
+                        <Link to='/MainMenu'>
+                            <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+                        </Link>
+                        
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"> <GiCancel size={20} color="white"/> Cancelar </button>
+                        </div>
                                 
                         </div>                
                                     
-                        </div>
                     </div>
-                        <br />
                 </div>
-
-
-
+            <br />
+        </div>
     </div>
     )
 
