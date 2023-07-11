@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import { Routes, Route } from 'react-router-dom';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';

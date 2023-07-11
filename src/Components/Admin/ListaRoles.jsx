@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 
 import { FaTrash } from "react-icons/fa";
@@ -7,8 +7,100 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
 
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import whitReactContent from 'sweetalert2-react-content'
+import { show_alerta } from "../../Funciones"
 
-function ListaRoles(){
+
+const ListaRoles = () => {
+    const [Datos, SetDatos] = useState([]);
+  const [iD_Rol, setID_Rol] = useState('');
+  const [nomRol, setNomRol] = useState('');
+  const [operation, setOperation] = useState(1);
+  const [title, setTitle] = useState('');
+
+  useEffect(()=>{
+      GetDatos();
+  },[]);
+
+  const GetDatos = async ()=>{
+      const respuesta = await axios.get('https://localhost:7201/Rol/Get');
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+  }
+
+  const OpenModal = (op,iD_Rol,nomRol) =>{
+    setID_Rol('');
+    setNomRol('');
+    setOperation(op);
+    if(op === 1){
+      setTitle('Registrar Rol')
+    }
+    else if(op === 2){
+      setTitle('Actualizar Rol')
+      setID_Rol(iD_Rol);
+      setNomRol(nomRol);
+    }
+    window.setTimeout(function(){
+      document.getElementById('nombre').focus();
+    },500);
+  }
+  const Validar = () =>{
+    var parametros;
+    var id;
+    if(nomRol.trim()===''){
+      show_alerta('Escribe el nombre','warning');
+    }
+    else{
+      if(operation === 1){
+        parametros = {rol:nomRol.trim()};
+          axios.post('https://localhost:7201/Rol/Post', parametros).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          GetDatos();
+        })
+        .catch(function(error){
+          show_alerta('error en la solicitud','error');
+          console.log(error);
+        });
+
+      }
+      else{
+        id = {idRol:iD_Rol}
+        parametros = {rol:nomRol.trim()};
+        axios.put('https://localhost:7201/Rol/Put/' + iD_Rol, parametros).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          GetDatos();
+        })
+        .catch(function(error){
+          show_alerta('error en la solicitud','error');
+          console.log(error);
+        });
+
+      }
+      console.log("Se termino el consumo de la api");
+    }
+  }
+  const deleteDatos = (iD_Rol,nomRol) =>{
+    const MySwal = whitReactContent(Swal);
+    MySwal.fire({
+      title:'Seguro que quieres borrar ' + nomRol +'?',
+      icon: 'question', text:'No se podra recuperar despues',
+      showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
+    }).then((result) =>{
+      if(result.isConfirmed){
+        setID_Rol(iD_Rol);
+        axios.delete('https://localhost:7201/Rol/Delete/' + iD_Rol).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          GetDatos();
+        })
+        .catch(function(error){
+          show_alerta('error en la solicitud','error');
+          console.log(error);
+        });
+      }
+    });
+  }
 
     return(
         <div className="Auth-form-container">
@@ -21,7 +113,7 @@ function ListaRoles(){
         
                     <div>
                         <form className="Button-form">
-                            <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
+                            <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
                         </form>
                     </div>
                     <br />
@@ -37,33 +129,20 @@ function ListaRoles(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">1</td>          
-                                    <td>Administrador</td>
-                                    <td className="buttons-th"> 
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                                    </td>
+                            {Datos.map((Datos,i) =>(
+                                <tr key={Datos.iD_Rol}>
+                                <td>{(i+1)}</td>
+                                <td>{Datos.nomRol}</td>
+                                <td className="buttons-th"> 
+                                    <button onClick={()=> deleteDatos(Datos.iD_Rol,Datos.nomRol)} class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                </td>
                                 </tr>
-                                <tr>
-                                    <td scope="row">2</td>
-                                    <td>Reportero</td>
-                                    <td className="buttons-th"> 
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                                    </td>
-                                </tr>
-                    <tr>
-                                    <td scope="row">3</td>
-                                    <td>Responsable</td>
-                                    <td className="buttons-th">
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                                    </td>
-                                </tr>
+                            ))}
                             </tbody>
                         </table>
                         
                     
                 </div>
-                <Outlet/>
         
         
             </div>
@@ -73,19 +152,18 @@ function ListaRoles(){
                     <div className='modal-dialog'>
                         <div className='modal-content'>
                             <div className='modal-header'>
-                                    <h3 className="Auth-form-title">Nuevo Rol</h3>
+                                    <h3 className="Auth-form-title">{title}</h3>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className='modal-body'>
-                            <h3 className="Text-helper">Ingresa los datos requeridos para crear un nuevo rol</h3>
-
 
                             <div className= 'Grid'>
                             <label>Nombre</label>
                             <input
                             type="user"
                             className="form-control mt-1"
-                            placeholder="Ingrese el nombre"/>
+                            placeholder="Ingrese el nombre" value={nomRol}
+                            onChange={(e)=> setNomRol(e.target.value)}/>
                         </div>
 
                         <br />
@@ -93,7 +171,7 @@ function ListaRoles(){
 
                         <div className="Button-form">
                         <Link to='/MainMenu'>
-                        <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+                        <button onClick={()=> Validar()} class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
                         </Link>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"> <GiCancel size={20} color="white"/> Cancelar </button>
                         </div>
