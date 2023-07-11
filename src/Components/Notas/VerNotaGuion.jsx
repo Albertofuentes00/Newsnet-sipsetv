@@ -4,12 +4,10 @@ import ReactDataGrid from 'react-data-grid';
 
 
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 import {FaAngleLeft} from 'react-icons/fa';
-import { FaPlusSquare } from "react-icons/fa";
-import { FaSave } from 'react-icons/fa';
-import { FaMinusSquare } from 'react-icons/fa'
+import {FaPrint} from 'react-icons/fa';
 
 
 // const data = [
@@ -59,7 +57,10 @@ function LeerGuion(){
             <br />
             <div>
                 <form className="Button-form">
-                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    <Link to='/Notas'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    </Link>
+                    <button type="button" class="btn btn-primary">  <FaPrint size={20} color="white"/> Imprimir Guión </button>
                 </form>
             </div>
             <br />

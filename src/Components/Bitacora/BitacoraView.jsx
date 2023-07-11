@@ -262,7 +262,6 @@ function Bitacora() {
                                         <div className= 'Grid'>
                                             <label>Formato</label>
                                             <select  class="form-control mt-1" placeholder="Formato" type="user">
-                                            {/* <Options options={formatosList} /> */}
                                             </select>
                                             <br />
                                             <label>Fecha</label>

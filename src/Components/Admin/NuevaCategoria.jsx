@@ -39,7 +39,10 @@ function NewCategory(){
 
           </div>
         </form>
-    <Outlet/>
+
+
+        
+
   </div>
 
   )

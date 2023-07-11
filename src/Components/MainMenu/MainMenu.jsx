@@ -41,54 +41,32 @@ function Menu() {
                         apellidos= "Fuentes"/>
                     </h3>
                     <h4 className='Auth-form-subtitle'>Escoge una opción</h4>
+                    <br />
                         <div className= 'Menu-form'>
-                            <div className= 'Row'>
+                            <div class="menu">
                                 <Link to='/Bitacora'>
-                                    <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitacora</button>
+                                    <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
                                 </Link>
 
                                 <Link to='/Escaletas'>
-                                    <button type="button" class="btn btn-light"  > <FaList size={30} color="white" /> Escaletas</button>
+                                    <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
                                 </Link>
-                            </div>
-                            <div className= 'Row'>
+
                                 <Link to='/Notas'>
-                                    <button type="button" class="btn btn-light"> <FaFileAlt size={30} color="white" /> Notas</button>
+                                    <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
                                 </Link>
 
                                 <Link to='/Admin/ListaUsuarios'> 
-                                    <button type="button" class='btn btn-light'> <FaUser size={30} color='white' />   Administrador </button>
+                                    <button type="button" class="btn btn-light" > <FaUser size={30} color='white' /> Admin</button>
                                 </Link>
                             </div>
-
-
-
                         </div>
                 </div>
             </form>
+            <div>
             <Outlet/>
         </div>
-        
-
-        // <div className='Main-Welcome' >
-        //      <h3 className="Auth-form-title"><Texto 
-        //         name= "Alberto" 
-        //         apellidos= "Fuentes"/>
-        //     </h3>
-        //     <h4 className='Auth-form-subtitle'>Escoge una opción</h4>
-        // </div>
-
-        // <div className= 'Menu-form'>
-        //     <div className= 'Row'>
-        //         <button type="button" class="btn btn-light" > Bitacora</button>
-        //         <button type="button" class="btn btn-light">Escaletas</button>
-        //     </div>
-        //     <div className= 'Row'>
-        //         <button type="button" class="btn btn-light">Notas</button>
-        //         <button type="button" class="btn btn-light">Administrador</button>
-        //     </div>
-
-        // </div>
+    </div>
     )
 }
 

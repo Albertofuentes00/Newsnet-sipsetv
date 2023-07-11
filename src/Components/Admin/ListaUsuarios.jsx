@@ -117,6 +117,11 @@ function ListaUsuarios(){
                                     className="form-control mt-1"
                                     placeholder="Ingrese la contraseña"/>
                         </div>
+
+                        <div class= 'Grid'>
+                            <label>Rol</label>
+                            <select  class="form-control mt-1" placeholder="Formato" type="user"/>
+                        </div>
                         <br />
                         
                         

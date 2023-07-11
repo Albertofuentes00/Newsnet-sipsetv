@@ -32,12 +32,12 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
         const [dragItem, setDragItem] = useState();
         const [rows, setRows] = useState([
+          
           { id: '1', order: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
           { id: '2', order: '2' ,content: 'Javier', title: 'Fuga de agua', reportero: 'Iliana', format: 'FT' },
           { id: '3', order: '3', content: 'Javier', title: 'Incendio', reportero: 'Iliana', format: 'TX/IN' },
-          { id: '4', order:'4',content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
+          { id: '4', order: '4',content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
         ]);
-
         
         const handleAddRow = () => {
           const newRow = {
