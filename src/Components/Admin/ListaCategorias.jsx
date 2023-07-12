@@ -54,7 +54,7 @@ const ListaCategorias=()=>{
             GetDatos();
           })
           .catch(function(error){
-            show_alerta('error en la solicitud','error');
+            show_alerta('Error en la solicitud','error');
             console.log(error);
           });
   
@@ -67,7 +67,7 @@ const ListaCategorias=()=>{
             GetDatos();
           })
           .catch(function(error){
-            show_alerta('error en la solicitud','error');
+            show_alerta('Error en la solicitud','error');
             console.log(error);
           });
   
@@ -78,9 +78,9 @@ const ListaCategorias=()=>{
     const deleteDatos = (iD_Categoria,nomCategoria) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
-        title:'Seguro que quieres borrar ' + nomCategoria +'?',
-        icon: 'question', text:'No se podra recuperar despues',
-        showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
+        title:'¿Seguro que quieres borrar ' + nomCategoria +'?',
+        icon: 'question', text:'No se podrá recuperar despues',
+        showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
           setID_Categoria(iD_Categoria);
@@ -152,18 +152,21 @@ const ListaCategorias=()=>{
             <div className='modal-body'>
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Nombre de la categoria" value={nomCategoria}
                 onChange={(e)=> setNomCategoria(e.target.value)}></input>
               </div>
-              <div className="d-grid col-6 mx-auto">
-                    <button onClick={()=> Validar()} className="btn btn-success">
-                      <i className="fa-solid fa-floppy-disk"></i> Guardar
-                    </button>
-              </div>
+
             </div>
             <div className="modal-footer">
-                    <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
+                <div className="col-6 mx-auto">
+                        <button onClick={()=> Validar()} className="btn btn-success">
+                          <i className="fa-solid fa-floppy-disk"></i> Guardar
+                        </button>
+                        <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
+                          <i class="fa-solid fa-xmark"></i> Cancelar
+                        </button>
+                </div>
             </div>
           </div>
         </div>

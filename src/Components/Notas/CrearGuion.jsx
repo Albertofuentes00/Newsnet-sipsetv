@@ -38,6 +38,18 @@ class NuevoGuion extends React.Component {
         return { textAreas: updatedTextAreas };
       });
     };
+
+    handleInput = (event, index) => {
+      const { value, scrollHeight } = event.target;
+      event.target.style.height = scrollHeight + "px";
+  
+      this.setState((prevState) => {
+        const updatedTextAreas = [...prevState.textAreas];
+        updatedTextAreas[index] = value;
+        return { textAreas: updatedTextAreas };
+      });
+    };
+  
   
     render() {
       return (
@@ -69,6 +81,7 @@ class NuevoGuion extends React.Component {
                     className="excel-cell-input"
                     // value={text}
                     onChange={(event) => this.handleChange(event, index)}
+                    onInput={(event) => this.handleInput(event, index)}
                     rows={10}
                     style={{ width: "100%", resize: "none" }}
                         
@@ -78,6 +91,7 @@ class NuevoGuion extends React.Component {
                      className="excel-cell-input"
                      // value={text}
                      onChange={(event) => this.handleChange(event, index)}
+                     onInput={(event) => this.handleInput(event, index)}
                      rows={10}
                      style={{ width: "100%", resize: "none" }} 
                 />
@@ -90,6 +104,29 @@ class NuevoGuion extends React.Component {
             <br />
         
         </form>
+
+        {/* <div className="Auth-form-container">
+        <form className="Auth-form-Guion">
+          <div className="Auth-form-content">
+            <div>
+              {this.state.textAreas.map((text, index) => (
+                <div className="Row-Guion" key={index}>
+                  <textarea
+                    type="text"
+                    className="excel-cell-input"
+                    value={text}
+                    onInput={(event) => this.handleInput(event, index)}
+                    rows={10}
+                    style={{ width: "100%", resize: "none" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </form>
+      </div> */}
+
+
     </div>
       );
     }

@@ -92,7 +92,7 @@ const ListaUsuarios=()=>{
             GetDatos();
           })
           .catch(function(error){
-            show_alerta('error en la solicitud','error');
+            show_alerta('Error en la solicitud','error');
             console.log('el id:' + iD_Usuario);
             console.log(error);
           });
@@ -106,7 +106,7 @@ const ListaUsuarios=()=>{
       MySwal.fire({
         title:'Seguro que quieres borrar a ' + nombre +'?',
         icon: 'question', text:'No se podra recuperar despues',
-        showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
+        showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
           setID_Usuario(iD_Usuario);
@@ -185,27 +185,27 @@ const ListaUsuarios=()=>{
             <div className='modal-body'>
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <span className="input-group-text"> <i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Nombre" value={nombre}
                 onChange={(e)=> setNombre(e.target.value)}></input>
               </div>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="apellidos" className="form-control" placeholder="Apellidos" value={apellidos}
                 onChange={(e)=> setApellidos(e.target.value)}></input>
               </div>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="nickName" className="form-control" placeholder="Usser" value={nickName}
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                <input type='text' id="nickName" className="form-control" placeholder="Username" value={nickName}
                 onChange={(e)=> setNickName(e.target.value)}></input>
               </div>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input id="password" className="form-control" placeholder="Contraseña" value={password}
                 onChange={(e)=> setPassword(e.target.value)}></input>
               </div>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <select required className="form-select" value={id_Rol} onChange={(e)=> setId_Rol(e.target.value)}>
                   {Datos.map(Datos =>(
                       <option value={Datos.id_Rol}>{Datos.rol.nomRol}</option>
@@ -213,14 +213,16 @@ const ListaUsuarios=()=>{
                   //          valor que escoge       datos que se muestran
                 </select>
               </div>
-              <div className="d-grid col-6 mx-auto">
-                    <button onClick={()=> Validar()} className="btn btn-success">
-                      <i className="fa-solid fa-floppy-disk"></i> Guardar
-                    </button>
-              </div>
             </div>
             <div className="modal-footer">
-                    <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
+                <div className="col-6 mx-auto">
+                        <button onClick={()=> Validar()} className="btn btn-success">
+                          <i className="fa-solid fa-floppy-disk"></i> Guardar
+                        </button>
+                        <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
+                          <i class="fa-solid fa-xmark"></i> Cancelar
+                        </button>
+                </div>
             </div>
           </div>
         </div>

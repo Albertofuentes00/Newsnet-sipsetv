@@ -65,7 +65,7 @@ import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 
 
 
-import DynamicTextAreaComponent from './Components/Notas/PRUEBACELDA';
+import MyComponent from './Components/Notas/PRUEBACELDA';
 
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
@@ -132,7 +132,7 @@ function App() {
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='CrearGuion' element={<NuevoGuion/>} />
             <Route path='LeerGuion' element= {<LeerGuion/> } />
-            <Route path='PruebaGuion' element= {<DynamicTextAreaComponent/>} />
+            <Route path='PruebaGuion' element= {<MyComponent/>} />
 
 
             <Route path='Admin' element={<Dashboard />}>

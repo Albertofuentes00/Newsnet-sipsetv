@@ -15,6 +15,11 @@
 } */
 
 
+.textarea-auto-resize {
+  resize: vertical;
+  overflow: auto;
+}
+
 
 
 .menu {
