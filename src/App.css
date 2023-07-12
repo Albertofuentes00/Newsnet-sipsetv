@@ -258,7 +258,9 @@ a:visited {
 
 .Auth-form-table {
   width: 990px;
-  height: 500px;
+  height: 600px;
+  max-height: 600px;
+  overflow-y: auto;
   position: static;
   margin-top: 10px;
   margin-bottom: 10px;
