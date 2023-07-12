@@ -1,6 +1,5 @@
-import React from "react";
-
-import { FaEdit } from 'react-icons/fa';
+import { useEffect, useState } from "react"
+import axios from 'axios'
 import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
@@ -8,11 +7,25 @@ import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi'
+import { Link } from "react-router-dom";
 
-import { Outlet, Link } from "react-router-dom";
-
-function Escaletas(){
-
+const Escaletas=()=>{
+    const [Datos, SetDatos] = useState([]);
+    const [iD_Programa, setID_Programa] = useState('');
+    const [nomPrograma, setNomPrograma] = useState('');
+    const [id_Categoria, setId_Categoria] = useState('');
+    const [operation, setOperation] = useState(1);
+    const [title, setTitle] = useState('');
+  
+    useEffect(()=>{
+        GetDatos();
+    },[]);
+  
+    const GetDatos = async ()=>{
+        const respuesta = await axios.get('https://localhost:7201/Programa/Get');
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+    }
     return(
         <div className="Auth-form-container">
 
@@ -28,10 +41,6 @@ function Escaletas(){
                                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
 
- 		                    <Link >
-                                <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nueva Escaleta</button>                
-                    	    </Link>
-
                             <Link >
                                 <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                             </Link>
@@ -44,45 +53,27 @@ function Escaletas(){
                     <table class="table">
                             <thead>
                                 <tr>
-				   <th scope="col">#</th>
+				                   <th scope="col">#</th>
                             	   <th scope="col">Programa</th>
                             	   <th scope="col">Fecha</th>
                             	   <th scope="col">     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                     <td scope="row">1</td>
-                            	     <td>SIPSE Noticias edicion matutina</td>
-                                     <td>19-06-23</td>
-                                     <td className="buttons-th"> 
-                            	<Link to='/PruebaMove'>
-                                	<button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                            	</Link>
-                                 <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                            	     </td>
+                            {Datos.map((Datos,i) =>(
+                                <tr key={Datos.iD_Programa}>
+                                <td>{(i+1)}</td>
+                                <td>{Datos.nomPrograma}</td>
+                                <td>{Datos.categoria.nomCategoria}</td>
+                                <td className="buttons-th">
+                                        {/* <RouterLink :to="{path:'/Editarf/'+factura.pkFactura}" class="btn btn-warning">Editar</RouterLink> */}
+                            	        <Link to='/PruebaMove/'>
+                                	    <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                            	        </Link>
+                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                </td>
                                 </tr>
-                                <tr>
-                                    <td scope="row">2</td>
-                            	    <td>SIPSE Noticias edicion vespertina</td>
-                                    <td>19-06-23</td>
-                                    <td className="buttons-th"> 
-                                    <Link to='/PruebaMove'>
-                                        <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                    </Link>
-                                      <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">2</td>
-                                    <td>Cancun Vive</td>
-                                    <td>19-06-23</td>
-                                    <td className="buttons-th"> 
-                                       
-                                        <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                                    </td>
-                                </tr>
+                            ))}
                             </tbody>
                         </table>
                         

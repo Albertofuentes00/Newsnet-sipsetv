@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
-
-
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
-import { FaSave } from 'react-icons/fa';
-import { GiCancel } from 'react-icons/gi';
-
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
@@ -105,16 +99,16 @@ const ListaRoles = () => {
     return(
         <div className="Auth-form-container">
 
-        <form className="Auth-form-table">
+        <div className="Auth-form-table">
             <div className='Auth-Maintable'>
                     <div>
                         <h3>Lista de Roles</h3>
                     </div>
         
                     <div>
-                        <form className="Button-form">
+                        <div className="Button-form">
                             <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
-                        </form>
+                        </div>
                     </div>
                     <br />
         
@@ -133,54 +127,48 @@ const ListaRoles = () => {
                                 <tr key={Datos.iD_Rol}>
                                 <td>{(i+1)}</td>
                                 <td>{Datos.nomRol}</td>
-                                <td className="buttons-th"> 
-                                    <button onClick={()=> deleteDatos(Datos.iD_Rol,Datos.nomRol)} class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                <td> 
+                                    <button onClick={()=> deleteDatos(Datos.iD_Rol,Datos.nomRol)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
+                                    <button onClick={()=> OpenModal(2,Datos.iD_Rol,Datos.nomRol)} 
+                        className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                          <i className="fa-solid fa-edit"></i> Editar</button>
                                 </td>
                                 </tr>
                             ))}
                             </tbody>
-                        </table>
-                        
-                    
+                        </table>    
                 </div>
         
         
             </div>
-        </form>
+        </div>
 
-            <div id='modaldefault' className='modal fade' aria-hidden='true'>
-                    <div className='modal-dialog'>
-                        <div className='modal-content'>
-                            <div className='modal-header'>
-                                    <h3 className="Auth-form-title">{title}</h3>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className='modal-body'>
-
-                            <div className= 'Grid'>
-                            <label>Nombre</label>
-                            <input
-                            type="user"
-                            className="form-control mt-1"
-                            placeholder="Ingrese el nombre" value={nomRol}
-                            onChange={(e)=> setNomRol(e.target.value)}/>
-                        </div>
-
-                        <br />
-
-
-                        <div className="Button-form">
-                        <Link to='/MainMenu'>
-                        <button onClick={()=> Validar()} class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-                        </Link>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"> <GiCancel size={20} color="white"/> Cancelar </button>
-                        </div>
-                                    
-                            </div>                
-                                        
-                        </div>
-                    </div>
-                </div>
+        <div id='modaldefault' className='modal fade' aria-hidden='true'>
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <label className='h5'>{title}</label>
+              <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <div className='modal-body'>
+              <input type='hidden' id='id'></input>
+              <div className='input-group mb-3'>
+                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
+                <input type='text' id="nombre" className="form-control" placeholder="Nombre del rol" value={nomRol}
+                onChange={(e)=> setNomRol(e.target.value)}></input>
+              </div>
+              <div className="d-grid col-6 mx-auto">
+                    <button onClick={()=> Validar()} className="btn btn-success">
+                      <i className="fa-solid fa-floppy-disk"></i> Guardar
+                    </button>
+              </div>
+            </div>
+            <div className="modal-footer">
+                    <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
     )
 

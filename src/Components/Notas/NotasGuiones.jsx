@@ -1,9 +1,8 @@
-import React from "react";
-
+import { useEffect, useState } from "react"
+import axios from 'axios'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
-import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
 import { GiCancel } from 'react-icons/gi'
@@ -11,8 +10,25 @@ import { GiCancel } from 'react-icons/gi'
 import { Link } from "react-router-dom";
 
 
-function GuionesNotas(){
-    
+const GuionesNotas=()=>{
+    const [Datos, SetDatos] = useState([]);
+    const [iD_Nota, setID_Nota] = useState('');
+    const [titulo, setTitulo] = useState('');
+    const [id_Categoria, setId_Categoria] = useState('');
+    const [id_Formato, setId_Formato] = useState('');
+    const [id_Usuario, setId_Usuario] = useState('');
+    const [fecha, setFecha] = useState('');
+    const [operation, setOperation] = useState(1);
+    const [title, setTitle] = useState('');
+    useEffect(()=>{
+        GetDatos();
+    },[]);
+  
+    const GetDatos = async ()=>{
+        const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+    }
     return (
         
         
@@ -51,13 +67,14 @@ function GuionesNotas(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">1</td>
-                                    <td>Manifestacion</td>
-                                    <td>Noticias</td>
-                                    <td>TX</td>
-                                    <td>Brito</td>
-                                    <td>11-06-23</td>
+                                {Datos.map((Datos,i) =>(
+                                    <tr key={Datos.iD_Nota}>
+                                    <td>{(i+1)}</td>
+                                    <td>{Datos.titulo}</td>
+                                    <td>{Datos.categoria.nomCategoria}</td>
+                                    <td>{Datos.formato.nomFormato}</td>
+                                    <td>{Datos.usuario.nombre}</td>
+                                    <td>{Datos.fecha}</td>
                                     <td className="buttons-th"> 
                                         <Link to='/LeerGuion'>
                                             <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
@@ -68,33 +85,9 @@ function GuionesNotas(){
                                         </Link>
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">1</td>    
-                                    <td>Manifestacion</td>
-                                    <td>Noticias</td>
-                                    <td>TX</td>
-                                    <td>Brito</td>
-                                    <td>11-06-23</td>
-                                    <td className="buttons-th"> 
-					<Link to='/CrearGuion'>
-                    <button type="button" class='btn btn-success'>  <FaPlusSquare size={20} color="white"/> Crear guión </button>
-                    </Link>
-                    
-                    
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">1</td>
-                                    <td>Manifestacion</td>
-                                    <td>Noticias</td>
-                                    <td>TX</td>
-                                    <td>Brito</td>
-                                    <td>11-06-23</td>
-                                    <td className="buttons-th">
-					<button type="button" class='btn btn-success'>  <FaPlusSquare size={20} color="white"/> Crear guión </button>
-                                    </td>
-                                </tr>
+                                    </tr>
+                                ))}
+
                             </tbody>
                         </table>
                         
