@@ -49,9 +49,43 @@ class NuevoGuion extends React.Component {
         return { textAreas: updatedTextAreas };
       });
     };
-  
-  
+
+    addEventListener() {
+      const textareaLeft = document.getElementById('textarea-left');
+      const textareaRight = document.getElementById('textarea-right');
+    
+      textareaLeft.addEventListener('input', function() {
+        const inputText = textareaLeft.value;
+        textareaRight.value = inputText;
+        textareaRight.style.height = textareaLeft.scrollHeight + 'px';
+      });
+    
+      textareaLeft.addEventListener('scroll', function() {
+        textareaRight.scrollTop = textareaLeft.scrollTop;
+      });
+    };
+
+    
+
+
     render() {
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const textareaLeft = document.getElementById('textarea-left');
+        const textareaRight = document.getElementById('textarea-right');
+      
+        textareaLeft.addEventListener('input', function() {
+          const inputText = textareaLeft.value;
+          textareaRight.value = inputText;
+          textareaRight.style.height = textareaLeft.scrollHeight + 'px';
+        });
+      
+        textareaLeft.addEventListener('scroll', function() {
+          textareaRight.scrollTop = textareaLeft.scrollTop;
+        });
+      });
+      
+
       return (
                 <div className="Auth-form-container">
         <form className="Auth-form-Guion">
@@ -73,60 +107,35 @@ class NuevoGuion extends React.Component {
                 </form>
             </div>
             <br />
-            <div>
-          {this.state.textAreas.map((text, index) => (
-             <div className="Row-Guion" key={index}>
-                <textarea  
-                    type="text"
-                    className="excel-cell-input"
-                    // value={text}
-                    onChange={(event) => this.handleChange(event, index)}
-                    onInput={(event) => this.handleInput(event, index)}
-                    rows={10}
-                    style={{ width: "100%", resize: "none" }}
-                        
-                />
-                <textarea  
-                     type="text"
-                     className="excel-cell-input"
-                     // value={text}
-                     onChange={(event) => this.handleChange(event, index)}
-                     onInput={(event) => this.handleInput(event, index)}
-                     rows={10}
-                     style={{ width: "100%", resize: "none" }} 
-                />
-            </div>
-          ))}
+                <div>
+                  {this.state.textAreas.map((text, index) => (
 
-</div>
+                  <div class="textarea-container" key={index}>
+                        <textarea class="textarea-left"
+                         id="textarea-left"
+                        type="text"
+                        onChange={(event) => this.handleChange(event, index)}
+                        onInput={(event) => this.handleInput(event, index)}
+                        rows={10}
+                        style={{ width: "100%", resize: "none", height: "80px" }}
+                        />
 
+                        <textarea class="textarea-right"
+                         id="textarea-right"
+                        type="text"
+                        onChange={(event) => this.handleChange(event, index)}
+                        onInput={(event) => this.handleInput(event, index)}
+                        rows={10}
+                        style={{ width: "100%", resize: "none", height: "80px"}}
+                        />
+                  </div>
+              ))}
+
+                </div>
         </div>
             <br />
         
         </form>
-
-        {/* <div className="Auth-form-container">
-        <form className="Auth-form-Guion">
-          <div className="Auth-form-content">
-            <div>
-              {this.state.textAreas.map((text, index) => (
-                <div className="Row-Guion" key={index}>
-                  <textarea
-                    type="text"
-                    className="excel-cell-input"
-                    value={text}
-                    onInput={(event) => this.handleInput(event, index)}
-                    rows={10}
-                    style={{ width: "100%", resize: "none" }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </form>
-      </div> */}
-
-
     </div>
       );
     }

@@ -14,6 +14,39 @@
   padding: 0%;
 } */
 
+.textarea-container {
+  display: flex;
+  padding: 5px;
+}
+
+.textarea-left,
+.textarea-right {
+  flex: 1;
+  resize: none;
+  border: 1px solid #365204;
+  padding: 10px;
+  border-style: dashed;
+  border-width: 2px;
+  font-size: 14px;
+}
+
+.textarea-left {
+  border-right: 1px solid #ccc;
+  margin-right: -1px;
+}
+
+.textarea-right {
+  margin-left: -1px;
+}
+
+
+
+
+
+
+
+
+
 
 .textarea-auto-resize {
   resize: vertical;
