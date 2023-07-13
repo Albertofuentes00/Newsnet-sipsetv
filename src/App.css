@@ -688,7 +688,7 @@ width: 300px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  max-height: 250px;
+  max-height: inherit;
 }
 
 tbody{
