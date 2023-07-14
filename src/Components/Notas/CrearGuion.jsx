@@ -34,7 +34,11 @@ const NuevoGuion = () => {
     const updatedTextAreas = [...textAreas];
     updatedTextAreas[index] = value;
     setTextAreas(updatedTextAreas);
+    setTextareaValue(value);
+    event.target.style.height = 'auto';
+    event.target.style.height = event.target.scrollHeight + 'px';
   };
+
 
   const handleInput = (event, index) => {
     const { value, scrollHeight } = event.target;
@@ -49,8 +53,6 @@ const NuevoGuion = () => {
     const textareaRight = document.getElementById('textarea-right');
 
     const handleTextareaInput = () => {
-      const inputText = textareaLeft.value;
-      textareaRight.value = inputText;
       textareaRight.style.height = textareaLeft.scrollHeight + 'px';
     };
 
@@ -98,25 +100,16 @@ const NuevoGuion = () => {
             {textAreas.map((text, index) => (
               <div className="textarea-container" key={index}>
                 <textarea
-                  className="textarea-left"
+                  class="textarea-left"
                   id="textarea-left"
-                  // value={text}
-                  placeholder='Notación'
-                  onChange={(event) => handleChange(event, index)}
-                  onInput={(event) => handleInput(event, index)}
-                  onChangeHeight={handleChange}
-                  rows={10}
-                  style={{ width: "300px", resize: "none", height: "80px" }}
+                  style={{ width: "300px", resize: "none" }}
+                  onChange={handleChange}
                 />
 
                 <textarea
-                  className="textarea-right"
+                  class="textarea-right"
                   id="textarea-right"
-                  // value={text}
-                  placeholder='Acotación'
-
-                  rows={10}
-                  style={{ width: "300px", resize: "none", height: "80px" }}
+                  style={{ width: "300px", resize: "none"}}
                 />
               </div>
             ))}
