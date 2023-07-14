@@ -3,7 +3,7 @@ import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSave } from 'react-icons/fa';
 import { FaMinusSquare } from 'react-icons/fa'
-
+import { Link } from "react-router-dom";
 
 import React, { useState, useEffect } from 'react';
 
@@ -81,15 +81,20 @@ const NuevoGuion = () => {
           <br />
           <div>
             <form className="Button-form">
-              <button type="button" className="btn btn-dark">
-                <FaAngleLeft size={20} color="white" /> Regresar
-              </button>
+              <Link to="/Notas">
+                  <button type="button" className="btn btn-dark">
+                    <FaAngleLeft size={20} color="white" /> Regresar
+                  </button>
+              </Link>
+
               <button type="button" className="btn btn-success">
                 <FaSave size={20} color="white" /> Guardar cambios
               </button>
+
               <button type="button" className="btn btn-primary" onClick={handleAddTextArea}>
                 <FaPlusSquare size={20} color="white" /> Agregar Celda
               </button>
+              
               <button type="button" className="btn btn-danger" onClick={() => handleRemoveTextArea()}>
                 <FaMinusSquare size={20} color="white" /> Quitar Celda
               </button>

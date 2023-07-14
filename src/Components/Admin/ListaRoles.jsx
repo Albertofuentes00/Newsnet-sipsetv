@@ -151,7 +151,9 @@ const ListaRoles = () => {
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div className='modal-body'>
+              <h2 className="Text-helper">Ingresa los datos requeridos para registrar un rol nuevo en el sistema</h2>
               <input type='hidden' id='id'></input>
+              <label> Nombre </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Nombre del rol" value={nomRol}

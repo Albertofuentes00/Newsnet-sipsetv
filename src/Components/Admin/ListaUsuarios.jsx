@@ -183,27 +183,33 @@ const ListaUsuarios=()=>{
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div className='modal-body'>
+              <h2 className="Text-helper">Ingresa los datos requeridos para registrar un usuario en el sistema</h2>
               <input type='hidden' id='id'></input>
+              <label> Nombre </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"> <i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Nombre" value={nombre}
                 onChange={(e)=> setNombre(e.target.value)}></input>
               </div>
+              <label> Apellidos </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="apellidos" className="form-control" placeholder="Apellidos" value={apellidos}
                 onChange={(e)=> setApellidos(e.target.value)}></input>
               </div>
+              <label> Username</label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nickName" className="form-control" placeholder="Username" value={nickName}
                 onChange={(e)=> setNickName(e.target.value)}></input>
               </div>
+              <label> Contraseña </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input id="password" className="form-control" placeholder="Contraseña" value={password}
                 onChange={(e)=> setPassword(e.target.value)}></input>
               </div>
+              <label> Rol </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <select required className="form-select" value={id_Rol} onChange={(e)=> setId_Rol(e.target.value)}>

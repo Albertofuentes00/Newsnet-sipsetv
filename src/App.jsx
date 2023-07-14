@@ -12,7 +12,7 @@ import SIPSENewsLogo from './images/noticias.png'
 import NewsnetLogo from './images/white-logo.png'
 import Beto from './images/LOGO_Scale.png'
 
-import Texto from './Components/Texto'
+import Welcome from './Components/Bienvenida';
 
 
 import Datetime from './Components/Datetime/DatetimeText'
@@ -91,11 +91,6 @@ function App() {
         
 
         <div className='DateTime'>
-        {/* <TextSample
-          name= "Alberto"
-          apellidos= "Fuentes"
-        /> */}
-
           <div className="options">
             <Link to='/HelpDashboard/Introduccion'>
                <a href="#">Ayuda</a>
@@ -105,6 +100,12 @@ function App() {
 
          </div>
 
+      </header>
+
+      <header className='Datetime-header'>
+        <div className='Date-text'>
+          <TextSample name= "Alberto" apellidos= "Fuentes"/> 
+        </div>
       </header>
     
       <body className="App-body">
@@ -186,8 +187,15 @@ const TextSample = (props) => {
 
   return (
 
-    <div className="TextSample">
-    <p>Bienvenido: {props.name} {props.apellidos} <Datetime /> </p>
+    <div className="Row">
+      <div className='Grid'>
+        <Welcome />
+      </div>
+      <div className='Grid'>
+        <Datetime />
+      </div>
+        
+        {/* <p>Bienvenido: {props.name} {props.apellidos} <Datetime /> </p> */}
     </div>
      )
 

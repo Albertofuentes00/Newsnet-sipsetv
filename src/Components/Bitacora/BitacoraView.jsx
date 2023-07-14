@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { GiCancel } from 'react-icons/gi'
+
 
 function Bitacora() {
     const [Datos, SetDatos] = useState([]);
@@ -135,6 +137,7 @@ function Bitacora() {
                             <Link to='/MainMenu'>
                                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
+
                                 <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
 
                             <Link>
@@ -184,67 +187,138 @@ function Bitacora() {
                 </div>
             </div>
         </form>
-    
+
         <div id='modaldefault' className='modal fade' aria-hidden='true'>
-        <div className='modal-dialog'>
-          <div className='modal-content'>
-            <div className='modal-header'>
-              <label className='h5'>{title}</label>
-              <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+          <div className='modal-dialog'>
+            <div className='modal-content'>
+              <div className='modal-header'>
+                <label className='h5'>{title}</label>
+                <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+              </div>
+              <div className='modal-body'>
+                <h2 className="Text-helper">Ingresa los datos requeridos para crear una nueva nota</h2>
+                <br />
+                <input type='hidden' id='id'></input>
+                <label> Título</label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
+                  onChange={(e)=> setTitulo(e.target.value)}></input>
+                </div>
+                <label> Fecha</label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <input type='text' id="apellidos" className="form-control" placeholder="Fecha(se inserta automaticamente)" value={fecha}
+                  onChange={(e)=> setFecha(e.target.value)}></input>
+                </div>
+                <label> Categoría</label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
+                    {Datos.map(Datos =>(
+                        <option value={Datos.id_Categoria}>{Datos.categoria.nomCategoria}</option>
+                    ))}
+                    //          valor que escoge       datos que se muestran
+                  </select>
+                </div>
+                <label> Formato </label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                    {Datos.map(Datos =>(
+                        <option value={Datos.id_Formato}>{Datos.formato.nomFormato}</option>
+                    ))}
+                    //          valor que escoge       datos que se muestran
+                  </select>
+                </div>
+                <label> Reportero</label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={id_Usuario} onChange={(e)=> setId_Usuario(e.target.value)}>
+                    {Datos.map(Datos =>(
+                        <option value={Datos.id_Usuario}>{Datos.usuario.nombre}</option>
+                    ))}
+                    //          valor que escoge       datos que se muestran
+                  </select>
+                </div>
+                <div className=" col-6 mx-auto">
+                      <button onClick={()=> Validar()} className="btn btn-success">
+                        <i className="fa-solid fa-floppy-disk"></i> Guardar
+                      </button>
+                    
+                      <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white" data-bs-dismiss='modal'/> Cancelar </button>
+                </div>
+              </div>
             </div>
-            <div className='modal-body'>
-              <input type='hidden' id='id'></input>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
-                onChange={(e)=> setTitulo(e.target.value)}></input>
-              </div>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="apellidos" className="form-control" placeholder="Fecha(se inserta automaticamente)" value={fecha}
-                onChange={(e)=> setFecha(e.target.value)}></input>
-              </div>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
-                  {Datos.map(Datos =>(
-                      <option value={Datos.id_Categoria}>{Datos.categoria.nomCategoria}</option>
-                  ))}
-                  //          valor que escoge       datos que se muestran
-                </select>
-              </div>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
-                  {Datos.map(Datos =>(
-                      <option value={Datos.id_Formato}>{Datos.formato.nomFormato}</option>
-                  ))}
-                  //          valor que escoge       datos que se muestran
-                </select>
-              </div>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <select required className="form-select" value={id_Usuario} onChange={(e)=> setId_Usuario(e.target.value)}>
-                  {Datos.map(Datos =>(
-                      <option value={Datos.id_Usuario}>{Datos.usuario.nombre}</option>
-                  ))}
-                  //          valor que escoge       datos que se muestran
-                </select>
-              </div>
-              <div className="d-grid col-6 mx-auto">
-                    <button onClick={()=> Validar()} className="btn btn-success">
-                      <i className="fa-solid fa-floppy-disk"></i> Guardar
-                    </button>
-              </div>
-            </div>
-            <div className="modal-footer">
-                    <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
-            </div>
-          </div>
         </div>
       </div>
-            </div>
 
+      <div id='modalsearch' className='modal fade' aria-hidden='true'>
+                    <div className='modal-dialog'>
+                        <div className='modal-content'>
+                            <div className='modal-header'>
+                                <h3 className="Auth-form-title">Buscar nota</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className='modal-body'>
+                            <h2 className="Text-helper">Ingresa los datos que necesites para buscar una nota</h2>
+                            <br />
+                            <div className="Menu-form">
+                                <label>Título o palabra clave</label>
+                                <input
+                                    type="user"
+                                    className="form-control mt-1"
+                                    placeholder="Título o palabra clave"
+                                />
+                                <br />
+                                <div className= 'Grid'>
+                                    <label>Categoría</label>
+                                    <select class="form-control mt-1" placeholder="Categoria" type="user">
+                                    </select>
+                                </div>
+                                <div className= 'Grid'>
+                                    <label>Reportero</label>
+                                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
+                                    </select>                
+                                </div>
+                                <div className="Grid">
+                                    <label>Formato</label>
+                                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="FromDateToDate">
+                                <div className= 'Grid'>
+                                    <label>Buscar entre fechas</label>
+                                </div>
+
+
+                                <div className="Row">
+                                    <div className="Grid">
+                                        <label> Del </label>
+                                    </div>
+                                    <div className= 'Grid'>
+                                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/>
+                                    </div>
+                                    <div className= 'Grid' >
+                                    <label> Al </label>
+                                    </div>
+                                    <div className="Grid">
+                                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/> 
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <button type="button" class="btn btn-primary"> <FaSearch size={20} color="white"/> Buscar </button>
+                                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
 
     )
 }

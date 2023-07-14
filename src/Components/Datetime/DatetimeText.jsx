@@ -31,7 +31,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div >
       <div>
         <p> Hoy es  {dateTime.day} / {dateTime.month} / {dateTime.year} | {dateTime.hours}:{dateTime.minutes}:{dateTime.seconds} </p> 
       </div>

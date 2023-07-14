@@ -156,12 +156,15 @@ const ListaProgramas=()=>{
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div className='modal-body'>
+              <h2 className="Text-helper">Ingresa los datos requeridos para registrar un programa nuevo en el sistema</h2>
               <input type='hidden' id='id'></input>
+              <label> Nombre </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Nombre del programa" value={nomPrograma}
                 onChange={(e)=> setNomPrograma(e.target.value)}></input>
               </div>
+              <label> Categoría </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
@@ -170,11 +173,6 @@ const ListaProgramas=()=>{
                   ))}
                   //          valor que escoge       datos que se muestran
                 </select>
-              </div>
-              <div className="d-grid col-6 mx-auto">
-                    <button onClick={()=> Validar()} className="btn btn-success">
-                      <i className="fa-solid fa-floppy-disk"></i> Guardar
-                    </button>
               </div>
             </div>
             <div className="modal-footer">

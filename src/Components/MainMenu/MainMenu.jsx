@@ -1,5 +1,5 @@
 import React from "react";
-import Texto from "../Texto";
+import Welcome from "../Bienvenida";
 import { FaList } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa"
@@ -36,7 +36,7 @@ function Menu() {
         <div className="Auth-form-MainMenu">
             <form className='Auth-form-Main'>
                 <div className='Main-Welcome' >
-                    <h3 className="Auth-form-title"><Texto 
+                    <h3 className="Auth-form-title"><Welcome 
                         name= "Alberto" 
                         apellidos= "Fuentes"/>
                     </h3>
