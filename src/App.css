@@ -305,8 +305,8 @@ a:visited {
 
 .Auth-form-table {
   width: 990px;
-  height: 600px;
-  max-height: 600px;
+  height: 500px;
+  max-height: 550px;
   overflow-y: auto;
   position: static;
   margin-top: 10px;
@@ -516,6 +516,19 @@ button.btn.btn-light:hover{
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px; /* Espacio entre filas */
+}
+
+
+.Row-Date{
+  font-size: medium;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px; /* Separación entre botones */
+  margin-left: 900px;
+  display: flex;
+  position: inherit;
+  justify-content: space-between;
+  margin-bottom: -10px; /* Espacio entre filas */
 }
 
 

@@ -1,6 +1,6 @@
 const Texto = (props) => {
     return (
-        <h2>Bienvenido: {props.name} {props.apellidos} </h2>
+        <h3>Bienvenido: {props.name} {props.apellidos} </h3>
 
     )
 

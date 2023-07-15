@@ -27,7 +27,6 @@ import EditarNota from './Components/Bitacora/EditarNota';
 /* ESCALETAS SECTION */
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
-
 import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
 import PruebaMove from './Components/Escaletas/PruebaEscaletamove';
 
@@ -57,7 +56,7 @@ import ListaRoles from './Components/Admin/ListaRoles';
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
 import About from './Components/Ayuda/AboutNewsnet';
-// import AdminHelp from '/Components/Ayuda/AdminHelp';
+import AdminHelp from './Components/Ayuda/AdminHelp';
 
 import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
 import GuionesHelp from './Components/Ayuda/GuionesHelp';
@@ -155,6 +154,7 @@ function App() {
                 <Route path='BitacoraHelp' element={<BitacoraHelp/>}/>
                 <Route path='EscaletasHelp' element={<EscaletasHelp/>}/>
                 <Route path='GuionesHelp' element={<GuionesHelp/>}/>
+                <Route path='AdminHelp' element={<AdminHelp/>} />
                 {/* <Route path='AdminHelp' element={<AdminHelp/>}/> */}
                 <Route path='About' element={<About/>} />
             </Route>
@@ -187,7 +187,7 @@ const TextSample = (props) => {
 
   return (
 
-    <div className="Row">
+    <div className="Row-Date">
       <div className='Grid'>
         <Welcome />
       </div>
