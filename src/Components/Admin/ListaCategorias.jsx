@@ -105,7 +105,7 @@ const ListaCategorias=()=>{
                     </div>
         
                     <div>
-                                <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault'  type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nueva Categoría</button>
+                      <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault'  type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nueva Categoría</button>
                     </div>
                     <br />
         
@@ -114,28 +114,28 @@ const ListaCategorias=()=>{
                     <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No. Categoría</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="table-group-divider">
 
                             {Datos.map((Datos,i) =>(
-                    <tr key={Datos.iD_Categoria}>
-                      <td>{(i+1)}</td>
-                      <td>{Datos.nomCategoria}</td>
-                      <td>
-                        <button onClick={()=> OpenModal(2,Datos.iD_Categoria,Datos.nomCategoria)} 
-                        className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                        <i className="fa-solid fa-edit"></i> Editar</button>
+                              <tr key={Datos.iD_Categoria}>
+                                <td>{(i+1)}</td>
+                                <td>{Datos.nomCategoria}</td>
+                                <td>
+                                  <button onClick={()=> OpenModal(2,Datos.iD_Categoria,Datos.nomCategoria)} 
+                                  className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                                  <i className="fa-solid fa-edit"></i> Editar</button>
 
-                        &nbsp;
-                        <button onClick={()=> deleteDatos(Datos.iD_Categoria,Datos.nomCategoria)} className="btn btn-danger">
-                        <FaTrash size={20} color='white'/> Eliminar</button> 
-                      </td>
-                    </tr>
-                  ))}
+                                  &nbsp;
+                                  <button onClick={()=> deleteDatos(Datos.iD_Categoria,Datos.nomCategoria)} className="btn btn-danger">
+                                  <FaTrash size={20} color='white'/> Eliminar</button> 
+                                </td>
+                              </tr>
+                            ))}
                             </tbody>
                         </table>
                 </div>

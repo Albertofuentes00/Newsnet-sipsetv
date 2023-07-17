@@ -108,7 +108,7 @@ const ListaFormatos = () =>{
                     </div>
         
                     <div>
-                                <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
+                      <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
                     </div>
                     <br />
         
@@ -122,7 +122,7 @@ const ListaFormatos = () =>{
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="table-group-divider">
                             {Datos.map((Datos,i) =>(
                             <tr key={Datos.iD_Formato}>
                             <td>{(i+1)}</td>

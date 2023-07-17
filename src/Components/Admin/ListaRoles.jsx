@@ -8,7 +8,7 @@ import { show_alerta } from "../../Funciones"
 
 
 const ListaRoles = () => {
-    const [Datos, SetDatos] = useState([]);
+  const [Datos, SetDatos] = useState([]);
   const [iD_Rol, setID_Rol] = useState('');
   const [nomRol, setNomRol] = useState('');
   const [operation, setOperation] = useState(1);
@@ -117,12 +117,12 @@ const ListaRoles = () => {
                     <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col"># Rol</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="table-group-divider">
                             {Datos.map((Datos,i) =>(
                                 <tr key={Datos.iD_Rol}>
                                 <td>{(i+1)}</td>

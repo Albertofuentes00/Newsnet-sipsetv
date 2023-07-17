@@ -1,9 +1,6 @@
 import React from "react";
-
 import { GiCancel } from 'react-icons/gi'
 import { FaSearch } from 'react-icons/fa'
-
-
 
 function BuscarNotas(){
 
@@ -43,16 +40,16 @@ function BuscarNotas(){
         }
         ];
 
-        function Options({ options }) {
-            return (
-                options.map(option => 
-                            <option key={option.id} value={option.value}>                                   
-                            {option.value}
-                            </option>)
-                           );
-        }
+    function Options({ options }) {
+        return (
+            options.map(option => 
+                        <option key={option.id} value={option.value}>                                   
+                        {option.value}
+                        </option>)
+                    );
+    }
 
-    return( 
+return( 
     
     <div className="Auth-form-container">
         <form className="Auth-form-Search">
@@ -118,9 +115,7 @@ function BuscarNotas(){
         
         </form>
     </div>
-
     )
-
 }
 
 

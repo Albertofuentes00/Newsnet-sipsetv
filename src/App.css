@@ -7,13 +7,6 @@
   pointer-events: none;
 }
 
-/* .App-logo-sipse{
-  height: 13vmin;
-  position: sticky;
-  align-self: center;
-  padding: 0%;
-} */
-
 .textarea-container {
   display: flex;
   padding: 5px;
@@ -113,13 +106,6 @@
 
 }
 
-/* .options {
-  display: flex;
-  gap: 10px;
-  color: rgb(40, 13, 13);
-  margin-left: auto;
-} */
-
 .options a {
   margin-left: 10px;
   text-decoration: none;
@@ -138,7 +124,6 @@ a:visited {
   font-size: smaller;
 
 }
-
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -196,14 +181,6 @@ a:visited {
   }
 }
 
-
-/* CSS LOGIN */
-
-/* .Auth-Maintable{
-  padding-top: 45px;
-  padding-bottom: 45px;
-
-} */
 
 .form-control-mt-1-date{
   width: 15px;
@@ -356,11 +333,6 @@ a:visited {
 
 
 
-  /* margin-top: -100px;
-  margin-bottom: 10px;
-  padding-top: 30px;
-  padding-bottom: 20px; */
-
 }
 
 .Auth-form-Search{
@@ -408,14 +380,6 @@ button.btn.btn-light:hover{
   justify-content: center; 
 
 
-  /* min-height: 8%;
-  width: 1400px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin); */
 }
 
 
@@ -740,8 +704,18 @@ h1.TitleHelp{
 
 }
 
-
 p{
 
   text-shadow: 1px 1px 3px black;
+}
+
+.horizontal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.horizontal-list li {
+  margin-right: 10px;
 }

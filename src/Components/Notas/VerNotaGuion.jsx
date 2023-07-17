@@ -1,43 +1,22 @@
-import React from "react";
-import ReactDataGrid from 'react-data-grid';
-// import { Toolbar, Data } from 'react-data-grid-addons';
-
-
-import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import {FaAngleLeft} from 'react-icons/fa';
 import {FaPrint} from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import axios from 'axios'
 
-
-// const data = [
-//     ['Nombre', 'Edad', 'País'],
-//     ['John', 30, 'USA'],
-//     ['Alice', 25, 'Canada'],
-//     ['Bob', 35, 'UK'],
-//   ];  
-
-// const workbook = utils.book_new();
-// const worksheet = utils.aoa_to_sheet(data);
-// utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-// writeFile(workbook, 'output.xlsx');
-
-
-function LeerGuion(){
-
-
-    const ExcelCellInput = () => {
-        const [value, setValue] = useState('');
-      
-        const handleInputChange = (event) => {
-          setValue(event.target.value);
-        };
-    }
-
-    const text1 = "VOZ EN OFF";
-    const text2 = 'LA MAÑANA DE ESTE LUNES SE REALIZO A CABO UNA BLABLABLABLABLABLABLA'
-
+const LeerGuion=()=>{
+    const [Datos, SetDatos] = useState([]);
+    const {id} = useParams()
+    useEffect(()=>{
+      GetDatos();
+  },[]);
+  
+  const GetDatos = async()=>{
+      const respuesta = await axios.get('https://localhost:7201/Guion/GetNota/'+id);
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+  }
     return(
         <div className="Auth-form-container">
         <form className="Auth-form-Guion">
@@ -45,7 +24,7 @@ function LeerGuion(){
             <h2 className="Auth-form-title">Guión Cancun Vive 03/07/23</h2>
             <div className="Row">
                 <div className="Grid">
-                    <h5> Reportero: reportero  </h5>
+                    <h5> Reportero:  </h5>
                 </div>
                 <div className="Grid">
                     <h5> Categoria: categoria </h5>
@@ -64,16 +43,19 @@ function LeerGuion(){
                 </form>
             </div>
             <br />
+           
+            {Datos.map((Datos) =>(
             <div className="Row-Guion">
                 <textarea  type="text"
                         className="excel-cell-input"
-                        value={text1}
+                        value={Datos.anotacion}
                         disabled='true'
                         />
                 <textarea  type="text"
                         className="excel-cell-input"
-                        value={text2} disabled='true' Resize='none'/>
+                        value={Datos.descripcion} disabled='true' Resize='none'/>
             </div>
+            ))}
 
         </div>
             <br />

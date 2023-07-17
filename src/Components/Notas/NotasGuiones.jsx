@@ -57,7 +57,7 @@ const GuionesNotas=()=>{
                     <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No. Nota</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Título</th>
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Formato</th>
@@ -66,7 +66,7 @@ const GuionesNotas=()=>{
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="table-group-divider">
                                 {Datos.map((Datos,i) =>(
                                     <tr key={Datos.iD_Nota}>
                                     <td>{(i+1)}</td>
@@ -76,11 +76,11 @@ const GuionesNotas=()=>{
                                     <td>{Datos.usuario.nombre}</td>
                                     <td>{Datos.fecha}</td>
                                     <td className="buttons-th"> 
-                                        <Link to='/LeerGuion'>
+                                        <Link to={'/LeerGuion/'+ Datos.iD_Nota}>
                                             <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
                                         </Link>
 
-                                        <Link to='/PruebaGuion' >
+                                        <Link to={'/EditarGuion/' + Datos.iD_Nota}>
                                         <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
                                         </Link>
                                         <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 

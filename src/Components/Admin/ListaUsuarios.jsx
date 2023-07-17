@@ -8,25 +8,28 @@ import { show_alerta } from "../../Funciones"
 
 
 const ListaUsuarios=()=>{
-    const [Datos, SetDatos] = useState([]);
-    const [iD_Usuario, setID_Usuario] = useState('');
-    const [nombre, setNombre] = useState('');
-    const [apellidos, setApellidos] = useState('');
-    const [nickName, setNickName] = useState('');
-    const [password, setPassword] = useState('');
-    const [id_Rol, setId_Rol] = useState('');
-    const [operation, setOperation] = useState(1);
-    const [title, setTitle] = useState('');
-  
-    useEffect(()=>{
-        GetDatos();
-    },[]);
-  
-    const GetDatos = async ()=>{
-        const respuesta = await axios.get('https://localhost:7201/Usuario/Get');
-        console.log(respuesta.data.result);
-        SetDatos(respuesta.data.result);
-    }
+  const [Datos, SetDatos] = useState([]);
+  const [Roles, SetRoles] = useState([]);
+  const [iD_Usuario, setID_Usuario] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [nickName, setNickName] = useState('');
+  const [password, setPassword] = useState('');
+  const [id_Rol, setId_Rol] = useState('');
+  const [operation, setOperation] = useState(1);
+  const [title, setTitle] = useState('');
+
+  useEffect(()=>{
+      GetDatos();
+  },[]);
+
+  const GetDatos = async ()=>{
+      const respuesta = await axios.get('https://localhost:7201/Usuario/Get')
+      const respuesta2 = await axios.get('https://localhost:7201/Rol/Get')
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+      SetRoles(respuesta2.data.result);
+  }
   
     const OpenModal = (op,iD_Usuario,nombre,apellidos,nickName,password,id_Rol) =>{
       setID_Usuario('');
@@ -130,7 +133,7 @@ const ListaUsuarios=()=>{
                     <div>
                         <h3>Lista de usuarios</h3>
                     </div>
-                                                                        {/* data-bs-toggle='modal' data-bs-target='#modaldefault' */}
+
                     <div>
                         <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
                     </div>
@@ -141,7 +144,7 @@ const ListaUsuarios=()=>{
                     <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">No. Usuario</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">User</th>
@@ -211,12 +214,12 @@ const ListaUsuarios=()=>{
               </div>
               <label> Rol </label>
               <div className='input-group mb-3'>
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Rol} onChange={(e)=> setId_Rol(e.target.value)}>
-                  {Datos.map(Datos =>(
-                      <option value={Datos.id_Rol}>{Datos.rol.nomRol}</option>
+              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                <select required className="form-select"  value={id_Rol} onChange={(e)=> setId_Rol(e.target.value)}>
+                      <option selected></option>
+                  {Roles.map(Roles =>(
+                      <option value={Roles.iD_Rol}>{Roles.nomRol}</option>
                   ))}
-                  //          valor que escoge       datos que se muestran
                 </select>
               </div>
             </div>

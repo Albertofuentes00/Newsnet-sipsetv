@@ -3,32 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-import Auth from "./Auth"
 import Menu from './Components/MainMenu/MainMenu';
 
 /* IMAGES */
 import SIPSENewsLogo from './images/noticias.png'
 import NewsnetLogo from './images/white-logo.png'
 import Beto from './images/LOGO_Scale.png'
-
 import Welcome from './Components/Bienvenida';
-
-
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
 
 /* BITACORA SECTION */
 import Bitacora from './Components/Bitacora/BitacoraView';
-import NuevaNota from './Components/Bitacora/CrearNota';
 import BuscarNotas from './Components/Bitacora/BuscarNota';
-import EditarNota from './Components/Bitacora/EditarNota';
 
 /* ESCALETAS SECTION */
+import EscaletaPrograma from './Components/Escaletas/EscaletaPrograma';
 import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
-import PruebaMove from './Components/Escaletas/PruebaEscaletamove';
+import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 
 
 /* NOTAS SECTION */
@@ -38,20 +32,11 @@ import LeerGuion from './Components/Notas/VerNotaGuion';
 
 /* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
-
-import NewUser from './Components/Admin/NuevoUsuario';
-import NewCategory from './Components/Admin/NuevaCategoria';
-import NewProgram from './Components/Admin/NuevoPrograma';
-import NewFormat from './Components/Admin/NuevoFormato';
-import NewRol from './Components/Admin/NuevoRol';
-
 import ListaUsuarios from './Components/Admin/ListaUsuarios';
 import ListaProgramas from './Components/Admin/ListaProgramas';
 import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
-
-
 
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
@@ -62,33 +47,23 @@ import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
 import GuionesHelp from './Components/Ayuda/GuionesHelp';
 import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 
-
-
-import MyComponent from './Components/Notas/PRUEBACELDA';
-
+import MyComponent from './Components/Notas/EditarGuion';
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
-
-
-// import { Link } from 'react-router-dom';
-
-//Puede usar function o const para retornar componentes 
+import EditarGuion from './Components/Notas/EditarGuion';
 
 
 function App() {
   return (
     <div className="App">
-
       <header className='App-header'> 
-
         <div className='logo'>
             <img src={SIPSENewsLogo} alt="logo" />
             <span className="separator"></span>
             <img src={NewsnetLogo} alt="logo" />
         </div>
         
-
         <div className='DateTime'>
           <div className="options">
             <Link to='/HelpDashboard/Introduccion'>
@@ -96,8 +71,7 @@ function App() {
             </Link>
                <a href="#">Cerrar Sesión</a>
           </div>
-
-         </div>
+        </div>
 
       </header>
 
@@ -108,56 +82,36 @@ function App() {
       </header>
     
       <body className="App-body">
-
-
-
        <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path='MainMenu' element={<Menu/>}/>
-
-            <Route path="Escaletas" element={<Escaletas />}/>
+            <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
             <Route path='AgregarNotas' element={<AddNotes/>} />
-
-            <Route path='PruebaMove' element={<PruebaMove/>} />
-
-
+            <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
-            <Route path='CrearNota' element={<NuevaNota/>} />
             <Route path='BuscarNota' element={<BuscarNotas/>}/>
-            <Route path='EditarNota' element={<EditarNota/>} />
-
-
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='CrearGuion' element={<NuevoGuion/>} />
-            <Route path='LeerGuion' element= {<LeerGuion/> } />
-            <Route path='PruebaGuion' element= {<MyComponent/>} />
-
-
+            <Route path='LeerGuion/:id' element= {<LeerGuion/> } />
+            <Route path='EditarGuion/:id' element= {<EditarGuion/>} />
             <Route path='Admin' element={<Dashboard />}>
               <Route path='ListaProgramas' element= {<ListaProgramas/>} />
               <Route path='ListaCategorias' element= {<ListaCategorias/>} />
               <Route path='ListaFormatos' element= {<ListaFormatos/>} />
               <Route path='ListaRoles' element={<ListaRoles/>} />
               <Route path='ListaUsuarios' element={<ListaUsuarios />}/>
-            </Route>
-            <Route path='NewUser' element={<NewUser/>} />
-            <Route path='NewCategory' element= {<NewCategory/>} />
-            <Route path='NewProgram' element= {<NewProgram/>} />
-            <Route path='NewFormat' element= {<NewFormat/>} />
-            <Route path='NewRol' element= {<NewRol/>}/>
-
-
-            <Route path='HelpDashboard' element={<HelpMenu/>} >
-                <Route path='Introduccion' element={<Introduccion/>}/>
-                <Route path='BitacoraHelp' element={<BitacoraHelp/>}/>
-                <Route path='EscaletasHelp' element={<EscaletasHelp/>}/>
-                <Route path='GuionesHelp' element={<GuionesHelp/>}/>
-                <Route path='AdminHelp' element={<AdminHelp/>} />
-                {/* <Route path='AdminHelp' element={<AdminHelp/>}/> */}
-                <Route path='About' element={<About/>} />
-            </Route>
+          </Route>
+          <Route path='HelpDashboard' element={<HelpMenu/>} >
+              <Route path='Introduccion' element={<Introduccion/>}/>
+              <Route path='BitacoraHelp' element={<BitacoraHelp/>}/>
+              <Route path='EscaletasHelp' element={<EscaletasHelp/>}/>
+              <Route path='GuionesHelp' element={<GuionesHelp/>}/>
+              <Route path='AdminHelp' element={<AdminHelp/>} />
+              <Route path='About' element={<About/>} />
+          </Route>
+          <Route path="Escaletas/:id" element={<Escaletas />}/>
       </Routes>
 
 
@@ -195,7 +149,6 @@ const TextSample = (props) => {
         <Datetime />
       </div>
         
-        {/* <p>Bienvenido: {props.name} {props.apellidos} <Datetime /> </p> */}
     </div>
      )
 
