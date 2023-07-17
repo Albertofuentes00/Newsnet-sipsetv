@@ -1,6 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import { Outlet, Link } from "react-router-dom";
+
+import axios from 'axios';
+import Modal from 'react-modal';
 
 
 import { FaEdit } from 'react-icons/fa';
@@ -11,6 +14,40 @@ import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
 
 function AddNotes() {
+
+    const [dataList, setDataList] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        axios.get('/api/data')
+        .then(response => {
+            setDataList(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
+
+    const handleCheckboxChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+        setSelectedItems([...selectedItems, value]);
+        } else {
+        setSelectedItems(selectedItems.filter(item => item !== value));
+        }
+    };
+
+    const handleSubmit = () => {
+        axios.post('/api/insert', { selectedItems })
+        .then(response => {
+            console.log('Datos agregados exitosamente');
+            setModalOpen(false);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    };
 
 
     const CheckboxExample = () => {
@@ -37,10 +74,9 @@ function AddNotes() {
                             <Link to='/PruebaMove'>
                                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
-                            <Link to='/CrearNota'>
-                                <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Notas</button>
-                            </Link>
-
+                            
+                            <button data-bs-toggle='modal' data-bs-target='#modalselect' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Notas</button>
+                        
                             <Link to='/BuscarNota'>
                                 <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                             </Link>
@@ -109,7 +145,107 @@ function AddNotes() {
 
             </div>
         </form>
+
+        {/* <div>
+            <button onClick={() => setModalOpen(true)}>Abrir Modal</button>
+
+            <Modal className='Modal-checkbox'
+                isOpen={modalOpen}
+                onRequestClose={() => setModalOpen(false)}
+                contentLabel="Seleccionar elementos"
+            >
+                <h2>Seleccionar elementos</h2>
+                {dataList.map(data => (
+                <div key={data.id}>
+                    <label>
+                    <input
+                        type="checkbox"
+                        value={data.id}
+                        onChange={handleCheckboxChange}
+                        checked={selectedItems.includes(data.id)}
+                    />
+                    {data.name}
+                    </label>
+                </div>
+                ))}
+                <button onClick={handleSubmit}>Agregar a la tabla</button>
+            </Modal>
+        </div> */}
+
+<div id='modalselect' className='modal fade' aria-hidden='true'>
+      <div className='modal-dialog'>
+        <div className='modal-content'>
+          <div className='modal-header'>
+            <label className='h5'> </label>
+            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <label> Agregar notas a escaleta </label>
+            <div className='modal-body'>
+		 <div className="Auth-form-container-Main">
+                    
+                    <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No. Nota</th>
+                                    <th scope="col">Título</th>
+                                    <th scope="col">Categoría</th>
+                                    <th scope="col">Formato</th>
+                                    <th scope="col">Reportero</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">     </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>Manifestacion</td>
+                                    <td>Noticias</td>
+                                    <td>TX</td>
+                                    <td>Brito</td>
+                                    <td>11-06-23</td>
+                                    <td> 
+                                        <input
+                                        type="checkbox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">1</td>    
+                                    <td>Manifestacion</td>
+                                    <td>Noticias</td>
+                                    <td>TX</td>
+                                    <td>Brito</td>
+                                    <td>11-06-23</td>
+                                    <td> 
+                                        <input
+                                        type="checkbox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td>Manifestacion</td>
+                                    <td>Noticias</td>
+                                    <td>TX</td>
+                                    <td>Brito</td>
+                                    <td>11-06-23</td>
+                                    <td>
+                                        <input
+                                        type="checkbox"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div className="modal-footer">
+              <button type="button" id='btnCerrareditar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
+          </div>
+        </div>
+      </div>
     </div>
+    </div>
+
+
+    
         
     )
 }

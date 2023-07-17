@@ -225,7 +225,7 @@ a:visited {
 }
 
 .Auth-form-Main {
-  width: 420px;
+  width: 720px;
   
   margin-bottom: 10px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
@@ -711,7 +711,7 @@ p{
 
 .horizontal-list {
   list-style: none;
-  padding: 0;
+  padding: 2;
   margin: 0;
   display: flex;
 }
@@ -719,3 +719,9 @@ p{
 .horizontal-list li {
   margin-right: 10px;
 }
+
+/* .ReactModalPortal {
+  position: fixed;
+  inset: 0px;
+  background-color: rgba(64, 63, 63, 0.75);
+} */
