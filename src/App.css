@@ -725,3 +725,20 @@ p{
   inset: 0px;
   background-color: rgba(64, 63, 63, 0.75);
 } */
+
+.modal-content-notas{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: #e7e7e7;
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    margin-left: -150px;
+
+
+}

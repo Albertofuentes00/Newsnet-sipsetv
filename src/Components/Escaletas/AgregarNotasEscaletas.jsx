@@ -174,12 +174,12 @@ function AddNotes() {
 
 <div id='modalselect' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
-        <div className='modal-content'>
+        <div className='modal-content-notas'>
           <div className='modal-header'>
             <label className='h5'> </label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
-            <label> Agregar notas a escaleta </label>
+            <h4> Agregar notas a escaleta </h4>
             <div className='modal-body'>
 		 <div className="Auth-form-container-Main">
                     
@@ -236,9 +236,12 @@ function AddNotes() {
                         </table>
                 </div>
             </div>
-            <div className="modal-footer">
-              <button type="button" id='btnCerrareditar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
-          </div>
+            <div className="d-grid col-6 mx-auto">
+              <button className="btn btn-success">
+              <i className="fa-solid fa-floppy-disk"></i> Agregar
+              </button>
+              <br />
+            </div>
         </div>
       </div>
     </div>
