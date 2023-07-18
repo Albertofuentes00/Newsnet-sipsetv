@@ -264,6 +264,11 @@ a:visited {
   background-color: #e7e7e7;
 }
 
+.Auth-form-searchbar{
+  background-color: #555;
+  width: 100px;
+}
+
 .modal-content {
   /* position: relative;
   display: flex;

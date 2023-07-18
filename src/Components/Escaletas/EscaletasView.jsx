@@ -145,6 +145,11 @@ const Escaletas=()=>{
                             </Link>
                         </div>
                     </div>
+
+                    <div className="Auth-form-searchbar">
+                        
+
+                    </div>
                     <br />
 
                 <div className="Auth-form-container-Main">
