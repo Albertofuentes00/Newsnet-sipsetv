@@ -150,6 +150,7 @@ const Escaletas=()=>{
                         
 
                     </div>
+                    
                     <br />
 
                 <div className="Auth-form-container-Main">
