@@ -264,9 +264,16 @@ a:visited {
   background-color: #e7e7e7;
 }
 
+
+
+
+
+/* SEARCHBAR STYLE */
+
 .Auth-form-searchbar{
   background-color: #c9c9c9;
   width: 798px;
+  
 }
 
 .input-search{
@@ -274,6 +281,8 @@ a:visited {
   font-family: inherit;
   margin-left: 5px;
   height: 20px;
+  width: 170px;
+  
   
 }
 
@@ -282,7 +291,6 @@ a:visited {
   font-family: inherit;
   margin-left: 5px;
   height: 20px;
-
 }
 
 .Row-searchbar{
@@ -290,7 +298,9 @@ a:visited {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px; /* Separación entre botones */
   display: flex;
-  margin-bottom: 10px; /* Espacio entre filas */
+  margin-bottom: -5px; /* Espacio entre filas */
+  padding: 5px;
+  font-size: medium;
 }
 
 .form-group {
@@ -308,16 +318,30 @@ select {
   flex: 1;
   height: 20px;
   outline: none; /* Evitar el resaltado predeterminado en otros navegadores */
-
 }
 
-select:focus-visible {
-  font-size: small;
+.button-searchbar{
+  height: 20px;
+  font-size: medium;
+}
+
+.btn-btn-info{
+  height: 20px;
+  background-color: cornflowerblue;
+
 }
 
 option{
   font-size: small;
 }
+
+
+
+
+
+
+
+/* MODALS STYLE */
 
 .modal-content {
   /* position: relative;
@@ -333,6 +357,14 @@ option{
   border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
   border-radius: var(--bs-modal-border-radius);
   outline: 0; */
+}
+
+.modal-body-table {
+  position: relative;
+  flex: 1 1 auto;
+  padding: var(--bs-modal-padding);
+  overflow-y: auto;
+  max-height: 700px;
 }
 
 .Auth-form-table {

@@ -179,9 +179,11 @@ function AddNotes() {
             <label className='h5'> </label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
+          
+            <h4> Agregar notas a escaleta </h4>
             <div className="Auth-form-searchbar">
                 <div className="Row-searchbar">
-                    <div className= 'Grid'>
+                    {/* <div className= 'Grid'>
                                  
                         <div className="Row">
                         <div class="col-md-3 mb-3">
@@ -233,12 +235,33 @@ function AddNotes() {
                     </div>
                 </div>
                 
+                </div> */}
+
+                <div className="Grid">
+                    <div className="Row">
+                        <label>Título/Palabra</label>
+                        <input type="text" className="input-search" />
+                        <label> Categoría</label>
+                        <select> </select>
+                        <label>Formato</label>
+                        <select ></select>
+                        <label>Reportero</label>
+                        <select> </select>
+                    </div>
+                    <div className="Row">
+                        <label>Buscar nota del</label>
+                        <input type="date" className="input-search"/>
+                        <label > al </label>
+                        <input type="date" className="input-search" />
+                        <input type="button"></input>
+                    </div>
+
                 </div>
+
         
-                </div>
             </div>
-            <h4> Agregar notas a escaleta </h4>
-            <div className='modal-body'>
+        </div>
+            <div className='modal-body-table'>
 		 <div className="Auth-form-container-Main">
                     
                     <table class="table">
