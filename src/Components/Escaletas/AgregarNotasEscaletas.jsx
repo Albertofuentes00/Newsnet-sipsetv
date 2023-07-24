@@ -4,6 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 
 import axios from 'axios';
 import Modal from 'react-modal';
+import SearchBar from "./NoteSearchBar";
 
 
 import { FaEdit } from 'react-icons/fa';
@@ -58,6 +59,9 @@ function AddNotes() {
         };
     }
     return (
+        
+
+
         
     <div className="Auth-form-container">
 
@@ -183,59 +187,6 @@ function AddNotes() {
             <h4> Agregar notas a escaleta </h4>
             <div className="Auth-form-searchbar">
                 <div className="Row-searchbar">
-                    {/* <div className= 'Grid'>
-                                 
-                        <div className="Row">
-                        <div class="col-md-3 mb-3">
-                        <label for="inputBuscar">Título/Palabra clave</label>
-                        <input type="text" class="form-control" id="inputBuscar" placeholder="Buscar..."/>
-                        </div>
-           
-                        <div class="col-md-3 mb-3">
-                        <label for="selectOpcion1">Categoría</label>
-                        <select class="form-control" id="selectOpcion1">
-                            <option value="">-- Seleccionar --</option>
-                            <option value="opcion1">Opción 1</option>
-                            <option value="opcion2">Opción 2</option>
-                            <option value="opcion3">Opción 3</option>
-                        </select>
-                        </div>
-          
-                        <div class="col-md-3 mb-3">
-                        <label for="selectOpcion2">Formato</label>
-                        <select class="form-control" id="selectOpcion2">
-                            <option value="">-- Seleccionar --</option>
-                            <option value="opcionA">Opción A</option>
-                            <option value="opcionB">Opción B</option>
-                            <option value="opcionC">Opción C</option>
-                        </select>
-                        </div>
-               
-                        <div class="col-md-3 mb-3">
-                        <label for="selectOpcion3">Reportero</label>
-                        <select class="form-control" id="selectOpcion3">
-                            <option value="">-- Seleccionar --</option>
-                            <option value="valor1">Valor 1</option>
-                            <option value="valor2">Valor 2</option>
-                            <option value="valor3">Valor 3</option>
-                        </select>
-                        </div>
-                    </div>
-
-                    <div className="Grid">
-                    <div className="Row">
-                        <div class="col-md-6 mb-3">
-                            <label for="fechaInicio">Fecha de inicio:</label>
-                            <input type="date" class="form-control" id="fechaInicio"/>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                            <label for="fechaFin">Fecha de fin:</label>
-                            <input type="date" class="form-control" id="fechaFin"/>
-                        </div>
-                    </div>
-                </div>
-                
-                </div> */}
 
                 <div className="Grid">
                     <div className="Row">

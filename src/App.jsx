@@ -23,7 +23,7 @@ import Escaletas from './Components/Escaletas/EscaletasView';
 import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
 import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
-
+import SearchBar from './Components/Escaletas/NoteSearchBar';
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -88,7 +88,7 @@ function App() {
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
-            <Route path='AgregarNotas' element={<AddNotes/>} />
+            {/* <Route path='AgregarNotas' element={<AddNotes/>} /> */}
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
             <Route path='BuscarNota' element={<BuscarNotas/>}/>
@@ -96,6 +96,12 @@ function App() {
             <Route path='CrearGuion' element={<NuevoGuion/>} />
             <Route path='LeerGuion/:id' element= {<LeerGuion/> } />
             <Route path='EditarGuion/:id' element= {<EditarGuion/>} />
+
+            <Route path='Search' element= { <SearchBar/>}>
+              <Route path='AgregarNotas' element={<AddNotes/>} />
+            </Route>
+            
+            
             <Route path='Admin' element={<Dashboard />}>
               <Route path='ListaProgramas' element= {<ListaProgramas/>} />
               <Route path='ListaCategorias' element= {<ListaCategorias/>} />
