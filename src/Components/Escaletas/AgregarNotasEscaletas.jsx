@@ -59,10 +59,7 @@ function AddNotes() {
         };
     }
     return (
-        
 
-
-        
     <div className="Auth-form-container">
 
         <form className="Auth-form-table">

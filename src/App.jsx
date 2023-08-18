@@ -9,6 +9,7 @@ import Menu from './Components/MainMenu/MainMenu';
 import SIPSENewsLogo from './images/noticias.png'
 import NewsnetLogo from './images/white-logo.png'
 import Beto from './images/LOGO_Scale.png'
+import Tommy from './images/LOGO_Tommy.png'
 import Welcome from './Components/Bienvenida';
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
@@ -88,7 +89,7 @@ function App() {
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
             <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
             <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
-            {/* <Route path='AgregarNotas' element={<AddNotes/>} /> */}
+           <Route path='AgregarNotas' element={<AddNotes/>} />
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
             <Route path='BuscarNota' element={<BuscarNotas/>}/>
@@ -131,7 +132,7 @@ function App() {
           <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>
           <div>
             <h7>Powered by</h7>
-            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto & Tommy</h6>
+            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto & Tommy <img src={Tommy} className='Logo-BT' alt='logo' /> </h6>
           </div>
       </footer>
     </div>
