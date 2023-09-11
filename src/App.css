@@ -384,6 +384,23 @@ option{
   background-color: #e7e7e7;
 }
 
+.Auth-form-table-search-filther {
+  width: 990px;
+  height: 150px;
+  max-height: 550px;
+  overflow-y: auto;
+  position: static;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+  background-color: #e7e7e7;
+}
+
 .Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;

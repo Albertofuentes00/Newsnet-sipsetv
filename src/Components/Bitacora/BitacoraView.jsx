@@ -142,13 +142,18 @@ function Bitacora() {
   }
 return (    
   <div className="Auth-form-container">
+
+    {/* <div className="Auth-form-table-search-filther">
+
+    </div> */}
+
+
     <div className="Auth-form-table">
       <div className='Auth-Maintable'>
-        <div>
+        
+        <div className="Row">
           <h1>Bitácora de notas</h1>
-        </div>
-          <div>
-            <div className="Button-form">
+          <div className="Button-form">
               <Link to='/MainMenu'>
               <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
               </Link>
@@ -157,8 +162,9 @@ return (
               <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
               </Link>
             </div>
-          </div>
-          <br/>
+        </div>
+    
+
         <div className="Auth-form-container-Main">
           <table class="table">
             <thead>
