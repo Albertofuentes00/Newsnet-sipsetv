@@ -26,22 +26,14 @@ const Escaletas=()=>{
 
         <form className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h1>Escaletas</h1>
-                    </div>
-
-                    <div>
-                        <form className="Button-form">
-                            <Link to='/MainMenu'>
-                                <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                            </Link>
-
-                            <Link >
-                                <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-                            </Link>
-                        </form>
-                    </div>
-                    <br />
+            <div className="Row">
+                <h1>Escaletas</h1>
+                  <div className="Button-form">
+                    <Link to='/EscaletaPrograma'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    </Link>
+                  </div>
+              </div>
 
                 <div className="Auth-form-container-Main">
                     

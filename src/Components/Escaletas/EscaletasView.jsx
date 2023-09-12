@@ -128,23 +128,18 @@ const Escaletas=()=>{
 
         <div className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h1>Escaletas</h1>
-                    </div>
-
-                    <div>
-                        <div className="Button-form">
-                            <Link to='/EscaletaPrograma'>
-                                <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                            </Link>
-
-                            <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
-
-                            <Link >
-                                <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-                            </Link>
-                        </div>
-                    </div>
+              <div className="Row">
+                <h1>Escaletas</h1>
+                  <div className="Button-form">
+                    <Link to='/EscaletaPrograma'>
+                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                    </Link>
+                        <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
+                    <Link >
+                        <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+                    </Link>
+                  </div>
+              </div>
 
                     <div className="Auth-form-searchbar">
                         

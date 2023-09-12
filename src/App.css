@@ -270,11 +270,11 @@ a:visited {
 
 /* SEARCHBAR STYLE */
 
-.Auth-form-searchbar{
+/* .Auth-form-searchbar{
   background-color: #c9c9c9;
   width: 798px;
   
-}
+} */
 
 .input-search{
   margin: 0;
@@ -368,7 +368,7 @@ option{
 }
 
 .Auth-form-table {
-  width: 990px;
+  width: 1200px;
   height: 500px;
   max-height: 550px;
   overflow-y: auto;
@@ -384,11 +384,13 @@ option{
   background-color: #e7e7e7;
 }
 
-.Auth-form-table-search-filther {
+.Auth-form-searchbar {
   width: 990px;
-  height: 150px;
+  height: 80px;
   max-height: 550px;
-  overflow-y: auto;
+
+  align-self: center;
+  margin: auto;
   position: static;
   margin-top: 10px;
   margin-bottom: 10px;

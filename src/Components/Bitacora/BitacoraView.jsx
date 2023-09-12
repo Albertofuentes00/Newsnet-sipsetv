@@ -147,7 +147,11 @@ return (
 
     </div> */}
 
-
+    <div className="Grid">
+      <div className="Auth-form-searchbar">
+        <h1>prueba</h1>
+      </div>
+      
     <div className="Auth-form-table">
       <div className='Auth-Maintable'>
         
@@ -204,6 +208,69 @@ return (
         </div>
       </div>
     </div>
+
+    </div>
+
+
+
+
+{/* 
+    <div className="Auth-form-table">
+      <div className='Auth-Maintable'>
+        
+        <div className="Row">
+          <h1>Bitácora de notas</h1>
+          <div className="Button-form">
+              <Link to='/MainMenu'>
+              <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+              </Link>
+              <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
+              <Link to='/BuscarNota'>
+              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+              </Link>
+            </div>
+        </div>
+    
+
+        <div className="Auth-form-container-Main">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Formato</th>
+                <th scope="col">Reportero</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">     </th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+            {Datos.map((Datos,i) =>(
+                <tr key={Datos.iD_Nota}>
+                <td>{(i+1)}</td>
+                <td>{Datos.titulo}</td>
+                <td>{Datos.categoria.nomCategoria}</td>
+                <td>{Datos.formato.nomFormato}</td>
+                <td>{Datos.usuario.nombre}</td>
+                <td>{Datos.fecha}</td>
+                <td>
+                <button onClick={()=> OpenModal(2,Datos.iD_Nota,Datos.titulo,Datos.id_Categoria,Datos.id_Formato,Datos.id_Usuario,Datos.fecha)} 
+                className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaleditar'>
+                  <i className="fa-solid fa-edit"></i>
+                </button>
+                &nbsp;
+                <button onClick={()=> deleteDatos(Datos.iD_Nota)} className="btn btn-danger">
+                  <i className="fa-solid fa-trash"></i>
+                </button>
+                </td>
+                </tr>
+            ))}
+            </tbody>
+          </table>                          
+        </div>
+      </div>
+    </div> */}
 
     <div id='modaldefault' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
