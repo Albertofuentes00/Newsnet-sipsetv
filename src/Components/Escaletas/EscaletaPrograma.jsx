@@ -29,7 +29,7 @@ const Escaletas=()=>{
             <div className="Row">
                 <h1>Escaletas</h1>
                   <div className="Button-form">
-                    <Link to='/EscaletaPrograma'>
+                  <Link to='/MainMenu'>
                         <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                     </Link>
                   </div>

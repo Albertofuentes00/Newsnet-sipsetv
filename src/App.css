@@ -280,10 +280,10 @@ a:visited {
   margin: 0;
   font-family: inherit;
   margin-left: 5px;
+  font-size: medium;
+  text-transform: uppercase;
   height: 20px;
   width: 170px;
-  
-  
 }
 
 .select-search{
@@ -299,6 +299,7 @@ a:visited {
   gap: 10px; /* Separación entre botones */
   display: flex;
   margin-bottom: -5px; /* Espacio entre filas */
+  margin-top: -15px;
   padding: 5px;
   font-size: medium;
 }
@@ -385,7 +386,7 @@ option{
 }
 
 .Auth-form-searchbar {
-  width: 990px;
+  width: 1120px;
   height: 80px;
   max-height: 550px;
 
@@ -582,7 +583,6 @@ button.btn.btn-light:hover{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px; /* Separación entre botones */
-  
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px; /* Espacio entre filas */

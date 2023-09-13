@@ -4,7 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 
 import axios from 'axios';
 import Modal from 'react-modal';
-import SearchBar from "./NoteSearchBar";
+
 
 
 import { FaEdit } from 'react-icons/fa';
@@ -78,9 +78,8 @@ function AddNotes() {
                             
                             <button data-bs-toggle='modal' data-bs-target='#modalselect' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Notas</button>
                         
-                            <Link to='/BuscarNota'>
                                 <button type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-                            </Link>
+
                         </form>
                     </div>
                     <br />

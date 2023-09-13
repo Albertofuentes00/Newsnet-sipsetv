@@ -36,21 +36,16 @@ const GuionesNotas=()=>{
 
         <form className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h1>Bitácora de notas</h1>
-                    </div>
 
-                    <div>
-                        <form className="Button-form">
-                            
-                            <Link to='/MainMenu'>
-                                <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                            </Link>
-                            
-                            <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-                        </form>
+                <div className="Row">
+                    <h1>Bitácora de notas</h1>
+                    <div className="Button-form">
+                        <Link to='/MainMenu'>
+                            <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                        </Link>
                     </div>
-                    <br />
+                </div>
+
 
                 <div className="Auth-form-container-Main">
                     

@@ -149,7 +149,46 @@ return (
 
     <div className="Grid">
       <div className="Auth-form-searchbar">
-        <h1>prueba</h1>
+        <div className="Row-searchbar">
+
+          <div className="Row">
+            <div className="Grid">
+              <label>Título/Palabra clave</label>
+              <input type="text" className="input-search" />
+              <div className="Row">
+                <label>Categoría</label>
+                <select  className="input-search"> </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="Row">
+            <div className="Grid">
+                <label>Reportero</label>
+                <select  className="input-search"> </select>
+            <div className="Grid">
+                <label>Formato </label>
+                <select  className="input-search"> </select>
+            </div>
+          </div>
+          </div>
+        
+          <div className="Row">
+            <div className="Grid">
+              <label> Fecha Inicial</label>
+              <input type="date" className="input-search"/>
+            <div className="Grid">
+              <label> Fecha Final</label>
+              <input type="date" className="input-search"/>
+            </div>
+          </div>
+        </div>
+
+          <div className="Row">
+            <div className="Grid"></div>
+              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+          </div>
+        </div>
       </div>
       
     <div className="Auth-form-table">
@@ -162,9 +201,7 @@ return (
               <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
               </Link>
               <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
-              <Link to='/BuscarNota'>
-              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-              </Link>
+
             </div>
         </div>
     
@@ -287,16 +324,39 @@ return (
               <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
               onChange={(e)=> setTitulo(e.target.value)}></input>
             </div>
-            <label> Categoria </label>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
-              <option></option>
-              {Categorias.map(Categorias =>(
-              <option value={Categorias.iD_Categoria}>{Categorias.nomCategoria}</option>
-              ))}
-              </select>
+
+            <div className="Grid">
+              <label> Categoria </label>
+              <div className="Row">
+                <div className='input-group mb-3'>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
+                <option></option>
+                {Categorias.map(Categorias =>(
+                <option value={Categorias.iD_Categoria}>{Categorias.nomCategoria}</option>
+                ))}
+                </select>
+              </div>
             </div>
+
+            <div className="Row">
+              <label> Formato </label>
+              <div className="Grid">
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                  <option></option>
+                  {Formatos.map(Formatos =>(
+                  <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+                  ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
             <label> Formato </label>
             <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
@@ -318,14 +378,18 @@ return (
               </select>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button onClick={()=> Validar()} className="btn btn-success">
-              <i className="fa-solid fa-floppy-disk"></i> Guardar
-              </button>
+
+              <div className="Row">
+                <button onClick={()=> Validar()} className="btn btn-success">
+                  <i className="fa-solid fa-floppy-disk"></i> Guardar
+                </button>
+
+                <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
+                  <i className="fa-solid fa-circle-xmark"/> Cancelar
+                </button>
+              </div>
             </div>
             </div>
-            <div className="modal-footer">
-                <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
-          </div>
         </div>
       </div>
     </div>
@@ -384,11 +448,12 @@ return (
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
                     </button>
+
+                    <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
+                      <i className="fa-solid fa-circle-xmark"/> Cancelar
+                    </button>
               </div>
             </div>
-            <div className="modal-footer">
-              <button type="button" id='btnCerrareditar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
-          </div>
         </div>
       </div>
     </div>
