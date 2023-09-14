@@ -11,6 +11,7 @@ import { show_alerta } from "../../Funciones"
 import { Link, useParams } from "react-router-dom";
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
+import SearchEscaleta from "../SearchEscaletas";
 
 const Escaletas=()=>{
     const [Datos, SetDatos] = useState([]);
@@ -59,10 +60,10 @@ const Escaletas=()=>{
       var parametros;
       if(operation===1){
         if(horaInicio.trim()===''){
-          show_alerta('Escribe la hora de incio de la escaleta','warning');
+          show_alerta('Escribe la hora de inicio de la escaleta','warning');
         }
         else if(id_Usuario===''){
-          show_alerta('Seleccion el usuario','warning');
+          show_alerta('Selecciona el usuario','warning');
         }
       }
       else{
@@ -84,7 +85,7 @@ const Escaletas=()=>{
           GetDatos();
         })
         .catch(function(error){
-          show_alerta('error en la solicitud','error');
+          show_alerta('Error en la solicitud','error');
           console.log(error);
         });
   
@@ -96,7 +97,7 @@ const Escaletas=()=>{
           GetDatos();
         })
         .catch(function(error){
-          show_alerta('error en la solicitud','error');
+          show_alerta('Error en la solicitud','error');
           console.log(error);
         });
   
@@ -117,16 +118,21 @@ const Escaletas=()=>{
             GetDatos();
           })
           .catch(function(error){
-            show_alerta('error en la solicitud','error');
+            show_alerta('Error en la solicitud','error');
             console.log(error);
           });
         }
       });
     }
     return(
+
         <div className="Auth-form-container">
 
-        <div className="Auth-form-table">
+        <div className="Grid">
+
+          <SearchEscaleta/>
+
+          <div className="Auth-form-table">
             <div className='Auth-Maintable'>
               <div className="Row">
                 <h1>Escaletas</h1>
@@ -139,13 +145,7 @@ const Escaletas=()=>{
                         <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
                     </Link>
                   </div>
-              </div>
-
-                    <div className="Auth-form-searchbar">
-                        
-
-                    </div>
-                    
+              </div>                    
                     <br />
 
                 <div className="Auth-form-container-Main">
@@ -175,6 +175,9 @@ const Escaletas=()=>{
                 </div>
             </div>
         </div>
+
+        </div>
+
         <div id='modaldefault' className='modal fade' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
@@ -255,40 +258,6 @@ const Escaletas=()=>{
           </div>
         </div>
       </div>
-
-        <div id='modalsearch' className='modal fade' aria-hidden='true'>
-                    <div className='modal-dialog'>
-                        <div className='modal-content'>
-                            <div className='modal-header'>
-                                <h3 className="Auth-form-title">Buscar escaleta</h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className='modal-body'>
-                            <h3 className="Text-helper">Ingresa los datos requeridos para buscar una escaleta existente</h3>
-                            <br />
-                                <div className="Menu-form">
-                                    <label>Programa</label>
-                                    <select name="programa" className="form-control"></select>
-                                </div>
-                                <br />
-                                <div className= 'Grid'>
-                                    <label>Fecha</label>
-                                    <input
-                                    type="date"
-                                    className="form-control mt-1"
-                                    placeholder="Selecciona la fecha"
-                                    >
-                                    </input>
-                                </div>
-                                <br />
-                                <div>
-                                    <button type="button" class="btn btn-primary"> <FaSearch size={20} color="white"/> Buscar </button>
-                                    <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
-                                </div>    
-                            </div>
-                    </div>
-            </div>
-        </div>
     </div>
     )
 }

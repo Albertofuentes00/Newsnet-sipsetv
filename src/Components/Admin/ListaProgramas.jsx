@@ -111,14 +111,13 @@ const ListaProgramas=()=>{
 
 <div className="Auth-form-table">
     <div className='Auth-Maintable'>
-            <div>
-                <h3>Lista de programas</h3>
-            </div>
-
-            <div>
-                        <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
-            </div>
-            <br />
+        <div className="Row">
+          <h3>Lista de programas</h3>
+          <div className="Button-form">
+            <input type="text" className="input-search-admin" placeholder="Buscar..." />
+            <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
+          </div>
+        </div>
 
         <div className="Auth-form-container-Main">
             

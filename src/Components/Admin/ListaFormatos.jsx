@@ -80,7 +80,7 @@ const ListaFormatos = () =>{
     const deleteDatos = (iD_Formato,nomFormato) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
-        title:'Seguro que quieres borrar ' + nomFormato +'?',
+        title:'¿Seguro que quieres borrar ' + nomFormato +'?',
         icon: 'question', text:'No se podrá recuperar despues',
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
@@ -91,7 +91,7 @@ const ListaFormatos = () =>{
             GetFormato();
           })
           .catch(function(error){
-            show_alerta('error en la solicitud','error');
+            show_alerta('Error en la solicitud','error');
             console.log(error);
           });
         }
@@ -103,14 +103,13 @@ const ListaFormatos = () =>{
 
         <div className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h3>Lista de formatos</h3>
-                    </div>
-        
-                    <div>
-                      <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
-                    </div>
-                    <br />
+              <div className="Row">
+                <h3>Lista de formatos</h3>
+                <div className="Button-form">
+                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
+                </div>                
+              </div>
         
                 <div className="Auth-form-container-Main">
                     

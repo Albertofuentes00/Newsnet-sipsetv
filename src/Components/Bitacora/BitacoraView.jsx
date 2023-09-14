@@ -8,6 +8,8 @@ import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
+import SearchMenu from "../SearchMenu"
+
 
 function Bitacora() {
   const [Datos, SetDatos] = useState([]);
@@ -148,48 +150,8 @@ return (
     </div> */}
 
     <div className="Grid">
-      <div className="Auth-form-searchbar">
-        <div className="Row-searchbar">
 
-          <div className="Row">
-            <div className="Grid">
-              <label>Título/Palabra clave</label>
-              <input type="text" className="input-search" />
-              <div className="Row">
-                <label>Categoría</label>
-                <select  className="input-search"> </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="Row">
-            <div className="Grid">
-                <label>Reportero</label>
-                <select  className="input-search"> </select>
-            <div className="Grid">
-                <label>Formato </label>
-                <select  className="input-search"> </select>
-            </div>
-          </div>
-          </div>
-        
-          <div className="Row">
-            <div className="Grid">
-              <label> Fecha Inicial</label>
-              <input type="date" className="input-search"/>
-            <div className="Grid">
-              <label> Fecha Final</label>
-              <input type="date" className="input-search"/>
-            </div>
-          </div>
-        </div>
-
-          <div className="Row">
-            <div className="Grid"></div>
-              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-          </div>
-        </div>
-      </div>
+      <SearchMenu/>
       
     <div className="Auth-form-table">
       <div className='Auth-Maintable'>
@@ -316,18 +278,19 @@ return (
             <label className='h5'>{title}</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
+            <h4>Ingresa los datos requeridos para crear una nota nueva</h4>
             <label> Titulo </label>
           <div className='modal-body'>
             <input type='hidden' id='id'></input>
             <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
-              onChange={(e)=> setTitulo(e.target.value)}></input>
+              <textarea type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
+              onChange={(e)=> setTitulo(e.target.value)}></textarea>
             </div>
 
-            <div className="Grid">
+            <div className="Row">
               <label> Categoria </label>
-              <div className="Row">
+              <div className="Grid">
                 <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
@@ -352,10 +315,27 @@ return (
                   </select>
                 </div>
               </div>
-            </div>
+
+              <label> Categoría </label>
+                <div className="Row"> 
+                  <div className='input-group mb-3'>
+                    <div className="Grid">
+                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                      <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                      <option></option>
+                      {Formatos.map(Formatos =>(
+                      <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+                      ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
           </div>
+
+          <div className="Row"></div>
 
             <label> Formato </label>
             <div className='input-group mb-3'>
@@ -400,6 +380,7 @@ return (
             <label className='h5'>{title}</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
+            <h4>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h4>
             <label> Titulo </label>
             <div className='modal-body'>
               <input type='hidden' id='id'></input>

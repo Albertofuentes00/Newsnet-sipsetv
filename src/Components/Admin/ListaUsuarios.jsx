@@ -130,14 +130,14 @@ const ListaUsuarios=()=>{
 
         <div className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h3>Lista de usuarios</h3>
-                    </div>
+              <div className="Row">
+                <h3>Lista de usuarios</h3>
 
-                    <div>
-                        <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
-                    </div>
-                    <br />
+                <div className="Button-form">
+                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
+                </div>
+              </div>
 
                 <div className="Auth-form-container-Main">
                     

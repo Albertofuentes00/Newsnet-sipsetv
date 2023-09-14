@@ -101,16 +101,13 @@ const ListaRoles = () => {
 
         <div className="Auth-form-table">
             <div className='Auth-Maintable'>
-                    <div>
-                        <h3>Lista de Roles</h3>
-                    </div>
-        
-                    <div>
-                        <div className="Button-form">
-                            <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
-                        </div>
-                    </div>
-                    <br />
+              <div className="Row">
+                <h3>Lista de Roles</h3>
+                <div className="Button-form">
+                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
+                </div>        
+        </div>
         
                 <div className="Auth-form-container-Main">
                     

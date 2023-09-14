@@ -9,6 +9,8 @@ import { FaSave } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi'
 import { Link } from "react-router-dom";
 
+import SearchEscaleta from "../SearchEscaletas";
+
 const Escaletas=()=>{
     const [Datos, SetDatos] = useState([]);
   
@@ -24,16 +26,20 @@ const Escaletas=()=>{
     return(
         <div className="Auth-form-container">
 
-        <form className="Auth-form-table">
-            <div className='Auth-Maintable'>
-            <div className="Row">
-                <h1>Escaletas</h1>
-                  <div className="Button-form">
-                  <Link to='/MainMenu'>
+            <div className="Grid">
+
+            <SearchEscaleta/>
+
+            <form className="Auth-form-table">
+                <div className='Auth-Maintable'>
+                <div className="Row">
+                    <h1>Escaletas</h1>
+                    <div className="Button-form">
+                    <Link to='/MainMenu'>
                         <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                     </Link>
                   </div>
-              </div>
+                </div>
 
                 <div className="Auth-form-container-Main">
                     
@@ -66,6 +72,11 @@ const Escaletas=()=>{
                 </div>
             </div>
         </form>
+        </div>
+
+
+
+
 
         <div id='modaldefault' className='modal fade' aria-hidden='true'>
                 <div className='modal-dialog'>

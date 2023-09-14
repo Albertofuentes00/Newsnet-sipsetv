@@ -8,7 +8,7 @@ import { FaEye } from 'react-icons/fa'
 import { GiCancel } from 'react-icons/gi'
 
 import { Link } from "react-router-dom";
-
+import SearchMenu from "../SearchMenu";
 
 const GuionesNotas=()=>{
     const [Datos, SetDatos] = useState([]);
@@ -34,7 +34,11 @@ const GuionesNotas=()=>{
         
         <div className="Auth-form-container">
 
-        <form className="Auth-form-table">
+        <div className="Grid">
+
+            <SearchMenu />
+
+            <form className="Auth-form-table">
             <div className='Auth-Maintable'>
 
                 <div className="Row">
@@ -90,71 +94,8 @@ const GuionesNotas=()=>{
                 </div>
             </div>
         </form>
-
-        <div id='modalsearch' className='modal fade' aria-hidden='true'>
-                    <div className='modal-dialog'>
-                        <div className='modal-content'>
-                            <div className='modal-header'>
-                                <h3 className="Auth-form-title">Buscar nota</h3>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className='modal-body'>
-                            <h2 className="Text-helper">Ingresa los datos que necesites para buscar una nota</h2>
-                            <br />
-                            <div className="Menu-form">
-                                <label>Título o palabra clave</label>
-                                <input
-                                    type="user"
-                                    className="form-control mt-1"
-                                    placeholder="Título o palabra clave"
-                                />
-                                <br />
-                                <div className= 'Grid'>
-                                    <label>Categoría</label>
-                                    <select class="form-control mt-1" placeholder="Categoria" type="user">
-                                    </select>
-                                </div>
-                                <div className= 'Grid'>
-                                    <label>Reportero</label>
-                                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
-                                    </select>                
-                                </div>
-                                <div className="Grid">
-                                    <label>Formato</label>
-                                    <select class="form-control mt-1"  placeholder="Reportero" type="user">
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="FromDateToDate">
-                                <div className= 'Grid'>
-                                    <label>Buscar entre fechas</label>
-                                </div>
-
-
-                                <div className="Row">
-                                    <div className="Grid">
-                                        <label> Del </label>
-                                    </div>
-                                    <div className= 'Grid'>
-                                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/>
-                                    </div>
-                                    <div className= 'Grid' >
-                                    <label> Al </label>
-                                    </div>
-                                    <div className="Grid">
-                                        <input type="date" className="form-control mt-1 date"placeholder="Selecciona la fecha"/> 
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div>
-                                <button type="button" class="btn btn-primary"> <FaSearch size={20} color="white"/> Buscar </button>
-                                <button type="button" class="btn btn-danger"> <GiCancel size={20} color="white"/> Cancelar </button>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
+        </div>
 
     </div>
 

@@ -16,6 +16,7 @@ import Login from './Components/LoginView/LoginView';
 
 
 import SearchMenu from './Components/SearchMenu';
+import SearchEscaleta from './Components/SearchEscaletas';
 
 /* BITACORA SECTION */
 import Bitacora from './Components/Bitacora/BitacoraView';
@@ -23,8 +24,6 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 /* ESCALETAS SECTION */
 import EscaletaPrograma from './Components/Escaletas/EscaletaPrograma';
 import Escaletas from './Components/Escaletas/EscaletasView';
-import NuevaEscaleta from './Components/Escaletas/CrearEscaleta';
-import BuscarEscaleta from './Components/Escaletas/BuscarEscaleta';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 
 
@@ -55,9 +54,28 @@ import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarGuion';
+import { click } from '@testing-library/user-event/dist/click';
 
 
 function App() {
+
+
+  //DESCARGA EL MANUAL DE ESTILO AL DAR CLICK
+  // const handleDownloadClick = () => {
+  //   const fileUrl = '/Descargas';
+
+  //   const link = document.createElement('a');
+  //   link.href = fileUrl;
+  //   link.download = "/Descargas/manual.doc";
+
+  //   document.body.appendChild(link)
+  //   link.click();
+
+  //   document.body.removeChild(link);
+  // }
+
+
+
   return (
     <div className="App">
       <header className='App-header'> 
@@ -69,9 +87,14 @@ function App() {
         
         <div className='DateTime'>
           <div className="options">
+
+            <Link to="/MainMenu">
+              <a href="#">Menu</a>
+            </Link>
             <Link to='/HelpDashboard/Introduccion'>
                <a href="#">Ayuda</a>
-            </Link>
+            </Link> 
+               <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
                <a href="#">Cerrar Sesión</a>
           </div>
         </div>
@@ -89,8 +112,6 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path='MainMenu' element={<Menu/>}/>
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
-            <Route path='NuevaEscaleta' element={<NuevaEscaleta/>}></Route>
-            <Route path='BuscarEscaleta' element={<BuscarEscaleta/>}  />
            <Route path='AgregarNotas' element={<AddNotes/>} />
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
