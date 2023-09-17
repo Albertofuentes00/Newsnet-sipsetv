@@ -1,9 +1,11 @@
 import { Component } from "react";
 import { FaSearch } from "react-icons/fa";
 
-
 class SearchEscaleta extends Component {
 
+
+ 
+  
     render () {
         return(
             <div className="Auth-form-searchbar">
@@ -26,7 +28,7 @@ class SearchEscaleta extends Component {
 
           <div className="Row">
             <div className="Grid"></div>
-              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
+              <button class="btn btn-primary" > <FaSearch  size={20} color="white"/> Buscar</button>
           </div>
         </div>
       </div>

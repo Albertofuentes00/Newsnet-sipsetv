@@ -24,11 +24,16 @@ const ListaUsuarios=()=>{
   },[]);
 
   const GetDatos = async ()=>{
+    try{
       const respuesta = await axios.get('https://localhost:7201/Usuario/Get')
       const respuesta2 = await axios.get('https://localhost:7201/Rol/Get')
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
       SetRoles(respuesta2.data.result);
+    }catch(e){
+
+    }
+      
   }
   
     const OpenModal = (op,iD_Usuario,nombre,apellidos,nickName,password,id_Rol) =>{
@@ -104,6 +109,9 @@ const ListaUsuarios=()=>{
         console.log("Se termino el consumo de la api");
       }
     }
+
+
+
     const deleteDatos = (iD_Usuario,nombre) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
@@ -125,6 +133,20 @@ const ListaUsuarios=()=>{
         }
       });
     }
+
+    const buscar = async ()=>{
+      var variable = document.getElementById("Buscador").value
+      if (variable == ""){
+        GetDatos();
+      }else{
+        const respuesta = await axios.get('https://localhost:7201/Usuario/Buscar/' + variable)
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+      }
+    
+    }
+
+
     return(
         <div className="Auth-form-container">
 
@@ -134,7 +156,7 @@ const ListaUsuarios=()=>{
                 <h3>Lista de usuarios</h3>
 
                 <div className="Button-form">
-                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <input id="Buscador" onChange={()=> buscar()} type="text" className="input-search-admin" placeholder="Buscar..." />
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
                 </div>
               </div>
@@ -161,7 +183,7 @@ const ListaUsuarios=()=>{
                                 <td>{Datos.apellidos}</td>
                                 <td>{Datos.nickName}</td>
                                 <td>{Datos.password}</td>
-                                <td>{Datos.rol.nomRol}</td>
+                                <td>{Datos.nombre_Rol}</td>
                                 <td>
                                     <button onClick={()=> OpenModal(2,Datos.iD_Usuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.password,Datos.id_Rol)} 
                                     className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>

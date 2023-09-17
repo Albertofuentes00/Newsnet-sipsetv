@@ -23,8 +23,11 @@ const Escaletas=()=>{
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
     }
+
+
     return(
         <div className="Auth-form-container">
+
 
             <div className="Grid">
 
@@ -56,8 +59,8 @@ const Escaletas=()=>{
                             {Datos.map((Datos,i) =>(
                                 <tr key={Datos.iD_Programa}>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.nomPrograma}</td>
-                                <td>{Datos.categoria.nomCategoria}</td>
+                                <td>{Datos.nombre_Programa}</td>
+                                <td>{Datos.categoria.nombre_Categoria}</td>
                                 <td className="buttons-th">
                                 <Link to={'/Escaletas/' + Datos.iD_Programa} className="btn btn-success">
                                  <FaEye size={20} color="white" /> Ver
