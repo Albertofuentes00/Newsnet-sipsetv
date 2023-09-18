@@ -14,7 +14,7 @@ function Login() {
     if (user != "" & pass != ""){
       const respuesta = await axios.put('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
       console.log(respuesta.data.result.length)
-      if (respuesta.data.result.length > 0) { // Verifica si la respuesta es true
+      if (respuesta.data.result.length > 0) {
         setTimeout(function() {
           console.log("Espera de 3 segundos");
         }, 8000);
@@ -24,7 +24,7 @@ function Login() {
 
 
 
-      Cookies.set('Usuario', user, { expires: 1 / (24 * 60) });
+      Cookies.set('Usuario', user);
         window.location.href = '/MainMenu';
         
       } else {
