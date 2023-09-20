@@ -62,7 +62,7 @@ const ListaFormatos = () =>{
 
         }
         else{
-          id = {idFormato:pkFormato}
+          id = {pkFormato:pkFormato}
           parametros = {nombre_Formato:nombre_Formato.trim()};
           axios.put('https://localhost:7201/Formato/Put/' + pkFormato, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
@@ -85,7 +85,7 @@ const ListaFormatos = () =>{
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setPkFormato(iD_Formato);
+          setPkFormato(pkFormato);
           axios.delete('https://localhost:7201/Formato/Delete/' + pkFormato).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetFormato();
