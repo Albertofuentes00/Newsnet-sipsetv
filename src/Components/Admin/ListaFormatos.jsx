@@ -26,7 +26,7 @@ const ListaFormatos = () =>{
 
     const OpenModal = (op,pkFormato, nombre_Formato) =>{
       setPkFormato('');
-      setNomFormato('');
+      setNombre_Formato('');
       setOperation(op);
       if(op === 1){
         setTitle('Registrar Formato')
@@ -34,7 +34,7 @@ const ListaFormatos = () =>{
       else if(op === 2){
         setTitle('Actualizar Formato')
         setPkFormato(pkFormato);
-        setNomFormato(nombre_Formato);
+        setNombre_Formato(nombre_Formato);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -71,7 +71,7 @@ const ListaFormatos = () =>{
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
             console.log(error);
-          });
+          }); 
 
         }
         console.log("Se termino el consumo de la api");
@@ -155,8 +155,8 @@ const ListaFormatos = () =>{
               <label> Nombre </label>
               <div className="input-group mb-3">
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Formato" value={nomFormato}
-                onChange={(e)=> setNomFormato(e.target.value)}></input>
+                <input type='text' id="nombre" className="form-control" placeholder="Formato" value={nombre_Formato}
+                onChange={(e)=> setNombre_Formato(e.target.value)}></input>
               </div>
             </div>
             <div className="modal-footer">
