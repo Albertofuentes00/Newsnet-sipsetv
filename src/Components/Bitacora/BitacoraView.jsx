@@ -444,3 +444,4 @@ return (
 
 
 export default Bitacora
+
