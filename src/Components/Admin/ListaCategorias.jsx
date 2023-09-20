@@ -9,8 +9,8 @@ import { FaPlusSquare } from "react-icons/fa";
 
 const ListaCategorias=()=>{
     const [Datos, SetDatos] = useState([]);
-    const [iD_Categoria, setID_Categoria] = useState('');
-    const [nomCategoria, setNomCategoria] = useState('');
+    const [pkCategoria, setPkCategoria] = useState('');
+    const [nombre_Categoria, setNombre_Categoria] = useState('');
     const [operation, setOperation] = useState(1);
     const [title, setTitle] = useState('');
   
@@ -24,17 +24,17 @@ const ListaCategorias=()=>{
         SetDatos(respuesta.data.result);
     }
   
-    const OpenModal = (op,iD_Categoria,nomCategoria) =>{
-      setID_Categoria('');
-      setNomCategoria('');
+    const OpenModal = (op,pkCategoria,nombre_Categoria) =>{
+      setPkCategoria('');
+      setNombre_Categoria('');
       setOperation(op);
       if(op === 1){
         setTitle('Registrar Categoria')
       }
       else if(op === 2){
         setTitle('Actualizar Categoria')
-        setID_Categoria(iD_Categoria);
-        setNomCategoria(nomCategoria);
+        setPkCategoria(pkCategoria);
+        setNombre_Categoria(nombre_Categoria);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -43,12 +43,12 @@ const ListaCategorias=()=>{
     const Validar = () =>{
       var parametros;
       var id;
-      if(nomCategoria.trim()===''){
+      if(nombre_Categoria.trim()===''){
         show_alerta('Escribe el nombre','warning');
       }
       else{
         if(operation === 1){
-          parametros = {Categoria:nomCategoria.trim()};
+          parametros = {nombre_Categoria:nombre_Categoria.trim()};
             axios.post('https://localhost:7201/Categoria/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
@@ -60,9 +60,9 @@ const ListaCategorias=()=>{
   
         }
         else{
-          id = {idCategoria:iD_Categoria}
-          parametros = {Categoria:nomCategoria.trim()};
-          axios.put('https://localhost:7201/Categoria/Put/' + iD_Categoria, parametros).then(function(respuesta){
+          id = {pkCategoria:pkCategoria}
+          parametros = {nombre_Categoria:nombre_Categoria.trim()};
+          axios.put('https://localhost:7201/Categoria/Put/' + pkCategoria, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -75,16 +75,16 @@ const ListaCategorias=()=>{
         console.log("Se termino el consumo de la api");
       }
     }
-    const deleteDatos = (iD_Categoria,nomCategoria) =>{
+    const deleteDatos = (pkCategoria,nombre_Categoria) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
-        title:'¿Seguro que quieres borrar ' + nomCategoria +'?',
+        title:'¿Seguro que quieres borrar ' + nombre_Categoria +'?',
         icon: 'question', text:'No se podrá recuperar despues',
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setID_Categoria(iD_Categoria);
-          axios.delete('https://localhost:7201/Categoria/Delete/' + iD_Categoria).then(function(respuesta){
+          setPkCategoria(pkCategoria);
+          axios.delete('https://localhost:7201/Categoria/Delete/' + pkCategoria).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -122,16 +122,16 @@ const ListaCategorias=()=>{
                             <tbody className="table-group-divider">
 
                             {Datos.map((Datos,i) =>(
-                              <tr key={Datos.iD_Categoria}>
+                              <tr key={Datos.pkCategoria}>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.nomCategoria}</td>
+                                <td>{Datos.nombre_Categoria}</td>
                                 <td>
-                                  <button onClick={()=> OpenModal(2,Datos.iD_Categoria,Datos.nomCategoria)} 
+                                  <button onClick={()=> OpenModal(2,Datos.pkCategoria,Datos.nombre_Categoria)} 
                                   className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                                   <i className="fa-solid fa-edit"></i> Editar</button>
 
                                   &nbsp;
-                                  <button onClick={()=> deleteDatos(Datos.iD_Categoria,Datos.nomCategoria)} className="btn btn-danger">
+                                  <button onClick={()=> deleteDatos(Datos.pkCategoria,Datos.nombre_Categoria)} className="btn btn-danger">
                                   <FaTrash size={20} color='white'/> Eliminar</button> 
                                 </td>
                               </tr>
@@ -155,8 +155,8 @@ const ListaCategorias=()=>{
               <label> Nombre </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Nombre de la categoria" value={nomCategoria}
-                onChange={(e)=> setNomCategoria(e.target.value)}></input>
+                <input type='text' id="nombre" className="form-control" placeholder="Nombre de la categoria" value={nombre_Categoria}
+                onChange={(e)=> setNombre_Categoria(e.target.value)}></input>
               </div>
 
             </div>
