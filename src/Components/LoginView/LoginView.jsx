@@ -21,7 +21,7 @@ function Login() {
         document.getElementById("usuario").style.borderColor = 'green'
       document.getElementById("contra").style.borderColor = 'green'
 
-//hola
+//holas
 
 
       Cookies.set('Usuario', user);
