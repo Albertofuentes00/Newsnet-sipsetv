@@ -123,10 +123,10 @@ const ListaRoles = () => {
                             {Datos.map((Datos,i) =>(
                                 <tr key={Datos.iD_Rol}>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.nomRol}</td>
+                                <td>{Datos.nombre_Rol}</td>
                                 <td> 
-                                    <button onClick={()=> deleteDatos(Datos.iD_Rol,Datos.nomRol)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                                    <button onClick={()=> OpenModal(2,Datos.iD_Rol,Datos.nomRol)} 
+                                    <button onClick={()=> deleteDatos(Datos.iD_Rol,Datos.nombre_Rol)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
+                                    <button onClick={()=> OpenModal(2,Datos.iD_Rol,Datos.nombre_Rol)} 
                         className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                           <i className="fa-solid fa-edit"></i> Editar</button>
                                 </td>
