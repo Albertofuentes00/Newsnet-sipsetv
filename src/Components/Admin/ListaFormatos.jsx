@@ -9,8 +9,8 @@ import { FaPlusSquare } from "react-icons/fa";
 
 const ListaFormatos = () =>{
     const [Datos, SetDatos] = useState([]);
-    const [iD_Formato, setiD_Formato] = useState('');
-    const [nomFormato, setNomFormato] = useState('');
+    const [pkFormato, setPkFormato] = useState('');
+    const [nombre_Formato, setNombre_Formato] = useState('');
     const [operation, setOperation] = useState(1);
     const [title, setTitle] = useState('');
 
@@ -24,8 +24,8 @@ const ListaFormatos = () =>{
         SetDatos(respuesta.data.result);
     }
 
-    const OpenModal = (op,iD_Formato, nomFormato) =>{
-      setiD_Formato('');
+    const OpenModal = (op,pkFormato, nombre_Formato) =>{
+      setPkFormato('');
       setNomFormato('');
       setOperation(op);
       if(op === 1){
@@ -33,8 +33,8 @@ const ListaFormatos = () =>{
       }
       else if(op === 2){
         setTitle('Actualizar Formato')
-        setiD_Formato(iD_Formato);
-        setNomFormato(nomFormato);
+        setPkFormato(pkFormato);
+        setNomFormato(nombre_Formato);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -43,13 +43,13 @@ const ListaFormatos = () =>{
     const Validar = () =>{
       var parametros;
       var id;
-      if(nomFormato.trim()===''){
+      if(nombre_Formato.trim()===''){
         show_alerta('Escribe el nombre','warning');
       }
       else{
         if(operation === 1){
-          parametros = {formato:nomFormato.trim()};
-          console.log(nomFormato.trim());
+          parametros = {nombre_Formato:nombre_Formato.trim()};
+          console.log(nombre_Formato.trim());
 
             axios.post('https://localhost:7201/Formato/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
@@ -62,9 +62,9 @@ const ListaFormatos = () =>{
 
         }
         else{
-          id = {idFormato:iD_Formato}
-          parametros = {formato:nomFormato.trim()};
-          axios.put('https://localhost:7201/Formato/Put/' + iD_Formato, parametros).then(function(respuesta){
+          id = {idFormato:pkFormato}
+          parametros = {nombre_Formato:nombre_Formato.trim()};
+          axios.put('https://localhost:7201/Formato/Put/' + pkFormato, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetFormato();
           })
@@ -77,16 +77,16 @@ const ListaFormatos = () =>{
         console.log("Se termino el consumo de la api");
       }
     }
-    const deleteDatos = (iD_Formato,nomFormato) =>{
+    const deleteDatos = (pkFormato,nombre_Formato) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
-        title:'¿Seguro que quieres borrar ' + nomFormato +'?',
+        title:'¿Seguro que quieres borrar ' + nombre_Formato +'?',
         icon: 'question', text:'No se podrá recuperar despues',
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setiD_Formato(iD_Formato);
-          axios.delete('https://localhost:7201/Formato/Delete/' + iD_Formato).then(function(respuesta){
+          setPkFormato(iD_Formato);
+          axios.delete('https://localhost:7201/Formato/Delete/' + pkFormato).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetFormato();
           })
@@ -123,12 +123,12 @@ const ListaFormatos = () =>{
                             </thead>
                             <tbody className="table-group-divider">
                             {Datos.map((Datos,i) =>(
-                            <tr key={Datos.iD_Formato}>
+                            <tr key={Datos.pkFormato}>
                             <td>{(i+1)}</td>
-                            <td>{Datos.nomFormato}</td>
+                            <td>{Datos.nombre_Formato}</td>
                             <td>
-                            <button onClick={()=> deleteDatos(Datos.iD_Formato,Datos.nomFormato)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                            <button onClick={()=> OpenModal(2,Datos.iD_Formato,Datos.nomFormato)} className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'><i className="fa-solid fa-edit"></i> Editar</button>
+                            <button onClick={()=> deleteDatos(Datos.pkFormato,Datos.nombre_Formato)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
+                            <button onClick={()=> OpenModal(2,Datos.pkFormato,Datos.nombre_Formato)} className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'><i className="fa-solid fa-edit"></i> Editar</button>
                             </td>
                       </tr>
                             ))}
