@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -6,13 +7,14 @@ import Cookies from 'js-cookie';
 
 function Login() {
 
-
+  const [Datos, SetDatos] = useState([]);
   const buscarUsuario = async ()=>{
     var user = document.getElementById("usuario").value
     var pass = document.getElementById("contra").value
     console.log('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
     if (user != "" & pass != ""){
       const respuesta = await axios.put('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
+      SetDatos(respuesta.data.result);
       console.log(respuesta.data.result.length)
       if (respuesta.data.result.length > 0) {
         setTimeout(function() {
@@ -20,11 +22,7 @@ function Login() {
         }, 8000);
         document.getElementById("usuario").style.borderColor = 'green'
       document.getElementById("contra").style.borderColor = 'green'
-
-//hola
-
-
-      Cookies.set('Usuario', user);
+      Cookies.set('Usuario',Datos.nickname);
         window.location.href = '/MainMenu';
         
       } else {
