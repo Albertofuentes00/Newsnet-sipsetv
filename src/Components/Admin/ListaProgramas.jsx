@@ -11,9 +11,9 @@ import { FaPlusSquare } from "react-icons/fa";
 const ListaProgramas=()=>{
   const [Datos, SetDatos] = useState([]);
   const [Categorias, SetCategorias] = useState([]);
-  const [iD_Programa, setID_Programa] = useState('');
-  const [nomPrograma, setNomPrograma] = useState('');
-  const [id_Categoria, setId_Categoria] = useState('');
+  const [pkPrograma, setPkPrograma] = useState('');
+  const [nombre_Programa, setNombre_Programa] = useState('');
+  const [pkCategoria, setPkCategoria] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
   
@@ -29,19 +29,19 @@ const ListaProgramas=()=>{
   }
 
   
-    const OpenModal = (op,iD_Programa,nomPrograma,id_Categoria) =>{
-      setID_Programa('');
-      setNomPrograma('');
-      setId_Categoria('');
+    const OpenModal = (op,pkPrograma,nombre_Programa,pkCategoria) =>{
+      setPkPrograma('');
+      setNombre_Programa('');
+      setPkCategoria('');
       setOperation(op);
       if(op === 1){
         setTitle('Registrar Programa')
       }
       else if(op === 2){
         setTitle('Actualizar Programa')
-        setID_Programa(iD_Programa);
-        setNomPrograma(nomPrograma);
-        setId_Categoria(id_Categoria);
+        setPkPrograma(pkPrograma);
+        setNombre_Programa(nombre_Programa);
+        setPkCategoria(pkCategoria);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -50,16 +50,16 @@ const ListaProgramas=()=>{
     const Validar = () =>{
       var parametros;
       var id;
-      if(nomPrograma.trim()===''){
+      if(nombre_Programa.trim()===''){
         show_alerta('Escribe el nombre','warning');
       }
-      if(id_Categoria===''){
+      if(pkCategoria===''){
         show_alerta('Escoge la categoria','warning');
       }
   
       else{
         if(operation === 1){
-          parametros = {programa:nomPrograma.trim(),idCategoria:id_Categoria};
+          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria};
             axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
@@ -71,9 +71,9 @@ const ListaProgramas=()=>{
   
         }
         else{
-          id = {idPrograma:iD_Programa}
-          parametros = {programa:nomPrograma.trim(),idCategoria:id_Categoria};
-          axios.put('https://localhost:7201/Programa/Put/' + iD_Programa, parametros).then(function(respuesta){
+          id = {pkPrograma:pkPrograma}
+          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria};
+          axios.put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -86,16 +86,16 @@ const ListaProgramas=()=>{
         console.log("Se termino el consumo de la api");
       }
     }
-    const deleteDatos = (iD_Programa,nomPrograma) =>{
+    const deleteDatos = (pkPrograma,nombre_Programa) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
-        title:'¿Seguro que quieres borrar a ' + nomPrograma +'?',
+        title:'¿Seguro que quieres borrar a ' + nombre_Programa +'?',
         icon: 'question', text:'No se podrá recuperar despues',
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setID_Programa(iD_Programa);
-          axios.delete('https://localhost:7201/Programa/Delete/' + iD_Programa).then(function(respuesta){
+          setPkPrograma(pkPrograma);
+          axios.delete('https://localhost:7201/Programa/Delete/' + pkPrograma).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -132,16 +132,16 @@ const ListaProgramas=()=>{
                     </thead>
                     <tbody className="table-group-divider">
                     {Datos.map((Datos,i) =>(
-                    <tr key={Datos.iD_Programa}>
+                    <tr key={Datos.pkPrograma}>
                       <td>{(i+1)}</td>
-                      <td>{Datos.nomPrograma}</td>
+                      <td>{Datos.nombre_Programa}</td>
                       <td>{Datos.categoria.nomCategoria}</td>
                       <td>
-                        <button onClick={()=> OpenModal(2,Datos.iD_Programa,Datos.nomPrograma,Datos.id_Categoria)} 
+                        <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.pkCategoria)} 
                         className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                         <i className="fa-solid fa-edit"></i> Editar</button>
                         &nbsp;
-                        <button onClick={()=> deleteDatos(Datos.iD_Programa,Datos.nomPrograma)} className="btn btn-danger">
+                        <button onClick={()=> deleteDatos(Datos.pkPrograma,Datos.nombre_Programa)} className="btn btn-danger">
                         <FaTrash size={20} color='white'/> Eliminar</button> 
                       </td>
                     </tr>
@@ -164,16 +164,16 @@ const ListaProgramas=()=>{
               <label> Nombre </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Nombre del programa" value={nomPrograma}
-                onChange={(e)=> setNomPrograma(e.target.value)}></input>
+                <input type='text' id="nombre" className="form-control" placeholder="Nombre del programa" value={nombre_Programa}
+                onChange={(e)=> setNombre_Programa(e.target.value)}></input>
               </div>
               <label> Categoría </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
+                <select required className="form-select" value={pkCategoria} onChange={(e)=> setPkCategoria(e.target.value)}>
                       <option></option>
                   {Categorias.map(Categorias =>(
-                      <option value={Categorias.iD_Categoria}>{Categorias.nomCategoria}</option>
+                      <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
                   ))}
                 </select>
               </div>
