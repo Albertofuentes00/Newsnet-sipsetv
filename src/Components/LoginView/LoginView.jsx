@@ -7,24 +7,23 @@ import Cookies from 'js-cookie';
 
 function Login() {
 
-  const [Datos, SetDatos] = useState([]);
+  const [Datos, SetDatos] = useState(null);
   const buscarUsuario = async ()=>{
     var user = document.getElementById("usuario").value
     var pass = document.getElementById("contra").value
-    console.log('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
     if (user != "" & pass != ""){
       const respuesta = await axios.put('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
-      SetDatos(respuesta.data.result);
-      console.log(respuesta.data.result.length)
       if (respuesta.data.result.length > 0) {
         setTimeout(function() {
           console.log("Espera de 3 segundos");
         }, 8000);
         document.getElementById("usuario").style.borderColor = 'green'
       document.getElementById("contra").style.borderColor = 'green'
-
-      Cookies.set('Usuario',Datos.nickname);
-        window.location.href = '/MainMenu';
+      const pkUsuario = respuesta.data.result[0].pkUsuario;
+      const nickName = respuesta.data.result[0].nickName;
+      const nombre_Rol = respuesta.data.result[0].rol.nombre_Rol;
+      Cookies.set('Usuario',pkUsuario+"/"+nickName+"/"+nombre_Rol);
+      window.location.href = '/MainMenu';
         
       } else {
         console.log("ninguna coincidencia")

@@ -186,11 +186,11 @@ const ListaUsuarios=()=>{
                                 <td>{Datos.nombre_Rol}</td>
                                 <td>
                                     <button onClick={()=> OpenModal(2,Datos.iD_Usuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.password,Datos.id_Rol)} 
-                                    className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                                    <i className="fa-solid fa-edit"></i> Editar</button>
+                                    className="options" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                                    <i className="fa-solid fa-edit"></i> </button>
                                     &nbsp;
-                                    <button onClick={()=> deleteDatos(Datos.iD_Usuario,Datos.nombre)} className="btn btn-danger">
-                                    <FaTrash size={20} color='white'/> Eliminar</button> 
+                                    <button onClick={()=> deleteDatos(Datos.iD_Usuario,Datos.nombre)} className="options">
+                                    <FaTrash size={20} /> </button> 
                                 </td>
                                 </tr>
                             ))}
