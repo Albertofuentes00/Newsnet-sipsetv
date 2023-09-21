@@ -60,6 +60,27 @@ import { click } from '@testing-library/user-event/dist/click';
 function App() {
 
 
+  function loginwindow(){
+    const rutaActual = window.location.pathname;
+    if (rutaActual != '/') {
+      <div className="options">
+
+      <Link to="/MainMenu">
+        <a href="#">Menu</a>
+      </Link>
+      <Link to='/HelpDashboard/Introduccion'>
+         <a href="#">Ayuda</a>
+      </Link> 
+         <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
+         <a onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
+    </div>
+    }else{
+      <div className="options">
+         <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
+    </div>
+    }
+  }
+ 
   //DESCARGA EL MANUAL DE ESTILO AL DAR CLICK
   // const handleDownloadClick = () => {
   //   const fileUrl = '/Descargas';
@@ -90,17 +111,7 @@ function App() {
         </div>
         
         <div className='DateTime'>
-          <div className="options">
-
-            <Link to="/MainMenu">
-              <a href="#">Menu</a>
-            </Link>
-            <Link to='/HelpDashboard/Introduccion'>
-               <a href="#">Ayuda</a>
-            </Link> 
-               <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
-               <a onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
-          </div>
+        {loginwindow(true)}
         </div>
 
       </header>
