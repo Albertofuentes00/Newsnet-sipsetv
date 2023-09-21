@@ -59,7 +59,7 @@ const ListaProgramas=()=>{
   
       else{
         if(operation === 1){
-          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria};
+          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria.trim()};
             axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
