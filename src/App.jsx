@@ -63,6 +63,7 @@ function App() {
   function loginwindow(){
     const rutaActual = window.location.pathname;
     if (rutaActual != '/') {
+      return (
       <div className="options">
 
       <Link to="/MainMenu">
@@ -74,10 +75,13 @@ function App() {
          <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
          <a onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
     </div>
+      );
     }else{
+      return (
       <div className="options">
          <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
     </div>
+      );
     }
   }
  
