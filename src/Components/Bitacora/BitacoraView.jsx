@@ -16,11 +16,11 @@ function Bitacora() {
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
   const [Usuarios, SetUsuarios] = useState([]);
-  const [iD_Nota, setID_Nota] = useState('');
+  const [pkNota, setPkNota] = useState('');
   const [titulo, setTitulo] = useState('');
-  const [id_Categoria, setId_Categoria] = useState('');
-  const [id_Formato, setId_Formato] = useState('');
-  const [id_Usuario, setId_Usuario] = useState('');
+  const [fkCategoria, setFkCategoria] = useState('');
+  const [fkFormato, setFkFormato] = useState('');
+  const [fkUsuario, setFkUsuario] = useState('');
   const [fecha, setFecha] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
@@ -39,12 +39,12 @@ function Bitacora() {
       SetFormatos(respuesta3.data.result);
       SetUsuarios(respuesta4.data.result);
   }
-  const OpenModal = (op,iD_Nota,titulo,id_Categoria,id_Formato,id_Usuario,fecha) =>{
-    setID_Nota('');
+  const OpenModal = (op,pkNota,titulo,fkCategoria,fkFormato,fkUsuario,fecha) =>{
+    setPkNota('');
     setTitulo('');
-    setId_Categoria('');
-    setId_Formato('');
-    setId_Usuario('');
+    setFkCategoria('');
+    setFkFormato('');
+    setFkUsuario('');
     setFecha('');
     setOperation(op);
     if(op === 1){
@@ -52,11 +52,11 @@ function Bitacora() {
     }
     else if(op === 2){
       setTitle('Actualizar Nota')
-      setID_Nota(iD_Nota);
+      setPkNota(pkNota);
       setTitulo(titulo);
-      setId_Categoria(id_Categoria);
-      setId_Formato(id_Formato);
-      setId_Usuario(id_Usuario);
+      setFkCategoria(fkCategoria);
+      setFkFormato(fkFormato);
+      setFkUsuario(fkUsuario);
       setFecha(fecha);
     }
     window.setTimeout(function(){
@@ -69,13 +69,13 @@ function Bitacora() {
       if(titulo.trim()===''){
         show_alerta('Escribe el titulo','warning');
       }
-      else if(id_Categoria===''){
+      else if(fkCategoria===''){
         show_alerta('Escoge una categoria','warning');
       }
-      else if(id_Formato===''){
+      else if(fkFormato===''){
         show_alerta('Seleccion un Formato','warning');
       }
-      else if(id_Usuario===''){
+      else if(fkUsuario===''){
         show_alerta('Seleccion un reportero','warning');
       }
     }
@@ -83,13 +83,13 @@ function Bitacora() {
       if(titulo.trim()===''){
         show_alerta('Escribe el titulo','warning');
       }
-      else if(id_Categoria===''){
+      else if(fkCategoria===''){
         show_alerta('Escoge una categoria','warning');
       }
-      else if(id_Formato===''){
+      else if(fkFormato===''){
         show_alerta('Seleccion un Formato','warning');
       }
-      else if(id_Usuario===''){
+      else if(fkUsuario===''){
         show_alerta('Seleccion un reportero','warning');
       }
       else if(fecha===''){
@@ -97,7 +97,7 @@ function Bitacora() {
       }
     }
     if(operation === 1){
-      parametros = {titulo:titulo.trim(),idCategoria:id_Categoria.trim(),idFormato:id_Formato.trim(),idUsuario:id_Usuario.trim()};
+      parametros = {titulo:titulo.trim(),fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:fkUsuario.trim()};
         axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
         document.getElementById('btnCerrar').click();
         GetDatos();
@@ -109,8 +109,8 @@ function Bitacora() {
 
     }
     else{
-      parametros = {titulo:titulo.trim(),idCategoria:id_Categoria,idFormato:id_Formato,idUsuario:id_Usuario,fecha:fecha};
-      axios.put('https://localhost:7201/Nota/Put/' + iD_Nota, parametros).then(function(respuesta){
+      parametros = {titulo:titulo.trim(),fkCategoria:fkCategoria,idFormato:fkFormato,fkUsuario:fkUsuario,fecha:fecha};
+      axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
         document.getElementById('btnCerrareditar').click();
         GetDatos();
       })
@@ -122,7 +122,7 @@ function Bitacora() {
     }
     console.log("Se termino el consumo de la api");
   }
-  const deleteDatos = (iD_Nota) =>{
+  const deleteDatos = (pkNota) =>{
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
       title:'Seguro que quieres borrar esta nota?',
@@ -130,8 +130,8 @@ function Bitacora() {
       showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
     }).then((result) =>{
       if(result.isConfirmed){
-        setID_Nota(iD_Nota);
-        axios.delete('https://localhost:7201/Nota/Delete/' + iD_Nota).then(function(respuesta){
+        setPkNota(pkNota);
+        axios.delete('https://localhost:7201/Nota/Delete/' + pkNota).then(function(respuesta){
           document.getElementById('btnCerrar').click();
           GetDatos();
         })
@@ -183,20 +183,20 @@ return (
             </thead>
             <tbody className="table-group-divider">
             {Datos.map((Datos,i) =>(
-                <tr key={Datos.iD_Nota}>
+                <tr key={Datos.pkNota}>
                 <td>{(i+1)}</td>
                 <td>{Datos.titulo}</td>
-                <td>{Datos.categoria.nomCategoria}</td>
-                <td>{Datos.formato.nomFormato}</td>
+                <td>{Datos.categoria.nombre_Categoria}</td>
+                <td>{Datos.formato.nombre_Formato}</td>
                 <td>{Datos.usuario.nombre}</td>
                 <td>{Datos.fecha}</td>
                 <td>
-                <button onClick={()=> OpenModal(2,Datos.iD_Nota,Datos.titulo,Datos.id_Categoria,Datos.id_Formato,Datos.id_Usuario,Datos.fecha)} 
+                <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fkCategoria,Datos.fkFormato,Datos.fkUsuario,Datos.fecha)} 
                 className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaleditar'>
                   <i className="fa-solid fa-edit"></i>
                 </button>
                 &nbsp;
-                <button onClick={()=> deleteDatos(Datos.iD_Nota)} className="btn btn-danger">
+                <button onClick={()=> deleteDatos(Datos.pkNota)} className="btn btn-danger">
                   <i className="fa-solid fa-trash"></i>
                 </button>
                 </td>
@@ -293,10 +293,10 @@ return (
               <div className="Grid">
                 <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
+                <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                 <option></option>
                 {Categorias.map(Categorias =>(
-                <option value={Categorias.iD_Categoria}>{Categorias.nomCategoria}</option>
+                <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
                 ))}
                 </select>
               </div>
@@ -307,10 +307,10 @@ return (
               <div className="Grid">
                 <div className='input-group mb-3'>
                   <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                  <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                  <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
                   <option></option>
                   {Formatos.map(Formatos =>(
-                  <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+                  <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
                   ))}
                   </select>
                 </div>
@@ -321,10 +321,10 @@ return (
                   <div className='input-group mb-3'>
                     <div className="Grid">
                       <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                      <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                      <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
                       <option></option>
                       {Formatos.map(Formatos =>(
-                      <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+                      <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
                       ))}
                       </select>
                     </div>
@@ -340,20 +340,20 @@ return (
             <label> Formato </label>
             <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+              <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
               <option></option>
               {Formatos.map(Formatos =>(
-              <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+              <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
               ))}
               </select>
             </div>
             <label> Usuario </label>
             <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <select required className="form-select" value={id_Usuario} onChange={(e)=> setId_Usuario(e.target.value)}>
+              <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
               <option></option>
               {Usuarios.map(Usuarios =>(
-              <option value={Usuarios.iD_Usuario}>{Usuarios.nombre}</option>
+              <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
               ))}
               </select>
             </div>
@@ -398,30 +398,30 @@ return (
               <label> Categoria </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Categoria} onChange={(e)=> setId_Categoria(e.target.value)}>
+                <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                       <option></option>
                   {Categorias.map(Categorias =>(
-                      <option value={Categorias.iD_Categoria}>{Categorias.nomCategoria}</option>
+                      <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
                   ))}
                 </select>
               </div>
               <label> Formato </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Formato} onChange={(e)=> setId_Formato(e.target.value)}>
+                <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
                       <option></option>
                   {Formatos.map(Formatos =>(
-                      <option value={Formatos.iD_Formato}>{Formatos.nomFormato}</option>
+                      <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
                   ))}
                 </select>
               </div>
               <label> Usuario </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={id_Usuario} onChange={(e)=> setId_Usuario(e.target.value)}>
+                <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
                     <option></option>
                   {Usuarios.map(Usuarios =>(
-                      <option value={Usuarios.iD_Usuario}>{Usuarios.nombre}</option>
+                      <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
                   ))}
                 </select>
               </div>
