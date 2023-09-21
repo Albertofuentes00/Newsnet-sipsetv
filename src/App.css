@@ -23,6 +23,10 @@
   font-size: 14px;
 }
 
+.form-select{
+ min-height: 40px;
+}
+
 .textarea-left {
   border-right: 1px solid #ccc;
   margin-right: -1px;

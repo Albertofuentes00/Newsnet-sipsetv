@@ -10,12 +10,12 @@ import { show_alerta } from "../../Funciones"
 const ListaUsuarios=()=>{
   const [Datos, SetDatos] = useState([]);
   const [Roles, SetRoles] = useState([]);
-  const [iD_Usuario, setID_Usuario] = useState('');
+  const [pkUsuario, setPkUsuario] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
   const [nickName, setNickName] = useState('');
-  const [password, setPassword] = useState('');
-  const [id_Rol, setId_Rol] = useState('');
+  const [user_Password, setUser_Password] = useState('');
+  const [fkRol, setFkRol] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
 
@@ -36,25 +36,25 @@ const ListaUsuarios=()=>{
       
   }
   
-    const OpenModal = (op,iD_Usuario,nombre,apellidos,nickName,password,id_Rol) =>{
-      setID_Usuario('');
+    const OpenModal = (op,pkUsuario,nombre,apellidos,nickName,user_Password,fkRol) =>{
+      setPkUsuario('');
       setNombre('');
       setApellidos('');
       setNickName('');
-      setPassword('');
-      setId_Rol('');
+      setUser_Password('');
+      setFkRol('');
       setOperation(op);
       if(op === 1){
         setTitle('Registrar Usuario')
       }
       else if(op === 2){
         setTitle('Actualizar Usuario')
-        setID_Usuario(iD_Usuario);
+        setPkUsuario(pkUsuario);
         setNombre(nombre);
         setApellidos(apellidos);
         setNickName(nickName);
-        setPassword(password);
-        setId_Rol(id_Rol);
+        setUser_Password(user_Password);
+        setFkRol(fkRol);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -72,17 +72,19 @@ const ListaUsuarios=()=>{
       else if(nickName.trim()===''){
         show_alerta('Escribe el nombre de usuario','warning');
       }
-      else if(password.trim()===''){
+      else if(user_Password.trim()===''){
         show_alerta('Escribe la contraseña','warning');
       }
-      else if(id_Rol===''){
+      else if(fkRol===''){
         show_alerta('Escoge el cargo del usuario','warning');
       }
   
       else{
         if(operation === 1){
-          parametros = {nombre:nombre.trim(),apellidos:apellidos.trim(),nickName:nickName.trim(),password:password.trim(),idRol:id_Rol.trim()};
+          console.log("El rol es" + fkRol.trim());
+          parametros = {nombre:nombre.trim(),apellidos:apellidos.trim(),nickName:nickName.trim(),user_password:user_Password.trim(),fkRol:fkRol.trim()};
             axios.post('https://localhost:7201/Usuario/Post', parametros).then(function(respuesta){
+             
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -93,15 +95,15 @@ const ListaUsuarios=()=>{
   
         }
         else{
-          id = {idUsuario:iD_Usuario}
-          parametros = {nombre:nombre.trim(),apellidos:apellidos.trim(),nickName:nickName.trim(),password:password.trim(),idRol:id_Rol};
-          axios.put('https://localhost:7201/Usuario/Put/' + iD_Usuario, parametros).then(function(respuesta){
+          id = {pkUsuario:pkUsuario}
+          parametros = {nombre:nombre.trim(),apellidos:apellidos.trim(),nickName:nickName.trim(),user_Password:user_Password.trim(),fkRol:fkRol};
+          axios.put('https://localhost:7201/Usuario/Put/' + pkUsuario, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
-            console.log('el id:' + iD_Usuario);
+            console.log('el id:' + pkUsuario);
             console.log(error);
           });
   
@@ -112,7 +114,7 @@ const ListaUsuarios=()=>{
 
 
 
-    const deleteDatos = (iD_Usuario,nombre) =>{
+    const deleteDatos = (pkUsuario,nombre) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
         title:'Seguro que quieres borrar a ' + nombre +'?',
@@ -120,14 +122,14 @@ const ListaUsuarios=()=>{
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setID_Usuario(iD_Usuario);
-          axios.delete('https://localhost:7201/Usuario/Delete/' + iD_Usuario).then(function(respuesta){
+          setPkUsuario(pkUsuario);
+          axios.delete('https://localhost:7201/Usuario/Delete/' + pkUsuario).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');
-            console.log('el id:' + iD_Usuario);
+            console.log('el id:' + pkUsuario);
             console.log(error);
           });
         }
@@ -177,19 +179,19 @@ const ListaUsuarios=()=>{
                             </thead>
                             <tbody className="table-group-divider">
                             {Datos.map((Datos,i) =>(
-                                <tr key={Datos.iD_Usuario}>
+                                <tr key={Datos.pkUsuario}>
                                 <td>{(i+1)}</td>
                                 <td>{Datos.nombre}</td>
                                 <td>{Datos.apellidos}</td>
                                 <td>{Datos.nickName}</td>
-                                <td>{Datos.password}</td>
+                                <td>{Datos.user_Password}</td>
                                 <td>{Datos.nombre_Rol}</td>
                                 <td>
-                                    <button onClick={()=> OpenModal(2,Datos.iD_Usuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.password,Datos.id_Rol)} 
+                                    <button onClick={()=> OpenModal(2,Datos.pkUsuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.user_Password,Datos.fkRol)} 
                                     className="options" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                                     <i className="fa-solid fa-edit"></i> </button>
                                     &nbsp;
-                                    <button onClick={()=> deleteDatos(Datos.iD_Usuario,Datos.nombre)} className="options">
+                                    <button onClick={()=> deleteDatos(Datos.pkUsuario,Datos.nombre)} className="options">
                                     <FaTrash size={20} /> </button> 
                                 </td>
                                 </tr>
@@ -231,16 +233,16 @@ const ListaUsuarios=()=>{
               <label> Contraseña </label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input id="password" className="form-control" placeholder="Contraseña" value={password}
-                onChange={(e)=> setPassword(e.target.value)}></input>
+                <input id="password" className="form-control" placeholder="Contraseña" value={user_Password}
+                onChange={(e)=> setUser_Password(e.target.value)}></input>
               </div>
               <label> Rol </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select"  value={id_Rol} onChange={(e)=> setId_Rol(e.target.value)}>
+                <select required className="form-select"  value={fkRol} onChange={(e)=> setFkRol(e.target.value)}>
                       <option selected></option>
                   {Roles.map(Roles =>(
-                      <option value={Roles.iD_Rol}>{Roles.nomRol}</option>
+                      <option value={Roles.pkRol}>{Roles.nombre_Rol}</option>
                   ))}
                 </select>
               </div>

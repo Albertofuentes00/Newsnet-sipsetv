@@ -11,6 +11,7 @@ function Menu() {
 
 
     function botonadmin() {
+      try {
         const cadena = Cookies.get('Usuario');
         const partes = cadena.split('/');
         const rol = partes[2];
@@ -28,6 +29,10 @@ function Menu() {
         } else {
           return null; // No devuelve nada cuando el rol no es "Usuario"
         }
+      } catch (error) {
+        console.log(error);
+      }
+       
       }
 
 

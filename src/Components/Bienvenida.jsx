@@ -15,12 +15,18 @@ const Texto = (props) => {
   
       }
       else{
-        const partes = cadena.split('/');
-        const user = partes[1]
-        return (
+        try {
+          const partes = cadena.split('/');
+          const user = partes[1]
+          return (
             <h3>Bienvenido: {user} </h3>
     
         )
+        } catch (error) {
+          console.log(error);
+        }
+
+        
     
       }
 

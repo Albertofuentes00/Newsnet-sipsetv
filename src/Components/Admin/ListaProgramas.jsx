@@ -13,7 +13,7 @@ const ListaProgramas=()=>{
   const [Categorias, SetCategorias] = useState([]);
   const [pkPrograma, setPkPrograma] = useState('');
   const [nombre_Programa, setNombre_Programa] = useState('');
-  const [pkCategoria, setPkCategoria] = useState('');
+  const [fkCategoria, setFkCategoria] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
   
@@ -29,19 +29,19 @@ const ListaProgramas=()=>{
   }
 
   
-    const OpenModal = (op,pkPrograma,nombre_Programa,pkCategoria) =>{
+    const OpenModal = (op,pkPrograma,nombre_Programa,fkCategoria) =>{
       setPkPrograma('');
       setNombre_Programa('');
-      setPkCategoria('');
+      setFkCategoria('');
       setOperation(op);
       if(op === 1){
         setTitle('Registrar Programa')
       }
       else if(op === 2){
         setTitle('Actualizar Programa')
-        setPkPrograma(pkPrograma);
+        setPkPrograma(fkCategoria);
         setNombre_Programa(nombre_Programa);
-        setPkCategoria(pkCategoria);
+        setFkCategoria(fkCategoria);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -53,13 +53,13 @@ const ListaProgramas=()=>{
       if(nombre_Programa.trim()===''){
         show_alerta('Escribe el nombre','warning');
       }
-      if(pkCategoria===''){
+      if(fkCategoria===''){
         show_alerta('Escoge la categoria','warning');
       }
   
       else{
         if(operation === 1){
-          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria.trim()};
+          parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria.trim()};
             axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
@@ -72,7 +72,7 @@ const ListaProgramas=()=>{
         }
         else{
           id = {pkPrograma:pkPrograma}
-          parametros = {nombre_Programa:nombre_Programa.trim(),pkCategoria:pkCategoria};
+          parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria};
           axios.put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
@@ -137,7 +137,7 @@ const ListaProgramas=()=>{
                       <td>{Datos.nombre_Programa}</td>
                       <td>{Datos.categoria.nomCategoria}</td>
                       <td>
-                        <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.pkCategoria)} 
+                        <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.fkCategoria)} 
                         className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                         <i className="fa-solid fa-edit"></i> Editar</button>
                         &nbsp;
@@ -170,7 +170,7 @@ const ListaProgramas=()=>{
               <label> Categoría </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={pkCategoria} onChange={(e)=> setPkCategoria(e.target.value)}>
+                <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                       <option></option>
                   {Categorias.map(Categorias =>(
                       <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
