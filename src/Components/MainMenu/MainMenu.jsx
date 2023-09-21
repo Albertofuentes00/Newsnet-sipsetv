@@ -5,9 +5,34 @@ import { FaBook } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa"
 import {FaUser} from 'react-icons/fa'
 import { Outlet, Link } from "react-router-dom";
-
+import Cookies from 'js-cookie';
 
 function Menu() {
+
+
+    function botonadmin() {
+        const cadena = Cookies.get('Usuario');
+        const partes = cadena.split('/');
+        const rol = partes[2];
+        
+        if (rol === "Admin") {
+          return (
+            <li>
+              <Link to='/Admin/ListaUsuarios'> 
+                <button type="button" className="btn btn-light">
+                  <FaUser size={30} color='white' /> Admin
+                </button>
+              </Link>
+            </li>
+          );
+        } else {
+          return null; // No devuelve nada cuando el rol no es "Usuario"
+        }
+      }
+
+
+  
+
     return (
         <div className="Auth-form-MainMenu">
             <form className='Auth-form-Main'>
@@ -36,11 +61,7 @@ function Menu() {
                                 <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
                             </Link>
                         </li>
-                        <li>
-                            <Link to='/Admin/ListaUsuarios'> 
-                                <button type="button" class="btn btn-light" > <FaUser size={30} color='white' /> Admin</button>
-                            </Link>
-                        </li>
+                           {botonadmin(true)}
                         </ul>
                         </div>
                     </div>
@@ -52,4 +73,8 @@ function Menu() {
 
 
 
-export default Menu
+export default Menu;
+
+
+
+

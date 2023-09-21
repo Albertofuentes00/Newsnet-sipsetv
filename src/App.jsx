@@ -73,7 +73,11 @@ function App() {
 
   //   document.body.removeChild(link);
   // }
-
+  const cerrarsesion=()=> {
+    
+    document.cookie = "Usuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = '/MainMenu';
+  }
 
 
   return (
@@ -95,7 +99,7 @@ function App() {
                <a href="#">Ayuda</a>
             </Link> 
                <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
-               <a href="#">Cerrar Sesión</a>
+               <a onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
           </div>
         </div>
 
