@@ -5,6 +5,7 @@ import { show_alerta } from "../../Funciones"
 import axios from 'axios'
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 
 const ListaFormatos = () =>{
@@ -106,7 +107,10 @@ const ListaFormatos = () =>{
               <div className="Row">
                 <h3>Lista de formatos</h3>
                 <div className="Button-form">
-                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                <div className="buscador_admin">
+                  <input id="Buscador" type="search" className="inputbus"  placeholder="Buscar..." />
+                  <FaSearch size={20} color="gray"/>
+                  </div>
                   <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Formato</button>
                 </div>                
               </div>
@@ -127,8 +131,9 @@ const ListaFormatos = () =>{
                             <td>{(i+1)}</td>
                             <td>{Datos.nombre_Formato}</td>
                             <td>
-                            <button onClick={()=> deleteDatos(Datos.pkFormato,Datos.nombre_Formato)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                            <button onClick={()=> OpenModal(2,Datos.pkFormato,Datos.nombre_Formato)} className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'><i className="fa-solid fa-edit"></i> Editar</button>
+                            
+                            <button onClick={()=> OpenModal(2,Datos.pkFormato,Datos.nombre_Formato)} className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'><i className="fa-solid fa-edit"></i></button>
+                            <button onClick={()=> deleteDatos(Datos.pkFormato,Datos.nombre_Formato)} className="acciones"> <FaTrash size={20}/></button> 
                             </td>
                       </tr>
                             ))}

@@ -62,7 +62,7 @@ const Escaletas=()=>{
                                 <td>{Datos.nombre_Programa}</td>
                                 <td>{Datos.categoria.nombre_Categoria}</td>
                                 <td className="buttons-th">
-                                <Link to={'/Escaletas/' + Datos.iD_Programa} className="btn btn-success">
+                                <Link to={'/Escaletas/' + Datos.pkPrograma} className="btn btn-success">
                                  <FaEye size={20} color="white" /> Ver
                                 </Link>
                                 </td>

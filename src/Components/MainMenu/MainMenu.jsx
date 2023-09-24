@@ -16,7 +16,7 @@ function Menu() {
         const partes = cadena.split('/');
         const rol = partes[2];
         
-        if (rol === "Admin") {
+        if (rol === "Administrador") {
           return (
             <li>
               <Link to='/Admin/ListaUsuarios'> 

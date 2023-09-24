@@ -25,9 +25,14 @@ const GuionesNotas=()=>{
     },[]);
   
     const GetDatos = async ()=>{
-        const respuesta = await axios.get('https://localhost:7201/Nota/Get');
-        console.log(respuesta.data.result);
-        SetDatos(respuesta.data.result);
+        try {
+            const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+            console.log(respuesta.data.result);
+            SetDatos(respuesta.data.result);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
     return (
         
@@ -70,19 +75,19 @@ const GuionesNotas=()=>{
                                     <tr key={Datos.iD_Nota}>
                                     <td>{(i+1)}</td>
                                     <td>{Datos.titulo}</td>
-                                    <td>{Datos.categoria.nomCategoria}</td>
-                                    <td>{Datos.formato.nomFormato}</td>
+                                    <td>{Datos.categoria.nombre_Categoria}</td>
+                                    <td>{Datos.formato.nombre_Formato}</td>
                                     <td>{Datos.usuario.nombre}</td>
                                     <td>{Datos.fecha}</td>
                                     <td className="buttons-th"> 
                                         <Link to={'/LeerGuion/'+ Datos.iD_Nota}>
-                                            <button type="button" class='btn btn-success'>  <FaEye size={20} color="white"/> Ver </button>
+                                            <button type="button" className="acciones">  <FaEye size={20}/></button>
                                         </Link>
 
                                         <Link to={'/EditarGuion/' + Datos.iD_Nota}>
-                                        <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
+                                        <button type="button" className="acciones"> <FaEdit size={20}/></button> 
                                         </Link>
-                                        <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                        <button type="button" className="acciones"> <FaTrash size={20} /></button> 
                                     </td>
                                     </tr>
                                 ))}

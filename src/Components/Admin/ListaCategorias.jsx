@@ -5,6 +5,7 @@ import { show_alerta } from "../../Funciones"
 import axios from 'axios'
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 
 const ListaCategorias=()=>{
@@ -104,7 +105,10 @@ const ListaCategorias=()=>{
               <div className="Row">
                 <h3>Lista de categorías</h3>
                 <div className="Button-form">
-                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                <div className="buscador_admin">
+                  <input id="Buscador" type="search" className="inputbus"  placeholder="Buscar..." />
+                  <FaSearch size={20} color="gray"/>
+                  </div>
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault'  type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nueva Categoría</button>
                 </div>
               </div>
@@ -127,12 +131,12 @@ const ListaCategorias=()=>{
                                 <td>{Datos.nombre_Categoria}</td>
                                 <td>
                                   <button onClick={()=> OpenModal(2,Datos.pkCategoria,Datos.nombre_Categoria)} 
-                                  className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                                  <i className="fa-solid fa-edit"></i> Editar</button>
+                                  className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                                  <i className="fa-solid fa-edit"></i></button>
 
                                   &nbsp;
-                                  <button onClick={()=> deleteDatos(Datos.pkCategoria,Datos.nombre_Categoria)} className="btn btn-danger">
-                                  <FaTrash size={20} color='white'/> Eliminar</button> 
+                                  <button onClick={()=> deleteDatos(Datos.pkCategoria,Datos.nombre_Categoria)} className="acciones">
+                                  <FaTrash size={20}/></button> 
                                 </td>
                               </tr>
                             ))}

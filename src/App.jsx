@@ -67,13 +67,13 @@ function App() {
       <div className="options">
 
       <Link to="/MainMenu">
-        <a href="#">Menu</a>
+        <a   href="#">Menu</a>
       </Link>
       <Link to='/HelpDashboard/Introduccion'>
-         <a href="#">Ayuda</a>
+         <a  href="#">Ayuda</a>
       </Link> 
-         <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
-         <a onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
+         <a className="links" href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
+         <a className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
     </div>
       );
     }else{
