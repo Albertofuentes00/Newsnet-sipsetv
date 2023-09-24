@@ -5,6 +5,7 @@ import { show_alerta } from "../../Funciones"
 import axios from 'axios'
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 
 
@@ -114,7 +115,10 @@ const ListaProgramas=()=>{
         <div className="Row">
           <h3>Lista de programas</h3>
           <div className="Button-form">
-            <input type="text" className="buscador_admin" placeholder="Buscar..." />
+          <div className="buscador_admin">
+                  <input id="Buscador" type="search" className="inputbus"   placeholder="Buscar..." />
+                  <FaSearch size={20} color="gray"/>
+                  </div>
             <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
           </div>
         </div>

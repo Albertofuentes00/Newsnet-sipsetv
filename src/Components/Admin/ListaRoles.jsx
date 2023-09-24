@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import { show_alerta } from "../../Funciones"
+
 
 
 const ListaRoles = () => {
@@ -96,6 +98,24 @@ const ListaRoles = () => {
     });
   }
 
+  const buscar = async ()=>{
+    try {
+      var variable = document.getElementById("Buscador").value
+    if (variable == ""){
+      GetDatos();
+    }else{
+      const respuesta = await axios.get('https://localhost:7201/Rol/Buscar/' + variable)
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+    }
+  
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+
+
     return(
         <div className="Auth-form-container">
 
@@ -104,7 +124,10 @@ const ListaRoles = () => {
               <div className="Row">
                 <h3>Lista de Roles</h3>
                 <div className="Button-form">
-                  <input type="text" className="buscador_admin" placeholder="Buscar..." />
+                  <div className="buscador_admin">
+                  <input id="Buscador" type="search" className="inputbus" onChange={()=> buscar()}  placeholder="Buscar..." />
+                  <FaSearch size={20} color="gray"/>
+                  </div>
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
                 </div>        
         </div>

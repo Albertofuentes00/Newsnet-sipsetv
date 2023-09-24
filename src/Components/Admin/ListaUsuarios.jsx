@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
@@ -9,6 +10,8 @@ import Cookies from 'js-cookie';
 
 
 const ListaUsuarios=()=>{
+
+
   const [Datos, SetDatos] = useState([]);
   const [Roles, SetRoles] = useState([]);
   const [pkUsuario, setPkUsuario] = useState('');
@@ -19,6 +22,9 @@ const ListaUsuarios=()=>{
   const [fkRol, setFkRol] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(()=>{
       GetDatos();
@@ -168,6 +174,15 @@ const ListaUsuarios=()=>{
       
     }
 
+    useEffect(() => {
+      GetDatos();
+    }, []);
+
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = Datos.slice(startIndex, endIndex);
+
 
     return(
         <div className="Auth-form-container">
@@ -178,7 +193,10 @@ const ListaUsuarios=()=>{
                 <h3>Lista de usuarios</h3>
 
                 <div className="Button-form">
-                  <input id="Buscador" onChange={()=> buscar()} type="search" className="buscador_admin" placeholder="Buscar..." />
+                <div className="buscador_admin">
+                  <input id="Buscador" type="search" className="inputbus" onChange={()=> buscar()}  placeholder="Buscar..." />
+                  <FaSearch size={20} color="gray"/>
+                  </div>
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
                 </div>
               </div>
@@ -198,26 +216,43 @@ const ListaUsuarios=()=>{
                                 </tr>
                             </thead>
                             <tbody className="table-group-divider">
-                            {Datos.map((Datos,i) =>(
-                                <tr key={Datos.pkUsuario}>
-                                <td>{(i+1)}</td>
-                                <td>{Datos.nombre}</td>
-                                <td>{Datos.apellidos}</td>
-                                <td>{Datos.nickName}</td>
-                                <td>{Datos.user_Password}</td>
-                                <td>{Datos.nombre_Rol}</td>
-                                <td>                 
-                                    <button onClick={()=> OpenModal(2,Datos.pkUsuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.user_Password,Datos.fkRol)} 
-                                    className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                                    <i className="fa-solid fa-edit"></i> </button>
-                                    &nbsp;
-                                    <button onClick={()=> deleteDatos(Datos.pkUsuario,Datos.nombre)} className="acciones">
-                                    <FaTrash size={20} /> </button> 
-                                </td>
-                                </tr>
-                            ))}
+                            {currentData.map((Datos, i) => (
+                  <tr key={Datos.pkUsuario}>
+                  <td>{(i+1)}</td>
+                  <td>{Datos.nombre}</td>
+                  <td>{Datos.apellidos}</td>
+                  <td>{Datos.nickName}</td>
+                  <td>{Datos.user_Password}</td>
+                  <td>{Datos.nombre_Rol}</td>
+                  <td>                 
+                      <button onClick={()=> OpenModal(2,Datos.pkUsuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.user_Password,Datos.fkRol)} 
+                      className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                      <i className="fa-solid fa-edit"></i> </button>
+                      &nbsp;
+                      <button onClick={()=> deleteDatos(Datos.pkUsuario,Datos.nombre)} className="acciones">
+                      <FaTrash size={20} /> </button> 
+                  </td>
+                  </tr>
+              ))}
+                              
+                           
                             </tbody>
-                        </table>             
+                        </table> 
+                        <div className="pagination">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              Siguiente
+            </button>
+          </div>          
                 </div>
             </div>
         </div>

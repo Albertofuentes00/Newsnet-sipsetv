@@ -212,7 +212,7 @@ const Escaletas=()=>{
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Hora de Inicio" value={horaInicio}
+                <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={horaInicio}
                 onChange={(e)=> setHoraInicio(e.target.value)}></input>
               </div>
               <div className="d-grid col-6 mx-auto">
