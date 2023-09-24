@@ -275,12 +275,13 @@ return (
       <div className='modal-dialog'>
         <div className='modal-content'>
           <div className='modal-header'>
-            <label className='h5'>{title}</label>
+            <label className='h3'>{title}</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
-            <h4>Ingresa los datos requeridos para crear una nota nueva</h4>
-            <label> Titulo </label>
+            <h6>Ingresa los datos requeridos para crear una nota nueva</h6>
+  
           <div className='modal-body'>
+            <label> Titulo </label>
             <input type='hidden' id='id'></input>
             <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
@@ -289,8 +290,8 @@ return (
             </div>
 
             <div className="Row">
-              <label> Categoria </label>
               <div className="Grid">
+                <label> Categoria </label>
                 <div className='input-group mb-3'>
                 <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                 <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
@@ -299,66 +300,37 @@ return (
                 <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
                 ))}
                 </select>
+                </div>
               </div>
-            </div>
 
-            <div className="Row">
-              <label> Formato </label>
               <div className="Grid">
+                <label> Formato </label>
                 <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                  <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
-                  <option></option>
-                  {Formatos.map(Formatos =>(
-                  <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
-                  ))}
-                  </select>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
+                <option></option>
+                {Formatos.map(Formatos =>(
+                <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
+                ))}
+                </select>
                 </div>
               </div>
 
-              <label> Categoría </label>
-                <div className="Row"> 
-                  <div className='input-group mb-3'>
-                    <div className="Grid">
-                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                      <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
-                      <option></option>
-                      {Formatos.map(Formatos =>(
-                      <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
-                      ))}
-                      </select>
-                    </div>
-                  </div>
+              <div className="Grid">
+                <label> Usuario </label>
+                <div className="input-group mb-3">
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
+                <option></option>
+                {Usuarios.map(Usuarios =>(
+                <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
+                ))}
+                </select>
                 </div>
               </div>
-
-
-          </div>
-
-          <div className="Row"></div>
-
-            <label> Formato </label>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
-              <option></option>
-              {Formatos.map(Formatos =>(
-              <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
-              ))}
-              </select>
             </div>
-            <label> Usuario </label>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-              <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
-              <option></option>
-              {Usuarios.map(Usuarios =>(
-              <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
-              ))}
-              </select>
-            </div>
+        
             <div className="d-grid col-6 mx-auto">
-
               <div className="Row">
                 <button onClick={()=> Validar()} className="btn btn-success">
                   <i className="fa-solid fa-floppy-disk"></i> Guardar

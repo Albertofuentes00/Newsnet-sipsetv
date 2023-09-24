@@ -212,30 +212,46 @@ const ListaUsuarios=()=>{
             <div className='modal-body'>
               <h2 className="Text-helper">Ingresa los datos requeridos para registrar un usuario en el sistema</h2>
               <input type='hidden' id='id'></input>
-              <label> Nombre </label>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"> <i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Nombre" value={nombre}
-                onChange={(e)=> setNombre(e.target.value)}></input>
+              <div className="Row">
+                <div className="Grid">
+                  <label> Nombre </label>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"> <i class="fa-solid fa-caret-right"></i></span>
+                  <input type='text' id="nombre" className="form-control" placeholder="Nombre" value={nombre}
+                  onChange={(e)=> setNombre(e.target.value)}></input>
+                  </div>
+                </div>
+
+                <div className="Grid">
+                  <label> Apellidos </label>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <input type='text' id="apellidos" className="form-control" placeholder="Apellidos" value={apellidos}
+                  onChange={(e)=> setApellidos(e.target.value)}></input>
+                  </div>
+                </div>
               </div>
-              <label> Apellidos </label>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="apellidos" className="form-control" placeholder="Apellidos" value={apellidos}
-                onChange={(e)=> setApellidos(e.target.value)}></input>
+
+              <div className="Row">
+                <div className="Grid">
+                  <label> Username</label>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <input type='text' id="nickName" className="form-control" placeholder="Username" value={nickName}
+                  onChange={(e)=> setNickName(e.target.value)}></input>
+                  </div>
+                </div>
+
+                <div className="Grid">
+                  <label> Contraseña </label>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <input id="password" className="form-control" placeholder="Contraseña" value={user_Password}
+                  onChange={(e)=> setUser_Password(e.target.value)}></input>
+                   </div>
+                </div>
               </div>
-              <label> Username</label>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input type='text' id="nickName" className="form-control" placeholder="Username" value={nickName}
-                onChange={(e)=> setNickName(e.target.value)}></input>
-              </div>
-              <label> Contraseña </label>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <input id="password" className="form-control" placeholder="Contraseña" value={user_Password}
-                onChange={(e)=> setUser_Password(e.target.value)}></input>
-              </div>
+             
               <label> Rol </label>
               <div className='input-group mb-3'>
               <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
