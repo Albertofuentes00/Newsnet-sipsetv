@@ -114,7 +114,7 @@ const ListaProgramas=()=>{
         <div className="Row">
           <h3>Lista de programas</h3>
           <div className="Button-form">
-            <input type="text" className="input-search-admin" placeholder="Buscar..." />
+            <input type="text" className="buscador_admin" placeholder="Buscar..." />
             <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
           </div>
         </div>
@@ -138,11 +138,11 @@ const ListaProgramas=()=>{
                       <td>{Datos.categoria.nomCategoria}</td>
                       <td>
                         <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.fkCategoria)} 
-                        className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                        <i className="fa-solid fa-edit"></i> Editar</button>
+                       className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                        <i className="fa-solid fa-edit"></i></button>
                         &nbsp;
-                        <button onClick={()=> deleteDatos(Datos.pkPrograma,Datos.nombre_Programa)} className="btn btn-danger">
-                        <FaTrash size={20} color='white'/> Eliminar</button> 
+                        <button onClick={()=> deleteDatos(Datos.pkPrograma,Datos.nombre_Programa)} className="acciones">
+                        <FaTrash size={20}/></button> 
                       </td>
                     </tr>
                   ))}

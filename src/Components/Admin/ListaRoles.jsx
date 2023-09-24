@@ -104,7 +104,7 @@ const ListaRoles = () => {
               <div className="Row">
                 <h3>Lista de Roles</h3>
                 <div className="Button-form">
-                  <input type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <input type="text" className="buscador_admin" placeholder="Buscar..." />
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Rol</button>
                 </div>        
         </div>
@@ -125,10 +125,11 @@ const ListaRoles = () => {
                                 <td>{(i+1)}</td>
                                 <td>{Datos.nombre_Rol}</td>
                                 <td> 
-                                    <button onClick={()=> deleteDatos(Datos.pkRol,Datos.nombre_Rol)} class="btn btn-danger"> <FaTrash size={20} color='white'/> Eliminar</button> 
-                                    <button onClick={()=> OpenModal(2,Datos.pkRol,Datos.nombre_Rol)} 
-                        className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaldefault'>
-                          <i className="fa-solid fa-edit"></i> Editar</button>
+                                <button onClick={()=> OpenModal(2,Datos.pkRol,Datos.nombre_Rol)} 
+                                           className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                                           <i className="fa-solid fa-edit"></i></button>
+                                    <button onClick={()=> deleteDatos(Datos.pkRol,Datos.nombre_Rol)} className="acciones"> <FaTrash size={20}/></button> 
+                                    
                                 </td>
                                 </tr>
                             ))}

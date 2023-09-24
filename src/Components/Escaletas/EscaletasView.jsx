@@ -12,6 +12,7 @@ import { Link, useParams } from "react-router-dom";
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import SearchEscaleta from "../SearchEscaletas";
+import Cookies from 'js-cookie';
 
 const Escaletas=()=>{
     const [Datos, SetDatos] = useState([]);
@@ -29,10 +30,16 @@ const Escaletas=()=>{
   },[]);
   
   const GetDatos = async()=>{
+    try {
       const respuesta = await axios.get('https://localhost:7201/Escaleta/GetPrograma/'+id);
       const respuesta2 = await axios.get('https://localhost:7201/Usuario/Get');
+      console.log(respuesta.data.result)
       SetDatos(respuesta.data.result);
       SetUsuarios(respuesta2.data.result);
+    } catch (error) {
+      console.log(error)
+    }
+   
   }
   const OpenModal = (op,iD_Escaleta,horaInicio,fecha,id_Programa,id_Usuario,id) =>{
       setID_Escaleta('');
@@ -58,12 +65,9 @@ const Escaletas=()=>{
     }
     const Validar = () =>{
       var parametros;
-      if(operation===1){
+      if(operation === 1){
         if(horaInicio.trim()===''){
           show_alerta('Escribe la hora de inicio de la escaleta','warning');
-        }
-        else if(id_Usuario===''){
-          show_alerta('Selecciona el usuario','warning');
         }
       }
       else{
@@ -73,12 +77,26 @@ const Escaletas=()=>{
         else if(fecha.trim()===''){
           show_alerta('Escribe la fecha de creacion','warning');
         }
-        else if(id_Usuario===''){
-          show_alerta('Selecciona el usuario','warning');
+        else{
+          
         }
       }
       if(operation === 1){
-        parametros = {horaInicio:horaInicio.trim(),idPrograma:id,idUsuario:id_Usuario.trim()};
+
+        try {
+          const fechaActual = new Date();
+          const año = fechaActual.getFullYear();
+          const mes = fechaActual.getMonth() + 1;
+          const dia = fechaActual.getDate();
+          const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+
+
+
+
+          const cadena = Cookies.get('Usuario');
+          const partes = cadena.split('/');
+          const user = partes[0];
+          parametros = {fecha:fechaFormateada,hora_Inicio:horaInicio.trim(),fkPrograma:id,fkUsuario:user};
           axios.post('https://localhost:7201/Escaleta/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();
@@ -88,7 +106,9 @@ const Escaletas=()=>{
           show_alerta('Error en la solicitud','error');
           console.log(error);
         });
-  
+        } catch (error) {
+          console.log(error);
+        }
       }
       else{
         parametros = {fecha:fecha.trim(),horaInicio:horaInicio.trim(),idPrograma:id,idUsuario:id_Usuario};
@@ -104,7 +124,7 @@ const Escaletas=()=>{
       }
       console.log("Se termino el consumo de la api");
     }
-    const deleteDatos = (iD_Escaleta) =>{
+    const deleteDatos = (PkEscaleta) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
         title:'Seguro que quieres borrar esta escaleta?',
@@ -112,8 +132,8 @@ const Escaletas=()=>{
         showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setID_Escaleta(iD_Escaleta);
-          axios.delete('https://localhost:7201/Escaleta/Delete/' + iD_Escaleta).then(function(respuesta){
+          setID_Escaleta(PkEscaleta);
+          axios.delete('https://localhost:7201/Escaleta/Delete/' + PkEscaleta).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             GetDatos();
           })
@@ -155,7 +175,8 @@ const Escaletas=()=>{
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Fecha</th>
-                            <th scope="col">Opciones</th>
+                            <th scope="col">Hora de inicio</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody className="table-group-divider">
@@ -163,10 +184,11 @@ const Escaletas=()=>{
                             <tr>
                                 <td>{(i+1)}</td>
                                 <td>{Datos.fecha}</td>
+                                <td>{Datos.hora_Inicio}</td>
                                 <td className="buttons-th"> 
-                                  <Link to={'/ArmadoEscaleta/'+ Datos.iD_Escaleta} class="btn btn-success"> <FaEye size={20} color="white"/> Ver </Link>
-                                  <button onClick={()=> OpenModal(2,Datos.iD_Escaleta,Datos.horaInicio,Datos.fecha,Datos.id_Programa,Datos.id_Usuario)} data-bs-toggle='modal' data-bs-target='#modaleditar' type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                                  <button onClick={()=> deleteDatos(Datos.iD_Escaleta)} type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
+                                  <Link to={'/ArmadoEscaleta/'+ Datos.pkEscaleta} className="acciones" > <FaEye size={20} className="acciones"/></Link>
+                                  <button onClick={()=> OpenModal(2,Datos.pkEscaleta,Datos.horaInicio,Datos.fecha,Datos.fkPrograma,Datos.id_Usuario)} data-bs-toggle='modal' data-bs-target='#modaleditar' type="button" className="acciones"> <FaEdit size={20}/></button> 
+                                  <button onClick={()=> deleteDatos(Datos.pkEscaleta)} type="button" className="acciones"> <FaTrash size={20}/></button> 
                                 </td>
                             </tr>
                     ))}
@@ -192,16 +214,6 @@ const Escaletas=()=>{
                 <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
                 <input type='text' id="nombre" className="form-control" placeholder="Hora de Inicio" value={horaInicio}
                 onChange={(e)=> setHoraInicio(e.target.value)}></input>
-              </div>
-              <label>Usuario</label>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <select required className="form-select" value={id_Usuario} onChange={(e)=> setId_Usuario(e.target.value)}>
-                      <option></option>
-                  {Usuarios.map(Usuarios =>(
-                      <option value={Usuarios.iD_Usuario}>{Usuarios.nombre}</option>
-                  ))}
-                </select>
               </div>
               <div className="d-grid col-6 mx-auto">
                     <button onClick={()=> Validar()} className="btn btn-success">

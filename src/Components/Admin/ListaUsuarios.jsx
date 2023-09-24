@@ -5,6 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import { show_alerta } from "../../Funciones"
+import Cookies from 'js-cookie';
 
 
 const ListaUsuarios=()=>{
@@ -122,22 +123,37 @@ const ListaUsuarios=()=>{
         showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
       }).then((result) =>{
         if(result.isConfirmed){
-          setPkUsuario(pkUsuario);
-          axios.delete('https://localhost:7201/Usuario/Delete/' + pkUsuario).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            GetDatos();
-          })
-          .catch(function(error){
-            show_alerta('error en la solicitud','error');
-            console.log('el id:' + pkUsuario);
+          try {
+            const cadena = Cookies.get('Usuario');
+            const partes = cadena.split('/');
+            const user = partes[1];
+            
+            if (nombre === user) {
+              show_alerta('No puedes eliminarte a ti mismo');
+            } else {
+              setPkUsuario(pkUsuario);
+              axios.delete('https://localhost:7201/Usuario/Delete/' + pkUsuario).then(function(respuesta){
+                document.getElementById('btnCerrar').click();
+                GetDatos();
+              })
+              .catch(function(error){
+                show_alerta('error en la solicitud','error');
+                console.log('el id:' + pkUsuario);
+                console.log(error);
+              });
+              
+            }
+          } catch (error) {
             console.log(error);
-          });
+          }
+     
         }
       });
     }
 
     const buscar = async ()=>{
-      var variable = document.getElementById("Buscador").value
+      try {
+        var variable = document.getElementById("Buscador").value
       if (variable == ""){
         GetDatos();
       }else{
@@ -146,6 +162,10 @@ const ListaUsuarios=()=>{
         SetDatos(respuesta.data.result);
       }
     
+      } catch (error) {
+        console.log(error);
+      }
+      
     }
 
 
@@ -158,7 +178,7 @@ const ListaUsuarios=()=>{
                 <h3>Lista de usuarios</h3>
 
                 <div className="Button-form">
-                  <input id="Buscador" onChange={()=> buscar()} type="text" className="input-search-admin" placeholder="Buscar..." />
+                  <input id="Buscador" onChange={()=> buscar()} type="search" className="buscador_admin" placeholder="Buscar..." />
                   <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success" > <FaPlusSquare size={20} color="white"/> Nuevo Usuario</button>
                 </div>
               </div>
@@ -186,12 +206,12 @@ const ListaUsuarios=()=>{
                                 <td>{Datos.nickName}</td>
                                 <td>{Datos.user_Password}</td>
                                 <td>{Datos.nombre_Rol}</td>
-                                <td>
+                                <td>                 
                                     <button onClick={()=> OpenModal(2,Datos.pkUsuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.user_Password,Datos.fkRol)} 
-                                    className="options" data-bs-toggle='modal' data-bs-target='#modaldefault'>
+                                    className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>
                                     <i className="fa-solid fa-edit"></i> </button>
                                     &nbsp;
-                                    <button onClick={()=> deleteDatos(Datos.pkUsuario,Datos.nombre)} className="options">
+                                    <button onClick={()=> deleteDatos(Datos.pkUsuario,Datos.nombre)} className="acciones">
                                     <FaTrash size={20} /> </button> 
                                 </td>
                                 </tr>

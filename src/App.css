@@ -47,7 +47,43 @@ font-size: 16px;
 color: rgb(97, 97, 97);
 }
 
+.acciones{
+  border-radius: 5px;
+  border-style: none;
+  background-color: transparent;
+  font-size: 16px;
+  margin-right: 5%;
+  color: rgb(97, 97, 97);
+  }
+  .acciones:hover{
+    color: rgb(0, 0, 0);
+    }
 
+
+
+    .buscador_admin{
+      margin-right: 10px;
+font-size: 16px;
+padding: 5px 5px 5px 5px;
+border-radius: 5px;
+border-style:solid;
+border-color: rgb(172, 172, 172);
+min-width: 30vh;
+text-transform: uppercase;
+    }  
+    
+.outputred{
+  margin-top: 5%;
+  padding: 10px;
+  color: rgb(83, 0, 0);
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(253, 144, 144);
+  border-style:outset;
+  border-color: rgb(83, 0, 0);
+  border-width: 2px 0px 0px 0px;
+}
 .Datetime-header{
   background-color: #161616;
   min-height: 3%;
@@ -122,16 +158,28 @@ color: rgb(97, 97, 97);
 }
 
 .options a {
-  margin-left: 10px;
+  margin-right: 10px;
   text-decoration: none;
-  color: #333;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.1s;
 }
 
-a:link {
-  color: white;
-  text-decoration: underline;
-  font-size: smaller;
+.options a :hover{
+  color: rgb(110, 110, 110);
+  transition: 0.1s;
 }
+.links:hover{
+  color: rgb(110, 110, 110);
+  transition: 0.1s;
+}
+
+.links{
+  color: white;
+  transition: 0.1s;
+}
+
 
 a:visited {
   color: white;
