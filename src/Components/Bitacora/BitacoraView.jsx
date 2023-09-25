@@ -192,11 +192,11 @@ return (
                 <td>{Datos.fecha}</td>
                 <td>
                 <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fkCategoria,Datos.fkFormato,Datos.fkUsuario,Datos.fecha)} 
-                className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaleditar'>
+                 className="acciones" data-bs-toggle='modal' data-bs-target='#modaleditar'>
                   <i className="fa-solid fa-edit"></i>
                 </button>
                 &nbsp;
-                <button onClick={()=> deleteDatos(Datos.pkNota)} className="btn btn-danger">
+                <button onClick={()=> deleteDatos(Datos.pkNota)}  className="acciones">
                   <i className="fa-solid fa-trash"></i>
                 </button>
                 </td>

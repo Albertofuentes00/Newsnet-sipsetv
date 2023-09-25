@@ -139,7 +139,7 @@ const ListaProgramas=()=>{
                     <tr key={Datos.pkPrograma}>
                       <td>{(i+1)}</td>
                       <td>{Datos.nombre_Programa}</td>
-                      <td>{Datos.categoria.nomCategoria}</td>
+                      <td>{Datos.categoria.nombre_Categoria}</td>
                       <td>
                         <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.fkCategoria)} 
                        className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>

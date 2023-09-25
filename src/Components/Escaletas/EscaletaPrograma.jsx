@@ -31,7 +31,7 @@ const Escaletas=()=>{
 
             <div className="Grid">
 
-            <SearchEscaleta/>
+            
 
             <form className="Auth-form-table">
                 <div className='Auth-Maintable'>

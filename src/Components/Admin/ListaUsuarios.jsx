@@ -166,6 +166,7 @@ const ListaUsuarios=()=>{
         const respuesta = await axios.get('https://localhost:7201/Usuario/Buscar/' + variable)
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
+        setCurrentPage(1);
       }
     
       } catch (error) {
@@ -238,7 +239,7 @@ const ListaUsuarios=()=>{
                            
                             </tbody>
                         </table> 
-                        <div className="pagination">
+                        <div className="pagination-list">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
