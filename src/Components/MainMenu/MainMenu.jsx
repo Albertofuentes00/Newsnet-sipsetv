@@ -57,7 +57,7 @@ function Menu() {
                             </Link>
                         </li>    
                         <li>
-                            <Link to='/EscaletaPrograma'>
+                            <Link to='/EscaletaViewH'>
                                 <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
                             </Link>
                         </li>

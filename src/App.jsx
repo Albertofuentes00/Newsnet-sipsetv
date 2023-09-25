@@ -25,7 +25,7 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 import EscaletaPrograma from './Components/Escaletas/EscaletaPrograma';
 import Escaletas from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
-
+import EscaletasViewH from './Components/Escaletas/EscaletasViewH';
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -135,6 +135,7 @@ function App() {
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
            <Route path='AgregarNotas' element={<AddNotes/>} />
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
+            <Route path='EscaletaViewH' element={<EscaletasViewH/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
 
             <Route path="Notas" element={<GuionesNotas/>}/>
