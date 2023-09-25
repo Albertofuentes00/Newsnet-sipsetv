@@ -13,7 +13,7 @@ import Tommy from './images/LOGO_Tommy.png'
 import Welcome from './Components/Bienvenida';
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
-import Registro from './Components/LoginView/Registro';
+
 
 import SearchMenu from './Components/SearchMenu';
 import SearchEscaleta from './Components/SearchEscaletas';
@@ -129,7 +129,6 @@ function App() {
       <body className="App-body">
        <Routes>
           <Route path="/" element={<Login/>}/>
-          <Route path='/SignIn' element={<Registro/>}/>
 
           <Route path='MainMenu' element={<Menu/>}/>
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
