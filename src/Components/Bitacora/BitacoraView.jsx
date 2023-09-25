@@ -6,8 +6,6 @@ import { show_alerta } from "../../Funciones"
 import { Link } from "react-router-dom";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
-
 import SearchMenu from "../SearchMenu"
 
 
@@ -127,7 +125,7 @@ function Bitacora() {
     MySwal.fire({
       title:'Seguro que quieres borrar esta nota?',
       icon: 'question', text:'No se podra recuperar despues',
-      showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'cancelar'
+      showCancelButton:true,confirmButtonText:"si, eliminar",cancelbuttonText:'Cancelar'
     }).then((result) =>{
       if(result.isConfirmed){
         setPkNota(pkNota);
@@ -177,6 +175,7 @@ return (
                 <th scope="col">Categoría</th>
                 <th scope="col">Formato</th>
                 <th scope="col">Reportero</th>
+                <th scope="col">Fuente</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">     </th>
               </tr>
@@ -189,6 +188,7 @@ return (
                 <td>{Datos.categoria.nombre_Categoria}</td>
                 <td>{Datos.formato.nombre_Formato}</td>
                 <td>{Datos.usuario.nombre}</td>
+                <td>{Datos.fuente.nombre_Fuente}</td>
                 <td>{Datos.fecha}</td>
                 <td>
                 <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fkCategoria,Datos.fkFormato,Datos.fkUsuario,Datos.fecha)} 
@@ -207,69 +207,7 @@ return (
         </div>
       </div>
     </div>
-
     </div>
-
-
-
-
-{/* 
-    <div className="Auth-form-table">
-      <div className='Auth-Maintable'>
-        
-        <div className="Row">
-          <h1>Bitácora de notas</h1>
-          <div className="Button-form">
-              <Link to='/MainMenu'>
-              <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-              </Link>
-              <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Nota</button>
-              <Link to='/BuscarNota'>
-              <button class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-              </Link>
-            </div>
-        </div>
-    
-
-        <div className="Auth-form-container-Main">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Título</th>
-                <th scope="col">Categoría</th>
-                <th scope="col">Formato</th>
-                <th scope="col">Reportero</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">     </th>
-              </tr>
-            </thead>
-            <tbody className="table-group-divider">
-            {Datos.map((Datos,i) =>(
-                <tr key={Datos.iD_Nota}>
-                <td>{(i+1)}</td>
-                <td>{Datos.titulo}</td>
-                <td>{Datos.categoria.nomCategoria}</td>
-                <td>{Datos.formato.nomFormato}</td>
-                <td>{Datos.usuario.nombre}</td>
-                <td>{Datos.fecha}</td>
-                <td>
-                <button onClick={()=> OpenModal(2,Datos.iD_Nota,Datos.titulo,Datos.id_Categoria,Datos.id_Formato,Datos.id_Usuario,Datos.fecha)} 
-                className="btn btn-warning" data-bs-toggle='modal' data-bs-target='#modaleditar'>
-                  <i className="fa-solid fa-edit"></i>
-                </button>
-                &nbsp;
-                <button onClick={()=> deleteDatos(Datos.iD_Nota)} className="btn btn-danger">
-                  <i className="fa-solid fa-trash"></i>
-                </button>
-                </td>
-                </tr>
-            ))}
-            </tbody>
-          </table>                          
-        </div>
-      </div>
-    </div> */}
 
     <div id='modaldefault' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>

@@ -171,8 +171,8 @@ function App() {
       <footer className='App-footer'>
           <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>
           <div>
-            <h7>Powered by</h7>
-            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto & Tommy <img src={Tommy} className='Logo-BT' alt='logo' /> </h6>
+            <h7>Powered & Developed by </h7>
+            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto, Tommy & Lenny <img src={Tommy} className='Logo-BT' alt='logo' /> </h6>
           </div>
       </footer>
     </div>

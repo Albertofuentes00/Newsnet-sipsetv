@@ -170,6 +170,7 @@ const Escaletas=()=>{
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Programa</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Hora de inicio</th>
                             <th scope="col">Acciones</th>
@@ -179,6 +180,7 @@ const Escaletas=()=>{
                     {Datos.map((Datos,i) =>(
                             <tr>
                                 <td>{(i+1)}</td>
+                                <td>{Datos.programa.nombre_Programa}</td>
                                 <td>{Datos.fecha}</td>
                                 <td>{Datos.hora_Inicio}</td>
                                 <td className="buttons-th"> 
