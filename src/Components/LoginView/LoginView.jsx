@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 function Login() {
 
+
   const [Datos, SetDatos] = useState(null);
   const buscarUsuario = async ()=>{
     try{
@@ -77,15 +78,6 @@ function Login() {
                 Ingresar 
               </div>
             
-          </div>
-          <hr class="mx-n3"/>
-          <div className="d-grid gap-2 mt-3">
-            <Link to='/SignIn'>
-              <button className="btn btn-secondary">
-                Registrarse 
-              </button>
-            </Link>
-
           </div>
 
         </div>

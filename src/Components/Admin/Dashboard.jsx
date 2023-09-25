@@ -5,7 +5,8 @@ import { BiCameraMovie } from 'react-icons/bi'
 import { FaMicrophone } from 'react-icons/fa'
 import { BiCategory } from 'react-icons/bi'
 import { FaUserCog } from 'react-icons/fa'
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom"
+import { FaList } from "react-icons/fa";
 
 function AdminMenu(){
 
@@ -31,6 +32,8 @@ function AdminMenu(){
             <Link to='ListaRoles'>
                 <button type="button" class='btn btn-primary'>  <FaUserCog size={30} color='white'/> Roles </button>
             </Link>  
+
+                <button type="button" className="btn btn-primary"> <FaList size={30} color="white"/> Fuentes </button>
         </div>
         </header> 
         
