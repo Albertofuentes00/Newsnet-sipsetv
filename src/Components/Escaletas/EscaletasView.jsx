@@ -161,9 +161,6 @@ const Escaletas=()=>{
                         <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                     </Link>
                         <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
-                    <Link >
-                        <button  data-bs-toggle='modal' data-bs-target='#modalsearch' type="button" class="btn btn-primary"> <FaSearch  size={20} color="white"/> Buscar</button>
-                    </Link>
                   </div>
               </div>                    
                     <br />
@@ -207,8 +204,9 @@ const Escaletas=()=>{
               <label className='h5'>{title}</label>
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
-            <label>Hora de inicio</label>
+            <h4>Ingresa los datos requeridos para crear una nueva escaleta</h4>
             <div className='modal-body'>
+              <label>Hora de inicio</label>
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>

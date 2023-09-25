@@ -13,22 +13,7 @@ class SearchMenu extends Component {
             <div className="Grid">
               <label>Título/Palabra clave</label>
               <input type="text" className="input-search" />
-              <div className="Row">
-                <label>Categoría</label>
-                <select  className="input-search"> </select>
-              </div>
             </div>
-          </div>
-
-          <div className="Row">
-            <div className="Grid">
-                <label>Reportero</label>
-                <select  className="input-search"> </select>
-            <div className="Grid">
-                <label>Formato </label>
-                <select  className="input-search"> </select>
-            </div>
-          </div>
           </div>
         
           <div className="Row">
