@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom"
 import Cookies from 'js-cookie';
 
 function Login() {
-    window.location.href = '/MainMenu';
+
 
   const [Datos, SetDatos] = useState(null);
   const buscarUsuario = async ()=>{
