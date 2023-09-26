@@ -14,7 +14,6 @@ function Bitacora() {
   const [Datos, SetDatos] = useState([]);
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
-  const [Usuarios, SetUsuarios] = useState([]);
   const [Fuentes, SetFuentes] = useState([]);
   const [pkNota, setPkNota] = useState('');
   const [titulo, setTitulo] = useState('');
@@ -110,27 +109,27 @@ function Bitacora() {
     }
     if(operation === 1){
       try {
-      const fechaActual = new Date();
-      const año = fechaActual.getFullYear();
-      const mes = fechaActual.getMonth() + 1;
-      const dia = fechaActual.getDate();
-      const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+        const fechaActual = new Date();
+        const año = fechaActual.getFullYear();
+        const mes = fechaActual.getMonth() + 1;
+        const dia = fechaActual.getDate();
+        const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
 
 
 
 
-      const cadena = Cookies.get('Usuario');
-      const partes = cadena.split('/');
-      const user = partes[0];
-      parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:user};
+        const cadena = Cookies.get('Usuario');
+        const partes = cadena.split('/');
+        const user = partes[0];
+        parametros = {titulo:titulo.trim(),fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:user};
         axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
         document.getElementById('btnCerrar').click();
         GetDatos();
       })
       .catch(function(error){
         show_alerta('error en la solicitud','error');
-        console.log(titulo,fecha,conductor,tipo,indice,fkCategoria,fkFormato,fkUsuario,fkfuente);
-        //console.log(titulo,fkCategoria,fkFormato,fkfuente)
+        console.log(fechaFormateada,user);
+        console.log(titulo,fkCategoria,fkFormato,fkfuente,fkUsuario);
         console.log(error);
       });
       } catch (error) {

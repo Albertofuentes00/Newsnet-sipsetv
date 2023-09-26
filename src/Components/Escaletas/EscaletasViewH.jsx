@@ -45,7 +45,7 @@ const Escaletas=()=>{
     setPkEscaleta('');
       setHora_Inicio('');
       setFecha('');
-      setFkPrograma(fkPrograma);
+      setFkPrograma('');
       setFkUsuario('');
       setOperation(op);
       if(op === 1){
