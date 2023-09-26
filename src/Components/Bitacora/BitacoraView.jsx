@@ -57,8 +57,6 @@ function Bitacora() {
     setOperation(op);
     if(op === 1){
       setTitle('Crear Nota')
-      setTipo(0);
-      setIndice(0);
     }
     else if(op === 2){
       setTitle('Actualizar Nota')
@@ -88,9 +86,6 @@ function Bitacora() {
       }
       else if(fkfuente===''){
         show_alerta('Seleccion una fuente','warning');
-      }
-      else if(fkUsuario===''){
-        show_alerta('Seleccion un reportero','warning');
       }
     }
     else if(operation === 2){
@@ -127,13 +122,15 @@ function Bitacora() {
       const cadena = Cookies.get('Usuario');
       const partes = cadena.split('/');
       const user = partes[0];
-      parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo.trim(),indice:indice(),fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:user};
+      parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:user};
         axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
         document.getElementById('btnCerrar').click();
         GetDatos();
       })
       .catch(function(error){
         show_alerta('error en la solicitud','error');
+        console.log(titulo,fecha,conductor,tipo,indice,fkCategoria,fkFormato,fkUsuario,fkfuente);
+        //console.log(titulo,fkCategoria,fkFormato,fkfuente)
         console.log(error);
       });
       } catch (error) {

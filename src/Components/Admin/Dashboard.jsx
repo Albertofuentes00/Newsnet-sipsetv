@@ -32,8 +32,9 @@ function AdminMenu(){
             <Link to='ListaRoles'>
                 <button type="button" class='btn btn-primary'>  <FaUserCog size={30} color='white'/> Roles </button>
             </Link>  
-
+            <Link to='ListaFuentes'>
                 <button type="button" className="btn btn-primary"> <FaList size={30} color="white"/> Fuentes </button>
+            </Link>
         </div>
         </header> 
         

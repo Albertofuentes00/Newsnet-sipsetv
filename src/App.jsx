@@ -39,6 +39,7 @@ import ListaProgramas from './Components/Admin/ListaProgramas';
 import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
+import ListaFuentes from './Components/Admin/ListaFuentes';
 
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
@@ -148,6 +149,7 @@ function App() {
               <Route path='ListaFormatos' element= {<ListaFormatos/>} />
               <Route path='ListaRoles' element={<ListaRoles/>} />
               <Route path='ListaUsuarios' element={<ListaUsuarios />}/>
+              <Route path='ListaFuentes' element={<ListaFuentes/>}/>
           </Route>
           <Route path='HelpDashboard' element={<HelpMenu/>} >
               <Route path='Introduccion' element={<Introduccion/>}/>
