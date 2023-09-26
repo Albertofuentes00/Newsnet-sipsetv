@@ -162,8 +162,6 @@ const Escaletas=()=>{
                         <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
                   </div>
               </div>                    
-                    <br />
-
                 <div className="Auth-form-container-Main">
                     
                 <table class="table">

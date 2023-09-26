@@ -31,7 +31,9 @@ function SearchEscaleta() {
     <div className="Auth-form-searchbar">
       <div className="Row-searchbar">
         <div className="Row">
-          <input type="text" className="input-search-admin" placeholder="Buscar..." />
+          <div className='buscador_admin'>
+          <input type="search" className="inputbus" placeholder="Buscar..." />
+          </div>
         </div>
         <div className="Row">
           <div className="Grid">

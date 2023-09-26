@@ -17,16 +17,24 @@ const ListaProgramas=()=>{
   const [fkCategoria, setFkCategoria] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
   
     useEffect(()=>{
         GetDatos();
     },[]);
   
     const GetDatos = async ()=>{
-      const respuesta = await axios.get('https://localhost:7201/Programa/Get');
-      const respuesta2 = await axios.get('https://localhost:7201/Categoria/Get');
-      SetDatos(respuesta.data.result);
-      SetCategorias(respuesta2.data.result);
+      try {
+        const respuesta = await axios.get('https://localhost:7201/Programa/Get');
+        const respuesta2 = await axios.get('https://localhost:7201/Categoria/Get');
+        SetDatos(respuesta.data.result);
+        SetCategorias(respuesta2.data.result);
+      } catch (error) {
+        
+      }
+
   }
 
   
@@ -107,6 +115,21 @@ const ListaProgramas=()=>{
         }
       });
     }
+
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentData = Datos.slice(startIndex, endIndex);
+  
+    const [itemNumber, setItemNumber] = useState(0);
+    useEffect(() => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      setItemNumber(startIndex + 1);
+    }, [currentPage, itemsPerPage, Datos]);
+
+
+
     return(
 <div className="Auth-form-container">
 
@@ -135,9 +158,9 @@ const ListaProgramas=()=>{
                         </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                    {Datos.map((Datos,i) =>(
+                    {currentData.map((Datos, i) =>(
                     <tr key={Datos.pkPrograma}>
-                      <td>{(i+1)}</td>
+                      <td>{(itemNumber + i)}</td>
                       <td>{Datos.nombre_Programa}</td>
                       <td>{Datos.categoria.nombre_Categoria}</td>
                       <td>
@@ -151,7 +174,22 @@ const ListaProgramas=()=>{
                     </tr>
                   ))}
                     </tbody>
-                </table>         
+                </table>  
+                <div className="pagination-list">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              Siguiente
+            </button>
+          </div>        
         </div>
     </div>
 </div>

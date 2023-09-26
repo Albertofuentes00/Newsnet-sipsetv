@@ -109,11 +109,12 @@ input[type="search"]::-webkit-search-cancel-button {
   min-height: 3%;
   display: flex;
   height: 40px;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 10px;
   flex-direction:inherit;
   font-size: calc(10px + 2vmin);
+  position: sticky;
 }
 
 
@@ -725,7 +726,6 @@ button.btn.btn-light:hover{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px; /* Separación entre botones */
-  margin-left: 900px;
   display: flex;
   position: inherit;
   justify-content: space-between;
@@ -893,6 +893,7 @@ width: 600px;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  position: sticky;
 }
 
 /* CELDAS DE EXCEL */
@@ -981,3 +982,6 @@ p{
 
 
 }
+
+
+

@@ -20,9 +20,14 @@ const ListaFuentes = () => {
     },[]);
 
     const GetFuente = async ()=>{
+      try {
         const respuesta = await axios.get('https://localhost:7201/Fuente/Get');
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
+      } catch (error) {
+        
+      }
+    
     }
 
     const OpenModal = (op,pkFuente, nombre_Fuente) =>{

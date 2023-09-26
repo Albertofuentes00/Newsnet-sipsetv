@@ -20,9 +20,14 @@ const ListaFormatos = () =>{
     },[]);
 
     const GetFormato = async ()=>{
+      try {
         const respuesta = await axios.get('https://localhost:7201/Formato/Get');
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
+      } catch (error) {
+        
+      }
+       
     }
 
     const OpenModal = (op,pkFormato, nombre_Formato) =>{

@@ -20,9 +20,14 @@ const ListaCategorias=()=>{
     },[]);
   
     const GetDatos = async ()=>{
+      try {
         const respuesta = await axios.get('https://localhost:7201/Categoria/Get');
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
+      } catch (error) {
+        
+      }
+     
     }
   
     const OpenModal = (op,pkCategoria,nombre_Categoria) =>{

@@ -184,6 +184,13 @@ const ListaUsuarios=()=>{
   const endIndex = startIndex + itemsPerPage;
   const currentData = Datos.slice(startIndex, endIndex);
 
+  const [itemNumber, setItemNumber] = useState(0);
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setItemNumber(startIndex + 1);
+  }, [currentPage, itemsPerPage, Datos]);
+
 
     return(
         <div className="Auth-form-container">
@@ -219,7 +226,7 @@ const ListaUsuarios=()=>{
                             <tbody className="table-group-divider">
                             {currentData.map((Datos, i) => (
                   <tr key={Datos.pkUsuario}>
-                  <td>{(i+1)}</td>
+                  <td>{(itemNumber + i)}</td>
                   <td>{Datos.nombre}</td>
                   <td>{Datos.apellidos}</td>
                   <td>{Datos.nickName}</td>

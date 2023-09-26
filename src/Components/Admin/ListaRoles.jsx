@@ -16,14 +16,23 @@ const ListaRoles = () => {
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+
   useEffect(()=>{
       GetDatos();
   },[]);
 
   const GetDatos = async ()=>{
+    try {
       const respuesta = await axios.get('https://localhost:7201/Rol/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
+    } catch (error) {
+      
+    }
+     
   }
 
   const OpenModal = (op,pkRol,nombre_Rol) =>{
@@ -115,6 +124,17 @@ const ListaRoles = () => {
     
   }
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = Datos.slice(startIndex, endIndex);
+  
+  const [itemNumber, setItemNumber] = useState(0);
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setItemNumber(startIndex + 1);
+  }, [currentPage, itemsPerPage, Datos]);
+
 
     return(
         <div className="Auth-form-container">
@@ -143,9 +163,9 @@ const ListaRoles = () => {
                                 </tr>
                             </thead>
                             <tbody className="table-group-divider">
-                            {Datos.map((Datos,i) =>(
+                            {currentData.map((Datos, i) =>(
                                 <tr key={Datos.pkRol}>
-                                <td>{(i+1)}</td>
+                                <td>{(itemNumber + i)}</td>
                                 <td>{Datos.nombre_Rol}</td>
                                 <td> 
                                 <button onClick={()=> OpenModal(2,Datos.pkRol,Datos.nombre_Rol)} 
@@ -157,7 +177,28 @@ const ListaRoles = () => {
                                 </tr>
                             ))}
                             </tbody>
-                        </table>    
+                        </table> 
+
+                        <div className="pagination-list">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Anterior
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              Siguiente
+            </button>
+          </div>  
+
+
+
+
+
                 </div>
         
         
