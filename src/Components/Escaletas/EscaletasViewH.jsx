@@ -4,9 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import { FaEdit } from 'react-icons/fa';
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa';
-import { GiCancel } from 'react-icons/gi'
 import { show_alerta } from "../../Funciones"
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
@@ -17,6 +15,7 @@ import Cookies from 'js-cookie';
 const Escaletas=()=>{
     const [Datos, SetDatos] = useState([]);
     const [Usuarios, SetUsuarios] = useState([]);
+    const [Programas, SetPrograma] = useState([]);
     const [pkEscaleta,setPkEscaleta] = useState('');
     const [hora_Inicio, setHora_Inicio] = useState('');
     const [fecha, setFecha] = useState('');
@@ -32,9 +31,11 @@ const Escaletas=()=>{
     try {
       const respuesta = await axios.get('https://localhost:7201/Escaleta/GetHoy');
       const respuesta2 = await axios.get('https://localhost:7201/Usuario/Get');
+      const respuesta3 = await axios.get('https://localhost:7201/Programa/Get');
       console.log(respuesta.data.result)
       SetDatos(respuesta.data.result);
       SetUsuarios(respuesta2.data.result);
+      SetPrograma(respuesta3.data.result);
     } catch (error) {
       console.log(error)
     }
@@ -68,6 +69,9 @@ const Escaletas=()=>{
         if(hora_Inicio.trim()===''){
           show_alerta('Escribe la hora de inicio de la escaleta','warning');
         }
+        else if(fkPrograma===''){
+          show_alerta('Inserte un programa','warning');
+        }
       }
       else{
         if(hora_Inicio.trim()===''){
@@ -75,6 +79,9 @@ const Escaletas=()=>{
         }
         else if(fecha.trim()===''){
           show_alerta('Escribe la fecha de creacion','warning');
+        }
+        else if(fkPrograma===''){
+          show_alerta('Inserta un programa','warning');
         }
         else{
           
@@ -159,7 +166,7 @@ const Escaletas=()=>{
                     <Link to='/MainMenu'>
                         <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                     </Link>
-                        <button data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
+                        <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button>
                   </div>
               </div>                    
                 <div className="Auth-form-container-Main">
@@ -212,6 +219,18 @@ const Escaletas=()=>{
                 <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={hora_Inicio}
                 onChange={(e)=> setHora_Inicio(e.target.value)}></input>
               </div>
+              <label> Programa </label>
+              <div className='input-group mb-3'>
+                <div className='input-group mb-3'>
+                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
+                        <option></option>
+                    {Programas.map(Programas =>(
+                        <option value={Programas.pkPrograma}>{Programas.nombre_Programa}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <div className="d-grid col-6 mx-auto">
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
@@ -242,8 +261,15 @@ const Escaletas=()=>{
               <label>Fecha</label>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="Fecha" value={fecha}
-                onChange={(e)=> setFecha(e.target.value)}></input>
+                <input
+                  className="form-control"
+                  placeholder="Fecha"
+                  type="date"
+                  id="fecha"
+                  name="fecha"
+                  value={fecha}
+                  onChange={(e)=> setFecha(e.target.value)}
+                />
               </div>
               <label>Usuario</label>
               <div className='input-group mb-3'>
@@ -254,6 +280,17 @@ const Escaletas=()=>{
                       <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
                   ))}
                 </select>
+
+                </div>
+                  <label> Programa </label>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
+                          <option></option>
+                      {Programas.map(Programas =>(
+                          <option value={Programas.pkPrograma}>{Programas.nombre_Programa}</option>
+                      ))}
+                    </select>
               </div>
               <div className="d-grid col-6 mx-auto">
                     <button onClick={()=> Validar()} className="btn btn-success">

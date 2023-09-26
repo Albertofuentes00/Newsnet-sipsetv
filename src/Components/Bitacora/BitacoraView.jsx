@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import SearchMenu from "../SearchMenu"
+import Cookies from 'js-cookie';
 
 
 function Bitacora() {
@@ -14,12 +15,17 @@ function Bitacora() {
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
   const [Usuarios, SetUsuarios] = useState([]);
+  const [Fuentes, SetFuentes] = useState([]);
   const [pkNota, setPkNota] = useState('');
   const [titulo, setTitulo] = useState('');
+  const [conductor, setConductor] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [indice, setIndice] = useState('');
+  const [fecha, setFecha] = useState('');
   const [fkCategoria, setFkCategoria] = useState('');
   const [fkFormato, setFkFormato] = useState('');
   const [fkUsuario, setFkUsuario] = useState('');
-  const [fecha, setFecha] = useState('');
+  const [fkfuente, setFkFuente] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
 
@@ -31,15 +37,19 @@ function Bitacora() {
       const respuesta = await axios.get('https://localhost:7201/Nota/GetHoy');
       const respuesta2 = await axios.get('https://localhost:7201/Categoria/Get');
       const respuesta3 = await axios.get('https://localhost:7201/Formato/Get');
-      const respuesta4 = await axios.get('https://localhost:7201/Usuario/Get');
+      const respuesta4 = await axios.get('https://localhost:7201/Fuente/Get');
       SetDatos(respuesta.data.result);
       SetCategorias(respuesta2.data.result);
       SetFormatos(respuesta3.data.result);
-      SetUsuarios(respuesta4.data.result);
+      SetFuentes(respuesta4.data.result);
   }
   const OpenModal = (op,pkNota,titulo,fkCategoria,fkFormato,fkUsuario,fecha) =>{
     setPkNota('');
     setTitulo('');
+    setConductor('');
+    setTipo('');
+    setIndice('');
+    setFkFuente('');
     setFkCategoria('');
     setFkFormato('');
     setFkUsuario('');
@@ -47,11 +57,14 @@ function Bitacora() {
     setOperation(op);
     if(op === 1){
       setTitle('Crear Nota')
+      setTipo(0);
+      setIndice(0);
     }
     else if(op === 2){
       setTitle('Actualizar Nota')
       setPkNota(pkNota);
       setTitulo(titulo);
+      setFkFuente(fkfuente);
       setFkCategoria(fkCategoria);
       setFkFormato(fkFormato);
       setFkUsuario(fkUsuario);
@@ -73,6 +86,9 @@ function Bitacora() {
       else if(fkFormato===''){
         show_alerta('Seleccion un Formato','warning');
       }
+      else if(fkfuente===''){
+        show_alerta('Seleccion una fuente','warning');
+      }
       else if(fkUsuario===''){
         show_alerta('Seleccion un reportero','warning');
       }
@@ -90,12 +106,28 @@ function Bitacora() {
       else if(fkUsuario===''){
         show_alerta('Seleccion un reportero','warning');
       }
+      else if(fkfuente===''){
+        show_alerta('Seleccion una fuente','warning');
+      }
       else if(fecha===''){
         show_alerta('Introduce la fecha','warning');
       }
     }
     if(operation === 1){
-      parametros = {titulo:titulo.trim(),fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:fkUsuario.trim()};
+      try {
+      const fechaActual = new Date();
+      const año = fechaActual.getFullYear();
+      const mes = fechaActual.getMonth() + 1;
+      const dia = fechaActual.getDate();
+      const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+
+
+
+
+      const cadena = Cookies.get('Usuario');
+      const partes = cadena.split('/');
+      const user = partes[0];
+      parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo.trim(),indice:indice(),fkCategoria:fkCategoria.trim(),fkFormato:fkFormato.trim(),fkUsuario:user};
         axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
         document.getElementById('btnCerrar').click();
         GetDatos();
@@ -104,6 +136,9 @@ function Bitacora() {
         show_alerta('error en la solicitud','error');
         console.log(error);
       });
+      } catch (error) {
+        console.log(error);
+      }
 
     }
     else{
@@ -255,15 +290,17 @@ return (
               </div>
 
               <div className="Grid">
-                <label> Usuario </label>
-                <div className="input-group mb-3">
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
-                <option></option>
-                {Usuarios.map(Usuarios =>(
-                <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
-                ))}
-                </select>
+                <label> Fuentes </label>
+                <div className='input-group mb-3'>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                          <option></option>
+                      {Fuentes.map(Fuentes =>(
+                          <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -325,16 +362,19 @@ return (
                   ))}
                 </select>
               </div>
-              <label> Usuario </label>
-              <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
-                    <option></option>
-                  {Usuarios.map(Usuarios =>(
-                      <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
-                  ))}
-                </select>
-              </div>
+
+                <label> Fuentes </label>
+                <div className='input-group mb-3'>
+                  <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                          <option></option>
+                      {Fuentes.map(Fuentes =>(
+                          <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               <div className="d-grid col-6 mx-auto">
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
