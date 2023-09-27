@@ -141,7 +141,7 @@ const Bitacora=()=>{
           
           var Varreportero;
           
-          if (user != "Responsable" || user != "Administrador") {
+          if (user != "Responsable") {
 
               const cadena = Cookies.get('Usuario');
               const partes = cadena.split('/');
@@ -328,9 +328,10 @@ const Bitacora=()=>{
                   <textarea type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
                   onChange={(e)=> setTitulo(e.target.value)}></textarea>
                 </div>
-    
-                <div className="Row">
-                  <div className="Grid">
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
                     <label> Categoria </label>
                     <div className='input-group mb-3'>
                     <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
@@ -341,9 +342,9 @@ const Bitacora=()=>{
                     ))}
                     </select>
                     </div>
-                  </div>
-    
-                  <div className="Grid">
+                    </div>
+                    
+                    <div class="col">
                     <label> Formato </label>
                     <div className='input-group mb-3'>
                     <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
@@ -354,10 +355,12 @@ const Bitacora=()=>{
                     ))}
                     </select>
                     </div>
-                  </div>
-    
-                  <div className="Grid">
-                    <label> Fuentes </label>
+                    </div>
+
+                      <div class="w-100">
+
+                    <div class="col">
+                       <label> Fuentes </label>
                     <div className='input-group mb-3'>
                       <div className='input-group mb-3'>
                       <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
@@ -368,15 +371,18 @@ const Bitacora=()=>{
                           ))}
                         </select>
                       </div>
+
+                        <div class="col">
+                          {rol(true)}
+                        </div>
+                    </div>
+                    </div>
+
+
                     </div>
                   </div>
-                  {rol(true)}
-
-
-
-
-                  
                 </div>
+                
             
                 <div className="d-grid col-6 mx-auto">
                   <div className="Row">
