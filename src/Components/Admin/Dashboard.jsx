@@ -12,7 +12,7 @@ function AdminMenu(){
 
     return(
         <body className="App-body">
-        <header>
+        <header className="mainheader">
             <div className="MenuHeader">
             <Link to='/MainMenu'>
                 <button type="button" class="btn btn-dark"> <FaAngleLeft size={30} color="white" /> Regresar</button>

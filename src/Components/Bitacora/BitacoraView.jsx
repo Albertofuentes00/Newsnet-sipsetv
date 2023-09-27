@@ -10,12 +10,22 @@ import whitReactContent from 'sweetalert2-react-content'
 import Cookies from 'js-cookie';
 
 const Bitacora=()=>{
+
+
+
+
+  
+
+
+
     const [Datos, SetDatos] = useState([]);
     const [Categorias, SetCategorias] = useState([]);
     const [Formatos, SetFormatos] = useState([]);
     const [Fuentes, SetFuentes] = useState([]);
+    const [Usuarios, SetUsuarios] = useState([]);
     const [pkNota, setPkNota] = useState('');
     const [titulo, setTitulo] = useState('');
+    const [reportero, setReportero] = useState('');
     const [conductor, setConductor] = useState('');
     const [tipo, setTipo] = useState('');
     const [indice, setIndice] = useState('');
@@ -36,10 +46,12 @@ const Bitacora=()=>{
       const respuesta2 = await axios.get('https://localhost:7201/Categoria/Get');
       const respuesta3 = await axios.get('https://localhost:7201/Formato/Get');
       const respuesta4 = await axios.get('https://localhost:7201/Fuente/Get');
+      const respuesta5 = await axios.get('https://localhost:7201/Usuario/Get/Obtener_Reporteros');
       SetDatos(respuesta.data.result);
       SetCategorias(respuesta2.data.result);
       SetFormatos(respuesta3.data.result);
       SetFuentes(respuesta4.data.result);
+      SetUsuarios(respuesta5.data.result);
     } catch (error) {
       console.log(error)
     }
@@ -57,6 +69,7 @@ const Bitacora=()=>{
     setFkUsuario('');
     setFecha('');
     setOperation(op);
+    setReportero();
       if(op === 1){
         setTitle('Crear Nota')
       }
@@ -124,11 +137,28 @@ const Bitacora=()=>{
 
           const cadena = Cookies.get('Usuario');
           const partes = cadena.split('/');
-          const user = partes[0];
-          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:"JB",tipo:0,indice:0,fkFormato:fkFormato,fkUsuario:user,fkCategoria:fkCategoria,fkfuente:fkfuente};
+          const user = partes[2];
+          
+          var Varreportero;
+          
+          if (user != "Responsable" || user != "Administrador") {
+
+              const cadena = Cookies.get('Usuario');
+              const partes = cadena.split('/');
+              const user = partes[0];
+
+              console.log("La fk es: " + user.trim());
+              Varreportero = user;
+          } else {
+              console.log(reportero);
+              Varreportero = reportero;
+          }
+         
+          var conductor = 'JB';
+          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:0,indice:0,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
           axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
-          document.getElementById('btnCerrar').click();
+          document.getElementById('btnCerrareditar').click();
           GetDatos();
         })
         .catch(function(error){
@@ -164,7 +194,6 @@ const Bitacora=()=>{
         if(result.isConfirmed){
             setPkNota(pkNota);
             axios.delete('https://localhost:7201/Nota/Delete/' + pkNota).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
             GetDatos();
           })
           .catch(function(error){
@@ -174,6 +203,45 @@ const Bitacora=()=>{
         }
       });
     }
+
+
+
+    function rol() {
+      try {
+        const cadena = Cookies.get('Usuario');
+        const partes = cadena.split('/');
+        const rol = partes[2];
+        
+        if (rol === "Responsable" || rol === "Administrador") {
+          return (
+           
+  <div className="Grid">
+  <label> Reportero </label>
+                      <div className='input-group mb-3'>
+                        <div className='input-group mb-3'>
+                        <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                          <select required className="form-select" value={fkUsuario} onChange={(e)=> setReportero(e.target.value)}>
+                                <option></option>
+                            {Usuarios.map(Usuarios =>(
+                                <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+  </div>
+          );
+        } else {
+          return null; // No devuelve nada cuando el rol no es "Usuario"
+        }
+      } catch (error) {
+        console.log(error);
+      }
+       
+      }
+
+
+
+
     return(
         <div className="Auth-form-container">
 
@@ -230,7 +298,7 @@ const Bitacora=()=>{
                       <i className="fa-solid fa-edit"></i>
                     </button>
                     &nbsp;
-                    <button onClick={()=> deleteDatos(Datos.pkNota)}  className="acciones">
+                    <button onClick={()=> deleteDatos(Datos.pkNota)} className="acciones">
                       <i className="fa-solid fa-trash"></i>
                     </button>
                     </td>
@@ -302,6 +370,12 @@ const Bitacora=()=>{
                       </div>
                     </div>
                   </div>
+                  {rol(true)}
+
+
+
+
+                  
                 </div>
             
                 <div className="d-grid col-6 mx-auto">
@@ -374,6 +448,7 @@ const Bitacora=()=>{
                         </select>
                       </div>
                     </div>
+
                   <div className="d-grid col-6 mx-auto">
                         <button onClick={()=> Validar()} className="btn btn-success">
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
