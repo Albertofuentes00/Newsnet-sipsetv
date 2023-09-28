@@ -57,7 +57,7 @@ const Bitacora=()=>{
     }
    
   }
-  const OpenModal = (op,pkNota,titulo,fkCategoria,fkFormato,fkUsuario,fecha) =>{
+  const OpenModal = (op,pkNota,titulo,fecha,fkCategoria,fkFormato,fkfuente,fkUsuario) =>{
     setPkNota('');
     setTitulo('');
     setConductor('');
@@ -82,6 +82,7 @@ const Bitacora=()=>{
         setFkFormato(fkFormato);
         setFkUsuario(fkUsuario);
         setFecha(fecha);
+        setFkFuente(fkfuente);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -122,6 +123,9 @@ const Bitacora=()=>{
         else if(fecha===''){
             show_alerta('Introduce la fecha','warning');
         }
+        else if(fkfuente===''){
+          show_alerta('Seleccion una fuente','warning');
+        }
       }
       if(operation === 1){
 
@@ -154,16 +158,17 @@ const Bitacora=()=>{
               Varreportero = fkUsuario;
           }
          
-          var conductor = 'JB';
-          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:0,indice:0,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+          var conductor = '';
+          var tipo = 0;
+          var indice = 0;
+          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
           axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
-          document.getElementById('btnCerrareditar').click();
+          document.getElementById('btnCerrar').click();
           GetDatos();
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
-          console.log(titulo,fecha,conductor,tipo,indice,fkFormato,fkUsuario,fkCategoria,fkfuente);
           console.log(error);
         });
         } catch (error) {
@@ -171,7 +176,10 @@ const Bitacora=()=>{
         }
       }
       else{
-        parametros = {titulo:titulo.trim(),fkCategoria:fkCategoria,idFormato:fkFormato,fkUsuario:fkUsuario,fecha:fecha};
+        var conductor = '';
+        var tipo = 0;
+        var indice = 0;
+        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:fkUsuario};
         axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           GetDatos();
@@ -293,7 +301,7 @@ const Bitacora=()=>{
                     <td>{Datos.fuente.nombre_Fuente}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
-                    <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fkCategoria,Datos.fkFormato,Datos.fkUsuario,Datos.fecha)} 
+                    <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fecha,Datos.fkCategoria,Datos.fkFormato,Datos.fkFuente,Datos.fkUsuario)} 
                      className="acciones" data-bs-toggle='modal' data-bs-target='#modaleditar'>
                       <i className="fa-solid fa-edit"></i>
                     </button>
@@ -361,21 +369,19 @@ const Bitacora=()=>{
 
                     <div class="col">
                        <label> Fuentes </label>
-                    <div className='input-group mb-3'>
-                      <div className='input-group mb-3'>
-                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                        <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                        <div className='input-group mb-3'>
+                          <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                            <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
                               <option></option>
-                          {Fuentes.map(Fuentes =>(
+                              {Fuentes.map(Fuentes =>(
                               <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
-                          ))}
-                        </select>
-                      </div>
-
+                              ))}
+                              </select>
+                        </div>
+                            
                         <div class="col">
                           {rol(true)}
                         </div>
-                    </div>
                     </div>
 
 
@@ -390,7 +396,7 @@ const Bitacora=()=>{
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
                     </button>
     
-                    <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
+                    <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
                       <i className="fa-solid fa-circle-xmark"/> Cancelar
                     </button>
                   </div>
@@ -403,22 +409,23 @@ const Bitacora=()=>{
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>
-                <label className='h5'>{title}</label>
+                <label className='h3'>{title}</label>
                 <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
-                <h4>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h4>
-                <label> Titulo </label>
+                <h5>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h5>
+                
                 <div className='modal-body'>
+                <label> Titulo </label>
                   <input type='hidden' id='id'></input>
                   <div className='input-group mb-3'>
                   <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                     <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
                     onChange={(e)=> setTitulo(e.target.value)}></input>
                   </div>
-                  <label> fecha </label>
+                  <label> fecha INSERTAR OBLIGATORIAMENTE</label>
                   <div className='input-group mb-3'>
                   <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                    <input type="date" className="form-control mt-1" value={fecha}
+                    <input type="Date" className="form-control mt-1" value={fecha}
                     onChange={(e)=> setFecha(e.target.value)}></input>
                   </div>
                   <label> Categoria </label>

@@ -307,7 +307,7 @@ const Escaletas=()=>{
                     {Datos.map((Datos,i) =>(
                             <tr>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.nombre_Programa}</td>
+                                <td>{Datos.programa.nombre_Programa}</td>
                                 <td>{Datos.fecha.split(' ')[0]}</td>
                                 <td>{Datos.hora_Inicio}</td>
                                 <td className="buttons-th"> 
@@ -378,7 +378,7 @@ const Escaletas=()=>{
               <input type='hidden' id='id'></input>
               <div className='input-group mb-3'>
                 <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-                <input type='text' id="nombre" className="form-control" placeholder="HoraInicio" value={hora_Inicio}
+                <input type='time' id="nombre" className="form-control" placeholder="HoraInicio" value={hora_Inicio}
                 onChange={(e)=> setHora_Inicio(e.target.value)}></input>
               </div>
               <label>Fecha</label>

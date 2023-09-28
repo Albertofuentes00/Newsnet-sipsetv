@@ -3,9 +3,7 @@ import axios from 'axios'
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
-import { FaSearch } from "react-icons/fa";
 import { FaEye } from 'react-icons/fa'
-import { GiCancel } from 'react-icons/gi'
 
 import { Link } from "react-router-dom";
 import SearchMenu from "../SearchMenu";
@@ -26,7 +24,7 @@ const GuionesNotas=()=>{
   
     const GetDatos = async ()=>{
         try {
-            const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+            const respuesta = await axios.get('https://localhost:7201/Nota/GetHoy');
             console.log(respuesta.data.result);
             SetDatos(respuesta.data.result);
         } catch (error) {
@@ -72,7 +70,7 @@ const GuionesNotas=()=>{
                             </thead>
                             <tbody className="table-group-divider">
                                 {Datos.map((Datos,i) =>(
-                                    <tr key={Datos.iD_Nota}>
+                                    <tr key={Datos.fkNota}>
                                     <td>{(i+1)}</td>
                                     <td>{Datos.titulo}</td>
                                     <td>{Datos.categoria.nombre_Categoria}</td>
@@ -84,7 +82,7 @@ const GuionesNotas=()=>{
                                             <button type="button" className="acciones">  <FaEye size={20}/></button>
                                         </Link>
 
-                                        <Link to={'/EditarGuion/' + Datos.iD_Nota}>
+                                        <Link to={'/EditarGuion/' + Datos.pkNota}>
                                         <button type="button" className="acciones"> <FaEdit size={20}/></button> 
                                         </Link>
                                         <button type="button" className="acciones"> <FaTrash size={20} /></button> 
