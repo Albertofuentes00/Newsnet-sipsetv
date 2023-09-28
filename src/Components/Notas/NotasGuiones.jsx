@@ -78,9 +78,9 @@ const GuionesNotas=()=>{
                                     <td>{Datos.categoria.nombre_Categoria}</td>
                                     <td>{Datos.formato.nombre_Formato}</td>
                                     <td>{Datos.usuario.nombre}</td>
-                                    <td>{Datos.fecha}</td>
+                                    <td>{Datos.fecha.split(' ')[0]}</td>
                                     <td className="buttons-th"> 
-                                        <Link to={'/LeerGuion/'+ Datos.iD_Nota}>
+                                        <Link to={'/LeerGuion/'+ Datos.pkNota}>
                                             <button type="button" className="acciones">  <FaEye size={20}/></button>
                                         </Link>
 

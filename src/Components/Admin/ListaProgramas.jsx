@@ -130,6 +130,27 @@ const ListaProgramas=()=>{
 
 
 
+    const buscar = async ()=>{
+      try {
+        var variable = document.getElementById("Buscador").value
+      if (variable == ""){
+        GetDatos();
+      }else{
+        const respuesta = await axios.get('https://localhost:7201/Programa/Buscar/' + variable)
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+        setCurrentPage(1);
+      }
+    
+      } catch (error) {
+        console.log(error);
+      }
+      
+    }
+
+
+
+
     return(
 <div className="Auth-form-container">
 
@@ -139,7 +160,7 @@ const ListaProgramas=()=>{
           <h3>Lista de programas</h3>
           <div className="Button-form">
           <div className="buscador_admin">
-                  <input id="Buscador" type="search" className="inputbus"   placeholder="Buscar..." />
+                  <input id="Buscador" type="search" className="inputbus"  onChange={()=> buscar()}  placeholder="Buscar..." />
                   <FaSearch size={20} color="gray"/>
                   </div>
             <button onClick={()=> OpenModal(1)} data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nuevo Programa</button>
@@ -162,7 +183,7 @@ const ListaProgramas=()=>{
                     <tr key={Datos.pkPrograma}>
                       <td>{(itemNumber + i)}</td>
                       <td>{Datos.nombre_Programa}</td>
-                      <td>{Datos.categoria.nombre_Categoria}</td>
+                      <td>{Datos.nombre_Categoria}</td>
                       <td>
                         <button onClick={()=> OpenModal(2,Datos.pkPrograma,Datos.nombre_Programa,Datos.fkCategoria)} 
                        className="acciones" data-bs-toggle='modal' data-bs-target='#modaldefault'>

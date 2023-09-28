@@ -11,8 +11,53 @@ import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import SearchEscaleta from "../SearchEscaletas";
 import Cookies from 'js-cookie';
+import { FaSearch } from 'react-icons/fa';
 
 const Escaletas=()=>{
+
+
+
+
+  const [fechaFI, setFechaFI] = useState(getFechaActualFI);
+  const [fechaFF, setFechaFF] = useState(getFechaActualFF);
+
+  function getFechaActualFI() {
+    const fechaActual = new Date();
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  function getFechaActualFF() {
+    const fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
+
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
+
+  function getFecha() {
+    var fechaFI = document.getElementById("FI").value
+    var fechaFF = document.getElementById("FF").value
+    console.log(fechaFI + " A " + fechaFF)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
     const [Datos, SetDatos] = useState([]);
     const [Usuarios, SetUsuarios] = useState([]);
     const [Programas, SetPrograma] = useState([]);
@@ -150,13 +195,90 @@ const Escaletas=()=>{
         }
       });
     }
+
+
+
+
+
+    const buscar = async ()=>{
+      try {
+        var variable = document.getElementById("Buscador").value;
+        var fechaFI = document.getElementById("FI").value;
+        var fechaFF = document.getElementById("FF").value;
+        console.log('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF);
+      if (variable == ""){
+        const respuesta = await axios.get('https://localhost:7201/Escaleta/BuscarDefault/' + fechaFI+"/"+fechaFF)
+
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+      }else{
+        const respuesta = await axios.get('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF)
+
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+      }
+    
+      } catch (error) {
+        console.log(error);
+      }
+      
+    }
+
+
+
+
+
     return(
 
         <div className="Auth-form-container">
 
         <div className="Grid">
 
-          <SearchEscaleta/>
+          
+
+
+
+
+        <div className="Auth-form-searchbar">
+      <div className="Row-searchbar">
+        <div className="Row">
+          <div className='buscador_admin'>
+          <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
+          </div>
+        </div>
+        <div className="Row">
+          <div className="Grid">
+            <label> Fecha Inicial</label>
+            <input
+              id="FI"
+              type="date"
+              className="input-search"
+              value={fechaFI}
+              onChange={(e) => setFechaFI(e.target.value)}
+            />
+            <div className="Grid">
+              <label> Fecha Final</label>
+              <input id="FF" type="date" className="input-search" value={fechaFF}
+              onChange={(e) => setFechaFF(e.target.value)}/>
+            </div>
+          </div>
+        </div>
+        <div className="Row">
+          <div className="Grid"></div>
+          <button className="btn btn-primary" onClick={()=> buscar()}>
+            <FaSearch size={20} color="white" /> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
 
           <div className="Auth-form-table">
             <div className='Auth-Maintable'>
@@ -185,8 +307,8 @@ const Escaletas=()=>{
                     {Datos.map((Datos,i) =>(
                             <tr>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.programa.nombre_Programa}</td>
-                                <td>{Datos.fecha}</td>
+                                <td>{Datos.nombre_Programa}</td>
+                                <td>{Datos.fecha.split(' ')[0]}</td>
                                 <td>{Datos.hora_Inicio}</td>
                                 <td className="buttons-th"> 
                                   <Link to={'/ArmadoEscaleta/'+ Datos.pkEscaleta} className="acciones" > <FaEye size={20} className="acciones"/></Link>
@@ -212,13 +334,6 @@ const Escaletas=()=>{
             </div>
             <h4>Ingresa los datos requeridos para crear una nueva escaleta</h4>
             <div className='modal-body'>
-              <label>Hora de inicio</label>
-              <input type='hidden' id='id'></input>
-              <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
-                <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={hora_Inicio}
-                onChange={(e)=> setHora_Inicio(e.target.value)}></input>
-              </div>
               <label> Programa </label>
               <div className='input-group mb-3'>
                 <div className='input-group mb-3'>
@@ -231,6 +346,14 @@ const Escaletas=()=>{
                   </select>
                 </div>
               </div>
+              <label>Hora de inicio</label>
+              <input type='hidden' id='id'></input>
+              <div className='input-group mb-3'>
+                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={hora_Inicio}
+                onChange={(e)=> setHora_Inicio(e.target.value)}></input>
+              </div>
+
               <div className="d-grid col-6 mx-auto">
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar

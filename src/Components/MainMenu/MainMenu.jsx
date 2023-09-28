@@ -18,16 +18,70 @@ function Menu() {
         
         if (rol === "Administrador") {
           return (
-            <li>
+            <div  className="horizontal-list">
+               <li>
+                            <Link to='/Bitacora'>
+                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                            </Link>
+                        </li>    
+                        <li>
+                            <Link to='/EscaletaViewH'>
+                                <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/Notas'>
+                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                            </Link>
+                        </li>
+                        <li>
               <Link to='/Admin/ListaUsuarios'> 
                 <button type="button" className="btn btn-light">
                   <FaUser size={30} color='white' /> Admin
                 </button>
               </Link>
             </li>
+            </div>
+
           );
-        } else {
-          return null; // No devuelve nada cuando el rol no es "Usuario"
+        } 
+        else if(rol === "Reportero"){
+          return(
+          <div  className="horizontal-list">
+            <li>
+                            <Link to='/Bitacora'>
+                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                            </Link>
+                        </li>    
+                        <li>
+                            <Link to='/Notas'>
+                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                            </Link>
+                        </li>
+          </div>
+
+);
+        }      
+        else {
+          return(
+          <div className="horizontal-list">
+            <li>
+                            <Link to='/Bitacora'>
+                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                            </Link>
+                        </li>    
+                        <li>
+                            <Link to='/EscaletaViewH'>
+                                <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/Notas'>
+                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                            </Link>
+                        </li>
+          </div>
+          );
         }
       } catch (error) {
         console.log(error);
@@ -50,22 +104,7 @@ function Menu() {
                     <br />
                     <div className= 'Menu-form'>
                         <div class="menu">
-                        <ul class="horizontal-list">
-                        <li>
-                            <Link to='/Bitacora'>
-                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
-                            </Link>
-                        </li>    
-                        <li>
-                            <Link to='/EscaletaViewH'>
-                                <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to='/Notas'>
-                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
-                            </Link>
-                        </li>
+                        <ul >    
                            {botonadmin(true)}
                         </ul>
                         </div>

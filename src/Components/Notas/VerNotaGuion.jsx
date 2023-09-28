@@ -13,9 +13,14 @@ const LeerGuion=()=>{
   },[]);
   
   const GetDatos = async()=>{
-      const respuesta = await axios.get('https://localhost:7201/Guion/GetNota/'+id);
-      console.log(respuesta.data.result);
-      SetDatos(respuesta.data.result);
+    try {
+        const respuesta = await axios.get('https://localhost:7201/Guion/GetNota/'+id);
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+    } catch (error) {
+        
+    }
+
   }
     return(
         <div className="Auth-form-container">

@@ -8,7 +8,11 @@ import Cookies from 'js-cookie';
 function Login() {
 
 
+
+
   const [Datos, SetDatos] = useState(null);
+
+
   const buscarUsuario = async ()=>{
     try{
       var user = document.getElementById("usuario").value
@@ -19,6 +23,7 @@ function Login() {
           setTimeout(function() {
             console.log("Espera de 3 segundos");
           }, 8000);
+          document.getElementById("outmen").hidden = true;
           document.getElementById("usuario").style.borderColor = 'green'
         document.getElementById("contra").style.borderColor = 'green'
         const pkUsuario = respuesta.data.result[0].pkUsuario;
@@ -29,10 +34,10 @@ function Login() {
           
         } else {
           console.log("ninguna coincidencia")
-          document.getElementById("usuario").style.borderColor = 'red'
-        document.getElementById("contra").style.borderColor = 'red'
-        document.getElementById("outmen").innerHTML = "El usuario no existe o la contraseña es incorrecta"
-        document.getElementById("outmen").hidden = false
+          document.getElementById("usuario").style.borderColor = 'red';
+        document.getElementById("contra").style.borderColor = 'red';
+        document.getElementById("outmen").innerHTML = "El usuario no existe o la contraseña es incorrecta";
+        document.getElementById("outmen").hidden = false;
         }
       }
       else{
@@ -47,6 +52,11 @@ function Login() {
       document.getElementById("outmen").innerHTML = "Error del servidor"
         document.getElementById("outmen").hidden = false
     }
+
+
+    
+  
+   
     
   }
     return (
@@ -61,6 +71,11 @@ function Login() {
               type="user"
               className="form-control mt-1"
               placeholder="Username"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  document.getElementById("contra").focus();
+                }
+              }}
             />
           </div>
           <div className="form-group mt-3">
@@ -69,6 +84,7 @@ function Login() {
               type="password"
               className="form-control mt-1"
               placeholder="Contraseña"
+              onKeyDown={(e) => {if (e.key === "Enter") {buscarUsuario(); }}}
             />
             
           </div>

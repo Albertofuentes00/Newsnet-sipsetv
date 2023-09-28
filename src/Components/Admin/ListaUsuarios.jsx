@@ -24,7 +24,7 @@ const ListaUsuarios=()=>{
   const [title, setTitle] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
 
   useEffect(()=>{
       GetDatos();

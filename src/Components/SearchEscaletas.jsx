@@ -27,6 +27,9 @@ function SearchEscaleta() {
     console.log(fechaFI + " A " + fechaFF)
   }
 
+
+
+
   return (
     <div className="Auth-form-searchbar">
       <div className="Row-searchbar">
@@ -54,7 +57,7 @@ function SearchEscaleta() {
         </div>
         <div className="Row">
           <div className="Grid"></div>
-          <button onClick={getFecha} className="btn btn-primary">
+          <button className="btn btn-primary" >
             <FaSearch size={20} color="white" /> Buscar
           </button>
         </div>

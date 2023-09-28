@@ -151,7 +151,7 @@ const Bitacora=()=>{
               Varreportero = user;
           } else {
               console.log(reportero);
-              Varreportero = reportero;
+              Varreportero = fkUsuario;
           }
          
           var conductor = 'JB';
@@ -220,7 +220,7 @@ const Bitacora=()=>{
                       <div className='input-group mb-3'>
                         <div className='input-group mb-3'>
                         <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                          <select required className="form-select" value={fkUsuario} onChange={(e)=> setReportero(e.target.value)}>
+                          <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
                                 <option></option>
                             {Usuarios.map(Usuarios =>(
                                 <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
@@ -291,7 +291,7 @@ const Bitacora=()=>{
                     <td>{Datos.formato.nombre_Formato}</td>
                     <td>{Datos.usuario.nombre}</td>
                     <td>{Datos.fuente.nombre_Fuente}</td>
-                    <td>{Datos.fecha}</td>
+                    <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
                     <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fkCategoria,Datos.fkFormato,Datos.fkUsuario,Datos.fecha)} 
                      className="acciones" data-bs-toggle='modal' data-bs-target='#modaleditar'>
