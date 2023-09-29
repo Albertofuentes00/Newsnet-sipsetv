@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
@@ -251,14 +253,14 @@ const ListaUsuarios=()=>{
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Anterior
+             <FaArrowAltCircleLeft size={20} />
             </button>
             <span>Página {currentPage}</span>
             <button
               onClick={() => setCurrentPage(currentPage + 1)}
               disabled={endIndex >= Datos.length}
             >
-              Siguiente
+              <FaArrowAltCircleRight size={20} />
             </button>
           </div>          
                 </div>

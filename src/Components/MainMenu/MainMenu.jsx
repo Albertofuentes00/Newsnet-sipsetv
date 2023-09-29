@@ -21,22 +21,22 @@ function Menu() {
             <div  className="horizontal-list">
                <li>
                             <Link to='/Bitacora'>
-                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                                <button type="button" class="Main-Button" > < FaBook size={30} color="white" /> Bitácora</button>
                             </Link>
                         </li>    
                         <li>
                             <Link to='/EscaletaViewH'>
-                                <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
+                                <button type="button" class="Main-Button" > <FaList size={30} color="white" /> Escaletas</button>
                             </Link>
                         </li>
                         <li>
                             <Link to='/Notas'>
-                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                                <button type="button" class="Main-Button" > <FaFileAlt size={30} color="white" /> Notas</button>
                             </Link>
                         </li>
                         <li>
               <Link to='/Admin/ListaUsuarios'> 
-                <button type="button" className="btn btn-light">
+                <button type="button" className="Main-Button">
                   <FaUser size={30} color='white' /> Admin
                 </button>
               </Link>
@@ -50,12 +50,12 @@ function Menu() {
           <div  className="horizontal-list">
             <li>
                             <Link to='/Bitacora'>
-                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                                <button type="button" class="Main-Button" > < FaBook size={30} color="white" /> Bitácora</button>
                             </Link>
                         </li>    
                         <li>
                             <Link to='/Notas'>
-                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                                <button type="button" class="Main-Button" > <FaFileAlt size={30} color="white" /> Notas</button>
                             </Link>
                         </li>
           </div>
@@ -67,17 +67,17 @@ function Menu() {
           <div className="horizontal-list">
             <li>
                             <Link to='/Bitacora'>
-                                <button type="button" class="btn btn-light" > < FaBook size={30} color="white" /> Bitácora</button>
+                                <button type="button" class="Main-Button" > < FaBook size={30} color="white" /> Bitácora</button>
                             </Link>
                         </li>    
                         <li>
                             <Link to='/EscaletaViewH'>
-                                <button type="button" class="btn btn-light" > <FaList size={30} color="white" /> Escaletas</button>
+                                <button type="button" class="Main-Button" > <FaList size={30} color="white" /> Escaletas</button>
                             </Link>
                         </li>
                         <li>
                             <Link to='/Notas'>
-                                <button type="button" class="btn btn-light" > <FaFileAlt size={30} color="white" /> Notas</button>
+                                <button type="button" class="Main-Button" > <FaFileAlt size={30} color="white" /> Notas</button>
                             </Link>
                         </li>
           </div>

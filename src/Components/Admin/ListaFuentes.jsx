@@ -7,6 +7,9 @@ import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+
 const ListaFuentes = () => {
 
     const [Datos, SetDatos] = useState([]);
@@ -14,6 +17,10 @@ const ListaFuentes = () => {
     const [nombre_Fuente, setNombre_Fuente] = useState('');
     const [operation, setOperation] = useState(1);
     const [title, setTitle] = useState('');
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 4;
 
     useEffect(()=>{
         GetFuente();
@@ -103,6 +110,38 @@ const ListaFuentes = () => {
         }
       });
     }
+
+
+
+
+
+    const buscar = async ()=>{
+      try {
+        var variable = document.getElementById("Buscador").value
+      if (variable == ""){
+        GetFuente();
+      }else{
+        const respuesta = await axios.get('https://localhost:7201/Fuente/Buscar/' + variable)
+        console.log(respuesta.data.result);
+        SetDatos(respuesta.data.result);
+      }
+    
+      } catch (error) {
+        console.log(error);
+      }
+      
+    }
+  
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentData = Datos.slice(startIndex, endIndex);
+    
+    const [itemNumber, setItemNumber] = useState(0);
+    useEffect(() => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      setItemNumber(startIndex + 1);
+    }, [currentPage, itemsPerPage, Datos]);
      
     
     return(
@@ -115,7 +154,7 @@ const ListaFuentes = () => {
                 <h3>Lista de fuentes</h3>
                 <div className="Button-form">
                 <div className="buscador_admin">
-                  <input id="Buscador" type="search" className="inputbus"  placeholder="Buscar..." />
+                  <input id="Buscador" type="search" className="inputbus" onChange={()=> buscar()} placeholder="Buscar..." />
                   <FaSearch size={20} color="gray"/>
                   </div>
                   <button onClick={()=> OpenModal(1)}  data-bs-toggle='modal' data-bs-target='#modaldefault' type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Nueva Fuente</button>
@@ -152,6 +191,21 @@ const ListaFuentes = () => {
         
         
             </div>
+            <div className="pagination-list">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <FaArrowAltCircleLeft size={20} />
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              <FaArrowAltCircleRight size={20} />
+            </button>
+          </div>  
         </div>
 
         <div id='modaldefault' className="modal fade" aria-hidden='false'>

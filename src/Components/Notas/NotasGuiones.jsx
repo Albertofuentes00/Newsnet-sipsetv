@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { FaEdit } from 'react-icons/fa';
+import { FaRegListAlt } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaEye } from 'react-icons/fa'
@@ -83,7 +83,7 @@ const GuionesNotas=()=>{
                                         </Link>
 
                                         <Link to={'/EditarGuion/' + Datos.pkNota}>
-                                        <button type="button" className="acciones"> <FaEdit size={20}/></button> 
+                                        <button type="button" className="acciones"> <FaRegListAlt size={20}/></button> 
                                         </Link>
                                         <button type="button" className="acciones"> <FaTrash size={20} /></button> 
                                     </td>

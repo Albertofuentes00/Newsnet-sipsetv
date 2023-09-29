@@ -7,6 +7,9 @@ import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import { show_alerta } from "../../Funciones"
 
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+
 
 
 const ListaRoles = () => {
@@ -18,7 +21,7 @@ const ListaRoles = () => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 4;
 
   useEffect(()=>{
       GetDatos();
@@ -184,14 +187,14 @@ const ListaRoles = () => {
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Anterior
+              <FaArrowAltCircleLeft size={20} />
             </button>
             <span>Página {currentPage}</span>
             <button
               onClick={() => setCurrentPage(currentPage + 1)}
               disabled={endIndex >= Datos.length}
             >
-              Siguiente
+              <FaArrowAltCircleRight size={20} />
             </button>
           </div>  
 
