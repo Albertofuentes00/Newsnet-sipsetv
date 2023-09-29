@@ -165,7 +165,7 @@ const Bitacora=()=>{
           var conductor = '';
           var tipo = 0;
           var indice = 0;
-          parametros = {titulo:titulo.trim(),fecha:fecha,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
           axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();

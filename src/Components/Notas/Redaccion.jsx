@@ -28,9 +28,9 @@ const LeerGuion=()=>{
         <div className="Auth-form-content">
             <h2 className="Auth-form-title">Guión Cancun Vive 03/07/23</h2>
             <div>{Datos.map(Dato => (
-                <div className="Row" key={Datos.pkNota}>
+                <div className="Row"> 
                     <div className="Grid">
-                        <h5> Reportero: {Dato.nota.usuario.nombre}</h5>
+                        <h5> Reportero: {Dato.nota.usuario}:  </h5>
                     </div>
                     <div className="Grid">
                         <h5> Categoria: {Dato.nota.categoria.nombre_Categoria} </h5>
@@ -56,11 +56,10 @@ const LeerGuion=()=>{
                 <textarea  type="text"
                         className="excel-cell-input"
                         value={Datos.anotacion}
-                        disabled='true'
                         />
                 <textarea  type="text"
                         className="excel-cell-input"
-                        value={Datos.descripcion} disabled='true' Resize='none'/>
+                        value={Datos.descripcion} Resize='none'/>
             </div>
             ))}
 

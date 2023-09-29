@@ -1,87 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSave } from 'react-icons/fa';
-import { GiCancel } from 'react-icons/gi';
 import {FaFilePdf} from 'react-icons/fa'
 import { FaEdit } from 'react-icons/fa';
 import {BsFillSignpostFill} from 'react-icons/bs';
 import { FaTrash } from "react-icons/fa";
-import { FaEye } from 'react-icons/fa'
-
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
+function Table() {
+  const Save = () => {
+    setRows.Save()
+  }
+
+  const [dragItem, setDragItem] = useState();
+  const [rows, setRows] = useState([
+    
+    { id: '1', order: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
+    { id: '2', order: '2' ,content: 'Javier', title: 'Fuga de agua', reportero: 'Iliana', format: 'FT' },
+    { id: '3', order: '3', content: 'Javier', title: 'Incendio', reportero: 'Iliana', format: 'TX/IN' },
+    { id: '4', order: '4',content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
+  ]);
+  
+  const handleAddRow = () => {
+    const newRow = {
+        id: rows.length + 1, content: '-', title: 'INDICACION', reportero: '-', format: '-' 
+    };
+
+    setRows([...rows, newRow]);
+  };
+  
+
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const newRows = [...rows];
+    const [removed] = newRows.splice(result.source.index, 1);
+    newRows.splice(result.destination.index, 0, removed);
+
+    setRows(newRows);
+  };
+  
+
+  const handleDragStart = (index) => {
+    setDragItem(index);
+  };
+  
+  const handleDragEnter = (e, index) => {
+    e.target.style.backgroundColor = "#336699";
+    const newRows = [...rows];
+    const item = newRows[dragItem];
+    newRows.splice(dragItem, 1);
+    newRows.splice(index, 0, item);
+    setDragItem(index);
+    setRows(newRows);
+  };
+  
+  const handleDragLeave = (e) => {
+    e.target.style.backgroundColor = "rgb(192, 192, 192)";
+  };
+  
+  const handleDrop = (e) => {
+    e.target.style.backgroundColor = "rgb(192, 192, 192)";
+  };
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('rows');
+    if (savedData) {
+      setRows(JSON.parse(savedData));
+    }
+  }, []); // Cargar datos del localStorage al cargar el componente
+
+  const handleSave = () => {
+    localStorage.setItem('rows', JSON.stringify(rows)); // Guardar datos en localStorage
+    console.log('Datos guardados localmente.');
+  };
 
 
-// const handleAddRow = () => {
-//   const newRow = {
-//     id: "New indicator"
-//   };
-//  setRows([...rows, newRow]);
-//   };
-
-    function Table () {
-
-        const Save = () => {
-          setRows.Save()
-        }
-
-        const [dragItem, setDragItem] = useState();
-        const [rows, setRows] = useState([
-          
-          { id: '1', order: '1', content: 'Javier', title: 'Manifestacion', reportero: 'Iliana', format: 'FT' },
-          { id: '2', order: '2' ,content: 'Javier', title: 'Fuga de agua', reportero: 'Iliana', format: 'FT' },
-          { id: '3', order: '3', content: 'Javier', title: 'Incendio', reportero: 'Iliana', format: 'TX/IN' },
-          { id: '4', order: '4',content: 'Javier', title: 'Trafico', reportero: 'Iliana', format: 'TX' },
-        ]);
-        
-        const handleAddRow = () => {
-          const newRow = {
-             id: rows.length + 1, content: '-', title: 'INDICACION', reportero: '-', format: '-' 
-          };
-
-          setRows([...rows, newRow]);
-        };
-        
-
-        const handleDragEnd = (result) => {
-          if (!result.destination) return;
-      
-          const newRows = [...rows];
-          const [removed] = newRows.splice(result.source.index, 1);
-          newRows.splice(result.destination.index, 0, removed);
-      
-          setRows(newRows);
-        };
-        
-
-        const handleDragStart = (index) => {
-          setDragItem(index);
-        };
-        
-        const handleDragEnter = (e, index) => {
-          e.target.style.backgroundColor = "#336699";
-          const newRows = [...rows];
-          const item = newRows[dragItem];
-          newRows.splice(dragItem, 1);
-          newRows.splice(index, 0, item);
-          setDragItem(index);
-          setRows(newRows);
-        };
-        
-        const handleDragLeave = (e) => {
-          e.target.style.backgroundColor = "rgb(192, 192, 192)";
-        };
-        
-        const handleDrop = (e) => {
-          e.target.style.backgroundColor = "rgb(192, 192, 192)";
-        };
-      
-        return (
+  return (
           <div className="Auth-form-container">
   <form className="Auth-form-escaleta">
   <div className="Auth-form-content">
@@ -90,7 +90,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
             <Link to='/EscaletaViewH'>
               <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
             </Link>
-              <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+              <button onClick={handleSave} type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
               <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
               
@@ -153,7 +153,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
                               <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
                             </td>
 
-
+                            
                           </tr>
                         )}
                       </Draggable>
