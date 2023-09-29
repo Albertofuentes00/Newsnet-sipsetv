@@ -309,7 +309,7 @@ const ListaUsuarios=()=>{
                   <label> Contraseña </label>
                   <div className='input-group mb-3'>
                   <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                  <input id="password" className="form-control" placeholder="Contraseña" value={user_Password}
+                  <input id="password" type="Password" className="form-control" placeholder="Contraseña" value={user_Password}
                   onChange={(e)=> setUser_Password(e.target.value)}></input>
                    </div>
                 </div>

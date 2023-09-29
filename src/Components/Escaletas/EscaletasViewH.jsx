@@ -100,7 +100,13 @@ const Escaletas=()=>{
         setTitle('Actualizar Datos de la Escaleta')
         setPkEscaleta(pkEscaleta);
         setHora_Inicio(hora_Inicio);
-        setFecha(fecha);
+        const fechaObjeto = new Date(fecha);
+
+         const dia = fechaObjeto.getDate();
+         const mes = fechaObjeto.getMonth() + 1;
+         const año = fechaObjeto.getFullYear();
+         const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+        setFecha(fechaFormateada);
         setFkPrograma(fkPrograma);
         setFkUsuario(fkUsuario);
       }
@@ -207,15 +213,25 @@ const Escaletas=()=>{
         var fechaFF = document.getElementById("FF").value;
         console.log('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF);
       if (variable == ""){
-        const respuesta = await axios.get('https://localhost:7201/Escaleta/BuscarDefault/' + fechaFI+"/"+fechaFF)
+        try {
+          const respuesta = await axios.get('https://localhost:7201/Escaleta/BuscarDefault/' + fechaFI+"/"+fechaFF)
 
-        console.log(respuesta.data.result);
-        SetDatos(respuesta.data.result);
+          console.log(respuesta.data.result);
+          SetDatos(respuesta.data.result);
+        } catch (error) {
+          
+        }
+       
       }else{
-        const respuesta = await axios.get('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF)
+        try {
+          const respuesta = await axios.get('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF)
 
-        console.log(respuesta.data.result);
-        SetDatos(respuesta.data.result);
+          console.log(respuesta.data.result);
+          SetDatos(respuesta.data.result);
+        } catch (error) {
+          
+        }
+
       }
     
       } catch (error) {
@@ -307,7 +323,7 @@ const Escaletas=()=>{
                     {Datos.map((Datos,i) =>(
                             <tr>
                                 <td>{(i+1)}</td>
-                                <td>{Datos.programa.nombre_Programa}</td>
+                                <td>{Datos.nombre_Programa}</td>
                                 <td>{Datos.fecha.split(' ')[0]}</td>
                                 <td>{Datos.hora_Inicio}</td>
                                 <td className="buttons-th"> 

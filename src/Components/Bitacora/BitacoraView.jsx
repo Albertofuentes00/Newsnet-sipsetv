@@ -11,12 +11,7 @@ import Cookies from 'js-cookie';
 
 const Bitacora=()=>{
 
-
-
-
   
-
-
 
     const [Datos, SetDatos] = useState([]);
     const [Categorias, SetCategorias] = useState([]);
@@ -34,15 +29,16 @@ const Bitacora=()=>{
     const [fkFormato, setFkFormato] = useState('');
     const [fkUsuario, setFkUsuario] = useState('');
     const [fkfuente, setFkFuente] = useState('');
-    const [operation, setOperation] = useState(1);
+    const [operation, setOperation] = useState(1); 
     const [title, setTitle] = useState('');
+
     useEffect(()=>{
       GetDatos();
   },[]);
   
   const GetDatos = async()=>{
     try {
-      const respuesta = await axios.get('https://localhost:7201/Nota/GetHoy');
+      const respuesta = await axios.get('https://localhost:7201/Nota/Get');
       const respuesta2 = await axios.get('https://localhost:7201/Categoria/Get');
       const respuesta3 = await axios.get('https://localhost:7201/Formato/Get');
       const respuesta4 = await axios.get('https://localhost:7201/Fuente/Get');
@@ -81,8 +77,16 @@ const Bitacora=()=>{
         setFkCategoria(fkCategoria);
         setFkFormato(fkFormato);
         setFkUsuario(fkUsuario);
-        setFecha(fecha);
         setFkFuente(fkfuente);
+
+
+        const fechaObjeto = new Date(fecha);
+
+         const dia = fechaObjeto.getDate();
+         const mes = fechaObjeto.getMonth() + 1;
+         const año = fechaObjeto.getFullYear();
+         const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+        setFecha(fechaFormateada);
       }
       window.setTimeout(function(){
         document.getElementById('nombre').focus();
@@ -145,7 +149,7 @@ const Bitacora=()=>{
           
           var Varreportero;
           
-          if (user != "Responsable") {
+          if (user != "Responsable" && user != "Administrador") {
 
               const cadena = Cookies.get('Usuario');
               const partes = cadena.split('/');
@@ -161,7 +165,7 @@ const Bitacora=()=>{
           var conductor = '';
           var tipo = 0;
           var indice = 0;
-          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+          parametros = {titulo:titulo.trim(),fecha:fecha,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
           axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();
@@ -295,10 +299,10 @@ const Bitacora=()=>{
                     <tr key={Datos.pkNota}>
                     <td>{(i+1)}</td>
                     <td>{Datos.titulo}</td>
-                    <td>{Datos.categoria.nombre_Categoria}</td>
-                    <td>{Datos.formato.nombre_Formato}</td>
-                    <td>{Datos.usuario.nombre}</td>
-                    <td>{Datos.fuente.nombre_Fuente}</td>
+                    <td>{Datos.nombre_Categoria}</td>
+                    <td>{Datos.nombre_Formato}</td>
+                    <td>{Datos.nombre}</td>
+                    <td>{Datos.nombre_Fuente}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
                     <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fecha,Datos.fkCategoria,Datos.fkFormato,Datos.fkFuente,Datos.fkUsuario)} 
@@ -422,7 +426,7 @@ const Bitacora=()=>{
                     <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
                     onChange={(e)=> setTitulo(e.target.value)}></input>
                   </div>
-                  <label> fecha INSERTAR OBLIGATORIAMENTE</label>
+                  <label> fecha</label>
                   <div className='input-group mb-3'>
                   <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                     <input type="Date" className="form-control mt-1" value={fecha}
