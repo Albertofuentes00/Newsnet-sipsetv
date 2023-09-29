@@ -999,12 +999,15 @@ p{
 .Main-Button{
   min-width: 7vw;
   min-height: 10vh;
-  border-style: none;
-  border-radius: 5px;
-  background-color: #001d5c;
-  color: white;
+ 
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   transition: 0.5s;
   padding: 0.6vw;
+  border-radius: 8px;
+  border-style: none;
+ box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+
 }
 
 .Main-Button:hover{
