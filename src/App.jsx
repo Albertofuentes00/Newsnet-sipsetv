@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Menu from './Components/MainMenu/MainMenu';
+import PdfViewer from './Components/pdftest';
 
 /* IMAGES */
 import SIPSENewsLogo from './images/noticias.png'
@@ -73,14 +74,19 @@ function App() {
       <Link to='/HelpDashboard/Introduccion'>
          <a  href="#">Ayuda</a>
       </Link> 
-         <a className="links" href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
+        <Link to='/UserManual'>
+          <a href="#"> Manual de estilo</a>      
+        </Link>
          <a className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
     </div>
       );
     }else{
       return (
       <div className="options">
-         <a href="#" /*onClick={handleDownloadClick }*/ > Manual de estilo</a>
+         
+        <Link to='/UserManual'>
+          <a href="#"> Manual de estilo</a>      
+        </Link>
     </div>
       );
     }
@@ -130,6 +136,7 @@ function App() {
       <body className="App-body">
        <Routes>
           <Route path="/" element={<Login/>}/>
+          <Route path="/UserManual" element={<PdfViewer/>}/>
 
           <Route path='MainMenu' element={<Menu/>}/>
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
