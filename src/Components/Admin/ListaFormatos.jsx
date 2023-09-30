@@ -66,7 +66,7 @@ const ListaFormatos = () =>{
 
             axios.post('https://localhost:7201/Formato/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFormato();
+            buscar();
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');
@@ -79,7 +79,7 @@ const ListaFormatos = () =>{
           parametros = {nombre_Formato:nombre_Formato.trim()};
           axios.put('https://localhost:7201/Formato/Put/' + pkFormato, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFormato();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -101,7 +101,7 @@ const ListaFormatos = () =>{
           setPkFormato(pkFormato);
           axios.delete('https://localhost:7201/Formato/Delete/' + pkFormato).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFormato();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');

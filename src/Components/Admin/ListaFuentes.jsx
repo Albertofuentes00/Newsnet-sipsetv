@@ -66,7 +66,7 @@ const ListaFuentes = () => {
 
             axios.post('https://localhost:7201/Fuente/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFuente();
+            buscar();
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');
@@ -79,7 +79,7 @@ const ListaFuentes = () => {
           parametros = {nombre_Fuente:nombre_Fuente.trim()};
           axios.put('https://localhost:7201/Fuente/Put/' + pkFuente, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFuente();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -101,7 +101,7 @@ const ListaFuentes = () => {
           setPkFuente(pkFuente);
           axios.delete('https://localhost:7201/Fuente/Delete/' + pkFuente).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetFuente();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -30,10 +31,12 @@
 .textarea-left {
   border-right: 1px solid #ccc;
   margin-right: -1px;
+  min-height: 64px;
 }
 
 .textarea-right {
   margin-left: -1px;
+  min-height: 64px;
 }
 
 table td{
@@ -255,6 +258,8 @@ a:visited {
   font-size: calc(10px + 2vmin);
   min-height: 85vh;
   align-items: center;
+  font-family: 'Roboto', sans-serif;
+  
 }
 
 .App-header {
@@ -1000,24 +1005,25 @@ p{
   min-width: 7vw;
   min-height: 10vh;
  
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  background-color: #dfdfdf;
+  color: rgb(63, 63, 63);
   transition: 0.5s;
   padding: 0.6vw;
   border-radius: 8px;
-  border-style: none;
- box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color:#a1a1a1 ;
+
 
 }
 
 .Main-Button:hover{
   transition: 0.5s;
   transform: scale(1.05);
-  background-color: rgba(0,94,255,1);
-  -webkit-box-shadow: -1px 1px 13px 2px rgba(0,94,255,1);
--moz-box-shadow: -1px 1px 13px 2px rgba(0,94,255,1);
-box-shadow: -1px 1px 13px 2px rgba(0,94,255,1);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 15px 30px -5px;
 }
+
 
 
 

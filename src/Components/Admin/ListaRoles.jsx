@@ -65,7 +65,7 @@ const ListaRoles = () => {
         parametros = {nombre_Rol:nombre_Rol.trim()};
           axios.post('https://localhost:7201/Rol/Post', parametros).then(function(respuesta){
           document.getElementById('btnCerrar').click();
-          GetDatos();
+          buscar();
         })
         .catch(function(error){
           show_alerta('error en la solicitud','error');
@@ -78,7 +78,7 @@ const ListaRoles = () => {
         parametros = {nombre_Rol:nombre_Rol.trim()};
         axios.put('https://localhost:7201/Rol/Put/' + pkRol, parametros).then(function(respuesta){
           document.getElementById('btnCerrar').click();
-          GetDatos();
+          buscar();
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
@@ -100,7 +100,7 @@ const ListaRoles = () => {
         setPkRol(pkRol);
         axios.delete('https://localhost:7201/Rol/Delete/' + pkRol).then(function(respuesta){
           document.getElementById('btnCerrar').click();
-          GetDatos();
+          buscar();
         })
         .catch(function(error){
           show_alerta('error en la solicitud','error');

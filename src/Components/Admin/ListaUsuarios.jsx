@@ -95,7 +95,7 @@ const ListaUsuarios=()=>{
             axios.post('https://localhost:7201/Usuario/Post', parametros).then(function(respuesta){
              
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');
@@ -108,7 +108,7 @@ const ListaUsuarios=()=>{
           parametros = {nombre:nombre.trim(),apellidos:apellidos.trim(),nickName:nickName.trim(),user_Password:user_Password.trim(),fkRol:fkRol};
           axios.put('https://localhost:7201/Usuario/Put/' + pkUsuario, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -142,7 +142,7 @@ const ListaUsuarios=()=>{
               setPkUsuario(pkUsuario);
               axios.delete('https://localhost:7201/Usuario/Delete/' + pkUsuario).then(function(respuesta){
                 document.getElementById('btnCerrar').click();
-                GetDatos();
+                buscar();
               })
               .catch(function(error){
                 show_alerta('error en la solicitud','error');

@@ -36,13 +36,13 @@ class PdfViewer extends React.Component {
   };
 
 
-}
+
 
   
 
-  render() 
+  render(){
     const { pageNumber, numPages } = this.state;
-    const { pdfUrl } = this.props;
+    const { pdfUrl } = "https://ottsincelejo.com/blogwilson/bdavanzada/procedimientos.pdf";
 
     return (
       <div>
@@ -88,7 +88,8 @@ class PdfViewer extends React.Component {
     );
   
 
-
+  }
+    }
 export default PdfViewer
 
 

@@ -157,7 +157,7 @@ const Escaletas=()=>{
           axios.post('https://localhost:7201/Escaleta/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();
-          GetDatos();
+          buscar();
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
@@ -171,7 +171,7 @@ const Escaletas=()=>{
         parametros = {fecha:fecha.trim(),hora_Inicio:hora_Inicio.trim(),fkPrograma:fkPrograma,fkUsuario:fkUsuario};
         axios.put('https://localhost:7201/Escaleta/Put/' + pkEscaleta, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
-          GetDatos();
+          buscar();
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
@@ -192,7 +192,7 @@ const Escaletas=()=>{
             setPkEscaleta(PkEscaleta);
           axios.delete('https://localhost:7201/Escaleta/Delete/' + PkEscaleta).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');

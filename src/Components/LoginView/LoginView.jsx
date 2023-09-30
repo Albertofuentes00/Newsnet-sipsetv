@@ -13,6 +13,17 @@ function Login() {
   const [Datos, SetDatos] = useState(null);
 
 
+  const cadena = Cookies.get('Usuario');
+
+  // Realizar una acción basada en la ruta actual
+    if(!cadena){
+    }
+    else{
+      window.location.href = '/MainMenu';
+    }
+  
+
+
   const buscarUsuario = async ()=>{
     try{
       var user = document.getElementById("usuario").value

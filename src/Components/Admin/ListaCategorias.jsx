@@ -64,7 +64,7 @@ const ListaCategorias=()=>{
           parametros = {nombre_Categoria:nombre_Categoria.trim()};
             axios.post('https://localhost:7201/Categoria/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -77,7 +77,7 @@ const ListaCategorias=()=>{
           parametros = {nombre_Categoria:nombre_Categoria.trim()};
           axios.put('https://localhost:7201/Categoria/Put/' + pkCategoria, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -99,7 +99,7 @@ const ListaCategorias=()=>{
           setPkCategoria(pkCategoria);
           axios.delete('https://localhost:7201/Categoria/Delete/' + pkCategoria).then(function(respuesta){
             document.getElementById('btnCerrar').click();
-            GetDatos();
+            buscar();
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');

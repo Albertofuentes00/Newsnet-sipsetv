@@ -126,7 +126,6 @@ return (
                 style={{ width: "300px", resize: "none" }}
                 onChange={handleChange}
               />
-
               <textarea
                 class="textarea-right"
                 id="textarea-right"
