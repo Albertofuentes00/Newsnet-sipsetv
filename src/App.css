@@ -64,7 +64,9 @@ color: rgb(97, 97, 97);
     transform: scale(1.4) rotate(0.02turn);
     transition: 1s;
     }
-
+    .acciones:disabled{
+      opacity: 0;
+      }
 
 
     .buscador_admin{
@@ -417,6 +419,9 @@ a:visited {
   text-transform: uppercase;
   height: 20px;
   width: 170px;
+  border-radius: 5px;
+  border-style: none;
+  padding: 8px;
 }
 
 .input-search-admin{
@@ -568,7 +573,7 @@ option{
 .Auth-form-subtitle{
   text-align: center;
   font-size: smaller;
-  font-weight: 600;
+  font-weight: normal;
 
 }
 
@@ -1022,6 +1027,20 @@ p{
   transform: scale(1.05);
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0 15px 30px -5px;
+}
+
+.Redaccion_Delete{
+border-style: none;
+background-color: #dc3545;
+max-height: 4vh;
+padding: 10px;
+position:sticky;
+color: white;
+font-size: 10px;
+justify-items: center;
+align-items: center;
+border-radius: 10px;
+vertical-align: top;
 }
 
 

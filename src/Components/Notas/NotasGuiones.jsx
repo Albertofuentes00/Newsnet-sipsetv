@@ -4,11 +4,40 @@ import { FaRegListAlt } from 'react-icons/fa';
 import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaEye } from 'react-icons/fa'
-
+import { FaSearch } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import SearchMenu from "../SearchMenu";
 
 const GuionesNotas=()=>{
+
+
+
+
+    const [fechaFI, setFechaFI] = useState(getFechaActualFI);
+    const [fechaFF, setFechaFF] = useState(getFechaActualFF);
+  
+    function getFechaActualFI() {
+      const fechaActual = new Date();
+      const year = fechaActual.getFullYear();
+      const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+      const day = String(fechaActual.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    function getFechaActualFF() {
+      const fechaActual = new Date();
+      fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
+  
+      const year = fechaActual.getFullYear();
+      const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+      const day = String(fechaActual.getDate()).padStart(2, '0');
+  
+      return `${year}-${month}-${day}`;
+  }
+
+
+
+
+
     const [Datos, SetDatos] = useState([]);
     const [iD_Nota, setID_Nota] = useState('');
     const [titulo, setTitulo] = useState('');
@@ -24,7 +53,7 @@ const GuionesNotas=()=>{
   
     const GetDatos = async ()=>{
         try {
-            const respuesta = await axios.get('https://localhost:7201/Nota/GetHoy');
+            const respuesta = await axios.get('https://localhost:7201/Nota/Get');
             console.log(respuesta.data.result);
             SetDatos(respuesta.data.result);
         } catch (error) {
@@ -32,6 +61,52 @@ const GuionesNotas=()=>{
         }
 
     }
+
+
+
+
+    const buscar = async ()=>{
+        try {
+          var variable = document.getElementById("Buscador").value;
+          var fechaFI = document.getElementById("FI").value;
+          var fechaFF = document.getElementById("FF").value;
+        if (variable == ""){
+          try {
+            const respuesta = await axios.get('https://localhost:7201/Nota/BuscarDefault/' + fechaFI+"/"+fechaFF)
+  
+            console.log(respuesta.data.result);
+            SetDatos(respuesta.data.result);
+          } catch (error) {
+            
+          }
+         
+        }else{
+          try {
+            const respuesta = await axios.get('https://localhost:7201/Nota/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF)
+  
+            console.log(respuesta.data.result);
+            SetDatos(respuesta.data.result);
+          } catch (error) {
+            
+          }
+  
+        }
+      
+        } catch (error) {
+          console.log(error);
+        }
+        
+      }
+
+
+
+
+
+
+
+
+
+
     return (
         
         
@@ -39,7 +114,51 @@ const GuionesNotas=()=>{
 
         <div className="Grid">
 
-            <SearchMenu />
+            
+           
+           
+
+
+
+
+        <div className="Auth-form-searchbar">
+      <div className="Row-searchbar">
+        <div className="Row">
+          <div className='buscador_admin'>
+          <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
+          </div>
+        </div>
+        <div className="Row">
+          <div className="Grid">
+            <label> Fecha Inicial</label>
+            <input
+              id="FI"
+              type="date"
+              className="input-search"
+              value={fechaFI}
+              onChange={(e) => setFechaFI(e.target.value)}
+            />
+            <div className="Grid">
+              <label> Fecha Final</label>
+              <input id="FF" type="date" className="input-search" value={fechaFF}
+              onChange={(e) => setFechaFF(e.target.value)}/>
+            </div>
+          </div>
+        </div>
+        <div className="Row">
+          <div className="Grid"></div>
+          <button className="btn btn-primary" onClick={()=> buscar()}>
+            <FaSearch size={20} color="white" /> Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
 
             <form className="Auth-form-table">
             <div className='Auth-Maintable'>
@@ -64,31 +183,38 @@ const GuionesNotas=()=>{
                                     <th scope="col">Categoría</th>
                                     <th scope="col">Formato</th>
                                     <th scope="col">Reportero</th>
-                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Fecha Mes/Dia/Año</th>
                                     <th scope="col">     </th>
                                 </tr>
                             </thead>
                             <tbody className="table-group-divider">
-                                {Datos.map((Datos,i) =>(
-                                    <tr key={Datos.fkNota}>
-                                    <td>{(i+1)}</td>
-                                    <td>{Datos.titulo}</td>
-                                    <td>{Datos.categoria.nombre_Categoria}</td>
-                                    <td>{Datos.formato.nombre_Formato}</td>
-                                    <td>{Datos.usuario.nombre}</td>
-                                    <td>{Datos.fecha.split(' ')[0]}</td>
-                                    <td className="buttons-th"> 
-                                        <Link to={'/LeerGuion/'+ Datos.pkNota}>
-                                            <button type="button" className="acciones">  <FaEye size={20}/></button>
-                                        </Link>
-
-                                        <Link to={'/EditarGuion/' + Datos.pkNota}>
-                                        <button type="button" className="acciones"> <FaRegListAlt size={20}/></button> 
-                                        </Link>
-                                        <button type="button" className="acciones"> <FaTrash size={20} /></button> 
-                                    </td>
-                                    </tr>
-                                ))}
+                            {Datos.map((Dato, i) => (
+  <tr key={Dato.fkNota}>
+    <td>{i + 1}</td>
+    <td>{Dato.titulo}</td>
+    <td>{Dato.nombre_Categoria}</td>
+    <td>{Dato.nombre_Formato}</td>
+    <td>{Dato.nombre}</td>
+    <td>{Dato.fecha.split(' ')[0]}</td>
+    <td className="buttons-th">
+      <Link to={'/LeerGuion/' + Dato.pkNota}>
+        <button
+          id="ver"
+          type="button"
+          className="acciones"
+          disabled={Dato.nombre === 'Leni'}
+        >
+          <FaEye size={20} />
+        </button>
+      </Link>
+      <Link to={'/EditarGuion/' + Dato.pkNota}>
+        <button type="button" className="acciones">
+          <FaRegListAlt size={20} />
+        </button>
+      </Link>
+    </td>
+  </tr>
+))}
 
                             </tbody>
                         </table>

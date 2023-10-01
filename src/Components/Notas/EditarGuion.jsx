@@ -12,20 +12,40 @@ import axios from 'axios'
 const EditarGuion = () => {
   const [textAreas, setTextAreas] = useState(['Texto largo...']);
   const [Datos, SetDatos] = useState([]);
+  const [Redaccion, SetRedaccion] = useState([]);
+  const [Anotacion, SetAnotacion] = useState('');
+  const [Descripcion, SetDescripcion] = useState('');
+  const [Fecha, SetFecha] = useState('');
+  const [Hora, SetHora] = useState('');
+  const [numTextAreas, setNumTextAreas] = useState(1);
+
   const {id} = useParams()
-  useEffect(()=>{
+  useEffect(() => {
+
     GetDatos();
-},[]);
+  }, []);
 
 const GetDatos = async()=>{
+  try {
     const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/'+id);
     console.log(respuesta.data.result);
-    SetDatos(respuesta.data.result);
+    SetAnotacion(respuesta.data.result[0].anotacion);
+  SetDescripcion(respuesta.data.result[0].descripcion);
+  SetFecha(respuesta.data.result[0].fecha);
+  SetHora(respuesta.data.result[0].hora); 
+
+  SetDatos(respuesta.data.result);
+
+  } catch (error) {
+    
+  }
+
 }
 
 
 const handleAddTextArea = () => {
   setTextAreas((prevState) => [...prevState, '']);
+  setNumTextAreas((prevNum) => prevNum + 1); // Incrementamos el número de textareas
 };
 
 const [textareaValue, setTextareaValue] = useState('');
@@ -43,17 +63,6 @@ const handleRemoveTextArea = (index) => {
   setTextAreas(updatedTextAreas);
 };
 
-const handleChange = (event, index) => {
-  const { value } = event.target;
-  const updatedTextAreas = [...textAreas];
-  updatedTextAreas[index] = value;
-  setTextAreas(updatedTextAreas);
-  setTextareaValue(value);
-  event.target.style.height = 'auto';
-  event.target.style.height = event.target.scrollHeight + 'px';
-};
-
-
 const handleInput = (event, index) => {
   const { value, scrollHeight } = event.target;
   event.target.style.height = scrollHeight + 'px';
@@ -62,26 +71,9 @@ const handleInput = (event, index) => {
   setTextAreas(updatedTextAreas);
 };
 
-useEffect(() => {
-  const textareaLeft = document.getElementById('textarea-left');
-  const textareaRight = document.getElementById('textarea-right');
-
-  const handleTextareaInput = () => {
-    textareaRight.style.height = textareaLeft.scrollHeight + 'px';
-  };
-
-  const handleTextareaScroll = () => {
-    textareaRight.scrollTop = textareaLeft.scrollTop;
-  };
-
-  textareaLeft.addEventListener('input', handleTextareaInput);
-  textareaLeft.addEventListener('scroll', handleTextareaScroll);
-
-  return () => {
-    textareaLeft.removeEventListener('input', handleTextareaInput);
-    textareaLeft.removeEventListener('scroll', handleTextareaScroll);
-  };
-}, []);
+ useEffect(()=>{
+      GetDatos();
+  },[]);
 
 return (
   <div className="Auth-form-container">
@@ -90,9 +82,9 @@ return (
         <h2 className="Auth-form-title">Crear guión</h2>
         <h3 className="Text-helper">Escriba en las cuadrillas a continuación los guiones que desea agregar a la nota</h3>
         <div>
-          <h3>{Datos.map(Dato => (
-          <h3 key={Dato.pkRedaccion}>{Dato.nota.titulo}</h3>
-        ))}</h3>
+        {Datos.length > 0 && (
+    <h3>{Datos[0].nota.titulo}</h3>
+  )}
         </div>
         <br />
         <div>
@@ -118,22 +110,43 @@ return (
         </div>
         <br />
         <div>
-          {textAreas.map((text, index) => (
-            <div className="textarea-container" key={index}>
-              <textarea
-                class="textarea-left"
-                id="textarea-left"
-                style={{ width: "300px", resize: "none" }}
-                onChange={handleChange}
-              />
-              <textarea
-                class="textarea-right"
-                id="textarea-right"
-                style={{ width: "300px", resize: "none"}}
-              />
-            </div>
-          ))}
+      {Datos.map((Dato, index) => (
+        <div key={index}>
+          <div className="textarea-container">
+          <textarea
+  className="textarea-left"
+  id={`textarea-left-${index}`}
+  style={{ width: "300px", resize: "none" }}
+  onChange={(e)=> SetAnotacion(e.target.value)}
+  value={Dato.anotacion}
+/>
+<textarea
+  className="textarea-right"
+  id={`textarea-right-${index}`}
+  style={{ width: "300px", resize: "none" }}
+  onChange={(e)=> SetDescripcion(e.target.value)}
+  value={Dato.descripcion}
+/>
+          </div>
         </div>
+      ))}
+      {/* Generamos nuevos textarea-container según el número actual */}
+      {Array.from({ length: numTextAreas - 1 }, (_, index) => (
+        <div className="textarea-container" key={index + Datos.length}>
+          <textarea
+            className="textarea-left"
+            id={`textarea-left-${index + Datos.length}`}
+            style={{ width: "300px", resize: "none" }}
+          />
+          <textarea
+            className="textarea-right"
+            id={`textarea-right-${index + Datos.length}`}
+            style={{ width: "300px", resize: "none" }}
+            
+          />
+        </div>
+      ))}
+    </div>
       </div>
       <br />
     </form>

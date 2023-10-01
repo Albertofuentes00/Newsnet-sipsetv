@@ -406,7 +406,7 @@ const Bitacora=()=>{
                     <th scope="col">Formato</th>
                     <th scope="col">Reportero</th>
                     <th scope="col">Fuente</th>
-                    <th scope="col">Fecha</th>
+                    <th scope="col">Fecha Mes/Dia/Año</th>
                     <th scope="col">     </th>
                   </tr>
                 </thead>

@@ -314,7 +314,7 @@ const Escaletas=()=>{
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Programa</th>
-                            <th scope="col">Fecha</th>
+                            <th scope="col">Fecha Mes/Dia/Año</th>
                             <th scope="col">Hora de inicio</th>
                             <th scope="col">Acciones</th>
                         </tr>
