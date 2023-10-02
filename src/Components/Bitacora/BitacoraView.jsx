@@ -201,10 +201,27 @@ const Bitacora=()=>{
         }
       }
       else{
+        const cadena = Cookies.get('Usuario');
+        const partes = cadena.split('/');
+        const user = partes[2];
+        
+        var Varreportero;
+        if (user != "Responsable" && user != "Administrador") {
+
+          const cadena = Cookies.get('Usuario');
+          const partes = cadena.split('/');
+          const user = partes[0];
+
+          console.log("La fk es: " + user.trim());
+          Varreportero = user;
+      } else {
+          console.log(reportero);
+          Varreportero = fkUsuario;
+      }
         var conductor = '';
         var tipo = 0;
         var indice = 0;
-        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:fkUsuario};
+        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
         axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           buscar();
@@ -246,6 +263,8 @@ const Bitacora=()=>{
         const rol = partes[2];
         
         if (rol === "Responsable" || rol === "Administrador") {
+
+          
           return (
            
   <div className="Grid">
@@ -273,7 +292,41 @@ const Bitacora=()=>{
       }
 
 
+      function rolEditar() {
+        try {
+          const cadena = Cookies.get('Usuario');
+          const partes = cadena.split('/');
+          const rol = partes[2];
+          
+          if (rol === "Responsable" || rol === "Administrador") {
+  
+            
+            return (
+             
+    <div className="Grid">
+    <label> Reportero </label>
+                    <div className='input-group mb-3'>
+                      <div className='input-group mb-3'>
+                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                      <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
+                                <option></option>
+                            {Usuarios.map(Usuarios =>(
+                                <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
+                            ))}
+                          </select>
+                      </div>
+                    </div>
 
+    </div>
+            );
+          } else {
+            return null; // No devuelve nada cuando el rol no es "Usuario"
+          }
+        } catch (error) {
+          console.log(error);
+        }
+         
+        }
 
 
 
@@ -581,6 +634,7 @@ const Bitacora=()=>{
                         </select>
                       </div>
                     </div>
+                    {rolEditar(true)}
 
                   <div className="d-grid col-6 mx-auto">
                         <button onClick={()=> Validar()} className="btn btn-success">

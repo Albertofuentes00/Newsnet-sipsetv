@@ -71,6 +71,13 @@ const handleInput = (event, index) => {
   setTextAreas(updatedTextAreas);
 };
 
+
+function ComponenteConHTML({ dato }) {
+  return <div dangerouslySetInnerHTML={{ __html: dato }} />;
+}
+
+
+
  useEffect(()=>{
       GetDatos();
   },[]);
@@ -83,7 +90,11 @@ return (
         <h3 className="Text-helper">Escriba en las cuadrillas a continuación los guiones que desea agregar a la nota</h3>
         <div>
         {Datos.length > 0 && (
-    <h3>{Datos[0].nota.titulo}</h3>
+       <div>
+            <h3>{Datos[0].nota.titulo}</h3>
+    
+       </div>
+
   )}
         </div>
         <br />
@@ -127,6 +138,7 @@ return (
   onChange={(e)=> SetDescripcion(e.target.value)}
   value={Dato.descripcion}
 />
+<div dangerouslySetInnerHTML={{ __html: Dato.descripcion }} />
           </div>
         </div>
       ))}
