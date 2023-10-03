@@ -65,6 +65,7 @@ color: rgb(97, 97, 97);
     transition: 1s;
     }
     .acciones:disabled{
+      transition: 0s;
       opacity: 0;
       }
 
