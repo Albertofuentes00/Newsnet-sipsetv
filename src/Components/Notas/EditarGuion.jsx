@@ -8,29 +8,78 @@ import React, { useState, useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { show_alerta } from "../../Funciones"
 
 
 const EditarGuion = () => {
   const [Datos, SetDatos] = useState([]);
   const [Redaccion, SetRedaccion] = useState([]);
+  const tablaRef = useRef(null);
+  const [verdad,setverdad] = useState('');
 
+
+
+  
   const {id} = useParams()
 
-const InsertarRedaccion = () =>{
-  var parametros;
-  console.log("La redaccion es:" + Redaccion.toString());
-  try {
-    parametros = {descripcion:Redaccion.trim(),fknota:id};
-    axios.post('https://localhost:7201/Redaccion/Post', parametros).then(function(respuesta){
-    console.log(respuesta.data.result);
-  })
-  .catch(function(error){
-    console.log(error);
-  });
-  } catch (error) {
-    console.log(error);
+  const InsertarRedaccion = () => {
+    const tablaContenido = tablaRef.current.innerHTML;
+    try {
+      const parametros = {fknota: id, descripcion: tablaContenido };
+      axios.post('https://localhost:7201/Redaccion/Post', parametros).then(function (respuesta) {
+        console.log(respuesta.data.result);
+        show_alerta('Los datos se guardaron correctamente','Guardado');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
-}
+
+
+
+  const agregarFila = () => {
+    const tabla = document.getElementById('tabla-nota');
+    const nuevaFila = tabla.insertRow();
+    const celda1 = nuevaFila.insertCell(0);
+    const celda2 = nuevaFila.insertCell(1);
+    celda1.innerHTML = '';
+    celda2.innerHTML = '';
+  };
+
+  useEffect(()=>{
+    try {
+      GetDatos();
+    } catch (error) {
+      
+    }
+   
+},[]);
+
+
+const GetDatos = async () => {
+  try {
+    const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/' + id);
+    
+    if (respuesta.data.result) {
+      // Si la respuesta contiene datos válidos, actualiza el estado
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+      setverdad(1);
+      console.log(verdad);
+    } else {
+      // Si no hay datos, puedes manejar el caso aquí
+      console.log('No se encontraron datos');
+    }
+  } catch (error) {
+    // Maneja el error si ocurre uno
+    console.error('Error al obtener datos:', error);
+  }
+};
+
+
 
 return (
   <div className="Auth-form-container">
@@ -60,7 +109,7 @@ return (
               <FaSave size={20} color="white" /> Guardar cambios
             </button>
 
-            <button type="button" className="btn btn-primary" >
+            <button id='agregar-celda' type="button" className="btn btn-primary" onClick={agregarFila}>
               <FaPlusSquare size={20} color="white" /> Agregar Celda
             </button>
             
@@ -71,25 +120,21 @@ return (
         </div>
         <br />
         <div>
-          <div className="textarea-container">
-          <table id='tabla-nota' onChange={(e)=> SetRedaccion(e.target.value)}>
-                            <thead>
-                                <tr>
-				                        <th >Anotacion</th>
-                            	   <th >Descripcion</th>
-                                </tr>
-                            </thead>
-                            <tbody contentEditable='true'>
-                                <tr>
-                                <td>INSERTO MARTHA</td>
-                                <td>Inserto Alondra Expositor particpante de la feria "Colectivo multicultural CANCUN" </td>
-                                </tr>
-                                <tr>
-                                <td>INSERTO MARTHA</td>
-                                <td>INSERTO 11:26 ES UN PUNTO 12:11 NOS AYUDO LO MISMO </td>
-                                </tr>
-                            </tbody>
-                        </table>
+          <div className='tabla-notaStyle' ref={tablaRef}>
+          <table id='tabla-nota' >
+            <thead>
+              <tr>
+                <th>Anotacion</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tbody contentEditable='true'>
+              <tr >
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
           </div>
     </div>
       </div>

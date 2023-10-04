@@ -40,12 +40,6 @@ const Escaletas=()=>{
 }
 
 
-  function getFecha() {
-    var fechaFI = document.getElementById("FI").value
-    var fechaFF = document.getElementById("FF").value
-    console.log(fechaFI + " A " + fechaFF)
-  }
-
 
 
 

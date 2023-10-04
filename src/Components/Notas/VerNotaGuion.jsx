@@ -3,11 +3,14 @@ import {FaAngleLeft} from 'react-icons/fa';
 import {FaPrint} from 'react-icons/fa';
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import React, { useRef} from 'react';
 import axios from 'axios'
+// import jsPDF from 'jspdf';
 
 const LeerGuion=()=>{
     const [Datos, SetDatos] = useState([]);
     const {id} = useParams()
+    const tablaRef = useRef(null);
     useEffect(()=>{
       GetDatos();
   },[]);
@@ -22,53 +25,38 @@ const LeerGuion=()=>{
     }
 
   }
+
+//   const Imprimir = () => {
+//     const pdf = new jsPDF();
+//     const tablaContenido = tablaRef.current.innerHTML;
+//     pdf.html(tablaContenido, {
+//       callback: function (pdf) {
+//         pdf.save("guion.pdf");
+//       },
+//     });
+//   }
+
+  
     return(
         <div className="Auth-form-container">
         <form className="Auth-form-Guion">
-        <div className="Auth-form-content">
+          <div className="Auth-form-content">
             <h2 className="Auth-form-title">Guión Cancun Vive 03/07/23</h2>
-            <div>{Datos.map(Dato => (
-                <div className="Row" key={Datos.pkNota}>
-                    <div className="Grid">
-                        <h5> Reportero: {Dato.nota.usuario.nombre}</h5>
-                    </div>
-                    <div className="Grid">
-                        <h5> Categoria: {Dato.nota.categoria.nombre_Categoria} </h5>
-                    </div>
-                    <div className="Grid">
-                        <h5> Formato: {Dato.nota.formato.nombre_Formato} </h5>
-                    </div>
-                </div>       
-        ))}</div>
             <br />
             <div>
-                <form className="Button-form">
-                    <Link to='/Notas'>
-                        <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                    </Link>
-                    <button type="button" class="btn btn-primary">  <FaPrint size={20} color="white"/> Imprimir Guión </button>
-                </form>
+              <form className="Button-form">
+                <Link to='/Notas'>
+                  <button type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
+                </Link>
+                <button type="button" id='btn-imprimir' className="btn btn-primary" >  <FaPrint size={20} color="white" /> Imprimir Guión </button>
+              </form>
             </div>
             <br />
-           
-            {Datos.map((Datos) =>(
-            <div className="Row-Guion">
-                <textarea  type="text"
-                        className="excel-cell-input"
-                        value={Datos.anotacion}
-                        disabled='true'
-                        />
-                <textarea  type="text"
-                        className="excel-cell-input"
-                        value={Datos.descripcion} disabled='true' Resize='none'/>
-            </div>
-            ))}
-
-        </div>
-            <br />
-        
+            <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.descripcion }} />
+          </div>
+          <br />
         </form>
-    </div>
+      </div>
     )
     
 }
