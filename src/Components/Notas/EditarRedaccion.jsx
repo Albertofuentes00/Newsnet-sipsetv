@@ -25,8 +25,8 @@ const EditarGuion = () => {
   const InsertarRedaccion = () => {
     const tablaContenido = tablaRef.current.innerHTML;
     try {
-      const parametros = {fknota: id, descripcion: tablaContenido };
-      axios.post('https://localhost:7201/Redaccion/Post', parametros).then(function (respuesta) {
+      const parametros = {Redaccion: tablaContenido };
+      axios.post('https://localhost:7201/Nota/Put/' + id, parametros).then(function (respuesta) {
         console.log(respuesta.data.result);
         show_alerta('Los datos se guardaron correctamente','Guardado');
       })
@@ -61,7 +61,7 @@ const EditarGuion = () => {
 
 const GetDatos = async () => {
   try {
-    const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/' + id);
+    const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/' + id);
     
     if (respuesta.data.result) {
       // Si la respuesta contiene datos válidos, actualiza el estado
