@@ -6,81 +6,80 @@ import { FaMinusSquare } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { show_alerta } from "../../Funciones"
 
 
 const EditarGuion = () => {
-  const [textAreas, setTextAreas] = useState(['Texto largo...']);
   const [Datos, SetDatos] = useState([]);
   const [Redaccion, SetRedaccion] = useState([]);
-  const [Anotacion, SetAnotacion] = useState('');
-  const [Descripcion, SetDescripcion] = useState('');
-  const [Fecha, SetFecha] = useState('');
-  const [Hora, SetHora] = useState('');
-  const [numTextAreas, setNumTextAreas] = useState(1);
+  const tablaRef = useRef(null);
+  const [verdad,setverdad] = useState('');
 
+
+
+  
   const {id} = useParams()
-  useEffect(() => {
 
-    GetDatos();
-  }, []);
-
-const GetDatos = async()=>{
-  try {
-    const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/'+id);
-    console.log(respuesta.data.result);
-    SetAnotacion(respuesta.data.result[0].anotacion);
-  SetDescripcion(respuesta.data.result[0].descripcion);
-  SetFecha(respuesta.data.result[0].fecha);
-  SetHora(respuesta.data.result[0].hora); 
-
-  SetDatos(respuesta.data.result);
-
-  } catch (error) {
-    
+  const InsertarRedaccion = () => {
+    const tablaContenido = tablaRef.current.innerHTML;
+    try {
+      const parametros = {fknota: id, descripcion: tablaContenido };
+      axios.post('https://localhost:7201/Redaccion/Post', parametros).then(function (respuesta) {
+        console.log(respuesta.data.result);
+        show_alerta('Los datos se guardaron correctamente','Guardado');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-}
 
 
-const handleAddTextArea = () => {
-  setTextAreas((prevState) => [...prevState, '']);
-  setNumTextAreas((prevNum) => prevNum + 1); // Incrementamos el número de textareas
-};
+  const agregarFila = () => {
+    const tabla = document.getElementById('tabla-nota');
+    const nuevaFila = tabla.insertRow();
+    const celda1 = nuevaFila.insertCell(0);
+    const celda2 = nuevaFila.insertCell(1);
+    celda1.innerHTML = '';
+    celda2.innerHTML = '';
+  };
 
-const [textareaValue, setTextareaValue] = useState('');
-
-const handleChangeHeight = (large) => {
-  const { value } = large.target;
-  setTextareaValue(value);
-  large.target.style.height = 'auto';
-  large.target.style.height = large.target.scrollHeight + 'px';
-};
-
-const handleRemoveTextArea = (index) => {
-  const updatedTextAreas = [...textAreas];
-  updatedTextAreas.splice(index, 1);
-  setTextAreas(updatedTextAreas);
-};
-
-const handleInput = (event, index) => {
-  const { value, scrollHeight } = event.target;
-  event.target.style.height = scrollHeight + 'px';
-  const updatedTextAreas = [...textAreas];
-  updatedTextAreas[index] = value;
-  setTextAreas(updatedTextAreas);
-};
-
-
-function ComponenteConHTML({ dato }) {
-  return <div dangerouslySetInnerHTML={{ __html: dato }} />;
-}
-
-
-
- useEffect(()=>{
+  useEffect(()=>{
+    try {
       GetDatos();
-  },[]);
+    } catch (error) {
+      
+    }
+   
+},[]);
+
+
+const GetDatos = async () => {
+  try {
+    const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/' + id);
+    
+    if (respuesta.data.result) {
+      // Si la respuesta contiene datos válidos, actualiza el estado
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+      setverdad(1);
+      console.log(verdad);
+    } else {
+      // Si no hay datos, puedes manejar el caso aquí
+      console.log('No se encontraron datos');
+    }
+  } catch (error) {
+    // Maneja el error si ocurre uno
+    console.error('Error al obtener datos:', error);
+  }
+};
+
+
 
 return (
   <div className="Auth-form-container">
@@ -106,58 +105,37 @@ return (
                 </button>
             </Link>
 
-            <button type="button" className="btn btn-success">
+            <button type="button" className="btn btn-success" onClick={()=> InsertarRedaccion()}>
               <FaSave size={20} color="white" /> Guardar cambios
             </button>
 
-            <button type="button" className="btn btn-primary" onClick={handleAddTextArea}>
+            <button id='agregar-celda' type="button" className="btn btn-primary" onClick={agregarFila}>
               <FaPlusSquare size={20} color="white" /> Agregar Celda
             </button>
             
-            <button type="button" className="btn btn-danger" onClick={() => handleRemoveTextArea()}>
+            <button type="button" className="btn btn-danger">
               <FaMinusSquare size={20} color="white" /> Quitar Celda
             </button>
           </form>
         </div>
         <br />
         <div>
-      {Datos.map((Dato, index) => (
-        <div key={index}>
-          <div className="textarea-container">
-          <textarea
-  className="textarea-left"
-  id={`textarea-left-${index}`}
-  style={{ width: "300px", resize: "none" }}
-  onChange={(e)=> SetAnotacion(e.target.value)}
-  value={Dato.anotacion}
-/>
-<textarea
-  className="textarea-right"
-  id={`textarea-right-${index}`}
-  style={{ width: "300px", resize: "none" }}
-  onChange={(e)=> SetDescripcion(e.target.value)}
-  value={Dato.descripcion}
-/>
-<div dangerouslySetInnerHTML={{ __html: Dato.descripcion }} />
+          <div className='tabla-notaStyle' ref={tablaRef}>
+          <table id='tabla-nota' >
+            <thead>
+              <tr>
+                <th>Anotacion</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tbody contentEditable='true'>
+              <tr >
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
           </div>
-        </div>
-      ))}
-      {/* Generamos nuevos textarea-container según el número actual */}
-      {Array.from({ length: numTextAreas - 1 }, (_, index) => (
-        <div className="textarea-container" key={index + Datos.length}>
-          <textarea
-            className="textarea-left"
-            id={`textarea-left-${index + Datos.length}`}
-            style={{ width: "300px", resize: "none" }}
-          />
-          <textarea
-            className="textarea-right"
-            id={`textarea-right-${index + Datos.length}`}
-            style={{ width: "300px", resize: "none" }}
-            
-          />
-        </div>
-      ))}
     </div>
       </div>
       <br />
