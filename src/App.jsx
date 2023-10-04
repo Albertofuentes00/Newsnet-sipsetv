@@ -19,14 +19,12 @@ import Login from './Components/LoginView/LoginView';
 import Bitacora from './Components/Bitacora/BitacoraView';
 
 /* ESCALETAS SECTION */
-import EscaletaPrograma from './Components/Escaletas/EscaletaPrograma';
 import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 
 /* NOTAS SECTION */
-import GuionesNotas from './Components/Notas/NotasGuiones';
-import NuevoGuion from './Components/Notas/CrearGuion';
-import LeerGuion from './Components/Notas/VerNotaGuion';
+import GuionesNotas from './Components/Notas/Redacciones';
+import LeerGuion from './Components/Notas/VerRedaccion';
 
 /* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
@@ -49,7 +47,7 @@ import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
-import EditarGuion from './Components/Notas/EditarGuion';
+import EditarGuion from './Components/Notas/EditarRedaccion';
 
 
 function App() {
@@ -132,14 +130,12 @@ function App() {
           <Route path="/UserManual" element={<PdfViewer/>}/>
 
           <Route path='MainMenu' element={<Menu/>}/>
-            <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
            <Route path='AgregarNotas' element={<AddNotes/>} />
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
             <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
 
             <Route path="Notas" element={<GuionesNotas/>}/>
-            <Route path='CrearGuion' element={<NuevoGuion/>} />
             <Route path='LeerGuion/:id' element= {<LeerGuion/> } />
             <Route path='EditarGuion/:id' element= {<EditarGuion/>} />
             
