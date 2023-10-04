@@ -15,18 +15,13 @@ import Welcome from './Components/Bienvenida';
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
 
-
-import SearchMenu from './Components/SearchMenu';
-import SearchEscaleta from './Components/SearchEscaletas';
-
 /* BITACORA SECTION */
 import Bitacora from './Components/Bitacora/BitacoraView';
 
 /* ESCALETAS SECTION */
 import EscaletaPrograma from './Components/Escaletas/EscaletaPrograma';
-import Escaletas from './Components/Escaletas/EscaletasView';
+import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
-import EscaletasViewH from './Components/Escaletas/EscaletasViewH';
 
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/NotasGuiones';
@@ -51,12 +46,10 @@ import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
 import GuionesHelp from './Components/Ayuda/GuionesHelp';
 import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 
-import MyComponent from './Components/Notas/EditarGuion';
 import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarGuion';
-import { click } from '@testing-library/user-event/dist/click';
 
 
 function App() {
@@ -142,7 +135,7 @@ function App() {
             <Route path="EscaletaPrograma" element={<EscaletaPrograma />}/> 
            <Route path='AgregarNotas' element={<AddNotes/>} />
             <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
-            <Route path='EscaletaViewH' element={<EscaletasViewH/>} />
+            <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
 
             <Route path="Notas" element={<GuionesNotas/>}/>
@@ -166,7 +159,6 @@ function App() {
               <Route path='AdminHelp' element={<AdminHelp/>} />
               <Route path='About' element={<About/>} />
           </Route>
-          <Route path="Escaletas/:id" element={<Escaletas />}/>
       </Routes>
 
 

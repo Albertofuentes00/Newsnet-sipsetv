@@ -185,8 +185,8 @@ const Bitacora=()=>{
          
           var conductor = '';
           var tipo = 0;
-          var indice = 0;
-          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,indice:indice,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+          var redaccion = '';
+          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
           axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();
@@ -220,8 +220,8 @@ const Bitacora=()=>{
       }
         var conductor = '';
         var tipo = 0;
-        var indice = 0;
-        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,indice:indice,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
+        var redaccion = '';
+        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
         axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           buscar();
