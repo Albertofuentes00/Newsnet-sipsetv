@@ -74,7 +74,7 @@ const EditarGuion = () => {
     try {
       const intervalo = setInterval(Autoguardado, 6000);
 
-    // Devuelve una función de limpieza para detener el intervalo cuando el componente se desmonta.
+    // Devuelve una función de limpieza para detener el intervalo cuando el componente se desmonta.ffffsd
     return () => clearInterval(intervalo);
 
     
