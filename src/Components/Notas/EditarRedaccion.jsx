@@ -19,15 +19,35 @@ const EditarGuion = () => {
 
 
 
+  const Autoguardado = () => {
+    const tablaContenido = tablaRef.current.innerHTML;
+    try {
+      const parametros = {Vredaccion: tablaContenido };
+      axios.patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros).then(function (respuesta) {
+        console.log(respuesta.data.result);
+
+        show_alerta('El autoguardado se ejecuto','Guardado');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    GetDatos();
+  };
+
+
   
   const {id} = useParams()
 
   const InsertarRedaccion = () => {
     const tablaContenido = tablaRef.current.innerHTML;
     try {
-      const parametros = {Redaccion: tablaContenido };
-      axios.post('https://localhost:7201/Nota/Put/' + id, parametros).then(function (respuesta) {
+      const parametros = {Vredaccion: tablaContenido };
+      axios.patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros).then(function (respuesta) {
         console.log(respuesta.data.result);
+
         show_alerta('Los datos se guardaron correctamente','Guardado');
       })
       .catch(function (error) {
@@ -50,13 +70,52 @@ const EditarGuion = () => {
   };
 
   useEffect(()=>{
+    GetDatos();
     try {
-      GetDatos();
+      const intervalo = setInterval(Autoguardado, 6000);
+
+    // Devuelve una función de limpieza para detener el intervalo cuando el componente se desmonta.
+    return () => clearInterval(intervalo);
+
+    
     } catch (error) {
       
     }
    
 },[]);
+
+
+function validacion() {
+  try { 
+    if (Datos.redaccion === "") {
+      return (
+        <table id='tabla-nota' >
+        <thead>
+          <tr>
+            <th>Anotación</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody contentEditable='true'>
+          <tr >
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      );
+    } 
+    else {
+      return(
+        <div  dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
+      );
+    }
+  } catch (error) {
+    console.log(error);
+  }
+   
+  }
+
 
 
 const GetDatos = async () => {
@@ -120,21 +179,13 @@ return (
         </div>
         <br />
         <div>
+
+        
+
           <div className='tabla-notaStyle' ref={tablaRef}>
-          <table id='tabla-nota' >
-            <thead>
-              <tr>
-                <th>Anotacion</th>
-                <th>Descripcion</th>
-              </tr>
-            </thead>
-            <tbody contentEditable='true'>
-              <tr >
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+
+          {validacion(true)}
+
           </div>
     </div>
       </div>
