@@ -202,7 +202,7 @@ const GuionesNotas=()=>{
           id="ver"
           type="button"
           className="acciones"
-          disabled={Dato.redaccion != ""}
+          disabled={Dato.redaccion === ""}
         >
           <FaEye size={20} />
         </button>

@@ -17,7 +17,7 @@ const LeerGuion=()=>{
   
   const GetDatos = async()=>{
     try {
-        const respuesta = await axios.get('https://localhost:7201/Redaccion/GetNota/'+id);
+        const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/'+id);
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
     } catch (error) {
@@ -52,7 +52,7 @@ const LeerGuion=()=>{
               </form>
             </div>
             <br />
-            <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.descripcion }} />
+            <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
           </div>
           <br />
         </form>
