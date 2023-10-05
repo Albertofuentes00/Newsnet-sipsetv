@@ -41,17 +41,28 @@ const LeerGuion=()=>{
         <div className="Auth-form-container">
         <form className="Auth-form-Guion">
           <div className="Auth-form-content">
-            <h2 className="Auth-form-title">Guión Cancun Vive 03/07/23</h2>
-            <br />
-            <div>
-              <form className="Button-form">
+            <div className="Row">
+              <h3>Redacción</h3>
+              <div className="Button-form">
                 <Link to='/Notas'>
                   <button type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
                 </Link>
-                <button type="button" id='btn-imprimir' className="btn btn-primary" >  <FaPrint size={20} color="white" /> Imprimir Guión </button>
-              </form>
+                <button type="button" id='btn-imprimir' className="btn btn-primary" >  <FaPrint size={20} color="white" /> Imprimir</button>
+              </div>
             </div>
             <br />
+            <div className="Grid">
+              <div className="Row">
+                <h6><b>Título:</b> Sample text</h6>
+                <h6><b>Fecha:</b> 10/10/2023</h6>
+              </div>
+              <div className="Row">
+                <h6><b>Fuente:</b> TXT</h6>
+                <h6><b>Categoría:</b> </h6>
+                <h6><b>Formato:</b> </h6>
+                <h6><b>Reportero:</b> </h6>
+              </div>
+            </div>
             <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
           </div>
           <br />

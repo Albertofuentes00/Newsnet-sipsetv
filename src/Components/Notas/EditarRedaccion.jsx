@@ -72,7 +72,7 @@ const EditarGuion = () => {
   useEffect(()=>{
     GetDatos();
     try {
-      const intervalo = setInterval(Autoguardado, 6000);
+      const intervalo = setInterval(Autoguardado, 6000000);
 
     // Devuelve una función de limpieza para detener el intervalo cuando el componente se desmonta.ffffsd
     return () => clearInterval(intervalo);
@@ -144,8 +144,21 @@ return (
   <div className="Auth-form-container">
     <form className="Auth-form-Guion">
       <div className="Auth-form-content">
-        <h2 className="Auth-form-title">Crear guión</h2>
-        <h3 className="Text-helper">Escriba en las cuadrillas a continuación los guiones que desea agregar a la nota</h3>
+        <div className='Row'>
+          <h2>Redactar guión</h2>
+          <div className='button-form'>
+            <Link to="/Notas">
+                <button type="button" className="btn btn-dark">
+                  <FaAngleLeft size={20} color="white" /> Regresar
+                </button>
+            </Link>
+
+            <button type="button" className="btn btn-success" onClick={()=> InsertarRedaccion()}>
+              <FaSave size={20} color="white" /> Guardar cambios
+            </button>
+          </div>
+        </div>
+
         <div>
         {Datos.length > 0 && (
        <div>
@@ -157,17 +170,6 @@ return (
         </div>
         <br />
         <div>
-          <form className="Button-form">
-            <Link to="/Notas">
-                <button type="button" className="btn btn-dark">
-                  <FaAngleLeft size={20} color="white" /> Regresar
-                </button>
-            </Link>
-
-            <button type="button" className="btn btn-success" onClick={()=> InsertarRedaccion()}>
-              <FaSave size={20} color="white" /> Guardar cambios
-            </button>
-
             <button id='agregar-celda' type="button" className="btn btn-primary" onClick={agregarFila}>
               <FaPlusSquare size={20} color="white" /> Agregar Celda
             </button>
@@ -175,13 +177,9 @@ return (
             <button type="button" className="btn btn-danger">
               <FaMinusSquare size={20} color="white" /> Quitar Celda
             </button>
-          </form>
         </div>
-        <br />
-        <div>
-
         
-
+        <div>
           <div className='tabla-notaStyle' ref={tablaRef}>
 
           {validacion(true)}

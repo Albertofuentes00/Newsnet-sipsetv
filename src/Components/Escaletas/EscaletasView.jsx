@@ -113,7 +113,7 @@ const Escaletas=()=>{
         if(hora_Inicio.trim()===''){
           show_alerta('Escribe la hora de inicio de la escaleta','warning');
         }
-        else if(fkPrograma===''){
+        else if(fkPrograma.trim()===''){
           show_alerta('Inserte un programa','warning');
         }
       }
@@ -124,7 +124,7 @@ const Escaletas=()=>{
         else if(fecha.trim()===''){
           show_alerta('Escribe la fecha de creacion','warning');
         }
-        else if(fkPrograma===''){
+        else if(fkPrograma.trim()===''){
           show_alerta('Inserta un programa','warning');
         }
         else{
@@ -146,7 +146,7 @@ const Escaletas=()=>{
           const cadena = Cookies.get('Usuario');
           const partes = cadena.split('/');
           const user = partes[0];
-          parametros = {fecha:fechaFormateada,hora_Inicio:hora_Inicio.trim(),fkPrograma:fkPrograma,fkUsuario:user};
+          parametros = {fecha:fechaFormateada,hora_Inicio:hora_Inicio.trim(),fkPrograma:fkPrograma.trim(),fkUsuario:user};
           axios.post('https://localhost:7201/Escaleta/Post', parametros).then(function(respuesta){
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();

@@ -19,7 +19,7 @@ const Texto = (props) => {
            const partes = cadena.split('/');
            const user = partes[1]
            return (
-             <h3>Bienvenido: {user} </h3>
+             <h3>Bienvenido, {user} </h3>
     
          )
          } catch (error) {
