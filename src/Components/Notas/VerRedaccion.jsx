@@ -10,6 +10,7 @@ import axios from 'axios'
 const LeerGuion=()=>{
     const [Datos, SetDatos] = useState([]);
     const {id} = useParams()
+    const [cargado, Setcargado] = useState(0);
     const tablaRef = useRef(null);
     useEffect(()=>{
       GetDatos();
@@ -20,10 +21,26 @@ const LeerGuion=()=>{
         const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/'+id);
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
+        Setcargado(1);
+        
     } catch (error) {
         
     }
 
+  }
+
+  const mostrar=()=>{
+if(cargado === 1){
+  return(
+
+    <div className="Row">
+                <h6><b>Fuente:</b> {Datos.fuente.nombre_Fuente}</h6>
+                <h6><b>Categoría:</b>{Datos.categoria.nombre_Categoria} </h6>
+                <h6><b>Formato:</b>{Datos.formato.nombre_Formato} </h6>
+                <h6><b>Reportero:</b>{Datos.usuario.nombre} </h6>
+              </div>
+  );
+}
   }
 
   function formatFecha(fechaString) {
@@ -65,12 +82,7 @@ const LeerGuion=()=>{
                 <h6><b>Título:</b> {Datos.titulo}</h6>
                 <h6><b>Fecha:</b> {formatFecha(Datos.fecha)}</h6>
               </div>
-              <div className="Row">
-                <h6><b>Fuente:</b> {Datos.fuente}</h6>
-                <h6><b>Categoría:</b>{Datos.categoria} </h6>
-                <h6><b>Formato:</b>{Datos.formato} </h6>
-                <h6><b>Reportero:</b>{Datos.reportero} </h6>
-              </div>
+              {mostrar()}
             </div>
             <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
           </div>
