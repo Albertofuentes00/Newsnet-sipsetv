@@ -189,7 +189,7 @@ const GuionesNotas=()=>{
                             </thead>
                             <tbody className="table-group-divider">
                             {Datos.map((Dato, i) => (
-  <tr key={Dato.fkNota}>
+  <tr className={Dato.redaccion != "" ? 'no-redac' : ''} key={Dato.fkNota}>
     <td>{i + 1}</td>
     <td>{Dato.titulo}</td>
     <td>{Dato.nombre_Categoria}</td>

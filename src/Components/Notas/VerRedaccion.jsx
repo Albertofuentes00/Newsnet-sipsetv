@@ -26,6 +26,15 @@ const LeerGuion=()=>{
 
   }
 
+  function formatFecha(fechaString) {
+    const fecha = new Date(fechaString);
+    const year = fecha.getFullYear();
+    const month = fecha.getMonth() + 1; 
+    const day = fecha.getDate();
+    const formattedFecha = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    return formattedFecha;
+  }
+
 //   const Imprimir = () => {
 //     const pdf = new jsPDF();
 //     const tablaContenido = tablaRef.current.innerHTML;
@@ -53,14 +62,14 @@ const LeerGuion=()=>{
             <br />
             <div className="Grid">
               <div className="Row">
-                <h6><b>Título:</b> Sample text</h6>
-                <h6><b>Fecha:</b> 10/10/2023</h6>
+                <h6><b>Título:</b> {Datos.titulo}</h6>
+                <h6><b>Fecha:</b> {formatFecha(Datos.fecha)}</h6>
               </div>
               <div className="Row">
-                <h6><b>Fuente:</b> TXT</h6>
-                <h6><b>Categoría:</b> </h6>
-                <h6><b>Formato:</b> </h6>
-                <h6><b>Reportero:</b> </h6>
+                <h6><b>Fuente:</b> {Datos.fuente}</h6>
+                <h6><b>Categoría:</b>{Datos.categoria} </h6>
+                <h6><b>Formato:</b>{Datos.formato} </h6>
+                <h6><b>Reportero:</b>{Datos.reportero} </h6>
               </div>
             </div>
             <div className="tabla-imprimir" dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
