@@ -13,7 +13,6 @@ import { show_alerta } from "../../Funciones"
 
 const EditarGuion = () => {
   const [Datos, SetDatos] = useState([]);
-  const [Redaccion, SetRedaccion] = useState([]);
   const tablaRef = useRef(null);
   const [verdad,setverdad] = useState('');
 
@@ -37,6 +36,22 @@ const EditarGuion = () => {
     GetDatos();
   };
 
+
+  const quitarFila = () => {
+    const tabla = document.getElementById('tabla-nota');
+    const filasSeleccionadas = tabla.querySelectorAll('tr.selected');
+    if (filasSeleccionadas.length > 0) {   
+      filasSeleccionadas.forEach((fila) => {
+        tabla.deleteRow(fila.rowIndex);
+      });
+    } else {
+      show_alerta('No hay filas seleccionadas para eliminar', 'Aviso');
+    }
+  };
+
+  const handleQuitarCeldaClick = () => {
+    quitarFila();
+  };
 
   
   const {id} = useParams()
@@ -62,21 +77,45 @@ const EditarGuion = () => {
 
   const agregarFila = () => {
     const tabla = document.getElementById('tabla-nota');
-    const nuevaFila = tabla.insertRow();
-    const celda1 = nuevaFila.insertCell(0);
-    const celda2 = nuevaFila.insertCell(1);
-    celda1.innerHTML = '';
-    celda2.innerHTML = '';
+  const nuevaFila = tabla.insertRow();
+  nuevaFila.onclick = function() {
+    seleccionarFila(this);
   };
 
+  const celda1 = nuevaFila.insertCell(0);
+  const celda2 = nuevaFila.insertCell(1);
+  celda1.innerHTML = '';
+  celda2.innerHTML = '';
+  };
+  const seleccionarFila = (fila) => {
+    if (fila.classList.contains('selected')) {
+      fila.classList.remove('selected');
+    } else {
+      fila.classList.add('selected');
+    }
+  };
+
+
   useEffect(()=>{
+
+
+    
     GetDatos();
     try {
       const intervalo = setInterval(Autoguardado, 6000000);
+      const handleSuprKeyPress = (event) => {
+        if (event.key === 'Delete' ) {
+          console.log('Se presionó la tecla Supr/Delete fuera del input');
+          handleQuitarCeldaClick();
+        }
+      };
 
-    // Devuelve una función de limpieza para detener el intervalo cuando el componente se desmonta.ffffsd
-    return () => clearInterval(intervalo);
-
+      document.addEventListener('keydown', handleSuprKeyPress);
+    return () =>  {
+      document.removeEventListener('keydown', 
+      handleSuprKeyPress); 
+      clearInterval(intervalo);
+    }
     
     } catch (error) {
       
@@ -85,10 +124,20 @@ const EditarGuion = () => {
 },[]);
 
 
+const handleRowClick = (event) => {
+  const fila = event.currentTarget; 
+  if (fila.classList.contains('selected')) {
+    fila.classList.remove('selected');
+  } else {
+    fila.classList.add('selected');
+  }
+};
+
 function validacion() {
   try { 
     if (Datos.redaccion === "") {
       return (
+        <div ref={tablaRef}>
         <table id='tabla-nota' >
         <thead>
           <tr>
@@ -103,11 +152,13 @@ function validacion() {
           </tr>
         </tbody>
       </table>
+        </div>
+
       );
     } 
     else {
       return(
-        <div  dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
+        <div ref={tablaRef}  dangerouslySetInnerHTML={{ __html: Datos.redaccion }} />
       );
     }
   } catch (error) {
@@ -123,17 +174,21 @@ const GetDatos = async () => {
     const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/' + id);
     
     if (respuesta.data.result) {
-      // Si la respuesta contiene datos válidos, actualiza el estado
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
       setverdad(1);
       console.log(verdad);
+
+      const tabla = document.getElementById('tabla-nota');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 2; i < filas.length; i++) {
+        
+        filas[i].addEventListener('click', handleRowClick);
+      }
     } else {
-      // Si no hay datos, puedes manejar el caso aquí
       console.log('No se encontraron datos');
     }
   } catch (error) {
-    // Maneja el error si ocurre uno
     console.error('Error al obtener datos:', error);
   }
 };
@@ -174,13 +229,13 @@ return (
               <FaPlusSquare size={20} color="white" /> Agregar Celda
             </button>
             
-            <button type="button" className="btn btn-danger">
-              <FaMinusSquare size={20} color="white" /> Quitar Celda
+            <button id='quitar-celda' type="button" className="btn btn-danger" onClick={handleQuitarCeldaClick}>
+              <FaMinusSquare size={20} color="white" /> Quitar Celdas
             </button>
         </div>
         
         <div>
-          <div className='tabla-notaStyle' ref={tablaRef}>
+          <div className='tabla-notaStyle' >
 
           {validacion(true)}
 

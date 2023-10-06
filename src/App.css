@@ -1,7 +1,10 @@
+
+
 .App {
   text-align: center;
 
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -23,6 +26,8 @@
 table td{
 font-size: 16px;
 }
+
+
 .options{
 border-radius: 5px;
 border-style: none;
@@ -765,13 +770,19 @@ button.btn.btn-light:hover{
 /* Formato de tablas */
 
 table.table{
-  --bs-table-bg: #e7e7e7;
+  --bs-table-bg: transparent;
   font-size: 16px;
   width: 100%;
   vertical-align: top;
   border-radius: 50px;
-  min-height: 40vh;
+  min-height: 35vh;
 }
+
+table{
+ 
+}
+
+
 
 .Table-form{
   width: 1200px;
@@ -1051,7 +1062,20 @@ vertical-align: top;
   width: 100%;
   table-layout: fixed;
   user-select: none;
+  border-collapse: separate;
+  border-spacing: 10px;
+  outline: none;
 }
+
+.tabla-notaStyle table tr.selected{
+  background-color: rgb(190, 190, 190);
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  outline: none;
+}
+
 .tabla-notaStyle table td{
   flex: 1;
   resize: none;
@@ -1067,6 +1091,8 @@ vertical-align: top;
 
 .tabla-imprimir table{
   width: 100%;
+  table-layout: fixed;
+  resize: none;
 }
 
 .tabla-imprimir table td{
@@ -1074,6 +1100,7 @@ vertical-align: top;
   border-width: 1px;
   border-color: black;
   padding: 2vh;
+  resize: none;
   text-align: justify;
 }
 

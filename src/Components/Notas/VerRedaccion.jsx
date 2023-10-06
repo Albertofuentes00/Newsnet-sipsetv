@@ -14,6 +14,7 @@ const LeerGuion=()=>{
     const tablaRef = useRef(null);
     useEffect(()=>{
       GetDatos();
+      
   },[]);
   
   const GetDatos = async()=>{
@@ -22,11 +23,21 @@ const LeerGuion=()=>{
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
         Setcargado(1);
-        
+        falseEditable();
     } catch (error) {
         
     }
 
+  }
+
+
+  function falseEditable() {
+    var table = document.getElementById('tabla-nota');
+    var cells = table.getElementsByTagName('td');
+    for (var i = 0; i < cells.length; i++) {
+      cells[i].setAttribute('contenteditable', 'false');
+    
+  }
   }
 
   const mostrar=()=>{
