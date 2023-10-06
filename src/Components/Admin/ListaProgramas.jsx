@@ -41,120 +41,120 @@ const ListaProgramas=()=>{
   }
 
   
-    const OpenModal = (op,pkPrograma,nombre_Programa,fkCategoria) =>{
-      setPkPrograma('');
-      setNombre_Programa('');
-      setFkCategoria('');
-      setOperation(op);
-      if(op === 1){
-        setTitle('Registrar Programa')
-      }
-      else if(op === 2){
-        setTitle('Actualizar Programa')
-        setPkPrograma(fkCategoria);
-        setNombre_Programa(nombre_Programa);
-        setFkCategoria(fkCategoria);
-      }
-      window.setTimeout(function(){
-        document.getElementById('nombre').focus();
-      },500);
+  const OpenModal = (op,pkPrograma,nombre_Programa,fkCategoria) =>{
+    setPkPrograma('');
+    setNombre_Programa('');
+    setFkCategoria('');
+    setOperation(op);
+    if(op === 1){
+      setTitle('Registrar Programa')
     }
-    const Validar = () =>{
-      var parametros;
-      var id;
-      if(nombre_Programa.trim()===''){
-        show_alerta('Escribe el nombre','warning');
+    else if(op === 2){
+      setTitle('Actualizar Programa')
+      setPkPrograma(fkCategoria);
+      setNombre_Programa(nombre_Programa);
+      setFkCategoria(fkCategoria);
+    }
+    window.setTimeout(function(){
+      document.getElementById('nombre').focus();
+    },500);
+  }
+  const Validar = () =>{
+    var parametros;
+    var id;
+    if(fkCategoria===''){
+      show_alerta('Escoge la categoria','warning');
+    }
+    else if(nombre_Programa.trim()===''){
+      show_alerta('Escribe el nombre','warning');
+    }
+    else{
+      if(operation === 1){
+        parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria.trim()};
+          axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          buscar();
+        })
+        .catch(function(error){
+          show_alerta('error en la solicitud','error');
+          console.log(error);
+        });
+
       }
-      if(fkCategoria===''){
-        show_alerta('Escoge la categoria','warning');
-      }
-  
       else{
-        if(operation === 1){
-          parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria.trim()};
-            axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
-          })
-          .catch(function(error){
-            show_alerta('error en la solicitud','error');
-            console.log(error);
-          });
-  
-        }
-        else{
-          id = {pkPrograma:pkPrograma}
-          parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria};
-          axios.put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
-          })
-          .catch(function(error){
-            show_alerta('Error en la solicitud','error');
-            console.log(error);
-          });
-  
-        }
-        console.log("Se termino el consumo de la api");
+        id = {pkPrograma:pkPrograma}
+        parametros = {nombre_Programa:nombre_Programa.trim(),fkCategoria:fkCategoria};
+        axios.put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          buscar();
+        })
+        .catch(function(error){
+          show_alerta('Error en la solicitud','error');
+          console.log(error);
+        });
+
       }
+      console.log("Se termino el consumo de la api");
     }
-    const deleteDatos = (pkPrograma,nombre_Programa) =>{
-      const MySwal = whitReactContent(Swal);
-      MySwal.fire({
-        title:'¿Seguro que quieres borrar a ' + nombre_Programa +'?',
-        icon: 'question', text:'No se podrá recuperar despues',
-        showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
-      }).then((result) =>{
-        if(result.isConfirmed){
-          setPkPrograma(pkPrograma);
-          axios.delete('https://localhost:7201/Programa/Delete/' + pkPrograma).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
-          })
-          .catch(function(error){
-            show_alerta('error en la solicitud','error');
-            console.log(error);
-          });
-        }
-      });
-    }
+  }
+
+  const deleteDatos = (pkPrograma,nombre_Programa) =>{
+    const MySwal = whitReactContent(Swal);
+    MySwal.fire({
+      title:'¿Seguro que quieres borrar a ' + nombre_Programa +'?',
+      icon: 'question', text:'No se podrá recuperar despues',
+      showCancelButton:true,confirmButtonText:"Sí, Eliminar",cancelbuttonText:'Cancelar'
+    }).then((result) =>{
+      if(result.isConfirmed){
+        setPkPrograma(pkPrograma);
+        axios.delete('https://localhost:7201/Programa/Delete/' + pkPrograma).then(function(respuesta){
+          document.getElementById('btnCerrar').click();
+          buscar();
+        })
+        .catch(function(error){
+          show_alerta('error en la solicitud','error');
+          console.log(error);
+        });
+      }
+    });
+  }
 
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = Datos.slice(startIndex, endIndex);
+
+  const [itemNumber, setItemNumber] = useState(0);
+  useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentData = Datos.slice(startIndex, endIndex);
-  
-    const [itemNumber, setItemNumber] = useState(0);
-    useEffect(() => {
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      setItemNumber(startIndex + 1);
-    }, [currentPage, itemsPerPage, Datos]);
+    setItemNumber(startIndex + 1);
+  }, [currentPage, itemsPerPage, Datos]);
 
 
 
-    const buscar = async ()=>{
-      try {
-        var variable = document.getElementById("Buscador").value
-      if (variable == ""){
-        GetDatos();
-      }else{
-        const respuesta = await axios.get('https://localhost:7201/Programa/Buscar/' + variable)
-        console.log(respuesta.data.result);
-        SetDatos(respuesta.data.result);
-        setCurrentPage(1);
-      }
-    
-      } catch (error) {
-        console.log(error);
-      }
-      
+  const buscar = async ()=>{
+    try {
+      var variable = document.getElementById("Buscador").value
+    if (variable == ""){
+      GetDatos();
+    }else{
+      const respuesta = await axios.get('https://localhost:7201/Programa/Buscar/' + variable)
+      console.log(respuesta.data.result);
+      SetDatos(respuesta.data.result);
+      setCurrentPage(1);
     }
+  
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
 
 
 
 
-    return(
+return(
 <div className="Auth-form-container">
 
 <div className="Auth-form-table">

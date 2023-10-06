@@ -128,6 +128,56 @@ const Bitacora=()=>{
         else if(fkfuente===''){
         show_alerta('Seleccion una fuente','warning');
         }
+        else if(fkUsuario===''){
+          show_alerta('Selecciona un reportero','warning');
+          }
+        else{
+          try {
+            const fechaActual = new Date();
+            const año = fechaActual.getFullYear();
+            const mes = fechaActual.getMonth() + 1;
+            const dia = fechaActual.getDate();
+            const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+  
+  
+  
+  
+            const cadena = Cookies.get('Usuario');
+            const partes = cadena.split('/');
+            const user = partes[2];
+            
+            var Varreportero;
+            
+            if (user != "Responsable" && user != "Administrador") {
+  
+                const cadena = Cookies.get('Usuario');
+                const partes = cadena.split('/');
+                const user = partes[0];
+  
+                console.log("La fk es: " + user.trim());
+                Varreportero = user;
+            } else {
+                console.log(reportero);
+                Varreportero = fkUsuario;
+            }
+           
+            var conductor = '';
+            var tipo = 0;
+            var redaccion = '';
+            parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+            axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
+            console.log(respuesta.data.result);
+            document.getElementById('btnCerrar').click();
+            buscar();
+          })
+          .catch(function(error){
+            show_alerta('Error en la solicitud','error');
+            console.log(error);
+          });
+          } catch (error) {
+            console.log(error);
+          }
+        }
       }
       else{
         if(titulo.trim()===''){
@@ -151,56 +201,7 @@ const Bitacora=()=>{
         else if(fkfuente===''){
           show_alerta('Seleccion una fuente','warning');
         }
-      }
-      if(operation === 1){
-
-        try {
-          const fechaActual = new Date();
-          const año = fechaActual.getFullYear();
-          const mes = fechaActual.getMonth() + 1;
-          const dia = fechaActual.getDate();
-          const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
-
-
-
-
-          const cadena = Cookies.get('Usuario');
-          const partes = cadena.split('/');
-          const user = partes[2];
-          
-          var Varreportero;
-          
-          if (user != "Responsable" && user != "Administrador") {
-
-              const cadena = Cookies.get('Usuario');
-              const partes = cadena.split('/');
-              const user = partes[0];
-
-              console.log("La fk es: " + user.trim());
-              Varreportero = user;
-          } else {
-              console.log(reportero);
-              Varreportero = fkUsuario;
-          }
-         
-          var conductor = '';
-          var tipo = 0;
-          var redaccion = '';
-          parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
-          axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
-          console.log(respuesta.data.result);
-          document.getElementById('btnCerrar').click();
-          buscar();
-        })
-        .catch(function(error){
-          show_alerta('Error en la solicitud','error');
-          console.log(error);
-        });
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      else{
+        else{
         const cadena = Cookies.get('Usuario');
         const partes = cadena.split('/');
         const user = partes[2];
@@ -233,6 +234,7 @@ const Bitacora=()=>{
   
       }
       console.log("Se termino el consumo de la api");
+      }
     }
     const deleteDatos = (pkNota) =>{
       const MySwal = whitReactContent(Swal);
@@ -540,24 +542,27 @@ const Bitacora=()=>{
 
                       <div class="w-100">
 
-                    <div class="col">
-                       <label> Fuentes </label>
-                        <div className='input-group mb-3'>
-                          <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                            <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
-                              <option></option>
-                              {Fuentes.map(Fuentes =>(
-                              <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
-                              ))}
-                              </select>
-                        </div>
+                    <div className="Row">
+                      <div class="col">
+                         <label> Fuentes </label>
+                          <div className='input-group mb-3'>
+                            <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                              <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                                <option></option>
+                                {Fuentes.map(Fuentes =>(
+                                <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
+                                ))}
+                                </select>
+                          </div>
+                      </div>
                             
                         <div class="col">
                           {rol(true)}
                         </div>
+
+
+
                     </div>
-
-
                     </div>
                   </div>
                 </div>
@@ -565,6 +570,7 @@ const Bitacora=()=>{
             
                 <div className="d-grid col-6 mx-auto">
                   <div className="Row">
+                    
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
                     </button>
@@ -601,49 +607,77 @@ const Bitacora=()=>{
                     <input type="Date" className="form-control mt-1" value={fecha}
                     onChange={(e)=> setFecha(e.target.value)}></input>
                   </div>
-                  <label> Categoria </label>
-                  <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                    <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
-                          <option></option>
-                      {Categorias.map(Categorias =>(
-                          <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <label> Formato </label>
-                  <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                    <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
-                          <option></option>
-                      {Formatos.map(Formatos =>(
-                          <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
-                      ))}
-                    </select>
-                  </div>
-    
-                    <label> Fuentes </label>
-                    <div className='input-group mb-3'>
+
+
+                  <div className="Row">
+                    <div class='col'>
+                      <label> Categoria </label>
                       <div className='input-group mb-3'>
                       <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                        <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                        <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                               <option></option>
-                          {Fuentes.map(Fuentes =>(
-                              <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
+                          {Categorias.map(Categorias =>(
+                              <option value={Categorias.pkCategoria}>{Categorias.nombre_Categoria}</option>
                           ))}
+                        </select>
+                        </div>
+                      </div>
+
+                    <div class='col'>           
+                      <label> Formato </label>
+                      <div className='input-group mb-3'>
+                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                        <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
+                              <option></option>
+                              {Formatos.map(Formatos =>(
+                              <option value={Formatos.pkFormato}>{Formatos.nombre_Formato}</option>
+                              ))}
                         </select>
                       </div>
                     </div>
-                    {rolEditar(true)}
+                  </div>
+
+                
+
+
+                <div className="Row">
+                  <div class="col">
+                    <label> Fuentes </label>
+                      <div className='input-group mb-3'>
+                        <div className='input-group mb-3'>
+                        <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                          <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
+                                <option></option>
+                            {Fuentes.map(Fuentes =>(
+                                <option value={Fuentes.pkFuente}>{Fuentes.nombre_Fuente}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                  </div>
+    
+                    
+                    <div class='col'>
+                      {rolEditar(true)}
+                    </div>
+                  </div>
+
 
                   <div className="d-grid col-6 mx-auto">
+                    <div className="Row">
+                      <div class='col'>
                         <button onClick={()=> Validar()} className="btn btn-success">
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
-    
+                      </div>
+
+                      <div class='col'>  
                         <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
                           <i className="fa-solid fa-circle-xmark"/> Cancelar
                         </button>
+
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>

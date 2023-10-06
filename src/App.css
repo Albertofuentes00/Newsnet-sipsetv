@@ -502,6 +502,7 @@ option{
   flex: 1 1 auto;
   padding: var(--bs-modal-padding);
   overflow-y: auto;
+  
   max-height: 700px;
 }
 
