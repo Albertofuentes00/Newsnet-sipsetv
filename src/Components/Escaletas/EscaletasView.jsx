@@ -312,37 +312,48 @@ const Escaletas=()=>{
             <label className='h5'>{title}</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
-          <h4>Ingresa los datos requeridos para crear una nueva escaleta</h4>
+          <h6>Ingresa los datos requeridos para crear una nueva escaleta</h6>
           <div className='modal-body'>
-            <label> Programa </label>
-            <div className='input-group mb-3'>
-              <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
+
+            <div className="Row">
+              <div class="col">
+              <label> Programa </label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
                       <option></option>
-                  {Programas.map(Programas =>(
+                      {Programas.map(Programas =>(
                       <option value={Programas.pkPrograma}>{Programas.nombre_Programa}</option>
-                  ))}
-                </select>
+                      ))}
+                  </select>
+                </div>
+              </div>
+
+              <div class='col'>
+                <label>Hora de inicio</label>
+                <input type='hidden' id='id'></input>
+                <div className='input-group mb-3'>
+                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={hora_Inicio}
+                onChange={(e)=> setHora_Inicio(e.target.value)}></input>
+                </div>
               </div>
             </div>
-            <label>Hora de inicio</label>
-            <input type='hidden' id='id'></input>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
-              <input type='time' id="nombre" className="form-control" placeholder="Hora de Inicio" value={hora_Inicio}
-              onChange={(e)=> setHora_Inicio(e.target.value)}></input>
-            </div>
 
+          </div>
+          <div className="modal-footer">
             <div className="d-grid col-6 mx-auto">
+              <div className='Row'>
                   <button onClick={()=> Validar()} className="btn btn-success">
                     <i className="fa-solid fa-floppy-disk"></i> Guardar
                   </button>
+                  <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
+                    <i className="fa-solid fa-circle-xmark"/>Cancelar
+                  </button>
+              </div>
             </div>
           </div>
-          <div className="modal-footer">
-                  <button type="button" id='btnCerrar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
-          </div>
+
         </div>
       </div>
     </div>

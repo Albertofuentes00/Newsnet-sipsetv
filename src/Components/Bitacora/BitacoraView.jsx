@@ -566,11 +566,10 @@ const Bitacora=()=>{
                     </div>
                   </div>
                 </div>
-                
             
-                <div className="d-grid col-6 mx-auto">
+                
+                <div className="col-6 mx-auto">
                   <div className="Row">
-                    
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
                     </button>
@@ -580,6 +579,7 @@ const Bitacora=()=>{
                     </button>
                   </div>
                 </div>
+
                 </div>
             </div>
           </div>

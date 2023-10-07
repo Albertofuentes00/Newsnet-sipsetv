@@ -12,7 +12,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
 class PdfViewer extends React.Component {
  
   render(){
-    const { pdfUrl } = "https://ottsincelejo.com/blogwilson/bdavanzada/procedimientos.pdf";
+
+    const pdfUrl = 'https://revistaseug.ugr.es/downloads/SOBRE_APA7_ejemplos_ESPA%C3%91OL.pdf'; // Reemplaza con la URL o ruta de tu archivo PDF
 
     return (
       <div>
@@ -25,14 +26,13 @@ class PdfViewer extends React.Component {
                 </div>
           </div>
           <div id="canvas_container">
-            <PDFViewer/>
+            <iframe title="PDF Viewer" src={pdfUrl} width="100%" height="700px" />
           </div>
         </div>
       </div>
       
     );
   
-
   }
     }
 export default PdfViewer
