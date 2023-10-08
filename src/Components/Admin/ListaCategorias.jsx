@@ -98,8 +98,12 @@ const ListaCategorias=()=>{
         if(result.isConfirmed){
           setPkCategoria(pkCategoria);
           axios.delete('https://localhost:7201/Categoria/Delete/' + pkCategoria).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
+            if(respuesta.data.mensaje === 'Está relacionado'){
+              show_alerta('No se pudo cumplir la solicitud, existen otros registros que contienen este elemento');
+            }
+            else{
+              buscar();
+            }
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');

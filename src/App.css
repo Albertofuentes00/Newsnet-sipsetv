@@ -353,7 +353,7 @@ a:visited {
   position: static;
   min-height: 70vh;
   max-height: 80vh;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  box-shadow: 1px -2px 26px 10px rgba(0,0,0,0.42);
   padding-top: 30px;
   overflow-y: auto;
   padding-bottom: 20px;
@@ -507,7 +507,7 @@ option{
 }
 
 .Auth-form-table {
-  min-width: 70vw;
+  min-width: 80vw;
   min-height: 60vh;
   max-height: 65vh;
   overflow-y: auto;
@@ -777,10 +777,7 @@ table.table{
   vertical-align: top;
   border-radius: 50px;
   min-height: 35vh;
-}
-
-table{
- 
+  margin: auto;
 }
 
 
@@ -887,8 +884,13 @@ width: 600px;
   margin-bottom: 1px;
   transition: all 0.2s;
 }
-.dnd li:hover {
-  background-color: rgb(125, 125, 125);
+.dnd:hover {
+  background-color: rgb(206, 206, 206);
+}
+.dragging-table {
+  border: 2px dashed #ccc;
+  opacity: 0.7;
+  /* Agrega otros estilos cuando se está arrastrando */
 }
 
 

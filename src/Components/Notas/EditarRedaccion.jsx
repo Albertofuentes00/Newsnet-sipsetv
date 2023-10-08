@@ -106,7 +106,6 @@ const EditarGuion = () => {
 
       const handleSuprKeyPress = (event) => {
         if (event.key === 'Delete' ) {
-          console.log('Se presionó la tecla Supr/Delete fuera del input');
           handleQuitarCeldaClick();
         }
         else if(event.key === 'F4'){

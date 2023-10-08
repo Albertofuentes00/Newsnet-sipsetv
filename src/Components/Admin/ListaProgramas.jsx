@@ -108,8 +108,12 @@ const ListaProgramas=()=>{
       if(result.isConfirmed){
         setPkPrograma(pkPrograma);
         axios.delete('https://localhost:7201/Programa/Delete/' + pkPrograma).then(function(respuesta){
-          document.getElementById('btnCerrar').click();
-          buscar();
+          if(respuesta.data.mensaje === 'Está relacionado'){
+            show_alerta('No se pudo cumplir la solicitud, existen otros registros que contienen este elemento');
+          }
+          else{
+            buscar();
+          }
         })
         .catch(function(error){
           show_alerta('error en la solicitud','error');

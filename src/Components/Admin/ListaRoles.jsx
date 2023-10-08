@@ -99,8 +99,16 @@ const ListaRoles = () => {
       if(result.isConfirmed){
         setPkRol(pkRol);
         axios.delete('https://localhost:7201/Rol/Delete/' + pkRol).then(function(respuesta){
-          document.getElementById('btnCerrar').click();
-          buscar();
+          if(respuesta.data.mensaje === 'Está relacionado'){
+            show_alerta('No se pudo cumplir la solicitud, existen otros registros que contienen este elemento');
+          }
+          else if(respuesta.data.mensaje === 'No es posible eliminar este rol'){
+            show_alerta(respuesta.data.mensaje);
+          }
+          else{
+            buscar();
+          }
+
         })
         .catch(function(error){
           show_alerta('error en la solicitud','error');

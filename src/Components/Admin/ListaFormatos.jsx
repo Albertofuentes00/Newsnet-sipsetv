@@ -100,8 +100,12 @@ const ListaFormatos = () =>{
         if(result.isConfirmed){
           setPkFormato(pkFormato);
           axios.delete('https://localhost:7201/Formato/Delete/' + pkFormato).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
+            if(respuesta.data.mensaje === 'Está relacionado'){
+              show_alerta('No se pudo cumplir la solicitud, existen otros registros que contienen este elemento');
+            }
+            else{
+              buscar();
+            }
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');

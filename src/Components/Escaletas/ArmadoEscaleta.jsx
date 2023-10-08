@@ -17,6 +17,9 @@ function Table() {
     setRows.Save()
   }
 
+  const tabla = document.getElementById('table');
+
+  
   const [dragItem, setDragItem] = useState();
   const [rows, setRows] = useState([
     

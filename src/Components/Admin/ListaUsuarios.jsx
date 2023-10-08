@@ -141,8 +141,12 @@ const ListaUsuarios=()=>{
             } else {
               setPkUsuario(pkUsuario);
               axios.delete('https://localhost:7201/Usuario/Delete/' + pkUsuario).then(function(respuesta){
-                document.getElementById('btnCerrar').click();
-                buscar();
+                if(respuesta.data.mensaje === 'Está relacionado'){
+                  show_alerta('No se pudo cumplir la solicitud, existen otros registros que contienen este elemento');
+                }
+                else{
+                  buscar();
+                }
               })
               .catch(function(error){
                 show_alerta('error en la solicitud','error');

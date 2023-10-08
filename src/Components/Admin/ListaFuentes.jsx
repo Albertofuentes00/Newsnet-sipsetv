@@ -13,6 +13,7 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 const ListaFuentes = () => {
 
     const [Datos, SetDatos] = useState([]);
+    const [Notas, SetNotas] = useState([]);
     const [pkFuente, setPkFuente] = useState('');
     const [nombre_Fuente, setNombre_Fuente] = useState('');
     const [operation, setOperation] = useState(1);
@@ -99,9 +100,19 @@ const ListaFuentes = () => {
       }).then((result) =>{
         if(result.isConfirmed){
           setPkFuente(pkFuente);
-          axios.delete('https://localhost:7201/Fuente/Delete/' + pkFuente).then(function(respuesta){
-            document.getElementById('btnCerrar').click();
-            buscar();
+          axios.delete('https://localhost:7201/Fuente/Delete/' + pkFuente).then(function(respuesta){   
+            if(respuesta.data.mensaje === 'Está relacionado'){
+              console.log(respuesta.data.result);
+              SetNotas(respuesta.data.result);
+              const notasrelaModal = document.getElementById('notasrela');
+          notasrelaModal.classList.add('show');
+          notasrelaModal.style.display = 'block';
+          document.body.classList.add('modal-open');
+            } else{
+              document.getElementById('btnCerrar').click();
+              buscar();
+            } 
+
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
@@ -111,7 +122,12 @@ const ListaFuentes = () => {
       });
     }
 
-
+    function closeModal() {
+      const notasrelaModal = document.getElementById('notasrela');
+      notasrelaModal.classList.remove('show');
+      notasrelaModal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
 
 
 
@@ -233,6 +249,45 @@ const ListaFuentes = () => {
                         <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
                           <i class="fa-solid fa-xmark"></i> Cancelar
                         </button>
+                </div>
+            </div>
+          </div>
+          </div>
+          </div>
+
+          <div id='notasrela' className="modal fade" aria-hidden='false'>
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+                <label className="h5">La fuente no se puede borrar, esta relacionada con los siguiente elementos</label>
+            </div>
+            <div className="modal-body">
+              
+            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">No. Fuente</th>
+                                    <th scope="col">titulo</th>
+                                    <th scope="col">fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody className="table-group-divider">
+                            {Notas.map((Notas,i) =>(
+                            <tr key={Notas.pkFuente}>
+                            <td>{(i+1)}</td>
+                            <td>{Notas.titulo}</td>
+                            <td>{Notas.fecha.split(' ')[0]}</td>
+                      </tr>
+                            ))}
+                            </tbody>
+                        </table>
+
+            </div>
+            <div className="modal-footer">
+                <div className="col-6 mx-auto">
+                <button type="button" className="btn btn-success" onClick={() => closeModal()}>
+ Aceptar
+</button>
                 </div>
             </div>
           </div>
