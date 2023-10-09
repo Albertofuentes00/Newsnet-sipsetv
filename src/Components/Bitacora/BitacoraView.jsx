@@ -42,9 +42,6 @@ const Bitacora=()=>{
     const [pkNota, setPkNota] = useState('');
     const [titulo, setTitulo] = useState('');
     const [reportero, setReportero] = useState('');
-    const [conductor, setConductor] = useState('');
-    const [tipo, setTipo] = useState('');
-    const [indice, setIndice] = useState('');
     const [fecha, setFecha] = useState('');
     const [fkCategoria, setFkCategoria] = useState('');
     const [fkFormato, setFkFormato] = useState('');
@@ -77,9 +74,6 @@ const Bitacora=()=>{
   const OpenModal = (op,pkNota,titulo,fecha,fkCategoria,fkFormato,fkfuente,fkUsuario) =>{
     setPkNota('');
     setTitulo('');
-    setConductor('');
-    setTipo('');
-    setIndice('');
     setFkFuente('');
     setFkCategoria('');
     setFkFormato('');
@@ -160,11 +154,9 @@ const Bitacora=()=>{
                 console.log(reportero);
                 Varreportero = fkUsuario;
             }
-           
-            var conductor = '';
-            var tipo = 0;
+          
             var redaccion = '';
-            parametros = {titulo:titulo.trim(),fecha:fechaFormateada,conductor:conductor.trim(),tipo:tipo,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+            parametros = {titulo:titulo.trim(),fecha:fechaFormateada,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
             axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
             console.log(respuesta.data.result);
             document.getElementById('btnCerrar').click();
@@ -222,7 +214,7 @@ const Bitacora=()=>{
         var conductor = '';
         var tipo = 0;
         var redaccion = '';
-        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),conductor:conductor,tipo:tipo,redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
+        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
         axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           buscar();
