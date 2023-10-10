@@ -58,6 +58,7 @@ const EditarGuion = () => {
 
   const InsertarRedaccion = () => {
     const tablaContenido = tablaRef.current.innerHTML;
+    
     try {
       const parametros = {Vredaccion: tablaContenido };
       axios.patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros).then(function (respuesta) {

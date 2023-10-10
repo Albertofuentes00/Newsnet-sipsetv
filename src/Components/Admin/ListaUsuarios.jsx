@@ -224,7 +224,6 @@ const ListaUsuarios=()=>{
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">User</th>
-                                    <th scope="col">Contraseña</th>
                                     <th scope="col">Rol</th>
                                     <th scope="col">     </th>
                                 </tr>
@@ -236,7 +235,6 @@ const ListaUsuarios=()=>{
                   <td>{Datos.nombre}</td>
                   <td>{Datos.apellidos}</td>
                   <td>{Datos.nickName}</td>
-                  <td>{Datos.user_Password}</td>
                   <td>{Datos.nombre_Rol}</td>
                   <td>                 
                       <button onClick={()=> OpenModal(2,Datos.pkUsuario,Datos.nombre,Datos.apellidos,Datos.nickName,Datos.user_Password,Datos.fkRol)} 
