@@ -10,9 +10,28 @@ import { FaTrash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useParams } from 'react-router-dom';
 
 
 function Table() {
+  const [DatosEscaleta, SetDatosEscaleta] = useState([]);
+  const {id} = useParams()
+  const [cargado, Setcargado] = useState(0);
+  useEffect(()=>{
+    GetDatosEscaleta();
+    
+},[]);
+
+const GetDatosEscaleta = async()=>{
+  try {
+      const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+id);
+      console.log(respuesta.data.result);
+      SetDatosEscaleta(respuesta.data.result);
+      Setcargado(1);
+  } catch (error) {
+      
+  }
+}
   const Save = () => {
     setRows.Save()
   }
@@ -43,6 +62,7 @@ function Table() {
   
   const [dragItem, setDragItem] = useState();
   const [Datos, SetDatos] = useState([]);
+  // const [cargado, Setcargado] = useState(0);
   const [rows, setRows] = useState([
     
     { id: '1', order: '-', content: '-', title: 'Bienvenida', reportero: '-', format: '-' },
@@ -54,7 +74,6 @@ function Table() {
     const newRow = {
         id: rows.length + 1,order: '-', content: '-', title: 'INDICACION', reportero: '-', format: '-' 
     };
-
     setRows([...rows, newRow]);
   };
   
@@ -110,9 +129,6 @@ function Table() {
   }
 
 
-
-
-
   const buscar = async ()=>{
     try {
       var variable = document.getElementById("Buscador").value;
@@ -147,6 +163,24 @@ function Table() {
   }
 
 
+  const mostrar=()=>{
+    if(cargado === 1){
+      return(
+    
+        <div className='Grid'>
+        <div className='Row'>
+          <h6><b>Programa:</b> {DatosEscaleta.programa.nombre_Programa} </h6>
+          <h6><b>Fecha:</b> {DatosEscaleta.fecha}</h6>
+        </div>
+        <div className='Row'>
+          <h6><b>Usuario:</b> {DatosEscaleta.usuario.nombre}</h6>
+          <h6><b>Hora de inicio:</b> {DatosEscaleta.hora_Inicio}</h6>
+        </div>
+      </div>
+      );
+    }
+      }
+
 
 
 
@@ -155,21 +189,28 @@ function Table() {
           <div className="Auth-form-container">
   <div className="Auth-form-escaleta">
   <div className="Auth-form-content">
-      <h3 className="Auth-form-title">Cancun Vive 22-06-23</h3>
-      <form className="Button-form">
-            <Link to='/Escaletas'>
-              <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
-            </Link>
-              <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
-              <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
-              <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>
-              
-              <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-            
-            <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
-            <button type='button' class='btn btn-danger' color='#530108'> Generar Prompt</button>
-      </form>
+    <div className='Row'>
+      <h1>Escaleta</h1>
+      <div>
+        <Link to='/Escaletas'>
+          <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
+        </Link>
+          <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+          <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
+          <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+      </div>
       <br />
+    </div>
+
+      <br />
+
+      <div className="Button-form">
+              <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
+              <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
+      </div>
+
+      {mostrar()}
+
 
       <div>
          <DragDropContext onDragEnd={handleDragEnd}>

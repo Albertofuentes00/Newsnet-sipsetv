@@ -433,7 +433,7 @@ const Bitacora=()=>{
             
             <div className="Row">
               <h1>Bitácora de notas</h1>
-              <div className="Button-form">
+              <div>
                   <Link to='/MainMenu'>
                   <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
                   </Link>
