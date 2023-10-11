@@ -252,11 +252,11 @@ const GetDatosEscaleta = async()=>{
 
                             
                           >
-                            <td> {row.id} </td>
+                            <td> {row.id}</td>
                             <td> {row.order} </td>
                             <td>{row.content}</td>
                             <td> {row.title} </td>
-                            <td> {row.reportero} </td>
+                            <td> {row.reportero} </td> 
                             <td> {row.format} </td>
                             <td>    
                               <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 

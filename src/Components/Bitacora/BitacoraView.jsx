@@ -493,13 +493,15 @@ const Bitacora=()=>{
                 <label className='h3'>{title}</label>
                 <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
               </div>
+              <br />
+              <div>
                 <h6>Ingresa los datos requeridos para crear una nota nueva</h6>
+              </div>
       
               <div className='modal-body'>
                 <label> Titulo </label>
                 <input type='hidden' id='id'></input>
                 <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
                   <textarea type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
                   onChange={(e)=> setTitulo(e.target.value)}></textarea>
                 </div>
@@ -560,7 +562,7 @@ const Bitacora=()=>{
                 </div>
             
                 
-                <div className="col-6 mx-auto">
+                <div className="Button-form">
                   <div className="Row">
                     <button onClick={()=> Validar()} className="btn btn-success">
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
@@ -583,23 +585,31 @@ const Bitacora=()=>{
                 <label className='h3'>{title}</label>
                 <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
+                <br />
                 <h5>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h5>
                 
                 <div className='modal-body'>
-                <label> Titulo </label>
-                  <input type='hidden' id='id'></input>
-                  <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                    <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
-                    onChange={(e)=> setTitulo(e.target.value)}></input>
-                  </div>
-                  <label> fecha</label>
-                  <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                    <input type="Date" className="form-control mt-1" value={fecha}
-                    onChange={(e)=> setFecha(e.target.value)}></input>
+                  <div className="Row">
+                    <div class='col'>
+                      <label> Titulo </label>
+                      <input type='hidden' id='id'></input>
+                      <div className='input-group mb-3'>
+                      <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
+                      onChange={(e)=> setTitulo(e.target.value)}></input>
+                      </div>
+                    </div>
+
+                    <div class='col'>
+                      <label> Fecha</label>
+                      <div className='input-group mb-3'>
+                     
+                      <input type="Date" className="form-control mt-1" value={fecha}
+                      onChange={(e)=> setFecha(e.target.value)}></input>
+                      </div>
+                    </div>
                   </div>
 
+  
 
                   <div className="Row">
                     <div class='col'>
@@ -655,19 +665,16 @@ const Bitacora=()=>{
                   </div>
 
 
-                  <div className="d-grid col-6 mx-auto">
+                  <div className="Button-form">
                     <div className="Row">
                       <div class='col'>
                         <button onClick={()=> Validar()} className="btn btn-success">
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
-                      </div>
 
-                      <div class='col'>  
                         <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
                           <i className="fa-solid fa-circle-xmark"/> Cancelar
                         </button>
-
                       </div>
                     </div>
                   </div>

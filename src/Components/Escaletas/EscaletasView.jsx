@@ -314,6 +314,7 @@ const Escaletas=()=>{
             <label className='h5'>{title}</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
+          <br />
           <h6>Ingresa los datos requeridos para crear una nueva escaleta</h6>
           <div className='modal-body'>
 
@@ -343,8 +344,8 @@ const Escaletas=()=>{
             </div>
 
           </div>
-          <div className="modal-footer">
-            <div className="d-grid col-6 mx-auto">
+          
+            <div className="Button-form">
               <div className='Row'>
                   <button onClick={()=> Validar()} className="btn btn-success">
                     <i className="fa-solid fa-floppy-disk"></i> Guardar
@@ -354,7 +355,7 @@ const Escaletas=()=>{
                   </button>
               </div>
             </div>
-          </div>
+          
 
         </div>
       </div>
