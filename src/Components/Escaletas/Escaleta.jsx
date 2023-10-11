@@ -12,9 +12,26 @@ import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
+import { LoadScript } from "react-load-script";
 
 
 function Table() {
+
+useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+        document.body.removeChild(script);
+    };
+    }, []);
+
+
+
+
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
   const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const {id} = useParams()
@@ -35,9 +52,6 @@ const GetDatosEscaleta = async()=>{
       
   }
 }
-  const Save = () => {
-    setRows.Save()
-  }
 
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
@@ -67,45 +81,8 @@ const GetDatosEscaleta = async()=>{
   const [Datos, SetDatos] = useState([]);
   // const [cargado, Setcargado] = useState(0);
 
-
-  const [rows, setRows] = useState([
-  
-    { id: '1', order: '-', content: '-', title: 'Bienvenida', reportero: '-', format: '-' ,rowClass: 'indicacion' },
-    { id: '2', order: '-', content: '-', title: 'Corte comercial', reportero: '-', format: '-',rowClass: 'indicacion' },
-    { id: '3', order: '-',content: '-', title: 'Salida', reportero: '-', format: '-' ,rowClass: 'indicacion' },
-  ]);
-  
-  const handleAddRow = () => {
-    const newRow = {
-        id: rows.length + 1,order: '-', content: '-', title: 'INDICACION', reportero: '-', format: '-' 
-    };
-    newRow.rowClass = 'indicacion';
-    setRows([...rows, newRow]);
-  };
-  
-
-  const handleDragEnd = (result) => {
-    if (!result.destination) return;
-  
-    const newRows = [...rows];
-    const [removed] = newRows.splice(result.source.index, 1);
-    newRows.splice(result.destination.index, 0, removed);
-  
-    setRows(newRows);
-  };
-  
-
   const handleDragStart = (index) => {
     setDragItem(index);
-  };
-  
-  const handleDragEnter = (e, index) => {
-    const newRows = [...rows];
-    const item = newRows[dragItem];
-    newRows.splice(dragItem, 1);
-    newRows.splice(index, 0, item);
-    setDragItem(index);
-    setRows(newRows);
   };
 
   useEffect(() => {
@@ -169,146 +146,13 @@ const GetDatosEscaleta = async()=>{
       );
     }
   }
-  
-  const toggleSeleccion = (pkNota) => {
-    if (filasSeleccionadas.includes(pkNota)) {
-      setFilasSeleccionadas(filasSeleccionadas.filter((id) => id !== pkNota));
-    } else {
-      setFilasSeleccionadas([...filasSeleccionadas, pkNota]);
-    }
-  };
-    
-      const AgregarNota = () => {
-
-
-
-        const filasParaGuardar = Datos.filter((fila) =>
-          filasSeleccionadas.includes(fila.pkNota)
-        );
-      
-        const nuevasFilas = [];
-      var ide = rows.length + 1;
-        filasParaGuardar.forEach((fila, index) => {
-          const newRow = {
-            id: ide,
-            order: ' ',
-            content: ' ',
-            title: fila.titulo,
-            reportero: fila.nombre,
-            format: fila.nombre_Formato,
-          };
-          ide = ide + 1;
-          
-          nuevasFilas.push(newRow);
-          const datosEnviar = {
-            fkNota: fila.pkNota,
-            fkEscaleta: id,
-          };
-        
-          axios
-            .post('https://localhost:7201/Nota_Esca/Post', datosEnviar)
-            .then(function (respuesta) {
-            })
-            .catch(function (error) {
-              show_alerta('Error en la solicitud', 'error');
-              console.log(error);
-            });
-        });
-      
-        setRows([...rows, ...nuevasFilas]);
-
-        
-        ActualizarTablaEs();
-        
-      };
-      
-      
-      const ActualizarTablaEs = () => {
-        const tablaContenido = tablaRef.current.innerHTML;
-      
-        // Serializa la información de arrastre (orden) de los elementos
-        const ordenSerializado = rows.map((row) => ({
-          id: row.id,
-          order: row.order,
-        }));
-      
-        // Crea un objeto con ambos datos
-        const datosEnviar = {
-          vTabla: tablaContenido,
-          orden: ordenSerializado,
-        };
-      
-        axios
-          .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
-          .then(function (respuesta) {
-            show_alerta('Datos guardados correctamente');
-          })
-          .catch(function (error) {
-            show_alerta('Error en la solicitud', 'error');
-            console.log(error);
-          });
-      };
-
-
-
-
 
       function validacion() {
         try { 
           if (DatosEscaleta.tabla === "") {
             return (
               <div ref={tablaRef}>
-              <DragDropContext onDragEnd={handleDragEnd}>
-                 <Droppable droppableId="rows">
-                   {(provided) => (
-                     <table class="table" >
-                         <thead>          
-                             <tr >
-                                 <th scope="col">#</th>
-                                 <th scope='col'>Orden</th>
-                                 <th scope="col">Conductor</th>
-                                 <th scope="col">Titulo</th>
-                                 <th scope="col">Reportero</th>
-                                 <th scope="col">Formato</th>
-                             </tr>
-                         </thead>
-                       <tbody
-                         
-                         >
-                         {rows.map((row, index) => (
-                           <Draggable key={row.id} draggableId={row.id} index={index}  >
-                             {(provided) => (
-                               
-                               <tr className={row.rowClass}
-                                 {...provided.draggableProps}
-                                 {...provided.dragHandleProps}
-                                 ref={provided.innerRef}
-                                 draggable
-                                 key={index}
-                                 onDragStart={() => handleDragStart(index)}
-                                 onDragEnter={(e) => handleDragEnter(e, index)}
-                                 onDragOver={(e) => e.preventDefault()}
-     
-                                 
-                               >
-                                 <td> {row.id} </td>
-                                 <td> {row.order} </td>
-                                 <td>{row.content}</td>
-                                 <td> {row.title} </td>
-                                 <td> {row.reportero} </td>
-                                 <td> {row.format} </td>
-     
-                                 
-                               </tr>
-                             )}
-                           </Draggable>
-                         ))}
-                         {provided.placeholder}
-                       </tbody>
-                     </table>
-                   )}
-                 </Droppable>
-               </DragDropContext>
+
            </div>
             );
           } 
@@ -322,6 +166,57 @@ const GetDatosEscaleta = async()=>{
         }
          
         }
+try {
+    const list = document.getElementById("sortable-list");
+        let draggedItem = null;
+
+        list.addEventListener("dragstart", function (event) {
+            draggedItem = event.target;
+            event.target.classList.add("grabbed");
+            event.target.style.opacity = 0.5;
+        });
+
+        list.addEventListener("dragend", function (event) {
+            event.target.style.opacity = "";
+            event.target.classList.remove("grabbed");
+        });
+
+        list.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
+
+        list.addEventListener("dragenter", function (event) {
+            if (event.target.tagName === "LI") {
+                event.target.classList.add("dragged-over");
+            }
+        });
+
+        list.addEventListener("dragleave", function (event) {
+            if (event.target.tagName === "LI") {
+                event.target.classList.remove("dragged-over");
+            }
+        });
+
+        list.addEventListener("drop", function (event) {
+            event.preventDefault();
+            if (event.target.tagName === "LI") {
+                event.target.classList.remove("dragged-over");
+
+                const rect = event.target.getBoundingClientRect();
+                const offsetY = event.clientY - rect.top - rect.height / 2;
+                const isAfter = offsetY > 0;
+
+                if (isAfter) {
+                    list.insertBefore(draggedItem, event.target.nextSibling);
+                } else {
+                    list.insertBefore(draggedItem, event.target);
+                }
+            }
+        });
+} catch (error) {
+    
+}
+        
 
   return (
           <div className="Auth-form-container">
@@ -333,7 +228,7 @@ const GetDatosEscaleta = async()=>{
         <Link to='/Escaletas'>
           <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
         </Link>
-          <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
+          <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
           <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
@@ -343,14 +238,16 @@ const GetDatosEscaleta = async()=>{
       <br />
 
       <div className="Button-form">
-              <button type="button" class="btn btn-primary" onClick={handleAddRow} > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
+              <button type="button" class="btn btn-primary" > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
               <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
       </div>
 
+      <div class="container">
+
       {mostrar()}
+        <div ref={tablaRef}  dangerouslySetInnerHTML={{ __html: DatosEscaleta.tabla}} />
+    </div>
 
-
-      {validacion()}
   </div>
       <br />
 
@@ -420,7 +317,7 @@ const GetDatosEscaleta = async()=>{
                     <td>{Datos.nombre}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
-                    <input type="checkbox" className='check-box-nota' onChange={() => toggleSeleccion(Datos.pkNota)}
+                    <input type="checkbox" className='check-box-nota'
                 />
                     </td>
                     </tr>
@@ -430,7 +327,7 @@ const GetDatosEscaleta = async()=>{
                 </div>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)}>
+              <button id='AgregarNota' className="btn btn-success">
               <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
               <br />
