@@ -213,10 +213,26 @@ const GetDatosEscaleta = async()=>{
           ide = ide + 1;
           
           nuevasFilas.push(newRow);
+          const datosEnviar = {
+            fkNota: fila.pkNota,
+            fkEscaleta: id,
+          };
+        
+          axios
+            .post('https://localhost:7201/Nota_Esca/Post', datosEnviar)
+            .then(function (respuesta) {
+            })
+            .catch(function (error) {
+              show_alerta('Error en la solicitud', 'error');
+              console.log(error);
+            });
         });
       
         setRows([...rows, ...nuevasFilas]);
+
+        
         ActualizarTablaEs();
+        
       };
       
       
