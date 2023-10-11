@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 import axios from 'axios';
 import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
@@ -11,11 +11,14 @@ import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
+import { show_alerta } from "../../Funciones"
 
 
 function Table() {
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
+  const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const {id} = useParams()
+  const tablaRef = useRef(null);
   const [cargado, Setcargado] = useState(0);
   useEffect(()=>{
     GetDatosEscaleta();
@@ -63,28 +66,31 @@ const GetDatosEscaleta = async()=>{
   const [dragItem, setDragItem] = useState();
   const [Datos, SetDatos] = useState([]);
   // const [cargado, Setcargado] = useState(0);
+
+
   const [rows, setRows] = useState([
-    
-    { id: '1', order: '-', content: '-', title: 'Bienvenida', reportero: '-', format: '-' },
-    { id: '2', order: '-', content: '-', title: 'Corte comercial', reportero: '-', format: '-' },
-    { id: '3', order: '-',content: '-', title: 'Salida', reportero: '-', format: '-' },
+  
+    { id: '1', order: '-', content: '-', title: 'Bienvenida', reportero: '-', format: '-' ,rowClass: 'indicacion' },
+    { id: '2', order: '-', content: '-', title: 'Corte comercial', reportero: '-', format: '-',rowClass: 'indicacion' },
+    { id: '3', order: '-',content: '-', title: 'Salida', reportero: '-', format: '-' ,rowClass: 'indicacion' },
   ]);
   
   const handleAddRow = () => {
     const newRow = {
         id: rows.length + 1,order: '-', content: '-', title: 'INDICACION', reportero: '-', format: '-' 
     };
+    newRow.rowClass = 'indicacion';
     setRows([...rows, newRow]);
   };
   
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
-
+  
     const newRows = [...rows];
     const [removed] = newRows.splice(result.source.index, 1);
     newRows.splice(result.destination.index, 0, removed);
-
+  
     setRows(newRows);
   };
   
@@ -94,7 +100,6 @@ const GetDatosEscaleta = async()=>{
   };
   
   const handleDragEnter = (e, index) => {
-    e.target.style.backgroundColor = "#336699";
     const newRows = [...rows];
     const item = newRows[dragItem];
     newRows.splice(dragItem, 1);
@@ -103,17 +108,12 @@ const GetDatosEscaleta = async()=>{
     setRows(newRows);
   };
   
-  const handleDragLeave = (e) => {
-    e.target.style.backgroundColor = "rgb(192, 192, 192)";
-  };
   
-  const handleDrop = (e) => {
-    e.target.style.backgroundColor = "rgb(192, 192, 192)";
-  };
+
 
   useEffect(() => {
     GetDatos();
-  }, []); // Cargar datos del localStorage al cargar el componente
+  }, []); 
 
 
 
@@ -170,7 +170,7 @@ const GetDatosEscaleta = async()=>{
         <div className='Grid'>
         <div className='Row'>
           <h6><b>Programa:</b> {DatosEscaleta.programa.nombre_Programa} </h6>
-          <h6><b>Fecha:</b> {DatosEscaleta.fecha}</h6>
+          <h6><b>Fecha:</b> {DatosEscaleta.fecha.split(' ')[0]}</h6>
         </div>
         <div className='Row'>
           <h6><b>Usuario:</b> {DatosEscaleta.usuario.nombre}</h6>
@@ -183,7 +183,142 @@ const GetDatosEscaleta = async()=>{
 
 
 
+      const toggleSeleccion = (pkNota) => {
+        if (filasSeleccionadas.includes(pkNota)) {
+          setFilasSeleccionadas(filasSeleccionadas.filter((id) => id !== pkNota));
+        } else {
+          setFilasSeleccionadas([...filasSeleccionadas, pkNota]);
+        }
+      };
+    
+      const AgregarNota = () => {
 
+
+
+        const filasParaGuardar = Datos.filter((fila) =>
+          filasSeleccionadas.includes(fila.pkNota)
+        );
+      
+        const nuevasFilas = [];
+      var ide = rows.length + 1;
+        filasParaGuardar.forEach((fila, index) => {
+          const newRow = {
+            id: ide,
+            order: ' ',
+            content: ' ',
+            title: fila.titulo,
+            reportero: fila.nombre,
+            format: fila.nombre_Formato,
+          };
+          ide = ide + 1;
+          
+          nuevasFilas.push(newRow);
+        });
+      
+        setRows([...rows, ...nuevasFilas]);
+        ActualizarTablaEs();
+      };
+      
+      
+      const ActualizarTablaEs = () => {
+        const tablaContenido = tablaRef.current.innerHTML;
+      
+        // Serializa la información de arrastre (orden) de los elementos
+        const ordenSerializado = rows.map((row) => ({
+          id: row.id,
+          order: row.order,
+        }));
+      
+        // Crea un objeto con ambos datos
+        const datosEnviar = {
+          vTabla: tablaContenido,
+          orden: ordenSerializado,
+        };
+      
+        axios
+          .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
+          .then(function (respuesta) {
+            show_alerta('Datos guardados correctamente');
+          })
+          .catch(function (error) {
+            show_alerta('Error en la solicitud', 'error');
+            console.log(error);
+          });
+      };
+
+
+
+
+
+      function validacion() {
+        try { 
+          if (DatosEscaleta.tabla === "") {
+            return (
+              <div ref={tablaRef}>
+              <DragDropContext onDragEnd={handleDragEnd}>
+                 <Droppable droppableId="rows">
+                   {(provided) => (
+                     <table class="table" >
+                         <thead>          
+                             <tr >
+                                 <th scope="col">#</th>
+                                 <th scope='col'>Orden</th>
+                                 <th scope="col">Conductor</th>
+                                 <th scope="col">Titulo</th>
+                                 <th scope="col">Reportero</th>
+                                 <th scope="col">Formato</th>
+                             </tr>
+                         </thead>
+                       <tbody
+                         
+                         >
+                         {rows.map((row, index) => (
+                           <Draggable key={row.id} draggableId={row.id} index={index}  >
+                             {(provided) => (
+                               
+                               <tr className={row.rowClass}
+                                 {...provided.draggableProps}
+                                 {...provided.dragHandleProps}
+                                 ref={provided.innerRef}
+                                 draggable
+                                 key={index}
+                                 onDragStart={() => handleDragStart(index)}
+                                 onDragEnter={(e) => handleDragEnter(e, index)}
+                                 onDragOver={(e) => e.preventDefault()}
+     
+                                 
+                               >
+                                 <td> {row.id} </td>
+                                 <td> {row.order} </td>
+                                 <td>{row.content}</td>
+                                 <td> {row.title} </td>
+                                 <td> {row.reportero} </td>
+                                 <td> {row.format} </td>
+     
+                                 
+                               </tr>
+                             )}
+                           </Draggable>
+                         ))}
+                         {provided.placeholder}
+                       </tbody>
+                     </table>
+                   )}
+                 </Droppable>
+               </DragDropContext>
+           </div>
+            );
+          } 
+          else {
+            return(
+              <div ref={tablaRef}  dangerouslySetInnerHTML={{ __html: DatosEscaleta.tabla}} />
+            );
+          }
+        } catch (error) {
+          console.log(error);
+        }
+         
+        }
 
   return (
           <div className="Auth-form-container">
@@ -195,7 +330,7 @@ const GetDatosEscaleta = async()=>{
         <Link to='/Escaletas'>
           <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
         </Link>
-          <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
+          <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
           <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
@@ -212,91 +347,9 @@ const GetDatosEscaleta = async()=>{
       {mostrar()}
 
 
-      <div>
-         <DragDropContext onDragEnd={handleDragEnd}>
-            <Droppable droppableId="rows">
-              {(provided) => (
-                <table class="table" >
-                    <thead>
-                      
-                        <tr >
-                            <th scope="col">#</th>
-                            <th scope='col'>Orden</th>
-                            <th scope="col">Conductor</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Reportero</th>
-                            <th scope="col">Formato</th>
-                            <th scope="col">          </th>
-                        </tr>
-                    </thead>
-                  
-                  
-                  <tbody
-                    
-                    >
-                    {rows.map((row, index) => (
-                      <Draggable key={row.id} draggableId={row.id} index={index}  >
-                        {(provided) => (
-                          
-                          <tr className="dnd"
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                            draggable
-                            key={index}
-                            onDragStart={() => handleDragStart(index)}
-                            onDragEnter={(e) => handleDragEnter(e, index)}
-                            onDragLeave={(e) => handleDragLeave(e)}
-                            onDrop={(e) => handleDrop(e)}
-                            onDragOver={(e) => e.preventDefault()}
-
-                            
-                          >
-                            <td> {row.id} </td>
-                            <td> {row.order} </td>
-                            <td>{row.content}</td>
-                            <td> {row.title} </td>
-                            <td> {row.reportero} </td>
-                            <td> {row.format} </td>
-                            <td>    
-                              <button type="button" class="btn btn-warning"> <FaEdit size={20} color="black" />  Editar</button> 
-                              <button type="button" class="btn btn-danger"> <FaTrash size={20} color='white' /> Eliminar</button> 
-                            </td>
-
-                            
-                          </tr>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </tbody>
-                </table>
-              )}
-            </Droppable>
-          </DragDropContext>
-      </div>
+      {validacion()}
   </div>
       <br />
-
-      {/* <ul className="dnd">
-                   {list &&
-                     list.map((item, index) => (
-                     <li
-                     draggable
-                     key={index}
-                     onDragStart={() => handleDragStart(index)}
-                     onDragEnter={(e) => handleDragEnter(e, index)}
-                     onDragLeave={(e) => handleDragLeave(e)}
-                     onDrop={(e) => handleDrop(e)}
-                     onDragOver={(e) => e.preventDefault()}
-                   >
-                     {item}
-                   </li>
-                 ))}
-          </ul> */}
-
-
-
 
 <div id='modalselect' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
@@ -345,24 +398,27 @@ const GetDatosEscaleta = async()=>{
      <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">#</th> 
                     <th scope="col">Título</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Formato</th>
+                    <th scope="col">Reportero</th>
                     <th scope="col">Fecha Mes/Dia/Año</th>
-                    <th scope="col">     </th>
+                    <th scope="col">Seleccionar</th>
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
                 {Datos.map((Datos,i) =>(
                     <tr key={Datos.pkNota}>
-                    <td>{(i+1)}</td>
+                    <td>{Datos.pkNota}</td>
                     <td>{Datos.titulo}</td>
                     <td>{Datos.nombre_Categoria}</td>
                     <td>{Datos.nombre_Formato}</td>
+                    <td>{Datos.nombre}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
-                    <input type='checkbox'/>
+                    <input type="checkbox" className='check-box-nota' onChange={() => toggleSeleccion(Datos.pkNota)}
+                />
                     </td>
                     </tr>
                 ))}
@@ -371,8 +427,8 @@ const GetDatosEscaleta = async()=>{
                 </div>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button className="btn btn-success">
-              <i className="fa-solid fa-floppy-disk"></i> Agregar
+              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)}>
+              <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
               <br />
             </div>

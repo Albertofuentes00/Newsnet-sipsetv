@@ -587,10 +587,10 @@ option{
 }
 
 .Auth-form-escaleta{
-  width: 1055px;
+  width: 90vw;
   height: auto;
-  max-height: 580px;
-  margin-top: 10px;
+  max-height: 75vh;
+  margin-top: 1%;
   margin-bottom: 10px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
@@ -602,6 +602,10 @@ option{
 
 
 
+}
+.indicacion{
+  background-color: rgb(199, 199, 199);
+  font-weight: bold;
 }
 
 .Auth-form-Search{
@@ -615,6 +619,22 @@ option{
   background-color: white;
 
 }
+
+.check-box-nota{
+  font-size: 30px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.check-box-nota:hover{
+ transform: scale(1.1);
+ transition: 0.5s;
+ background-color: rgb(199, 199, 199);
+}
+
+
 
 label {
   font-size: 14px;
@@ -1112,4 +1132,8 @@ vertical-align: top;
 .no-redac{
   font-weight: bold;
 }
+
+
+
+
 
