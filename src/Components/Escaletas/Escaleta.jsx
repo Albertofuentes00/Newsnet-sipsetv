@@ -12,24 +12,9 @@ import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
-import { LoadScript } from "react-load-script";
 
 
 function Table() {
-
-useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-        document.body.removeChild(script);
-    };
-    }, []);
-
-
 
 
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
