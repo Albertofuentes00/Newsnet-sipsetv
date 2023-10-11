@@ -1127,13 +1127,36 @@ vertical-align: top;
   resize: none;
   text-align: justify;
 }
-
-
 .no-redac{
   font-weight: bold;
 }
 
+.container {
+  width: 300px;
+}
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
+li {
+  background-color: #f2f2f2;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: grab;
+  user-select: none;
+  transition: all 0.3s ease;
+}
 
+li.dragged-over {
+  background-color: #ddd;
+}
 
+li.grabbed {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

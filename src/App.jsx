@@ -22,6 +22,8 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 
+import Escaleta from './Components/Escaletas/Escaleta';
+
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/Redacciones';
 import LeerGuion from './Components/Notas/VerRedaccion';
@@ -155,6 +157,7 @@ function App() {
               <Route path='AdminHelp' element={<AdminHelp/>} />
               <Route path='About' element={<About/>} />
           </Route>
+          <Route path='Escaleta/:id' element={<Escaleta/>} />
       </Routes>
 
 

@@ -1,18 +1,10 @@
 import React from "react";
 import { useState, useEffect  } from "react";
 import { Outlet, Link } from "react-router-dom";
-
 import axios from 'axios';
-import Modal from 'react-modal';
-
-
-
-import { FaEdit } from 'react-icons/fa';
-import { FaTrash } from "react-icons/fa";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-import { FaEye } from 'react-icons/fa'
 
 function AddNotes() {
 
