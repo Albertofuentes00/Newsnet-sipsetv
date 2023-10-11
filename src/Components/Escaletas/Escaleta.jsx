@@ -152,51 +152,59 @@ const GetDatosEscaleta = async()=>{
          
         }
 try {
-    const list = document.getElementById("sortable-list");
-        let draggedItem = null;
+    const table = document.getElementById("sortable-table");
+    let draggedRow = null;
 
-        list.addEventListener("dragstart", function (event) {
-            draggedItem = event.target;
+    table.addEventListener("dragstart", function (event) {
+        const target = event.target.closest("tr");
+        if (target) {
+            draggedRow = target;
             event.target.classList.add("grabbed");
             event.target.style.opacity = 0.5;
-        });
+        }
+    });
 
-        list.addEventListener("dragend", function (event) {
-            event.target.style.opacity = "";
-            event.target.classList.remove("grabbed");
-        });
+    table.addEventListener("dragend", function (event) {
+        event.target.style.opacity = "";
+        event.target.classList.remove("grabbed");
+        draggedRow = null;
+    });
 
-        list.addEventListener("dragover", function (event) {
-            event.preventDefault();
-        });
+    table.addEventListener("dragover", function (event) {
+        event.preventDefault();
+    });
 
-        list.addEventListener("dragenter", function (event) {
-            if (event.target.tagName === "LI") {
-                event.target.classList.add("dragged-over");
+    table.addEventListener("dragenter", function (event) {
+        const target = event.target.closest("tr");
+        if (target && target !== draggedRow) {
+            target.classList.add("dragged-over");
+        }
+    });
+
+    table.addEventListener("dragleave", function (event) {
+        const target = event.target.closest("tr");
+        if (target && target !== draggedRow) {
+            target.classList.remove("dragged-over");
+        }
+    });
+
+    table.addEventListener("drop", function (event) {
+        event.preventDefault();
+        const target = event.target.closest("tr");
+        if (target && target !== draggedRow) {
+            target.classList.remove("dragged-over");
+
+            const rect = target.getBoundingClientRect();
+            const offsetY = event.clientY - rect.top - rect.height / 2;
+            const isAfter = offsetY > 0;
+
+            const parent = target.parentNode;
+            if (isAfter) {
+                parent.insertBefore(draggedRow, target.nextSibling);
+            } else {
+                parent.insertBefore(draggedRow, target);
             }
-        });
-
-        list.addEventListener("dragleave", function (event) {
-            if (event.target.tagName === "LI") {
-                event.target.classList.remove("dragged-over");
-            }
-        });
-
-        list.addEventListener("drop", function (event) {
-            event.preventDefault();
-            if (event.target.tagName === "LI") {
-                event.target.classList.remove("dragged-over");
-
-                const rect = event.target.getBoundingClientRect();
-                const offsetY = event.clientY - rect.top - rect.height / 2;
-                const isAfter = offsetY > 0;
-
-                if (isAfter) {
-                    list.insertBefore(draggedItem, event.target.nextSibling);
-                } else {
-                    list.insertBefore(draggedItem, event.target);
-                }
-            }
+        }
         });
 } catch (error) {
     
@@ -317,6 +325,40 @@ try {
               </button>
               <br />
             </div>
+            {/* <table id="sortable-table">
+        <thead>
+            <tr>
+                <th>Conductor</th>
+                <th>Titulo</th>
+<th>Reportero</th>
+<th>Formato</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr draggable="true">
+                <td>-</td>
+                <td>Bienvenida</td>
+<td>-</td>
+<td>-</td>
+            </tr>
+            <tr draggable="true">
+                <td>Elemento 2,1</td>
+                <td>Elemento 2,2</td>
+            </tr>
+            <tr draggable="true">
+                <td>Elemento 3,1</td>
+                <td>Elemento 3,2</td>
+            </tr>
+            <tr draggable="true">
+                <td>Elemento 4,1</td>
+                <td>Elemento 4,2</td>
+            </tr>
+            <tr draggable="true">
+                <td>Elemento 5,1</td>
+                <td>Elemento 5,2</td>
+            </tr>
+        </tbody>
+    </table> */}
         </div>
       </div>
     </div>
@@ -325,8 +367,15 @@ try {
   
   </div>
 </div>
+
+
+
+
+
         );
       };
+
+
 
 
 
