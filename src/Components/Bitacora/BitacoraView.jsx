@@ -490,7 +490,7 @@ const Bitacora=()=>{
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>
-                <label className='h3'>{title}</label>
+                <label className="modal-title">Crear Nota</label>
                 <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
               </div>
               <br />
@@ -582,11 +582,11 @@ const Bitacora=()=>{
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>
-                <label className='h3'>{title}</label>
+                <label className="modal-title">Editar Nota</label>
                 <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
                 <br />
-                <h5>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h5>
+                <h6>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h6>
                 
                 <div className='modal-body'>
                   <div className="Row">
