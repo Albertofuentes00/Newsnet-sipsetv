@@ -604,8 +604,13 @@ option{
 
 }
 .indicacion{
-  background-color: rgb(199, 199, 199);
+  background-color: rgb(180, 180, 180);
   font-weight: bold;
+}
+
+
+.nota-esca{
+  background-color: #e0e0e0;
 }
 
 .Auth-form-Search{
@@ -1132,31 +1137,35 @@ vertical-align: top;
 }
 
 
-table {
-  border-collapse: collapse;
+.tabla-armado {
   width: 100%;
   margin: 0 auto;
   background-color: #ffffff;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 2px 5px;
+
 }
 
-th, td {
+.tabla-armado th, td {
   padding: 15px;
   border-bottom: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
+  cursor: pointer;
 }
 
-th {
+.tabla-armado th {
   background-color: #f2f2f2;
+  font-size: 16px;
 }
 
-tr.dragged-over {
+.tabla-armado tr.dragged-over {
   background-color: #f8f8f8;
 }
 
-tr.grabbed {
+.tabla-armado tr.grabbed {
   animation: scaleUp 0.3s ease;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.2);
 }

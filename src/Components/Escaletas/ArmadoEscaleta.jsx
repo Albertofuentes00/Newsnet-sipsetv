@@ -225,17 +225,8 @@ const GetDatosEscaleta = async()=>{
       
       const ActualizarTablaEs = () => {
         const tablaContenido = tablaRef.current.innerHTML;
-      
-        // Serializa la información de arrastre (orden) de los elementos
-        const ordenSerializado = rows.map((row) => ({
-          id: row.id,
-          order: row.order,
-        }));
-      
-        // Crea un objeto con ambos datos
         const datosEnviar = {
-          vTabla: tablaContenido,
-          orden: ordenSerializado,
+          vTabla: tablaContenido
         };
       
         axios
