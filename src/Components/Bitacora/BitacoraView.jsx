@@ -228,6 +228,8 @@ const Bitacora=()=>{
       console.log("Se termino el consumo de la api");
       }
     }
+
+    
     const deleteDatos = (pkNota) =>{
       const MySwal = whitReactContent(Swal);
       MySwal.fire({
