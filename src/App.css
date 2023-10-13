@@ -1047,6 +1047,26 @@ p{
     margin-left: -170px;
 }
 
+.modal-content-edit{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60vh;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    margin-left: auto;
+}
+
+
+
+
+
+
 .modal-title{
   justify-content: baseline;
   text-align: left;

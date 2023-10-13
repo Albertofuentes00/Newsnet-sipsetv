@@ -600,7 +600,7 @@ const recargarTabla = () => {
       <div className="Button-form">
               <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
               <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-              <button id="botonEliminar" class="btn btn-danger"><FaTrash size={20} /></button>
+              <button id="botonEliminar" class="btn btn-danger"><FaTrash size={20} />Eliminar</button>
       </div>
 
       <div class="container">
