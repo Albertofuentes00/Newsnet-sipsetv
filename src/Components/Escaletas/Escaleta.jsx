@@ -27,7 +27,6 @@ function Table() {
   const [DatosTabla, setDatosTabla] = useState([]);
   useEffect(()=>{
     GetDatosEscaleta();
-    
 },[]);
 
 
@@ -56,7 +55,9 @@ const GetDatosEscaleta = async()=>{
         const nuevasFilas = DatosEscaleta.filter((fila) => fila.id !== filaId);
         SetDatosEscaleta(nuevasFilas);
       };
+      
       Setcargado(1);
+      
   } catch (error) {
       
   }
@@ -156,9 +157,10 @@ Val();
         <th scope="col">#</th>
          <th scope='col'>Orden</th>
          <th scope="col">Conductor</th>
-        <th scope="col">Titulo</th>
-       <th scope="col">Reportero</th>
-    <th scope="col">Formato</th>
+         <th scope="col">Titulo</th>
+         <th scope="col">Reportero</th>
+        <th scope="col">Formato</th>
+        <th scope="col" className='Invisible'>PkNota</th>
         </tr>
     </thead>
     <tbody>
@@ -169,6 +171,7 @@ Val();
             <td>Bienvenida</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
         <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick()}>
         <td>2</td>
@@ -177,6 +180,7 @@ Val();
             <td>Corte comercial</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
         <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick()}>
         <td>3</td>
@@ -185,6 +189,7 @@ Val();
             <td>Despedida</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
     </tbody>
 </table> 
@@ -326,7 +331,7 @@ console.log("Se hizo doble click");
           console.log("Una nota no se agregó por duplicidad");
         } else {
           const nuevaFila = tabla.insertRow();
-          for (let i = 0; i < 6; i++) {
+          for (let i = 0; i < 7; i++) {
             const td = nuevaFila.insertCell(i);
             if (i === 0) {
               const filas = tbody.querySelectorAll('tr');
@@ -337,7 +342,12 @@ console.log("Se hizo doble click");
               td.textContent = fila.nombre;
             } else if (i === 5) {
               td.textContent = fila.nombre_Formato;
-            } else {
+
+            }else if(i == 6){
+              td.textContent = fila.pkNota;
+              td.classList.add('Invisible');
+            } 
+            else {
               td.textContent = '-';
             }
           }
@@ -367,11 +377,17 @@ console.log("Se hizo doble click");
     const tbody = tabla.querySelector('tbody');
     const Indicacion = document.getElementById('Nombre_indi').value;
     const nuevaFila = tabla.insertRow();
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       const td = nuevaFila.insertCell(i);
       if(i === 0){
         const filas = tbody.querySelectorAll('tr');
-        td.textContent = filas.length + 1
+
+          td.textContent = filas.length + 1
+        
+        
+      }
+      else if(i === 6){
+        td.classList.add('Invisible');
       }
       else if (i === 3) {
         if(Indicacion === ""){
@@ -473,6 +489,13 @@ try {
           event.preventDefault();
           const draggedIndex = event.dataTransfer.getData('text/plain');
           const filaArrastrada = table.querySelector(`[data-index="${draggedIndex}"]`);
+          try {
+            const pknota = filaArrastrada.cells[6].textContent;
+            EliminarNota(pknota);
+          } catch (error) {
+            
+          }
+
           if (filaArrastrada) {
             tbody.removeChild(filaArrastrada);
           }
@@ -487,6 +510,7 @@ try {
           fila.setAttribute('data-index', index);
           fila.draggable = true;
           fila.addEventListener('dragstart', handleDragStart);
+          quitarDataIndex();
         });
         
         if (botonEliminar) {
@@ -506,16 +530,22 @@ try {
 
 
 
-// const EliminarNota = async () => {
-//   axios.delete('https://localhost:7201/Nota_Esca/EliminarNota/' + fila.pkNota + "/" + id).then(function(respuesta){
-//     show_alerta('Nota eliminada con exito');
-// })
-// .catch(function(error){
-//   show_alerta('Error en la solicitud','error');
-//   console.log(error);
-// });
+const EliminarNota = async (pkNota) => {
+  try {
+    axios.delete('https://localhost:7201/Nota_Esca/EliminarNota/' + pkNota + "/" + id).then(function(respuesta){
+      show_alerta('Nota eliminada con exito');
+      recargarTabla();
+      ActualizarTablaEs();
+  })
+  .catch(function(error){
+    console.log(error);
+  });
+  } catch (error) {
+    
+  }
 
-// }
+
+}
 
 
 
@@ -545,6 +575,8 @@ const recargarTabla = () => {
           'Promoción de Burger King',
           'Presentar nuevo tema',
           'Cortinilla',
+          'Bienvenida',
+          'Despedida',
       ];
 
       // Función para actualizar la lista de resultados
@@ -575,8 +607,18 @@ const recargarTabla = () => {
   }
 
 
-
+  function quitarDataIndex() {
+    var table = document.getElementById('sortable-table'); // Asegúrate de reemplazar 'miTabla' con el ID real de tu tabla.
+    var rows = table.getElementsByTagName('tr');
+    for (var i = 0; i < 2 && i < rows.length; i++) {
+      var row = rows[i];
+      if (row.hasAttribute('data-index')) {
+        row.removeAttribute('data-index');
+      }
+    }
+  }
         
+
 
   return (
           <div className="Auth-form-container">
@@ -589,7 +631,6 @@ const recargarTabla = () => {
           <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
         </Link>
           <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
-          <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
       <br />
@@ -600,7 +641,11 @@ const recargarTabla = () => {
       <div className="Button-form">
               <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
               <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-              <button id="botonEliminar" class="btn btn-danger"><FaTrash size={20} />Eliminar</button>
+              <div class="tooltip-container">
+              <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
+              <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
+             </div>
+             
       </div>
 
       <div class="container">
@@ -752,7 +797,7 @@ const recargarTabla = () => {
             <h4>Definir Indicacion</h4>
             <div className='modal-body-table'>
 		 <div className="Auth-form-container-Main">
-                    <input type='text' id='Nombre_indi'/> 
+                    <textarea className='nombre-indic' id='Nombre_indi'/> 
                     <ul id="resultados"></ul>
                 </div>
             </div>
