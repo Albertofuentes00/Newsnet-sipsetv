@@ -25,6 +25,7 @@ function Table() {
   const [cargado, Setcargado] = useState(0);
   const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [DatosTabla, setDatosTabla] = useState([]);
+  const [orden,setOrden]= useState(0);
   useEffect(()=>{
     GetDatosEscaleta();
 },[]);
@@ -164,7 +165,7 @@ Val();
         </tr>
     </thead>
     <tbody>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
             <td>1</td>
             <td>-</td>
             <td>-</td>
@@ -173,7 +174,7 @@ Val();
             <td>-</td>
             <td className='Invisible'>-</td>
         </tr>
-        <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
         <td>2</td>
             <td>-</td>
             <td>-</td>
@@ -182,7 +183,7 @@ Val();
             <td>-</td>
             <td className='Invisible'>-</td>
         </tr>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
         <td>3</td>
             <td>-</td>
             <td>-</td>
@@ -209,10 +210,41 @@ Val();
 
 
 
-  const Dobleclick= () =>{
-console.log("Se hizo doble click");
+  const Dobleclick= (id) =>{
+    var table = document.getElementById('sortable-table'); 
+    var rows = table.getElementsByTagName('tr');
+    if(id != '-' && id != ''){
+      console.log("Se hizo doble clic en la fila: " + id);
+      var reportero = "JB";
+      var fila = document.querySelector('[data-index="' + id + '"]');
+      if (fila) {
+        fila.cells[2].textContent = reportero;
+        OrdenNotas();
+      } else {
+        console.log("No se encontró una fila con el atributo data-index igual a " + id);
+      }
+      
+    }else{
+      console.log("Se hizo doble click en una indicación");
+    }
+      
   }
 
+
+  const OrdenNotas = () => {
+    var table = document.getElementById('sortable-table'); 
+    var rows = table.getElementsByTagName('tr');
+    var numero = 1;
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var columna2 = row.cells[2].textContent;
+      if (columna2 !== '-') {
+        row.cells[1].textContent = '['+numero+']';
+        row.cells[1].classList.add('resalta-orden');
+        numero++;
+      }
+    }
+  }
 
 
 
@@ -236,7 +268,9 @@ console.log("Se hizo doble click");
 
   function makeRowDraggable(row,l) {
     row.setAttribute('draggable', true);
-    row.ondblclick = Dobleclick;
+    row.ondblclick = function() {
+      Dobleclick(Datos);
+    };
     if(l === 1){
       row.classList.add('indicacion');
       
@@ -422,6 +456,7 @@ try {
     table.addEventListener("dragend", function (event) {
         event.target.style.opacity = "";
         event.target.classList.remove("grabbed");
+        OrdenNotas();
         draggedRow = null;
     });
 
@@ -495,7 +530,7 @@ try {
           } catch (error) {
             
           }
-
+          OrdenNotas();
           if (filaArrastrada) {
             tbody.removeChild(filaArrastrada);
           }
@@ -594,21 +629,21 @@ const recargarTabla = () => {
               li.textContent = coincidencia;
               li.addEventListener('click', function () {
                   buscador.value = coincidencia;
-                  resultados.innerHTML = ''; // Borrar resultados después de seleccionar
+                  resultados.innerHTML = '';
               });
               resultados.appendChild(li);
           });
       }
-
-      // Escuchar eventos de entrada en el campo de búsqueda
       buscador.addEventListener('input', actualizarResultados);
   } else {
       console.error('No se encontraron elementos buscador o resultados en el DOM.');
   }
 
+  
+
 
   function quitarDataIndex() {
-    var table = document.getElementById('sortable-table'); // Asegúrate de reemplazar 'miTabla' con el ID real de tu tabla.
+    var table = document.getElementById('sortable-table'); 
     var rows = table.getElementsByTagName('tr');
     for (var i = 0; i < 2 && i < rows.length; i++) {
       var row = rows[i];
@@ -616,6 +651,15 @@ const recargarTabla = () => {
         row.removeAttribute('data-index');
       }
     }
+    for (var i = 0; i < rows.length; i++) {
+      (function(row) {
+        row.ondblclick = function() {
+          var dataIndex = row.getAttribute('data-index');
+          Dobleclick(dataIndex);
+        };
+      })(rows[i]);
+    }
+    
   }
         
 
@@ -788,7 +832,7 @@ const recargarTabla = () => {
 
     <div id='modalIndicacion' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
-        <div className='modal-content-notas'>
+        <div className='modal-content-indicacion'>
           <div className='modal-header'>
             <label className='h5'> </label>
             <button type='btnCerrar' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
