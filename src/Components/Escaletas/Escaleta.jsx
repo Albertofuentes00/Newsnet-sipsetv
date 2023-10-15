@@ -210,23 +210,37 @@ Val();
 
 
 
-  const Dobleclick= (id) =>{
+  const Dobleclick= (dato) =>{
     var table = document.getElementById('sortable-table'); 
     var rows = table.getElementsByTagName('tr');
-    if(id != '-' && id != ''){
-      console.log("Se hizo doble clic en la fila: " + id);
-      var reportero = "JB";
-      var fila = document.querySelector('[data-index="' + id + '"]');
-      if (fila) {
-        fila.cells[2].textContent = reportero;
-        OrdenNotas();
-      } else {
-        console.log("No se encontró una fila con el atributo data-index igual a " + id);
+    try {
+      const partes = dato.split(',');
+      var id = partes[0];
+      var tipo = partes[1];
+      if(tipo != '-' && tipo != ''){
+        console.log("Se hizo doble clic en la fila: " + id);
+        var reportero = "JB";
+        var fila = document.querySelector('[data-index="' + id + '"]');
+        if (fila) {
+          fila.cells[2].textContent = reportero;
+          OrdenNotas();
+        } else {
+          console.log("No se encontró una fila con el atributo data-index igual a " + id);
+        }
+        
+      }else{
+        console.log("Se hizo doble click en una indicación");
+  
+  
+  
+  
+  
+  
       }
+    } catch (error) {
       
-    }else{
-      console.log("Se hizo doble click en una indicación");
     }
+
       
   }
 
@@ -655,7 +669,8 @@ const recargarTabla = () => {
       (function(row) {
         row.ondblclick = function() {
           var dataIndex = row.getAttribute('data-index');
-          Dobleclick(dataIndex);
+          var tipo = row.cells[6].textContent;
+          Dobleclick(dataIndex + ',' + tipo);
         };
       })(rows[i]);
     }
