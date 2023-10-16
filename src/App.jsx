@@ -22,6 +22,7 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 
+
 import Escaleta from './Components/Escaletas/Escaleta';
 
 /* NOTAS SECTION */
@@ -50,6 +51,7 @@ import React, {useState} from 'react';
 import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
+import EscaletaMenu from './Components/Escaletas/DashboardEscaleta';
 
 
 function App() {
@@ -133,7 +135,11 @@ function App() {
 
           <Route path='MainMenu' element={<Menu/>}/>
            <Route path='AgregarNotas' element={<AddNotes/>} />
-            <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
+
+            <Route path='EscaletaArmado' element={<EscaletaMenu/>}>
+              <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
+            </Route>
+
             <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
 
@@ -190,7 +196,7 @@ const TextSample = (props) => {
     <div className="Row-Date">
       <div className='Grid'>
         <Welcome />
-      </div>
+      </div> 
       <div className='Grid'>
         <Datetime />
       </div>

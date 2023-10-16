@@ -773,6 +773,15 @@ button.btn.btn-light:hover{
   margin-bottom: 10px; /* Espacio entre filas */
 }
 
+.Row-Escaletaheader{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 150px; /* Separación entre botones */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Espacio entre filas */
+}
+
 
 .Row-Date{
   font-size: medium;
