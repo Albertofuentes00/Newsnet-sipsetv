@@ -6,7 +6,6 @@ import { FaSave } from 'react-icons/fa';
 import {FaFilePdf} from 'react-icons/fa'
 import { FaEdit } from 'react-icons/fa';
 import {BsFillSignpostFill} from 'react-icons/bs';
-import { FaTrash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -421,7 +420,7 @@ const GetDatosEscaleta = async()=>{
                 </div>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)}>
+              <button id='AgregarNota' className="btn btn-success" data-bs-dismiss='modalselect' onClick={() => AgregarNota(Datos)}>
               <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
               <br />
