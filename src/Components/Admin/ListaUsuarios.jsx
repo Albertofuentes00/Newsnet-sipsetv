@@ -219,7 +219,7 @@ const ListaUsuarios=()=>{
                     
                     <table class="table">
                             <thead>
-                                <tr>
+                                <tr >
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellidos</th>
@@ -273,7 +273,7 @@ const ListaUsuarios=()=>{
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <label className='h5'>{title}</label>
+              <label className='modal-title'>{title}</label>
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div className='modal-body'>

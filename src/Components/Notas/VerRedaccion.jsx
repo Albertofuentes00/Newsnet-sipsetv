@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import React, { useRef} from 'react';
 import axios from 'axios'
+import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const LeerGuion=()=>{
@@ -46,7 +48,7 @@ if(cargado === 1){
 
     <div className="Row">
                 <h6 ><b>Fuente:</b> {Datos.fuente.nombre_Fuente}</h6>
-                <h6><b>Categoría:</b>{Datos.categoria.nombre_Categoria} </h6>
+                <h6 ><b>Categoría:</b>{Datos.categoria.nombre_Categoria} </h6>
                 <h6><b>Formato:</b>{Datos.formato.nombre_Formato} </h6>
                 <h6><b>Reportero:</b>{Datos.usuario.nombre} </h6>
               </div>
@@ -63,16 +65,66 @@ if(cargado === 1){
     return formattedFecha;
   }
 
+
+
+
+
+
   const Imprimir = () => {
-    console.log("hola")
-    const pdf = new jsPDF();
-    const tablaContenido = tablaRef.current.innerHTML;
-    pdf.html(tablaContenido, {
-      callback: function (pdf) {
-        pdf.save("Guion.pdf");
-      },
+    const elementoAExportar = document.getElementById('miDiv');
+    const anchoPagina = 216; // Ancho de una hoja carta en mm (equivalente a 8.5 pulgadas)
+    const altoPagina = 279; // Alto de una hoja carta en mm (equivalente a 11 pulgadas)
+    const margen = 10; // Márgenes en mm
+  
+    // Obtener el ancho y alto actual del elemento
+    const anchoElemento = elementoAExportar.offsetWidth;
+    const altoElemento = elementoAExportar.offsetHeight;
+  
+    // Calcular la escala para ajustar el ancho y alto del contenido
+    const escalaAncho = (anchoPagina - 2 * margen) / anchoElemento;
+    const escalaAlto = (altoPagina - 2 * margen) / altoElemento;
+    const escala = Math.min(escalaAncho, escalaAlto);
+  
+    // Calcular las coordenadas para centrar el contenido
+    const xPos = margen;
+    const yPos = margen;
+  
+    // Aplicar la escala y las coordenadas al elemento
+    elementoAExportar.style.transform = `scale(${escala})`;
+    elementoAExportar.style.transformOrigin = 'top left';
+    elementoAExportar.style.marginLeft = `${xPos}px`;
+    elementoAExportar.style.marginTop = `${yPos}px`;
+  
+    const escalaHtml2Canvas = 2; // Aumenta la escala para mejorar la resolución
+    const calidadImagen = 2.0; // Aumenta la calidad de la imagen generada
+  
+    html2canvas(elementoAExportar, {
+      scale: escalaHtml2Canvas / escala, // Invertir la escala
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/jpeg', calidadImagen); // Cambia a formato JPEG y ajusta la calidad
+      const pdf = new jsPDF({ unit: 'mm', format: [anchoPagina, altoPagina], orientation: 'portrait' });
+      pdf.addImage(imgData, 'JPEG', margen, margen, anchoPagina - 2 * margen, altoPagina - 2 * margen);
+      pdf.save('documento.pdf');
+      console.log('Se imprimió correctamente');
     });
-  }
+  
+    // Restablecer el estado original del elemento
+    elementoAExportar.style.transform = 'scale(1)';
+    elementoAExportar.style.transformOrigin = 'top left';
+    elementoAExportar.style.marginLeft = '0';
+    elementoAExportar.style.marginTop = '0';
+  };
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
 
   
     return(
@@ -89,7 +141,7 @@ if(cargado === 1){
               </div>
             </div>
             <br />
-            <div ref={tablaRef}>
+            <div id="miDiv" className="Imprimir-div">
             <div className="hola">
                <div className="Grid" >
               <div className="Row">

@@ -220,7 +220,7 @@ const ListaRoles = () => {
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <label className='h5'>{title}</label>
+              <label className='modal-title'>{title}</label>
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
             <div className='modal-body'>

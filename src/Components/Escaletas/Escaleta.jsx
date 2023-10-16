@@ -21,11 +21,30 @@ function Table() {
   const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const {id} = useParams()
   const tablaRef = useRef(null);
+  const modalRef = useRef();
   const [cargado, Setcargado] = useState(0);
+  const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
+  const [DatosTabla, setDatosTabla] = useState([]);
+  const [orden,setOrden]= useState(0);
   useEffect(()=>{
     GetDatosEscaleta();
-    
 },[]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const GetDatosEscaleta = async()=>{
   try {
@@ -37,7 +56,9 @@ const GetDatosEscaleta = async()=>{
         const nuevasFilas = DatosEscaleta.filter((fila) => fila.id !== filaId);
         SetDatosEscaleta(nuevasFilas);
       };
+      
       Setcargado(1);
+      
   } catch (error) {
       
   }
@@ -78,7 +99,7 @@ const GetDatosEscaleta = async()=>{
   }, []); 
   const GetDatos = async()=>{
     try {
-      const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+      const respuesta = await axios.get('https://localhost:7201/Nota/GetRel/' + id);
       SetDatos(respuesta.data.result);
     } catch (error) {
       console.log(error)
@@ -92,8 +113,7 @@ const GetDatosEscaleta = async()=>{
       var fechaFF = document.getElementById("FF").value;
       if (variable == ""){
       try {
-        const respuesta = await axios.get('https://localhost:7201/Nota/BuscarDefault/' + fechaFI+"/"+fechaFF)
-
+        const respuesta = await axios.get('https://localhost:7201/Nota/BuscarRelaDefault/'+ id +'/' + fechaFI+"/"+fechaFF)
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
       } catch (error) {
@@ -102,7 +122,7 @@ const GetDatosEscaleta = async()=>{
      
       }else{
       try {
-        const respuesta = await axios.get('https://localhost:7201/Nota/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF)
+        const respuesta = await axios.get('https://localhost:7201/Nota/Nota_EscaRelaBuscar/' + id +'/'+ variable+"/"+fechaFI+"/"+fechaFF)
 
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
@@ -138,35 +158,39 @@ Val();
         <th scope="col">#</th>
          <th scope='col'>Orden</th>
          <th scope="col">Conductor</th>
-        <th scope="col">Titulo</th>
-       <th scope="col">Reportero</th>
-    <th scope="col">Formato</th>
+         <th scope="col">Titulo</th>
+         <th scope="col">Reportero</th>
+        <th scope="col">Formato</th>
+        <th scope="col" className='Invisible'>PkNota</th>
         </tr>
     </thead>
     <tbody>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
             <td>1</td>
             <td>-</td>
             <td>-</td>
             <td>Bienvenida</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
-        <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
         <td>2</td>
             <td>-</td>
             <td>-</td>
             <td>Corte comercial</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick()}>
+        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
         <td>3</td>
             <td>-</td>
             <td>-</td>
             <td>Despedida</td>
             <td>-</td>
             <td>-</td>
+            <td className='Invisible'>-</td>
         </tr>
     </tbody>
 </table> 
@@ -186,30 +210,56 @@ Val();
 
 
 
-  const Dobleclick= () =>{
-console.log("Se hizo doble click");
+  const Dobleclick= (dato) =>{
+    var table = document.getElementById('sortable-table'); 
+    var rows = table.getElementsByTagName('tr');
+    try {
+      const partes = dato.split(',');
+      var id = partes[0];
+      var tipo = partes[1];
+      if(tipo != '-' && tipo != ''){
+        console.log("Se hizo doble clic en la fila: " + id);
+        var reportero = "JB";
+        var fila = document.querySelector('[data-index="' + id + '"]');
+        if (fila) {
+          fila.cells[2].textContent = reportero;
+          OrdenNotas();
+        } else {
+          console.log("No se encontró una fila con el atributo data-index igual a " + id);
+        }
+        
+      }else{
+        console.log("Se hizo doble click en una indicación");
+  
+  
+  
+  
+  
+  
+      }
+    } catch (error) {
+      
+    }
+
+      
   }
 
-  function agregarIndicacion() {
-    const tabla = document.getElementById('sortable-table');
-    const tbody = tabla.querySelector('tbody');
-    const filas = tbody.querySelectorAll('tr');
-    const nuevaFila = tabla.insertRow();
-    nuevaFila.id = 'nueva-fila'; // Asigna un ID único a la nueva fila
-    for (let i = 0; i < 6; i++) {
-      const td = nuevaFila.insertCell(i);
-      if(i === 0){
-        td.textContent = filas.length + 1
-      }
-      else if (i === 3) {
-        td.textContent = 'Indicacion';
-      } else {
-        td.textContent = '-';
+
+  const OrdenNotas = () => {
+    var table = document.getElementById('sortable-table'); 
+    var rows = table.getElementsByTagName('tr');
+    var numero = 1;
+    for (var i = 1; i < rows.length; i++) {
+      var row = rows[i];
+      var columna2 = row.cells[2].textContent;
+      if (columna2 !== '-') {
+        row.cells[1].textContent = '['+numero+']';
+        row.cells[1].classList.add('resalta-orden');
+        numero++;
       }
     }
-    var valor = 1;
-    makeRowDraggable(nuevaFila,valor);
   }
+
 
 
   const mostrar=()=>{
@@ -232,7 +282,9 @@ console.log("Se hizo doble click");
 
   function makeRowDraggable(row,l) {
     row.setAttribute('draggable', true);
-    row.ondblclick = Dobleclick;
+    row.ondblclick = function() {
+      Dobleclick(Datos);
+    };
     if(l === 1){
       row.classList.add('indicacion');
       
@@ -285,7 +337,8 @@ console.log("Se hizo doble click");
     axios
       .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
       .then(function (respuesta) {
-        show_alerta('Datos guardados correctamente');
+        recargarTabla();
+        GetDatos();
       })
       .catch(function (error) {
         show_alerta('Error en la solicitud', 'error');
@@ -301,56 +354,104 @@ console.log("Se hizo doble click");
     }
   };
     
-  const AgregarNota = () => {
+  const AgregarNota = async () => {
 
+    setBotonDeshabilitado(true);
 
-    
     const filasParaGuardar = Datos.filter((fila) =>
       filasSeleccionadas.includes(fila.pkNota)
     );
   
     const tabla = document.getElementById('sortable-table');
-  const tbody = tabla.querySelector('tbody');
+    const tbody = tabla.querySelector('tbody');
   
-    filasParaGuardar.forEach((fila, index) => {
-      const nuevaFila = tabla.insertRow();
-      for (let i = 0; i < 6; i++) {
-        const td = nuevaFila.insertCell(i);
-        if(i === 0){
-          const filas = tbody.querySelectorAll('tr');
-          td.textContent = filas.length + 1
-        }
-        else if (i === 3) {
-          td.textContent = fila.titulo;
-        } else if (i === 4) {
-          td.textContent = fila.nombre;
-        } else if (i === 5) {
-          td.textContent = fila.nombre_Formato;
+    for (const fila of filasParaGuardar) {
+      try {
+        const datosEnviar = {
+          fkNota: fila.pkNota,
+          fkEscaleta: id,
+        };
+  
+        const respuesta = await axios.post('https://localhost:7201/Nota_Esca/Post', datosEnviar);
+  
+        if (respuesta.data.mensaje === "Ya existe") {
+          console.log(respuesta.data.result.mensaje);
+          console.log("Una nota no se agregó por duplicidad");
         } else {
-          td.textContent = '-';
-        }
-      }
-      const datosEnviar = {
-        fkNota: fila.pkNota,
-        fkEscaleta: id,
-      };
-    
-      axios
-        .post('https://localhost:7201/Nota_Esca/Post', datosEnviar)
-        .then(function (respuesta) {
-        })
-        .catch(function (error) {
-          show_alerta('Error en la solicitud', 'error');
-          console.log(error);
-        });
-      makeRowDraggable(nuevaFila);
-    });
-    ActualizarTablaEs();
+          const nuevaFila = tabla.insertRow();
+          for (let i = 0; i < 7; i++) {
+            const td = nuevaFila.insertCell(i);
+            if (i === 0) {
+              const filas = tbody.querySelectorAll('tr');
+              td.textContent = filas.length + 1;
+            } else if (i === 3) {
+              td.textContent = fila.titulo;
+            } else if (i === 4) {
+              td.textContent = fila.nombre;
+            } else if (i === 5) {
+              td.textContent = fila.nombre_Formato;
 
+            }else if(i == 6){
+              td.textContent = fila.pkNota;
+              td.classList.add('Invisible');
+            } 
+            else {
+              td.textContent = '-';
+            }
+          }
+          makeRowDraggable(nuevaFila);
+          setTimeout(() => {
+            setBotonDeshabilitado(false);
+          }, 1000);
+        }
+      } catch (error) {
+        show_alerta('Error en la solicitud', 'error');
+        console.error(error);
+        setTimeout(() => {
+          setBotonDeshabilitado(false);
+        }, 1000);
+      }
+    }
+  
+    ActualizarTablaEs();
+    setTimeout(() => {
+      setBotonDeshabilitado(false);
+    }, 600);
   };
 
 
-  
+  function agregarIndicacion() {
+    const tabla = document.getElementById('sortable-table');
+    const tbody = tabla.querySelector('tbody');
+    const Indicacion = document.getElementById('Nombre_indi').value;
+    const nuevaFila = tabla.insertRow();
+    for (let i = 0; i < 7; i++) {
+      const td = nuevaFila.insertCell(i);
+      if(i === 0){
+        const filas = tbody.querySelectorAll('tr');
+
+          td.textContent = filas.length + 1
+        
+        
+      }
+      else if(i === 6){
+        td.classList.add('Invisible');
+      }
+      else if (i === 3) {
+        if(Indicacion === ""){
+          td.textContent = 'Indicacion';
+        }else{
+          td.textContent = Indicacion;
+        }
+        
+      } else {
+        td.textContent = '-';
+      }
+    }
+    var valor = 1;
+    makeRowDraggable(nuevaFila,valor);
+    ActualizarTablaEs();
+  }
 
       
 try {
@@ -369,6 +470,7 @@ try {
     table.addEventListener("dragend", function (event) {
         event.target.style.opacity = "";
         event.target.classList.remove("grabbed");
+        OrdenNotas();
         draggedRow = null;
     });
 
@@ -412,42 +514,62 @@ try {
 
 
 
-       let draggedIndex = null;
+        const botonEliminar = document.getElementById('botonEliminar');
+        const tbody = table.querySelector('tbody');
+        
+        function handleDragStart(event) {
+          if (event.target.tagName === 'TR' && event.target !== table.tHead) {
+            event.dataTransfer.setData('text/plain', event.target.getAttribute('data-index'));
+          } else {
+            event.preventDefault();
+          }
+        }
+        
+        function handleDragOver(event) {
+          event.preventDefault();
+        }
+        
+        function handleDragLeave(event) {
+          event.preventDefault();
+        }
+        
+        function handleDrop(event) {
+        try {
+          event.preventDefault();
+          const draggedIndex = event.dataTransfer.getData('text/plain');
+          const filaArrastrada = table.querySelector(`[data-index="${draggedIndex}"]`);
+          try {
+            const pknota = filaArrastrada.cells[6].textContent;
+            EliminarNota(pknota);
+          } catch (error) {
+            
+          }
+          OrdenNotas();
+          if (filaArrastrada) {
+            tbody.removeChild(filaArrastrada);
+          }
+        } catch (error) {
+          
+        }
 
-function handleDragStart(event) {
-  draggedIndex = event.target.getAttribute('data-index');
-  event.dataTransfer.setData('text/plain', 'filaArrastrada');
-}
-
-function handleDragOver(event) {
-  event.preventDefault();
-}
-
-function handleDragLeave(event) {
-  event.preventDefault();
-}
-
-function handleDrop(event) {
-  console.log("fila arrastrada")
-  event.preventDefault();
-  const filaArrastrada = table.querySelector(`[data-index="${draggedIndex}"]`);
-  if (filaArrastrada) {
-    table.querySelector('tbody').removeChild(filaArrastrada);
-  }
-  draggedIndex = null;
-}
-
-const botonEliminar = document.getElementById('botonEliminar');
-      if (botonEliminar) {
-        botonEliminar.addEventListener('dragover', handleDragOver);
-        botonEliminar.addEventListener('dragleave', handleDragLeave);
-        botonEliminar.addEventListener('drop', handleDrop);
-      }
-
-const filas = table.querySelectorAll('tr');
-filas.forEach((fila) => {
-  fila.addEventListener('dragstart', handleDragStart);
-});
+        }
+        
+        const filas = tbody.querySelectorAll('tr');
+        filas.forEach((fila, index) => {
+          fila.setAttribute('data-index', index);
+          fila.draggable = true;
+          fila.addEventListener('dragstart', handleDragStart);
+          quitarDataIndex();
+        });
+        
+        if (botonEliminar) {
+          botonEliminar.addEventListener('dragover', handleDragOver);
+          botonEliminar.addEventListener('dragleave', handleDragLeave);
+          botonEliminar.addEventListener('drop', handleDrop);
+        }
+        
+        
+ 
 
 
 } catch (error) {
@@ -457,6 +579,30 @@ filas.forEach((fila) => {
 
 
 
+const EliminarNota = async (pkNota) => {
+  try {
+    axios.delete('https://localhost:7201/Nota_Esca/EliminarNota/' + pkNota + "/" + id).then(function(respuesta){
+      show_alerta('Nota eliminada con exito');
+      recargarTabla();
+      ActualizarTablaEs();
+  })
+  .catch(function(error){
+    console.log(error);
+  });
+  } catch (error) {
+    
+  }
+
+
+}
+
+
+
+
+const recargarTabla = () => {
+  const nuevosDatos = buscar();
+  setDatosTabla(nuevosDatos);
+};
 
 
 
@@ -468,16 +614,70 @@ filas.forEach((fila) => {
 
 
 
+  const buscador = document.getElementById('Nombre_indi');
+  const resultados = document.getElementById('resultados');
+
+  if (buscador && resultados) {
+      // Lista de países predefinidos
+      const indicaciones = [
+          'Corte comercial',
+          'Promoción de Burger King',
+          'Presentar nuevo tema',
+          'Cortinilla',
+          'Bienvenida',
+          'Despedida',
+      ];
+
+      // Función para actualizar la lista de resultados
+      function actualizarResultados() {
+          const consulta = buscador.value.trim().toLowerCase();
+          resultados.innerHTML = ''; // Borrar resultados anteriores
+
+          if (consulta.length === 0) {
+              return;
+          }
+
+          const coincidencias = indicaciones.filter(indica => indica.toLowerCase().includes(consulta));
+          coincidencias.forEach(coincidencia => {
+              const li = document.createElement('li');
+              li.textContent = coincidencia;
+              li.addEventListener('click', function () {
+                  buscador.value = coincidencia;
+                  resultados.innerHTML = '';
+              });
+              resultados.appendChild(li);
+          });
+      }
+      buscador.addEventListener('input', actualizarResultados);
+  } else {
+      console.error('No se encontraron elementos buscador o resultados en el DOM.');
+  }
+
+  
 
 
-
-
-
-
-
-
-
+  function quitarDataIndex() {
+    var table = document.getElementById('sortable-table'); 
+    var rows = table.getElementsByTagName('tr');
+    for (var i = 0; i < 2 && i < rows.length; i++) {
+      var row = rows[i];
+      if (row.hasAttribute('data-index')) {
+        row.removeAttribute('data-index');
+      }
+    }
+    for (var i = 0; i < rows.length; i++) {
+      (function(row) {
+        row.ondblclick = function() {
+          var dataIndex = row.getAttribute('data-index');
+          var tipo = row.cells[6].textContent;
+          Dobleclick(dataIndex + ',' + tipo);
+        };
+      })(rows[i]);
+    }
+    
+  }
         
+
 
   return (
           <div className="Auth-form-container">
@@ -490,7 +690,6 @@ filas.forEach((fila) => {
           <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
         </Link>
           <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
-          <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
       <br />
@@ -499,9 +698,13 @@ filas.forEach((fila) => {
       <br />
 
       <div className="Button-form">
-              <button type="button" class="btn btn-primary" onClick={()=> agregarIndicacion()}> <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
+              <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
               <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-              <button id="botonEliminar" class="btn btn-danger"><FaTrash size={20} /></button>
+              <div class="tooltip-container">
+              <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
+              <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
+             </div>
+             
       </div>
 
       <div class="container">
@@ -522,7 +725,7 @@ filas.forEach((fila) => {
         <div className='modal-content-notas'>
           <div className='modal-header'>
             <label className='h5'> </label>
-            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            <button type='clsbutton' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
             <h4> Editar registro </h4>
             <div className='modal-body-table'>
@@ -543,7 +746,7 @@ filas.forEach((fila) => {
         <div className='modal-content-notas'>
           <div className='modal-header'>
             <label className='h5'> </label>
-            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            <button type='btnCerrar' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
           
             <h4> Agregar notas a escaleta </h4>
@@ -613,7 +816,7 @@ filas.forEach((fila) => {
                 </div>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)}>
+              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)} disabled={botonDeshabilitado}> 
               <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
               <br />
@@ -622,6 +825,50 @@ filas.forEach((fila) => {
       </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id='modalIndicacion' className='modal fade' aria-hidden='true'>
+      <div className='modal-dialog'>
+        <div className='modal-content-indicacion'>
+          <div className='modal-header'>
+            <label className='h5'> </label>
+            <button type='btnCerrar' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+          </div>
+          
+            <h4>Definir Indicacion</h4>
+            <div className='modal-body-table'>
+		 <div className="Auth-form-container-Main">
+                    <textarea className='nombre-indic' id='Nombre_indi'/> 
+                    <ul id="resultados"></ul>
+                </div>
+            </div>
+            <div className="d-grid col-6 mx-auto">
+              <button id='AgregarNota' className="btn btn-success" onClick={()=> agregarIndicacion()} > 
+              <i className="fa-solid fa-floppy-disk" ></i> Agregar
+              </button>
+              <br />
+            </div>
+        </div>
+      </div>
+    </div>
 
   
   </div>

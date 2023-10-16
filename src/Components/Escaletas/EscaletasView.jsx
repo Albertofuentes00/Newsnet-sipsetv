@@ -311,7 +311,7 @@ const Escaletas=()=>{
       <div className='modal-dialog'>
         <div className='modal-content'>
           <div className='modal-header'>
-            <label className='h5'>{title}</label>
+            <label className="modal-title">Crear Escaleta</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
           <br />
@@ -362,61 +362,81 @@ const Escaletas=()=>{
     </div>
     <div id='modaleditar' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
-        <div className='modal-content'>
+        <div className='modal-content-edit'>
           <div className='modal-header'>
-            <label className='h5'>{title}</label>
+            <label className="modal-title">Editar Escaleta</label>
             <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
-          <label>Hora de inicio</label>
+          <br />
+          <h6>Escribe los nuevos datos para sobreescribir en la escaleta seleccionada</h6>
           <div className='modal-body'>
-            <input type='hidden' id='id'></input>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-              <input type='time' id="nombre" className="form-control" placeholder="HoraInicio" value={hora_Inicio}
-              onChange={(e)=> setHora_Inicio(e.target.value)}></input>
-            </div>
-            <label>Fecha</label>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-              <input
-                className="form-control"
-                placeholder="Fecha"
-                type="date"
-                id="fecha"
-                name="fecha"
-                value={fecha}
-                onChange={(e)=> setFecha(e.target.value)}
-              />
-            </div>
-            <label>Usuario</label>
-            <div className='input-group mb-3'>
-              <span className="input-group-text"><i className="fa-solid fa-gift"></i></span>
-              <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
-                    <option></option>
-                {Usuarios.map(Usuarios =>(
-                    <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
-                ))}
-              </select>
 
-              </div>
-                <label> Programa </label>
+            <div className="Row">
+              <div class='col'>
+                <label>Hora de inicio</label>
+                <input type='hidden' id='id'></input>
                 <div className='input-group mb-3'>
-                <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
-                  <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
-                        <option></option>
-                    {Programas.map(Programas =>(
-                        <option value={Programas.pkPrograma}>{Programas.nombre_Programa}</option>
-                    ))}
-                  </select>
+                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <input type='time' id="nombre" className="form-control" placeholder="HoraInicio" value={hora_Inicio}
+                onChange={(e)=> setHora_Inicio(e.target.value)}></input>
+                </div>
+              </div>
+
+              <div class='col'>
+                <label>Fecha</label>
+                <div className='input-group mb-3'>
+                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <input
+                  className="form-control"
+                  placeholder="Fecha"
+                  type="date"
+                  id="fecha"
+                  name="fecha"
+                  value={fecha}
+                  onChange={(e)=> setFecha(e.target.value)}
+                />
+                </div>
+              </div>
             </div>
-            <div className="d-grid col-6 mx-auto">
+
+            
+            <div className="Row">
+              <div class='col'>
+                <label>Usuario</label>
+                <div className='input-group mb-3'>
+                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
+                  <option></option>
+                {Usuarios.map(Usuarios =>(
+                  <option value={Usuarios.pkUsuario}>{Usuarios.nombre}</option>
+                ))}
+                </select>
+                </div>
+              </div>
+
+              <div class='col'>
+                <label>Programa</label>
+                <div className='input-group mb-3'>
+                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
+                        <option></option>
+                        {Programas.map(Programas =>(
+                        <option value={Programas.pkPrograma}>{Programas.nombre_Programa}</option>
+                      ))}
+                    </select>
+                  </div>
+              </div>
+            </div>
+              
+            <div>
                   <button onClick={()=> Validar()} className="btn btn-success">
                     <i className="fa-solid fa-floppy-disk"></i> Guardar
                   </button>
+                  <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
+                    <i className="fa-solid fa-circle-xmark"/> Cancelar
+                  </button>
             </div>
-          </div>
-          <div className="modal-footer">
-                  <button type="button" id='btnCerrareditar' className="btn btn-secondary" data-bs-dismiss='modal'>cerrar</button>
+
           </div>
         </div>
       </div>

@@ -589,9 +589,7 @@ option{
 .Auth-form-escaleta{
   width: 90vw;
   height: auto;
-  max-height: 75vh;
-  margin-top: 1%;
-  margin-bottom: 10px;
+  max-height: 80vh;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
   padding-bottom: 20px;
@@ -844,6 +842,7 @@ table.table{
   display: flex;
   justify-content: center;
   align-items: center;
+  border-style: none;
 }
 
 .Button-form{
@@ -1043,9 +1042,33 @@ p{
     border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
-    margin-left: -150px;
+    margin-left: -170px;
+}
+
+.modal-content-edit{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60vh;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    margin-left: auto;
+}
 
 
+
+
+
+
+.modal-title{
+  justify-content: baseline;
+  text-align: left;
+  font-size: larger;
 }
 
 
@@ -1134,8 +1157,24 @@ vertical-align: top;
 }
 .no-redac{
   font-weight: bold;
+  background-color: rgb(212, 212, 212);
+
 }
 
+
+table tr{
+  border-style: none;
+}
+
+.Invisible{
+ display: none; 
+}
+.nombre-indic{
+  resize: none;
+  font-size: 16px;
+  height: 65px;
+  width: 460px;
+}
 
 .tabla-armado {
   width: 100%;
@@ -1149,11 +1188,27 @@ vertical-align: top;
 
 }
 
-.tabla-armado th, td {
+
+
+.tabla-armado {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 2px 5px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.tabla-armado th,
+.tabla-armado td {
   padding: 15px;
   border-bottom: 1px solid #dddddd;
   text-align: center;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .tabla-armado th {
@@ -1166,15 +1221,120 @@ vertical-align: top;
 }
 
 .tabla-armado tr.grabbed {
-  animation: scaleUp 0.3s ease;
   box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+/* Transición suave para el cursor en celdas */
+.tabla-armado th, .tabla-armado td {
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 @keyframes scaleUp {
   0% {
-      transform: scale(1);
+    transform: scale(1);
   }
   100% {
-      transform: scale(1.05);
+    transform: scale(1.05);
   }
+}
+
+
+
+
+.BtnEliminar{
+  border-style:dashed;
+  border-width: 2px;
+  background-color: gainsboro;
+  border-radius: 5px;
+  margin-left: 5%;
+  color: #242427;
+  font-size: 17px;
+  border-color: #eb3d3d;
+  min-width: 10vw;
+  min-height: 3vh;
+}
+.BtnEliminar .dragged-over{
+  background-color: black;
+}
+
+
+#resultados {
+  width: 30vh;
+  background-color: white;
+  margin: auto;
+  font-size: 16px;
+  list-style: none;
+  padding: 0;
+  border-radius: 0px 0px 10px 10px;
+  border-style: solid;
+  border-color: gainsboro;
+  border-width: 2px;
+}
+
+#resultados li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#resultados li:hover {
+  background-color: #f0f0f0;
+}
+
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 5px;
+  min-width: 20vh;
+  position: absolute;
+  z-index: 1;
+  bottom: 105%; /* Coloca el tooltip encima del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+.modal-content-indicacion{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: #e7e7e7;
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+}
+
+
+.modal-indicacion-fade{
+  display: block;
+  --bs-modal-margin: 30vh;
+  --bs-modal-box-shadow: var(--bs-box-shadow);
+}
+
+.resalta-orden{
+  font-weight: bold;
 }
