@@ -110,6 +110,9 @@ const Bitacora=()=>{
     const Validar = () =>{
       var parametros;
       if(operation === 1){
+        const cadenas = Cookies.get('Usuario');
+        const partess = cadenas.split('/');
+        const rol = partess[2];
         if(titulo.trim()===''){
         show_alerta('Escribe el titulo','warning');
         }
@@ -122,9 +125,37 @@ const Bitacora=()=>{
         else if(fkfuente===''){
         show_alerta('Seleccion una fuente','warning');
         }
-        else if(fkUsuario===''){
-          show_alerta('Selecciona un reportero','warning');
+        else if(rol == "Responsable" || rol == "Administrador"){
+          if(fkUsuario===''){
+            show_alerta('Seleccion un reportero','warning');
+          }else{
+            try {
+              const fechaActual = new Date();
+              const año = fechaActual.getFullYear();
+              const mes = fechaActual.getMonth() + 1;
+              const dia = fechaActual.getDate();
+              const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+              
+              var Varreportero;
+                  Varreportero = fkUsuario;
+         
+            
+              var redaccion = '';
+              parametros = {titulo:titulo.trim(),fecha:fechaFormateada,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
+              axios.post('https://localhost:7201/Nota/Post', parametros).then(function(respuesta){
+              console.log(respuesta.data.result);
+              document.getElementById('btnCerrar').click();
+              buscar();
+            })
+            .catch(function(error){
+              show_alerta('Error en la solicitud','error');
+              console.log(error);
+            });
+            } catch (error) {
+              console.log(error);
+            }
           }
+        }
         else{
           try {
             const fechaActual = new Date();
@@ -132,28 +163,12 @@ const Bitacora=()=>{
             const mes = fechaActual.getMonth() + 1;
             const dia = fechaActual.getDate();
             const fechaFormateada = `${año}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
-  
-  
-  
-  
-            const cadena = Cookies.get('Usuario');
-            const partes = cadena.split('/');
-            const user = partes[2];
-            
             var Varreportero;
-            
-            if (user != "Responsable" && user != "Administrador") {
-  
                 const cadena = Cookies.get('Usuario');
                 const partes = cadena.split('/');
                 const user = partes[0];
-  
-                console.log("La fk es: " + user.trim());
                 Varreportero = user;
-            } else {
-                console.log(reportero);
-                Varreportero = fkUsuario;
-            }
+
           
             var redaccion = '';
             parametros = {titulo:titulo.trim(),fecha:fechaFormateada,redaccion:redaccion,fkFormato:fkFormato.trim(),fkfuente:fkfuente.trim(),fkUsuario:Varreportero,fkCategoria:fkCategoria.trim()};
@@ -172,6 +187,9 @@ const Bitacora=()=>{
         }
       }
       else{
+        const cadena = Cookies.get('Usuario');
+        const partes = cadena.split('/');
+        const rol = partes[2];
         if(titulo.trim()===''){
             show_alerta('Escribe el titulo','warning');
         }
@@ -181,8 +199,29 @@ const Bitacora=()=>{
         else if(fkFormato===''){
             show_alerta('Seleccion un Formato','warning');
         }
-        else if(fkUsuario===''){
+        else if(rol == "Responsable" || rol == "Administrador"){
+          if(fkUsuario===''){
             show_alerta('Seleccion un reportero','warning');
+          }else{
+            const cadena = Cookies.get('Usuario');
+            const partes = cadena.split('/');
+            const user = partes[2];
+            
+            var Varreportero;
+              console.log(reportero);
+              Varreportero = fkUsuario;
+            var redaccion = '';
+            parametros = {titulo:titulo.trim(),fecha:fecha.trim(),redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
+            axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
+              document.getElementById('btnCerrareditar').click();
+              buscar();
+            })
+            .catch(function(error){
+              show_alerta('Error en la solicitud','error');
+              console.log(error);
+            });
+          }
+           
         }
         else if(fkfuente===''){
             show_alerta('Seleccion una fuente','warning');
@@ -194,27 +233,14 @@ const Bitacora=()=>{
           show_alerta('Seleccion una fuente','warning');
         }
         else{
-        const cadena = Cookies.get('Usuario');
-        const partes = cadena.split('/');
-        const user = partes[2];
-        
         var Varreportero;
-        if (user != "Responsable" && user != "Administrador") {
 
           const cadena = Cookies.get('Usuario');
           const partes = cadena.split('/');
           const user = partes[0];
-
-          console.log("La fk es: " + user.trim());
           Varreportero = user;
-      } else {
-          console.log(reportero);
-          Varreportero = fkUsuario;
-      }
-        var conductor = '';
-        var tipo = 0;
         var redaccion = '';
-        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:Varreportero};
+        parametros = {titulo:titulo.trim(),fecha:fecha.trim(),redaccion:redaccion,fkCategoria:fkCategoria,fkFormato:fkFormato,fkfuente:fkfuente,fkUsuario:fkUsuario};
         axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           buscar();
