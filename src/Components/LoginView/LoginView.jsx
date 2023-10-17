@@ -7,9 +7,6 @@ import Cookies from 'js-cookie';
 
 function Login() {
 
-
-
-
   const [Datos, SetDatos] = useState(null);
 
 
