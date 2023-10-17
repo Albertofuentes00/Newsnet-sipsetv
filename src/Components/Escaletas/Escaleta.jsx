@@ -184,7 +184,7 @@ Val();
             <td>-</td>
             <td className='Invisible'>-</td>
         </tr>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
+        <tr  className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
         <td>3</td>
             <td>-</td>
             <td>-</td>
@@ -209,18 +209,30 @@ Val();
      
     }
 
+    const [filda, Setfilda] = useState([]);
+
+  const Dobleclick= (dato1) =>{
+  var table = document.getElementById('sortable-table'); 
+  var rows = table.getElementsByTagName('tr');
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+    Setfilda(dato1);
+
+      
+  }
+
+ const obtenerConductor = () => {
+  console.log('hola me llamas');
 
 
-  const Dobleclick= (dato) =>{
-    var table = document.getElementById('sortable-table'); 
-    var rows = table.getElementsByTagName('tr');
     try {
-      const partes = dato.split(',');
+      const partes = filda.split(',');
       var id = partes[0];
       var tipo = partes[1];
       if(tipo != '-' && tipo != ''){
         console.log("Se hizo doble clic en la fila: " + id);
-        var reportero = "JB";
+
+        var reportero = document.getElementById('modal-content-text').value;
         var fila = document.querySelector('[data-index="' + id + '"]');
         if (fila) {
           fila.cells[2].textContent = reportero;
@@ -239,11 +251,21 @@ Val();
   
       }
     } catch (error) {
-      
+      console.log(error);
     }
-
-      
   }
+
+  // Función para cerrar el modal
+function closeModal() {
+  var modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+}
+
+
+
+
+
+
 
 
   const OrdenNotas = () => {
@@ -873,6 +895,16 @@ const recargarTabla = () => {
       </div>
     </div>
 
+
+    <div id="myModal" class="modal">
+  <div class="modal-content">
+    <button class="close" onClick={()=> closeModal()}>&times;</button>
+    <p >Nombre del conductor</p>
+    <input id="modal-content-text" className='modal-input'></input>
+    <button id='AgregarNota' className="btn btn-success" onClick={()=> obtenerConductor()}/> 
+  </div>
+</div>
+    
   
   </div>
 </div>

@@ -293,7 +293,7 @@ const Escaletas=()=>{
                               <td>{Datos.fecha.split(' ')[0]}</td>
                               <td>{Datos.hora_Inicio}</td>
                               <td className="buttons-th"> 
-                                <Link to={'/Escaleta/'+ Datos.pkEscaleta} className="acciones" > <FaEye size={20} className="acciones"/></Link>
+                                <Link to={'/Armado/Escaleta/'+ Datos.pkEscaleta} className="acciones" > <FaEye size={20} className="acciones"/></Link>
                                 <button onClick={()=> OpenModal(2,Datos.pkEscaleta,Datos.hora_Inicio,Datos.fecha,Datos.fkPrograma,Datos.fkUsuario)} data-bs-toggle='modal' data-bs-target='#modaleditar' type="button" className="acciones"> <FaEdit size={20}/></button> 
                                 <button onClick={()=> deleteDatos(Datos.pkEscaleta)} type="button" className="acciones"> <FaTrash size={20}/></button> 
                               </td>
