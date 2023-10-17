@@ -34,13 +34,13 @@ function EscaletaMenu(){
             <header className="mainheader">
                 <div className="MenuHeader">
                     <div className="Row-Escaletaheader">
-                        <h1>Escaleta</h1>
+                        <h1>Armado de Escaleta</h1>
                         <div>
                             <Link to='/Escaletas'>
                                 <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
                             </Link>
                             {/* <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button> */}
-                            <button type='button' class='btn btn-warning'> <FaEdit size={20} color='black'/> Editar Escaleta</button>
+                            <button type="button" class="btn btn-success"> <FaSave size={20} color="white"/> Guardar </button>
                             <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
                         </div>
                         <br />

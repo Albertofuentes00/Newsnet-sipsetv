@@ -12,6 +12,7 @@ import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
+import EscaletaMenu from './DashboardEscaleta';
 
 
 function Table() {
@@ -680,10 +681,12 @@ const recargarTabla = () => {
 
 
   return (
+
+
           <div className="Auth-form-container">
   <div className="Auth-form-escaleta">
   <div className="Auth-form-content">
-    <div className='Row'>
+    {/* <div className='Row'>
       <h1>Escaleta</h1>
       <div>
         <Link to='/Escaletas'>
@@ -693,7 +696,7 @@ const recargarTabla = () => {
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
       <br />
-    </div>
+    </div> */}
 
       <br />
 

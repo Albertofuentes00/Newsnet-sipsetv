@@ -21,8 +21,7 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 /* ESCALETAS SECTION */
 import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
-
-
+import EscaletaMenu from './Components/Escaletas/DashboardEscaleta';
 import Escaleta from './Components/Escaletas/Escaleta';
 
 /* NOTAS SECTION */
@@ -48,10 +47,8 @@ import GuionesHelp from './Components/Ayuda/GuionesHelp';
 import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 
 import React, {useState} from 'react';
-import AddNotes from './Components/Escaletas/AgregarNotasEscaletas';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
-import EscaletaMenu from './Components/Escaletas/DashboardEscaleta';
 
 
 function App() {
@@ -134,11 +131,10 @@ function App() {
           <Route path="/UserManual" element={<PdfViewer/>}/>
 
           <Route path='MainMenu' element={<Menu/>}/>
-           <Route path='AgregarNotas' element={<AddNotes/>} />
 
-            <Route path='EscaletaArmado' element={<EscaletaMenu/>}>
-              <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
-            </Route>
+
+            <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
+            
 
             <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
@@ -163,7 +159,10 @@ function App() {
               <Route path='AdminHelp' element={<AdminHelp/>} />
               <Route path='About' element={<About/>} />
           </Route>
-          <Route path='Escaleta/:id' element={<Escaleta/>} />
+
+          <Route path='Armado' element={<EscaletaMenu/>}>
+            <Route path='Escaleta/:id' element={<Escaleta/>} />
+          </Route>
       </Routes>
 
 
@@ -174,11 +173,17 @@ function App() {
       
 
       <footer className='App-footer'>
+        <br />
           <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>
           <div>
-            <h7>Powered & Developed by </h7>
-            <h6> <img src={Beto} className='Logo-BT' alt="logo" />  Beto, Tommy & Leni <img src={Tommy} className='Logo-BT' alt='logo' /> </h6>
+            <h7>Powered & Developed by UPQROO Software Team</h7>
+            <h6> Beto, Tommy & Leni </h6>
+            <div>
+              <img src={Beto} className='Logo-BT' alt="logo" />
+              <img src={Tommy} className='Logo-BT' alt='logo' /> 
+            </div>
           </div>
+        <br />
       </footer>
     </div>
 

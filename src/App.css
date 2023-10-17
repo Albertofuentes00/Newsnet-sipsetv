@@ -592,6 +592,7 @@ option{
   max-height: 80vh;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
+  margin-top: -185px;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: #e7e7e7;
@@ -776,9 +777,10 @@ button.btn.btn-light:hover{
 .Row-Escaletaheader{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 150px; /* Separación entre botones */
+  gap: 100px; /* Separación entre botones */
   display: flex;
   justify-content: space-between;
+  margin-left: auto;
   margin-bottom: 10px; /* Espacio entre filas */
 }
 
