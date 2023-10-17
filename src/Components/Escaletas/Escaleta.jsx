@@ -12,7 +12,6 @@ import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
-import EscaletaMenu from './DashboardEscaleta';
 
 
 function Table() {
@@ -684,7 +683,44 @@ const recargarTabla = () => {
 
 
           <div className="Auth-form-container">
-  <div className="Auth-form-escaleta">
+
+    <div className='Grid'>
+
+
+
+  
+      <div className="Auth-form-Escaletabotones">
+        <div className='Grid'>
+          <div className="Row">
+            <h1>Armado de Escaleta</h1>
+            <div>
+              <Link to='/Escaletas'>
+                <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
+              </Link>
+              <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
+              <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+            </div>
+          </div>
+
+          <div className='Row'>
+            <div>
+              <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
+              <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
+                <div class="tooltip-container">
+                  <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
+                <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+  <div className="Auth-form-table">
   <div className="Auth-form-content">
     {/* <div className='Row'>
       <h1>Escaleta</h1>
@@ -699,17 +735,6 @@ const recargarTabla = () => {
     </div> */}
 
       <br />
-
-      <div className="Button-form">
-              <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
-              <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
-              <div class="tooltip-container">
-              <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
-              <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
-             </div>
-             
-      </div>
-
       <div class="container">
      
       {mostrar()}
@@ -739,8 +764,8 @@ const recargarTabla = () => {
             </div>
         </div>
       </div>
+  </div>
 </div>
-
 
 
 

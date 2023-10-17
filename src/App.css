@@ -509,7 +509,8 @@ option{
 .Auth-form-table {
   min-width: 80vw;
   min-height: 60vh;
-  max-height: 65vh;
+  max-height: 125vh;
+  height: 95vh;
   overflow-y: auto;
   position: static;
   margin-top: 5vh;
@@ -566,6 +567,25 @@ option{
   background-color: #e7e7e7;
 }
 
+.Auth-form-Escaletabotones {
+  width: 1200px;
+  height: 150px;
+  max-height: 550px;
+  align-self: center;
+  margin: auto;
+  position: static;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 8px;
+  background-color: #e7e7e7;
+}
+
+
 .Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;
@@ -592,6 +612,7 @@ option{
   max-height: 80vh;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
+  padding-bottom: 30px;
   margin-top: -185px;
   padding-bottom: 20px;
   border-radius: 8px;
