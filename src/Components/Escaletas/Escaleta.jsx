@@ -744,7 +744,7 @@ const recargarTabla = () => {
 
   <div className="Auth-form-table">
   <div className="Auth-form-content">
-    {/* <div className='Row'>
+    <div className='Row'>
       <h1>Escaleta</h1>
       <div>
         <Link to='/Escaletas'>
@@ -754,8 +754,7 @@ const recargarTabla = () => {
           <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
       </div>
       <br />
-    </div> */}
-
+    </div>
       <br />
       <div class="container">
      
