@@ -43,6 +43,7 @@ const Escaletas=()=>{
   const [fkPrograma, setFkPrograma] = useState('');
   const [fkUsuario, setFkUsuario] = useState('');
   const [operation, setOperation] = useState(1);
+  const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [title, setTitle] = useState('');
   useEffect(()=>{
     GetDatos();
@@ -94,6 +95,8 @@ const Escaletas=()=>{
 
   const Validar = () =>{
     var parametros;
+    setBotonDeshabilitado(true);
+    console.log("boton deshabilitado");
     if(operation === 1){
       if(fkPrograma===''){
         show_alerta('Inserte un programa','warning');
@@ -114,13 +117,19 @@ const Escaletas=()=>{
           console.log(respuesta.data.result);
           document.getElementById('btnCerrar').click();
           buscar();
+          setTimeout(() => {
+            setBotonDeshabilitado(false);
+          }, 2000);
+
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
           console.log(error);
+          setBotonDeshabilitado(false);
         });
         } catch (error) {
           console.log(error);
+          setBotonDeshabilitado(false);
         }
       }
     }
@@ -143,10 +152,12 @@ const Escaletas=()=>{
         axios.put('https://localhost:7201/Escaleta/Put/' + pkEscaleta, parametros).then(function(respuesta){
           document.getElementById('btnCerrareditar').click();
           buscar();
+          setBotonDeshabilitado(false);
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
           console.log(error);
+          setBotonDeshabilitado(false);
         });
   
       }
@@ -426,7 +437,7 @@ const Escaletas=()=>{
             </div>
               
             <div>
-                  <button onClick={()=> Validar()} className="btn btn-success">
+                  <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                     <i className="fa-solid fa-floppy-disk"></i> Guardar
                   </button>
                   <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>

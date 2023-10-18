@@ -18,7 +18,7 @@ const ListaFuentes = () => {
     const [nombre_Fuente, setNombre_Fuente] = useState('');
     const [operation, setOperation] = useState(1);
     const [title, setTitle] = useState('');
-
+    const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 4;
@@ -57,6 +57,7 @@ const ListaFuentes = () => {
     const Validar = () =>{
       var parametros;
       var id;
+      setBotonDeshabilitado(true);
       if(nombre_Fuente.trim()===''){
         show_alerta('Escribe el nombre','warning');
       }
@@ -68,10 +69,14 @@ const ListaFuentes = () => {
             axios.post('https://localhost:7201/Fuente/Post', parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             buscar();
+            setTimeout(() => {
+              setBotonDeshabilitado(false);
+            }, 2000);
           })
           .catch(function(error){
             show_alerta('error en la solicitud','error');
             console.log(error);
+            setBotonDeshabilitado(false);
           });
 
         }
@@ -81,10 +86,12 @@ const ListaFuentes = () => {
           axios.put('https://localhost:7201/Fuente/Put/' + pkFuente, parametros).then(function(respuesta){
             document.getElementById('btnCerrar').click();
             buscar();
+            setBotonDeshabilitado(false);
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
             console.log(error);
+            setBotonDeshabilitado(false);
           }); 
 
         }
@@ -243,7 +250,7 @@ const ListaFuentes = () => {
             </div>
             <div className="modal-footer">
                 <div className="col-6 mx-auto">
-                        <button onClick={()=> Validar()} className="btn btn-success">
+                        <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
                         <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>

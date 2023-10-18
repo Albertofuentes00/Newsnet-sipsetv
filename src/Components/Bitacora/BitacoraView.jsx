@@ -49,7 +49,7 @@ const Bitacora=()=>{
     const [fkfuente, setFkFuente] = useState('');
     const [operation, setOperation] = useState(1); 
     const [title, setTitle] = useState('');
-
+    const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
     useEffect(()=>{
       GetDatos();
   },[]);
@@ -109,6 +109,7 @@ const Bitacora=()=>{
     }
     const Validar = () =>{
       var parametros;
+      setBotonDeshabilitado(true);
       if(operation === 1){
         const cadenas = Cookies.get('Usuario');
         const partess = cadenas.split('/');
@@ -146,13 +147,18 @@ const Bitacora=()=>{
               console.log(respuesta.data.result);
               document.getElementById('btnCerrar').click();
               buscar();
+              setTimeout(() => {
+                setBotonDeshabilitado(false);
+              }, 2000);
             })
             .catch(function(error){
               show_alerta('Error en la solicitud','error');
               console.log(error);
+              setBotonDeshabilitado(false);
             });
             } catch (error) {
               console.log(error);
+              setBotonDeshabilitado(false);
             }
           }
         }
@@ -176,13 +182,16 @@ const Bitacora=()=>{
             console.log(respuesta.data.result);
             document.getElementById('btnCerrar').click();
             buscar();
+            setBotonDeshabilitado(false);
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
             console.log(error);
+            setBotonDeshabilitado(false);
           });
           } catch (error) {
             console.log(error);
+            setBotonDeshabilitado(false);
           }
         }
       }
@@ -696,7 +705,7 @@ const Bitacora=()=>{
                   <div className="Button-form">
                     <div className="Row">
                       <div class='col'>
-                        <button onClick={()=> Validar()} className="btn btn-success">
+                        <button onClick={()=> Validar()} className="btn btn-success"  disabled={botonDeshabilitado}>
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
 

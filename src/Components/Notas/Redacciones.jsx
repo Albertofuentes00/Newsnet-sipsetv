@@ -37,7 +37,7 @@ const GuionesNotas=()=>{
 
 
 
-
+  
     const [Datos, SetDatos] = useState([]);
     const [iD_Nota, setID_Nota] = useState('');
     const [titulo, setTitulo] = useState('');
