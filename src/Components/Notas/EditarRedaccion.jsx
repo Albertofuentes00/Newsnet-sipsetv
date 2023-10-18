@@ -25,6 +25,7 @@ const EditarGuion = () => {
       axios.patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros).then(function (respuesta) {
         console.log(respuesta.data.result);
 
+
         show_alerta('El autoguardado se ejecuto','Guardado');
       })
       .catch(function (error) {
@@ -179,6 +180,17 @@ function validacion() {
 const GetDatos = async () => {
   try {
     const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/' + id);
+    const elemento = document.querySelector('.Auth-form-Escaletabotones');
+      const threshold = elemento.offsetTop;
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY >= threshold) {
+          elemento.style.position = 'sticky';
+          elemento.style.top = '0';
+        } else {
+          elemento.style.position = 'static';
+        }
+      });
     
     if (respuesta.data.result) {
       console.log(respuesta.data.result);
@@ -198,6 +210,8 @@ const GetDatos = async () => {
   } catch (error) {
     console.error('Error al obtener datos:', error);
   }
+ 
+
 };
 
 
@@ -220,9 +234,10 @@ const GetDatos = async () => {
 
 return (
   <div className="Auth-form-container">
-    <form className="Auth-form-Guion">
-      <div className="Auth-form-content">
-        <div className='Row'>
+    <div className='Grid'>
+
+    <div className="Auth-form-Escaletabotones">
+      <div className='Row'>
           <h2>Redactar guión</h2>
           <div className='button-form'>
             <Link to="/Notas">
@@ -241,12 +256,9 @@ return (
         {Datos.length > 0 && (
        <div>
             <h3>{Datos[0].nota.titulo}</h3>
-    
        </div>
-
-  )}
+        )}
         </div>
-        <br />
         <div>
             <button id='agregar-celda' type="button" className="btn btn-primary" onClick={agregarFila}>
               <FaPlusSquare size={20} color="white" /> Agregar Celda
@@ -256,7 +268,21 @@ return (
               <FaMinusSquare size={20} color="white" /> Quitar Celdas
             </button>
         </div>
-        
+    </div>
+
+
+    <form className="Auth-form-Guion">
+      <div className="Auth-form-content">
+        <div>
+        {Datos.length > 0 && (
+       <div>
+            <h3>{Datos[0].nota.titulo}</h3>
+       </div>
+       )}
+      </div>
+
+      <br />
+       
         <div>
           <div className='tabla-notaStyle' >
 
@@ -267,6 +293,7 @@ return (
       </div>
       <br />
     </form>
+  </div>
   </div>
 );
 };

@@ -32,20 +32,6 @@ function Table() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const GetDatosEscaleta = async()=>{
   try {
       const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+id);
@@ -789,6 +775,7 @@ const recargarTabla = () => {
               <Link to='/Escaletas'>
                 <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>
               </Link>
+
               <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
             </div>
@@ -796,8 +783,16 @@ const recargarTabla = () => {
 
           <div className='Row'>
             <div className='Centrado-bn-es'>
-              <button type="button" class="btn btn-primary" data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='white'/> Agregar Indicación</button>          
-              <button type="button" data-bs-toggle='modal' data-bs-target='#modalselect' class="btn btn-success"> <FaPlusSquare size={20} color='white'/> Agregar Nota</button>
+                <div class="tooltip-container">
+                  <button className='BtnAddNote' data-bs-toggle='modal' data-bs-target='#modalselect' > <BsFillSignpostFill size={20} color='black'/> Agregar Notas</button>          
+                <div class="tooltip-text">Agrega una o mas notas a la escaleta actual</div>
+                </div>
+              
+                <div class="tooltip-container">
+                  <button className='BtnAddIndicacion' data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='black'/> Agregar Indicación</button>          
+                <div class="tooltip-text">Agrega una indicacion a la escaleta actual</div>
+                </div>
+
                 <div class="tooltip-container">
                   <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
                 <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
@@ -805,7 +800,6 @@ const recargarTabla = () => {
             </div>
           </div>
         </div>
-        
     </div>
 
 

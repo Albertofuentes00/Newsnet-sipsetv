@@ -9,6 +9,7 @@ import { show_alerta } from "../../Funciones"
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
+import { BiCameraMovie } from "react-icons/bi";
 import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
 
@@ -322,7 +323,7 @@ const Escaletas=()=>{
               <div class="col">
               <label> Programa </label>
                 <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <span className="input-group-text"><i> <BiCameraMovie size={20} color="black" /> </i></span>
                   <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
                       <option></option>
                       {Programas.map(Programas =>(

@@ -4,6 +4,10 @@ import { show_alerta } from "../../Funciones"
 import { Link } from "react-router-dom";
 import {FaAngleLeft} from 'react-icons/fa';
 import { FaPlusSquare } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
+import { FaMicrophone } from "react-icons/fa";
+import { BiCategory } from "react-icons/bi";
 import SearchMenu from "../SearchMenu"
 import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
@@ -293,7 +297,7 @@ const Bitacora=()=>{
   <label> Reportero </label>
                       <div className='input-group mb-3'>
                         <div className='input-group mb-3'>
-                        <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                        <span className="input-group-text"><i><FaUser size={20} color="black" /></i></span>
                           <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
                                 <option></option>
                             {Usuarios.map(Usuarios =>(
@@ -329,7 +333,7 @@ const Bitacora=()=>{
     <label> Reportero </label>
                     <div className='input-group mb-3'>
                       <div className='input-group mb-3'>
-                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                      <span className="input-group-text"><i> <FaUser size={20} color="black"/></i></span>
                       <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
                                 <option></option>
                             {Usuarios.map(Usuarios =>(
@@ -539,7 +543,7 @@ const Bitacora=()=>{
                     <div class="col">
                     <label> Categoria </label>
                     <div className='input-group mb-3'>
-                    <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <span className="input-group-text"><i> <BiCategory size={20} color="black" /> </i></span>
                     <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                     <option></option>
                     {Categorias.map(Categorias =>(
@@ -552,7 +556,7 @@ const Bitacora=()=>{
                     <div class="col">
                     <label> Formato </label>
                     <div className='input-group mb-3'>
-                    <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                    <span className="input-group-text"><i> <FaMicrophone size={20} color="black" /></i></span>
                     <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
                     <option></option>
                     {Formatos.map(Formatos =>(
@@ -568,7 +572,7 @@ const Bitacora=()=>{
                       <div class="col">
                          <label> Fuentes </label>
                           <div className='input-group mb-3'>
-                            <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                            <span className="input-group-text"><i> <FaList size={20} color="black"/></i></span>
                               <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
                                 <option></option>
                                 {Fuentes.map(Fuentes =>(
@@ -643,7 +647,7 @@ const Bitacora=()=>{
                     <div class='col'>
                       <label> Categoria </label>
                       <div className='input-group mb-3'>
-                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                      <span className="input-group-text"><i><BiCategory size={20} color="black" />  </i></span>
                         <select required className="form-select" value={fkCategoria} onChange={(e)=> setFkCategoria(e.target.value)}>
                               <option></option>
                           {Categorias.map(Categorias =>(
@@ -656,7 +660,7 @@ const Bitacora=()=>{
                     <div class='col'>           
                       <label> Formato </label>
                       <div className='input-group mb-3'>
-                      <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                      <span className="input-group-text"><i> <FaMicrophone size={20} color="black" /></i></span>
                         <select required className="form-select" value={fkFormato} onChange={(e)=> setFkFormato(e.target.value)}>
                               <option></option>
                               {Formatos.map(Formatos =>(
@@ -675,7 +679,7 @@ const Bitacora=()=>{
                     <label> Fuentes </label>
                       <div className='input-group mb-3'>
                         <div className='input-group mb-3'>
-                        <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                        <span className="input-group-text"><i> <FaList size={20} color="black"/></i></span>
                           <select required className="form-select" value={fkfuente} onChange={(e)=> setFkFuente(e.target.value)}>
                                 <option></option>
                             {Fuentes.map(Fuentes =>(

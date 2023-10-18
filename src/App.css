@@ -862,7 +862,6 @@ table.table{
   justify-content: left;
   margin-right: 5%;
   justify-content: center;
-  
 }
 
 .btn{
@@ -1296,12 +1295,52 @@ table tr{
   color: #242427;
   font-size: 17px;
   border-color: #eb3d3d;
+  background-color: #ef8f8f;
   min-width: 10vw;
   min-height: 3vh;
 }
 .BtnEliminar .dragged-over{
   background-color: black;
 }
+
+
+.BtnAddIndicacion{
+  border-style:dashed;
+  border-width: 2px;
+  background-color: gainsboro;
+  border-radius: 5px;
+  margin-left: 5%;
+  color: #242427;
+  font-size: 17px;
+  border-color: #0f83ef;
+  background-color: #a6d2fb;
+  min-width: 10vw;
+  min-height: 3vh;
+}
+.BtnAddIndicacion .dragged-over{
+  background-color: black;
+}
+
+.BtnAddNote{
+  border-style:dashed;
+  border-width: 2px;
+  background-color: gainsboro;
+  border-radius: 5px;
+  margin-left: 5%;
+  background-color: #a5cdb3;
+  color: #242427;
+  font-size: 17px;
+  border-color: #02c245;
+  min-width: 10vw;
+  min-height: 3vh;
+}
+.BtnAddNote .dragged-over{
+  background-color: black;
+}
+
+
+
+
 
 
 #resultados {
@@ -1436,6 +1475,8 @@ table tr{
 
 .Centrado-bn-es{
   margin: auto;
+  padding: 5px;
+  justify-content: space-between;
 }
 
 
