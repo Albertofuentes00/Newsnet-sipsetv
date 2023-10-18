@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react"
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import {useHistory} from "react-router-dom"
 import Cookies from 'js-cookie';
 
 function Login() {
-
-  const [Datos, SetDatos] = useState(null);
-
-
   const cadena = Cookies.get('Usuario');
 
   // Realizar una acción basada en la ruta actual
@@ -25,7 +18,7 @@ function Login() {
     try{
       var user = document.getElementById("usuario").value
       var pass = document.getElementById("contra").value
-      if (user != "" & pass != ""){
+      if (user !== "" & pass !== ""){
         const respuesta = await axios.put('https://localhost:7201/Usuario/Login/' + user +"/"+pass)
         if (respuesta.data.result.length > 0) {
           setTimeout(function() {
