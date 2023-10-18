@@ -56,7 +56,17 @@ const GetDatosEscaleta = async()=>{
         const nuevasFilas = DatosEscaleta.filter((fila) => fila.id !== filaId);
         SetDatosEscaleta(nuevasFilas);
       };
+      const elemento = document.querySelector('.Auth-form-Escaletabotones');
+      const threshold = elemento.offsetTop;
       
+      window.addEventListener('scroll', () => {
+        if (window.scrollY >= threshold) {
+          elemento.style.position = 'sticky';
+          elemento.style.top = '0';
+        } else {
+          elemento.style.position = 'static';
+        }
+      });
       Setcargado(1);
       
   } catch (error) {
@@ -76,7 +86,7 @@ const GetDatosEscaleta = async()=>{
   }
   function getFechaActualFF() {
     const fechaActual = new Date();
-    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
+    fechaActual.setDate(fechaActual.getDate() + 1);
 
     const year = fechaActual.getFullYear();
     const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
@@ -165,11 +175,11 @@ Val();
         </tr>
     </thead>
     <tbody>
-        <tr  className='indicacion'  draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
+        <tr  className='indicacion'  draggable="true">
             <td>1</td>
             <td>-</td>
             <td>-</td>
-            <td>Bienvenida</td>
+            <td>BIENVENIDA</td>
             <td>-</td>
             <td>-</td>
             <td className='Invisible'>-</td>
@@ -178,7 +188,7 @@ Val();
         <td>2</td>
             <td>-</td>
             <td>-</td>
-            <td>Corte comercial</td>
+            <td>CORTE COMERCIAL</td>
             <td>-</td>
             <td>-</td>
             <td className='Invisible'>-</td>
@@ -187,7 +197,7 @@ Val();
         <td>3</td>
             <td>-</td>
             <td>-</td>
-            <td>Despedida</td>
+            <td>DESPEDIDA</td>
             <td>-</td>
             <td>-</td>
             <td className='Invisible'>-</td>
@@ -208,40 +218,95 @@ Val();
      
     }
 
-    const [filda, Setfilda] = useState([]);
+    const [filda, Setfilda] = useState('');
+    const [fildaUpdated, setFildaUpdated] = useState(false);
+    
+    const Dobleclick = (dato1) => {
+      var table = document.getElementById('sortable-table');
+      var rows = table.getElementsByTagName('tr');
+      var modal = document.getElementById('myModal');
+      modal.style.display = 'block';
+      Setfilda(dato1);
+      setFildaUpdated(true);
+    };
+    
+    useEffect(() => {
+      try {
+        if (fildaUpdated) {
+          const partes = filda.split(',');
+          var id = partes[0];
+          var tipo = partes[1];
+          var fila = document.querySelector('[data-index="' + id + '"]');
+          if(tipo != '-' && tipo != '')
+          {
+            if (fila && fila.cells[2].textContent !== '-') {
+              document.getElementById('modal-content-text').value = fila.cells[2].textContent;
+              document.getElementById('tag-modal').textContent = 'Editar reportero';
+            }
+            else{
+              document.getElementById('modal-content-text').value = '';
+              document.getElementById('tag-modal').textContent = 'Nombre reportero';
+            }
+          }
+          else
+          {
+              document.getElementById('tag-modal').textContent = 'Editar indicación';
+              document.getElementById('modal-content-text').value = fila.cells[3].textContent;
+  
+          }
+  
+          setFildaUpdated(false);
+        }
+      } catch (error) {
+        
+      }
 
-  const Dobleclick= (dato1) =>{
-  var table = document.getElementById('sortable-table'); 
-  var rows = table.getElementsByTagName('tr');
-    var modal = document.getElementById('myModal');
-    modal.style.display = 'block';
-    Setfilda(dato1);
+    }, [filda, fildaUpdated]);
 
-      
-  }
+
+    
+
 
  const obtenerConductor = () => {
-  console.log('hola me llamas');
-
-
     try {
       const partes = filda.split(',');
       var id = partes[0];
       var tipo = partes[1];
+      var fila = document.querySelector('[data-index="' + id + '"]');
       if(tipo != '-' && tipo != ''){
         console.log("Se hizo doble clic en la fila: " + id);
-
         var reportero = document.getElementById('modal-content-text').value;
-        var fila = document.querySelector('[data-index="' + id + '"]');
-        if (fila) {
-          fila.cells[2].textContent = reportero;
-          OrdenNotas();
-        } else {
-          console.log("No se encontró una fila con el atributo data-index igual a " + id);
+        if(reportero == ""){
+          show_alerta('Ingresa el nombre de reportero','warning');
+        }else{
+          
+          if (fila) {
+            fila.cells[2].textContent = reportero;
+            OrdenNotas();
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+            document.getElementById('modal-content-text').value = "";
+          } else {
+            console.log("No se encontró una fila con el atributo data-index igual a " + id);
+          }
         }
+
         
       }else{
         console.log("Se hizo doble click en una indicación");
+        var indicacion = document.getElementById('modal-content-text').value;
+        if(indicacion == ""){
+          show_alerta('Ingresa el nombre de la indicación','warning');
+        }else{
+          if (fila) {
+            fila.cells[3].textContent = indicacion;
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+            document.getElementById('modal-content-text').value = "";
+          } else {
+            console.log("No se encontró una fila con el atributo data-index igual a " + id);
+          }
+        }
   
   
   
@@ -258,6 +323,7 @@ Val();
 function closeModal() {
   var modal = document.getElementById('myModal');
   modal.style.display = 'none';
+  document.getElementById('modal-content-text').value = "";
 }
 
 
@@ -642,12 +708,14 @@ const recargarTabla = () => {
   if (buscador && resultados) {
       // Lista de países predefinidos
       const indicaciones = [
-          'Corte comercial',
-          'Promoción de Burger King',
-          'Presentar nuevo tema',
-          'Cortinilla',
-          'Bienvenida',
-          'Despedida',
+          'CORTE COMERCIAL',
+          'PROMOCION BURGER KING',
+          'PRESENTAR NUEVO TEMA',
+          'CORTINILLA',
+          'BIENVENIDA',
+          'DESPEDIDA',
+          'BUMPER',
+          'CORTINILLA POLICIACA',
       ];
 
       // Función para actualizar la lista de resultados
@@ -687,7 +755,7 @@ const recargarTabla = () => {
         row.removeAttribute('data-index');
       }
     }
-    for (var i = 0; i < rows.length; i++) {
+    for (var i = 2; i < rows.length; i++) {
       (function(row) {
         row.ondblclick = function() {
           var dataIndex = row.getAttribute('data-index');
@@ -699,6 +767,8 @@ const recargarTabla = () => {
     
   }
         
+
+
 
 
   return (
@@ -742,7 +812,7 @@ const recargarTabla = () => {
 
 
 
-  <div className="Auth-form-table">
+  <div className="Auth-form-escaletaArmado">
   <div className="Auth-form-content">
     <div className='Row'>
     </div>
@@ -914,9 +984,11 @@ const recargarTabla = () => {
     <div id="myModal" class="modal">
   <div class="modal-content">
     <button class="close" onClick={()=> closeModal()}>&times;</button>
-    <p >Nombre del conductor</p>
+    <p id='tag-modal'>Nombre del conductor</p>
     <input id="modal-content-text" className='modal-input'></input>
-    <button id='AgregarNota' className="btn btn-success" onClick={()=> obtenerConductor()}/> 
+    <button id='agregar-conductor' className="btn btn-success" onClick={()=> obtenerConductor()}>
+    <i className="fa-solid fa-floppy-disk" ></i> Aceptar
+      </button> 
   </div>
 </div>
     

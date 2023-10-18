@@ -476,7 +476,7 @@ const Bitacora=()=>{
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Título</th>
+                    <th scope="col" className="table-title">Título</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Formato</th>
                     <th scope="col">Reportero</th>
