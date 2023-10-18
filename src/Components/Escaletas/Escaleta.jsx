@@ -16,7 +16,8 @@ import { show_alerta } from "../../Funciones"
 
 function Table() {
 
-
+  const [filda, Setfilda] = useState('');
+  const [fildaUpdated, setFildaUpdated] = useState(false);
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
   const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const {id} = useParams()
@@ -218,12 +219,9 @@ Val();
      
     }
 
-    const [filda, Setfilda] = useState('');
-    const [fildaUpdated, setFildaUpdated] = useState(false);
+
     
     const Dobleclick = (dato1) => {
-      var table = document.getElementById('sortable-table');
-      var rows = table.getElementsByTagName('tr');
       var modal = document.getElementById('myModal');
       modal.style.display = 'block';
       Setfilda(dato1);
@@ -559,6 +557,7 @@ try {
         event.target.style.opacity = "";
         event.target.classList.remove("grabbed");
         OrdenNotas();
+        ActualizarTablaEs();
         draggedRow = null;
     });
 
@@ -574,14 +573,17 @@ try {
     });
 
     table.addEventListener("dragleave", function (event) {
+      
         const target = event.target.closest("tr");
         if (target && target !== draggedRow) {
             target.classList.remove("dragged-over");
         }
+        
     });
 
     table.addEventListener("drop", function (event) {
         event.preventDefault();
+      
         const target = event.target.closest("tr");
         if (target && target !== draggedRow) {
             target.classList.remove("dragged-over");
@@ -597,6 +599,7 @@ try {
                 parent.insertBefore(draggedRow, target);
             }
         }
+        
         });
 
 
