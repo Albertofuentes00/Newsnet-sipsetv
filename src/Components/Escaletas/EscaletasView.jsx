@@ -98,9 +98,6 @@ const Escaletas=()=>{
       if(fkPrograma===''){
         show_alerta('Inserte un programa','warning');
       }
-      else if(hora_Inicio.trim()===''){
-        show_alerta('Inserte la hora de inicio de la escaleta','warning');
-      }
       else{
         try {
           const fechaActual = new Date();

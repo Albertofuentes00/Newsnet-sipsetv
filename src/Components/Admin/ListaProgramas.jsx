@@ -35,7 +35,7 @@ const ListaProgramas=()=>{
         SetDatos(respuesta.data.result);
         SetCategorias(respuesta2.data.result);
       } catch (error) {
-        
+        console.log(error);
       }
 
   }
