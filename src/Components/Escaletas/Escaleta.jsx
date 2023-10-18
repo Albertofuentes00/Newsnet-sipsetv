@@ -12,11 +12,13 @@ import { FaSearch } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
+import html2pdf from 'html2pdf.js';
 
 
 function Table() {
 
-
+  const [filda, Setfilda] = useState('');
+  const [fildaUpdated, setFildaUpdated] = useState(false);
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
   const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const {id} = useParams()
@@ -29,6 +31,25 @@ function Table() {
   useEffect(()=>{
     GetDatosEscaleta();
 },[]);
+
+
+
+
+
+const contentRef = useRef(null);
+const handleDownloadPDF = () => {
+  const content = contentRef.current;
+  const opt = {
+    margin: 10,
+    filename: 'documento.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf(content, opt);
+};
+
 
 
 
@@ -204,12 +225,9 @@ Val();
      
     }
 
-    const [filda, Setfilda] = useState('');
-    const [fildaUpdated, setFildaUpdated] = useState(false);
+
     
     const Dobleclick = (dato1) => {
-      var table = document.getElementById('sortable-table');
-      var rows = table.getElementsByTagName('tr');
       var modal = document.getElementById('myModal');
       modal.style.display = 'block';
       Setfilda(dato1);
@@ -545,6 +563,7 @@ try {
         event.target.style.opacity = "";
         event.target.classList.remove("grabbed");
         OrdenNotas();
+        ActualizarTablaEs();
         draggedRow = null;
     });
 
@@ -560,14 +579,17 @@ try {
     });
 
     table.addEventListener("dragleave", function (event) {
+      
         const target = event.target.closest("tr");
         if (target && target !== draggedRow) {
             target.classList.remove("dragged-over");
         }
+        
     });
 
     table.addEventListener("drop", function (event) {
         event.preventDefault();
+      
         const target = event.target.closest("tr");
         if (target && target !== draggedRow) {
             target.classList.remove("dragged-over");
@@ -583,6 +605,7 @@ try {
                 parent.insertBefore(draggedRow, target);
             }
         }
+        
         });
 
 
@@ -777,7 +800,7 @@ const recargarTabla = () => {
               </Link>
 
               <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
-              <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+              <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
             </div>
           </div>
 
@@ -811,7 +834,7 @@ const recargarTabla = () => {
     <div className='Row'>
     </div>
       <br />
-      <div class="container">
+      <div ref={contentRef} class="container">
      
       {mostrar()}
         {validacion()}

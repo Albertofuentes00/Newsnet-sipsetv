@@ -20,7 +20,7 @@ const ListaProgramas=()=>{
   const [fkCategoria, setFkCategoria] = useState('');
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState('');
-
+  const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   
@@ -35,7 +35,7 @@ const ListaProgramas=()=>{
         SetDatos(respuesta.data.result);
         SetCategorias(respuesta2.data.result);
       } catch (error) {
-        
+        console.log(error);
       }
 
   }
@@ -62,6 +62,7 @@ const ListaProgramas=()=>{
   const Validar = () =>{
     var parametros;
     var id;
+    setBotonDeshabilitado(true);
     if(fkCategoria===''){
       show_alerta('Escoge la categoria','warning');
     }
@@ -74,10 +75,14 @@ const ListaProgramas=()=>{
           axios.post('https://localhost:7201/Programa/Post', parametros).then(function(respuesta){
           document.getElementById('btnCerrar').click();
           buscar();
+          setTimeout(() => {
+            setBotonDeshabilitado(false);
+          }, 2000);
         })
         .catch(function(error){
           show_alerta('error en la solicitud','error');
           console.log(error);
+          setBotonDeshabilitado(false);
         });
 
       }
@@ -87,10 +92,12 @@ const ListaProgramas=()=>{
         axios.put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros).then(function(respuesta){
           document.getElementById('btnCerrar').click();
           buscar();
+          setBotonDeshabilitado(false);
         })
         .catch(function(error){
           show_alerta('Error en la solicitud','error');
           console.log(error);
+          setBotonDeshabilitado(false);
         });
 
       }
@@ -250,7 +257,7 @@ return(
             </div>
             <div className="modal-footer">
                 <div className="col-6 mx-auto">
-                        <button onClick={()=> Validar()} className="btn btn-success">
+                        <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
                         <button type="button" id='btnCerrar' className="btn btn-danger" data-bs-dismiss='modal'>
