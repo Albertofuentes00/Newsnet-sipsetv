@@ -183,7 +183,7 @@ const Escaletas=()=>{
       var fechaFI = document.getElementById("FI").value;
       var fechaFF = document.getElementById("FF").value;
       console.log('https://localhost:7201/Escaleta/Buscar/' + variable+"/"+fechaFI+"/"+fechaFF);
-    if (variable == ""){
+    if (variable === ""){
       try {
         const respuesta = await axios.get('https://localhost:7201/Escaleta/BuscarDefault/' + fechaFI+"/"+fechaFF)
 
