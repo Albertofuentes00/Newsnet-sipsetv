@@ -28,6 +28,7 @@ function Table() {
   const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [DatosTabla, setDatosTabla] = useState([]);
   const [orden,setOrden]= useState(0);
+  const [NotaAct, setNotaAct] = useState([]);
   useEffect(()=>{
     GetDatosEscaleta();
 },[]);
@@ -238,15 +239,19 @@ Val();
           var id = partes[0];
           var tipo = partes[1];
           var fila = document.querySelector('[data-index="' + id + '"]');
+          var minipk = fila.cells[6].textContent;
           if(tipo != '-' && tipo != '')
           {
             if (fila && fila.cells[2].textContent !== '-') {
               document.getElementById('modal-content-text').value = fila.cells[2].textContent;
               document.getElementById('tag-modal').textContent = 'Editar reportero';
+              ObtenerNota(minipk);
             }
             else{
               document.getElementById('modal-content-text').value = '';
               document.getElementById('tag-modal').textContent = 'Nombre reportero';
+              
+              ObtenerNota(minipk);
             }
           }
           else
@@ -264,7 +269,16 @@ Val();
 
     }, [filda, fildaUpdated]);
 
-
+    const ObtenerNota = async (pkNota) => {
+      try {
+        const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/' + pkNota);
+        setNotaAct(respuesta.data.result);
+        console.log(respuesta.data.result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    
     
 
 
@@ -325,6 +339,7 @@ function closeModal() {
   var modal = document.getElementById('myModal');
   modal.style.display = 'none';
   document.getElementById('modal-content-text').value = "";
+  setNotaAct('');
 }
 
 
@@ -1066,6 +1081,10 @@ const recargarTabla = () => {
     <button class="close" onClick={()=> closeModal()}>&times;</button>
     <p id='tag-modal'>Nombre del conductor</p>
     <input id="modal-content-text" className='modal-input'></input>
+    <div className='modal-div' hidden={NotaAct.redaccion === "" }>
+    <div  className='tabla-imprimir' dangerouslySetInnerHTML={{ __html: NotaAct.redaccion}} />
+    </div>
+    
     <button id='agregar-conductor' className="btn btn-success" onClick={()=> obtenerConductor()}>
     <i className="fa-solid fa-floppy-disk" ></i> Aceptar
       </button> 

@@ -1297,7 +1297,7 @@ table tr{
   border-style:dashed;
   border-width: 2px;
   background-color: gainsboro;
-  border-radius: 5px;
+  border-radius: 0px 5px 5px 0px;
   color: #242427;
   font-size: 17px;
   border-color: #eb3d3d;
@@ -1313,7 +1313,6 @@ table tr{
   border-style:dashed;
   border-width: 2px;
   background-color: gainsboro;
-  border-radius: 5px;
   color: #04044e;
   font-size: 17px;
   border-color: #0f83ef;
@@ -1327,7 +1326,7 @@ table tr{
   border-style:dashed;
   border-width: 2px;
   background-color: gainsboro;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   background-color: #a5cdb3;
   color: #04510b;
   font-size: 17px;
@@ -1446,12 +1445,19 @@ table tr{
 
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto;
+  margin: 0% auto;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 50vw;
+  max-width: 75vw;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  max-height: 80vh;
+
+}
+
+.modal-div{
+overflow: scroll;
+padding: 40px;
 }
 
 .close {
@@ -1475,7 +1481,7 @@ table tr{
 .modal-input{
   max-width: 30vw;
   margin: auto;
-  margin-bottom: 5%;
+  margin-bottom: 2px;
 }
 
 
