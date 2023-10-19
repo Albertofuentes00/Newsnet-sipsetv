@@ -52,6 +52,13 @@ const handleDownloadPDF = () => {
 };
 
 
+const [text, setText] = useState("");
+
+const handleInputChange = (event) => {
+  const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+  setText(inputValue);
+};
+
 
 
 const GetDatosEscaleta = async()=>{
@@ -243,7 +250,7 @@ Val();
           if(tipo != '-' && tipo != '')
           {
             if (fila && fila.cells[2].textContent !== '-') {
-              document.getElementById('modal-content-text').value = fila.cells[2].textContent;
+              setText(fila.cells[2].textContent);
               document.getElementById('tag-modal').textContent = 'Editar reportero';
               ObtenerNota(minipk);
             }
@@ -257,7 +264,7 @@ Val();
           else
           {
               document.getElementById('tag-modal').textContent = 'Editar indicación';
-              document.getElementById('modal-content-text').value = fila.cells[3].textContent;
+              setText(fila.cells[3].textContent);
   
           }
   
@@ -301,6 +308,7 @@ Val();
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
             document.getElementById('modal-content-text').value = "";
+            setText('');
           } else {
             console.log("No se encontró una fila con el atributo data-index igual a " + id);
           }
@@ -318,6 +326,7 @@ Val();
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
             document.getElementById('modal-content-text').value = "";
+            setText('');
           } else {
             console.log("No se encontró una fila con el atributo data-index igual a " + id);
           }
@@ -340,6 +349,7 @@ function closeModal() {
   modal.style.display = 'none';
   document.getElementById('modal-content-text').value = "";
   setNotaAct('');
+  setText('');
 }
 
 
@@ -908,7 +918,7 @@ const recargarTabla = () => {
 
 
   <div className="Auth-form-escaletaArmado">
-  <div className="Auth-form-content">
+  <div>
     <div className='Row'>
     </div>
       <br />
@@ -1079,13 +1089,13 @@ const recargarTabla = () => {
     <div id="myModal" class="modal">
   <div class="modal-content">
     <button class="close" onClick={()=> closeModal()}>&times;</button>
-    <p id='tag-modal'>Nombre del conductor</p>
-    <input id="modal-content-text" className='modal-input'></input>
+    <p id='tag-modal'>Asignar un conductor</p>
+    <textarea id="modal-content-text" className='modal-input' value={text} onChange={handleInputChange}></textarea>
     <div className='modal-div' hidden={NotaAct.redaccion === "" }>
     <div  className='tabla-imprimir' dangerouslySetInnerHTML={{ __html: NotaAct.redaccion}} />
     </div>
     
-    <button id='agregar-conductor' className="btn btn-success" onClick={()=> obtenerConductor()}>
+    <button id='agregar-conductor' className="btn-modal" onClick={()=> obtenerConductor()}>
     <i className="fa-solid fa-floppy-disk" ></i> Aceptar
       </button> 
   </div>

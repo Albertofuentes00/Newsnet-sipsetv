@@ -630,11 +630,13 @@ option{
 .indicacion{
   background-color: rgb(180, 180, 180);
   font-weight: bold;
+  font-size: 14px;
 }
 
 
 .nota-esca{
   background-color: #e0e0e0;
+  font-size: 14px;
 }
 
 .Auth-form-Search{
@@ -1456,7 +1458,7 @@ table tr{
 }
 
 .modal-div{
-overflow: scroll;
+overflow: auto;
 padding: 40px;
 }
 
@@ -1479,9 +1481,19 @@ padding: 40px;
 }
 
 .modal-input{
-  max-width: 30vw;
+  min-width: 40vw;
   margin: auto;
-  margin-bottom: 2px;
+  min-height: 10vh;
+  margin-bottom: 3%;
+}
+
+.btn-modal{
+  width: 10vw;
+  margin: auto;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  font-size: 16px;
 }
 
 

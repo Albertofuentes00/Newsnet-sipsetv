@@ -175,10 +175,12 @@ const Bitacora=()=>{
               show_alerta('Error en la solicitud','error');
               console.log(error);
               setBotonDeshabilitado(false);
+              setText('');
             });
             } catch (error) {
               console.log(error);
               setBotonDeshabilitado(false);
+              setText('');
             }
           }
         }
@@ -203,15 +205,18 @@ const Bitacora=()=>{
             document.getElementById('btnCerrar').click();
             buscar();
             setBotonDeshabilitado(false);
+            setText('');
           })
           .catch(function(error){
             show_alerta('Error en la solicitud','error');
             console.log(error);
             setBotonDeshabilitado(false);
+            setText('');
           });
           } catch (error) {
             console.log(error);
             setBotonDeshabilitado(false);
+            setText('');
           }
         }
       }
