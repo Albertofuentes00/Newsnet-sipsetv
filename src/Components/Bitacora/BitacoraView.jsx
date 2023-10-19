@@ -169,6 +169,7 @@ const Bitacora=()=>{
               setTimeout(() => {
                 setBotonDeshabilitado(false);
               }, 2000);
+              setText('');
             })
             .catch(function(error){
               show_alerta('Error en la solicitud','error');

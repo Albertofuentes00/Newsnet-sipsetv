@@ -51,7 +51,7 @@ const ListaProgramas=()=>{
     }
     else if(op === 2){
       setTitle('Actualizar Programa')
-      setPkPrograma(fkCategoria);
+      setPkPrograma(pkPrograma);
       setNombre_Programa(nombre_Programa);
       setFkCategoria(fkCategoria);
     }
