@@ -32,6 +32,10 @@ const ListaUsuarios=()=>{
       GetDatos();
   },[]);
 
+
+
+
+
   const GetDatos = async ()=>{
     try{
       const respuesta = await axios.get('https://localhost:7201/Usuario/Get')

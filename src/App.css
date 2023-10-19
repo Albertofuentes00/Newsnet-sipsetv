@@ -1075,7 +1075,7 @@ p{
   position: relative;
     display: flex;
     flex-direction: column;
-    width: 860px;
+    width: 70vw;
     color: var(--bs-modal-color);
     pointer-events: auto;
     background-color: #e7e7e7;
@@ -1083,7 +1083,12 @@ p{
     border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
-    margin-left: -170px;
+    max-height: 85vh;
+    margin-left: -390px;
+}
+
+.modal-tabla-notas-header{
+  min-width: 40vw;
 }
 
 .modal-content-edit{
@@ -1179,6 +1184,7 @@ vertical-align: top;
   border-width: 2px;
   font-size: 14px;
   text-align: justify;
+  text-transform: uppercase;
 }
 
 
@@ -1196,6 +1202,7 @@ vertical-align: top;
   resize: none;
   text-align: justify;
   overflow: hidden;
+  text-transform: uppercase;
 }
 .no-redac{
   font-weight: bold;
@@ -1291,16 +1298,12 @@ table tr{
   border-width: 2px;
   background-color: gainsboro;
   border-radius: 5px;
-  margin-left: 5%;
   color: #242427;
   font-size: 17px;
   border-color: #eb3d3d;
   background-color: #ef8f8f;
   min-width: 10vw;
-  min-height: 3vh;
-}
-.BtnEliminar .dragged-over{
-  background-color: black;
+  min-height: 4vh;
 }
 
 
@@ -1309,16 +1312,12 @@ table tr{
   border-width: 2px;
   background-color: gainsboro;
   border-radius: 5px;
-  margin-left: 5%;
   color: #242427;
   font-size: 17px;
   border-color: #0f83ef;
   background-color: #a6d2fb;
   min-width: 10vw;
-  min-height: 3vh;
-}
-.BtnAddIndicacion .dragged-over{
-  background-color: black;
+  min-height: 4vh;
 }
 
 .BtnAddNote{
@@ -1326,18 +1325,20 @@ table tr{
   border-width: 2px;
   background-color: gainsboro;
   border-radius: 5px;
-  margin-left: 5%;
   background-color: #a5cdb3;
   color: #242427;
   font-size: 17px;
   border-color: #02c245;
   min-width: 10vw;
-  min-height: 3vh;
-}
-.BtnAddNote .dragged-over{
-  background-color: black;
+  min-height: 4vh;
 }
 
+
+.fila-esc{
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 
 
 
@@ -1393,7 +1394,7 @@ table tr{
 
 .tooltip-container:hover .tooltip-text {
   visibility: visible;
-  opacity: 1;
+  opacity: 0.8;
 }
 
 
@@ -1490,7 +1491,7 @@ table tr{
   overflow-y: auto;
   position: static;
   margin-top: 3vh;
-  margin-bottom: 10px;
+  margin-bottom: 4vh;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   border-radius: 8px;
   background-color: #e7e7e7;

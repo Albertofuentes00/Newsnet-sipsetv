@@ -131,7 +131,6 @@ const GetDatosEscaleta = async()=>{
       if (variable == ""){
       try {
         const respuesta = await axios.get('https://localhost:7201/Nota/BuscarRelaDefault/'+ id +'/' + fechaFI+"/"+fechaFF)
-        console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
       } catch (error) {
         
@@ -140,8 +139,6 @@ const GetDatosEscaleta = async()=>{
       }else{
       try {
         const respuesta = await axios.get('https://localhost:7201/Nota/Nota_EscaRelaBuscar/' + id +'/'+ variable+"/"+fechaFI+"/"+fechaFF)
-
-        console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
       } catch (error) 
       {
@@ -420,6 +417,22 @@ function closeModal() {
     });
   }
 
+  const ActTablaS= () =>{
+    const tablaContenido = tablaRef.current.innerHTML;
+    const datosEnviar = {
+      vTabla: tablaContenido
+    };
+    axios
+    .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
+    .then(function (respuesta) {
+    })
+    .catch(function (error) {
+      show_alerta('Error en la solicitud', 'error');
+    });
+  }
+
+
+
   const ActualizarTablaEs = () => {
     const tablaContenido = tablaRef.current.innerHTML;
     const datosEnviar = {
@@ -563,7 +576,7 @@ try {
         event.target.style.opacity = "";
         event.target.classList.remove("grabbed");
         OrdenNotas();
-        ActualizarTablaEs();
+        ActTablaS();
         draggedRow = null;
     });
 
@@ -588,6 +601,7 @@ try {
     });
 
     table.addEventListener("drop", function (event) {
+      try {
         event.preventDefault();
       
         const target = event.target.closest("tr");
@@ -605,8 +619,55 @@ try {
                 parent.insertBefore(draggedRow, target);
             }
         }
+      } catch (error) {
+        
+      }
+     
         
         });
+
+
+
+
+        table.addEventListener("drop", function (event) {
+          event.preventDefault();
+          try {
+            const target = event.target.closest("tr");
+            if (target && target !== draggedRow) {
+              target.classList.remove("dragged-over");
+              const rect = target.getBoundingClientRect();
+              const offsetY = event.clientY - rect.top - rect.height / 2;
+              const isAfter = offsetY > 0;
+        
+              const parent = target.parentNode;
+        
+              // Encuentra el índice actual de la fila arrastrada
+              const draggedIndex = parseInt(draggedRow.getAttribute("data-index"));
+        
+              // Encuentra el índice actual de la fila de destino
+              const targetIndex = parseInt(target.getAttribute("data-index"));
+        
+              // Actualiza el atributo data-index de la fila arrastrada
+              draggedRow.setAttribute("data-index", targetIndex);
+        
+              // Reorganiza las filas en la tabla para reflejar el nuevo orden
+              if (isAfter) {
+                parent.insertBefore(draggedRow, target.nextSibling);
+              } else {
+                parent.insertBefore(draggedRow, target);
+              }
+        
+              // Actualiza los atributos data-index de otras filas según el nuevo orden
+              const rows = parent.getElementsByTagName("tr");
+              for (let i = 0; i < rows.length; i++) {
+                rows[i].setAttribute("data-index", i);
+              }
+            }
+          } catch (error) {
+            // Maneja el error si es necesario
+          }
+        });
+        
 
 
 
@@ -778,6 +839,8 @@ const recargarTabla = () => {
         
 
 
+  
+
 
 
   return (
@@ -792,7 +855,7 @@ const recargarTabla = () => {
   
       <div className="Auth-form-Escaletabotones">
         <div className='Grid'>
-          <div className="Row">
+          <div className="fila-esc">
             <h1>Armado de Escaleta</h1>
             <div >
               <Link to='/Escaletas'>
@@ -804,7 +867,7 @@ const recargarTabla = () => {
             </div>
           </div>
 
-          <div className='Row'>
+          <div className='fila-botones-esc'>
             <div className='Centrado-bn-es'>
                 <div class="tooltip-container">
                   <button className='BtnAddNote' data-bs-toggle='modal' data-bs-target='#modalselect' > <BsFillSignpostFill size={20} color='black'/> Agregar Notas</button>          
@@ -915,9 +978,9 @@ const recargarTabla = () => {
      <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th> 
-                    <th scope="col">Título</th>
-                    <th scope="col">Categoría</th>
+                    <th className='Invisible' scope="col">#</th> 
+                    <th className="table-title" scope="col" >Título</th>
+                    <th className='Invisible' scope="col">Categoría</th>
                     <th scope="col">Formato</th>
                     <th scope="col">Reportero</th>
                     <th scope="col">Fecha Mes/Dia/Año</th>
@@ -927,9 +990,9 @@ const recargarTabla = () => {
                 <tbody className="table-group-divider">
                 {Datos.map((Datos,i) =>(
                     <tr key={Datos.pkNota}>
-                    <td>{Datos.pkNota}</td>
+                    <td className='Invisible' >{Datos.pkNota}</td>
                     <td>{Datos.titulo}</td>
-                    <td>{Datos.nombre_Categoria}</td>
+                    <td className='Invisible' >{Datos.nombre_Categoria}</td>
                     <td>{Datos.nombre_Formato}</td>
                     <td>{Datos.nombre}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>

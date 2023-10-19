@@ -13,6 +13,8 @@ import Swal from 'sweetalert2'
 import whitReactContent from 'sweetalert2-react-content'
 import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
 const Bitacora=()=>{
   
@@ -53,11 +55,24 @@ const Bitacora=()=>{
     const [fkfuente, setFkFuente] = useState('');
     const [operation, setOperation] = useState(1); 
     const [title, setTitle] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
     const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
     useEffect(()=>{
       GetDatos();
   },[]);
   
+
+  const [text, setText] = useState("");
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+    setText(inputValue);
+    setTitulo(inputValue);
+  };
+
+
+
   const GetDatos = async()=>{
     try {
       const respuesta = await axios.get('https://localhost:7201/Nota/Get');
@@ -228,10 +243,12 @@ const Bitacora=()=>{
             axios.put('https://localhost:7201/Nota/Put/' + pkNota, parametros).then(function(respuesta){
               document.getElementById('btnCerrareditar').click();
               buscar();
+              setBotonDeshabilitado(false);
             })
             .catch(function(error){
               show_alerta('Error en la solicitud','error');
               console.log(error);
+              setBotonDeshabilitado(false);
             });
           }
            
@@ -401,7 +418,16 @@ const Bitacora=()=>{
         
       }
 
-
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const currentData = Datos.slice(startIndex, endIndex);
+    
+      const [itemNumber, setItemNumber] = useState(0);
+      useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setItemNumber(startIndex + 1);
+      }, [currentPage, itemsPerPage, Datos]);
 
 
 
@@ -410,23 +436,7 @@ const Bitacora=()=>{
 
     return(
         <div className="Auth-form-container">
-
-        {/* <div className="Auth-form-table-search-filther">
-    
-        </div> */}
-    
         <div className="Grid">
-    
-          
-          
-
-
-
-
-
-
-
-
         <div className="Auth-form-searchbar">
       <div className="Row-searchbar">
         <div className="Row">
@@ -499,9 +509,9 @@ const Bitacora=()=>{
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
-                {Datos.map((Datos,i) =>(
+                {currentData.map((Datos, i) =>(
                     <tr key={Datos.pkNota}>
-                    <td>{(i+1)}</td>
+                    <td>{(itemNumber + i)}</td>
                     <td>{Datos.titulo}</td>
                     <td>{Datos.nombre_Categoria}</td>
                     <td>{Datos.nombre_Formato}</td>
@@ -521,7 +531,22 @@ const Bitacora=()=>{
                     </tr>
                 ))}
                 </tbody>
-              </table>                          
+              </table>   
+              <div className="pagination-list">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+             <FaArrowAltCircleLeft size={20} />
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              <FaArrowAltCircleRight size={20} />
+            </button>
+          </div>                          
             </div>
           </div>
         </div>
@@ -543,8 +568,8 @@ const Bitacora=()=>{
                 <label> Titulo </label>
                 <input type='hidden' id='id'></input>
                 <div className='input-group mb-3'>
-                  <textarea type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
-                  onChange={(e)=> setTitulo(e.target.value)}></textarea>
+                  <textarea type='text' id="nombre" className="form-control" placeholder="Titulo" value={text}
+                  onChange={handleInputChange} ></textarea>
                 </div>
 
                 <div class="container">
@@ -635,8 +660,8 @@ const Bitacora=()=>{
                       <label> Titulo </label>
                       <input type='hidden' id='id'></input>
                       <div className='input-group mb-3'>
-                      <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={titulo}
-                      onChange={(e)=> setTitulo(e.target.value)}></input>
+                      <input type='text' id="nombre" className="form-control" placeholder="Titulo" value={text}
+                     onChange={handleInputChange}></input>
                       </div>
                     </div>
 
