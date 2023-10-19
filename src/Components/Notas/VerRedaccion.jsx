@@ -6,8 +6,6 @@ import { useParams } from 'react-router-dom';
 import React, { useRef} from 'react';
 import axios from 'axios'
 import html2pdf from 'html2pdf.js';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 
 const LeerGuion=()=>{
     const [Datos, SetDatos] = useState([]);
@@ -64,59 +62,22 @@ if(cargado === 1){
     const formattedFecha = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     return formattedFecha;
   }
-
-
-
-
-
-
-  const Imprimir = () => {
-    const elementoAExportar = document.getElementById('miDiv');
-    const anchoPagina = 216; // Ancho de una hoja carta en mm (equivalente a 8.5 pulgadas)
-    const altoPagina = 279; // Alto de una hoja carta en mm (equivalente a 11 pulgadas)
-    const margen = 10; // Márgenes en mm
   
-    // Obtener el ancho y alto actual del elemento
-    const anchoElemento = elementoAExportar.offsetWidth;
-    const altoElemento = elementoAExportar.offsetHeight;
   
-    // Calcular la escala para ajustar el ancho y alto del contenido
-    const escalaAncho = (anchoPagina - 2 * margen) / anchoElemento;
-    const escalaAlto = (altoPagina - 2 * margen) / altoElemento;
-    const escala = Math.min(escalaAncho, escalaAlto);
-  
-    // Calcular las coordenadas para centrar el contenido
-    const xPos = margen;
-    const yPos = margen;
-  
-    // Aplicar la escala y las coordenadas al elemento
-    elementoAExportar.style.transform = `scale(${escala})`;
-    elementoAExportar.style.transformOrigin = 'top left';
-    elementoAExportar.style.marginLeft = `${xPos}px`;
-    elementoAExportar.style.marginTop = `${yPos}px`;
-  
-    const escalaHtml2Canvas = 2; // Aumenta la escala para mejorar la resolución
-    const calidadImagen = 2.0; // Aumenta la calidad de la imagen generada
-  
-    html2canvas(elementoAExportar, {
-      scale: escalaHtml2Canvas / escala, // Invertir la escala
-    }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/jpeg', calidadImagen); // Cambia a formato JPEG y ajusta la calidad
-      const pdf = new jsPDF({ unit: 'mm', format: [anchoPagina, altoPagina], orientation: 'portrait' });
-      pdf.addImage(imgData, 'JPEG', margen, margen, anchoPagina - 2 * margen, altoPagina - 2 * margen);
-      pdf.save('documento.pdf');
-      console.log('Se imprimió correctamente');
-    });
-  
-    // Restablecer el estado original del elemento
-    elementoAExportar.style.transform = 'scale(1)';
-    elementoAExportar.style.transformOrigin = 'top left';
-    elementoAExportar.style.marginLeft = '0';
-    elementoAExportar.style.marginTop = '0';
+  const contentRef = useRef(null);
+const handleDownloadPDF = () => {
+  const content = contentRef.current;
+  const opt = {
+    margin: 10,
+    filename: 'Nota.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
-  
-  
-  
+
+  html2pdf(content, opt);
+};
+
   
   
   
@@ -137,12 +98,12 @@ if(cargado === 1){
                 <Link to='/Notas'>
                   <button type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
                 </Link>
-                <button type="button" id='btn-imprimir' className="btn btn-primary" onClick={()=>Imprimir()}>  <FaPrint size={20} color="white" /> Imprimir</button>
+                <button type="button" id='btn-imprimir' className="btn btn-primary" onClick={handleDownloadPDF}>  <FaPrint size={20} color="white" /> Imprimir</button>
               </div>
             </div>
             <br />
             <div id="miDiv" className="Imprimir-div">
-            <div className="hola">
+            <div ref={contentRef} className="hola">
                <div className="Grid" >
               <div className="Row">
                 <h6><b>Título:</b> {Datos.titulo}</h6>
