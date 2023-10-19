@@ -8,6 +8,7 @@ import { FaEye } from 'react-icons/fa';
 import { show_alerta } from "../../Funciones"
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { FaUser } from "react-icons/fa";
 import whitReactContent from 'sweetalert2-react-content'
 import { BiCameraMovie } from "react-icons/bi";
 import Cookies from 'js-cookie';
@@ -385,7 +386,7 @@ const Escaletas=()=>{
                 <label>Hora de inicio</label>
                 <input type='hidden' id='id'></input>
                 <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-clock"></i></span>
                 <input type='time' id="nombre" className="form-control" placeholder="HoraInicio" value={hora_Inicio}
                 onChange={(e)=> setHora_Inicio(e.target.value)}></input>
                 </div>
@@ -394,7 +395,7 @@ const Escaletas=()=>{
               <div class='col'>
                 <label>Fecha</label>
                 <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <span className="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
                 <input
                   className="form-control"
                   placeholder="Fecha"
@@ -413,7 +414,7 @@ const Escaletas=()=>{
               <div class='col'>
                 <label>Usuario</label>
                 <div className='input-group mb-3'>
-                <span className="input-group-text"><i className="fa-solid fa-caret-right"></i></span>
+                <span className="input-group-text"><i> <FaUser size={20} color="black" /></i></span>
                 <select required className="form-select" value={fkUsuario} onChange={(e)=> setFkUsuario(e.target.value)}>
                   <option></option>
                 {Usuarios.map(Usuarios =>(
@@ -426,7 +427,7 @@ const Escaletas=()=>{
               <div class='col'>
                 <label>Programa</label>
                 <div className='input-group mb-3'>
-                  <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+                  <span className="input-group-text"><i> <BiCameraMovie size={20} color="black" /></i></span>
                     <select required className="form-select" value={fkPrograma} onChange={(e)=> setFkPrograma(e.target.value)}>
                         <option></option>
                         {Programas.map(Programas =>(

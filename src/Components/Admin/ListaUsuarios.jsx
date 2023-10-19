@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
+import { FaUserCog } from "react-icons/fa";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import axios from 'axios'
@@ -334,7 +335,7 @@ const ListaUsuarios=()=>{
              
               <label> Rol </label>
               <div className='input-group mb-3'>
-              <span className="input-group-text"><i class="fa-solid fa-caret-right"></i></span>
+              <span className="input-group-text"><i>  <FaUserCog size={20} color='black'/> </i></span>
                 <select required className="form-select"  value={fkRol} onChange={(e)=> setFkRol(e.target.value)}>
                       <option selected></option>
                   {Roles.map(Roles =>(
@@ -344,7 +345,7 @@ const ListaUsuarios=()=>{
               </div>
             </div>
             <div className="modal-footer">
-                <div className="col-6 mx-auto">
+                <div className="mx-auto">
                         <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>

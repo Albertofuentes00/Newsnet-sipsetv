@@ -880,7 +880,7 @@ const recargarTabla = () => {
                 </div>
 
                 <div class="tooltip-container">
-                  <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} /> Eliminar</button>
+                  <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} color='black' /> Eliminar</button>
                 <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
                 </div>
             </div>
@@ -939,7 +939,7 @@ const recargarTabla = () => {
             <button type='btnCerrar' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
           
-            <h4> Agregar notas a escaleta </h4>
+            <h1> Agregar notas a escaleta </h1> 
             <div className="Auth-form-searchbar">
       <div className="Row-searchbar">
         <div className="Row">

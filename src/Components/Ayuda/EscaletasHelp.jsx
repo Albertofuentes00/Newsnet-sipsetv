@@ -11,16 +11,15 @@ function EscaletasHelp() {
                         <h1 className="TitleHelp">►Escaletas</h1>
                         <br />
                         <h4 className="textIntroduction">
-                        En esta sección hará gestión de las escaletas y su información, así como la edición, eliminación y exportación de estas
+                        En esta sección hará gestión de las escaletas y su información, así como la edición, eliminación y exportación de estas; A continuación podrá consultar las funciones que usted puede en esta sección:
                         </h4>
                             <br />
                         
                         <div className="section">
-                            <h3>Agregar Escaleta</h3>
+                            <h3>Gestion de Escaletas</h3>
                             <h5>Para crear una escaleta nueva:</h5>
 
-                            <h6>Haga click en el boton <u>Agregar Escaleta</u> e ingrese los datos requeridos, posteriormente haga Click en <u>Guardar</u> para crear la nota.</h6>
-                            <h6>Para cancelar o regresar a la pantalla de bitácora, haga click en Cancelar</h6>                            
+                            <h6>Haga click en el boton <u>Agregar Escaleta</u> e ingrese los datos requeridos, posteriormente haga Click en <u>Guardar</u> para crear la escaleta.</h6>
                         </div>
 
                         <div className="section">

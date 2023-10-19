@@ -243,7 +243,7 @@ const ListaCategorias=()=>{
 
             </div>
             <div className="modal-footer">
-                <div className="col-6 mx-auto">
+                <div className="mx-auto">
                         <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>

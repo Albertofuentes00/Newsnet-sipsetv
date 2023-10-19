@@ -530,7 +530,7 @@ option{
 .Auth-form-PDFViewer {
   min-width: 70vw;
   min-height: 60vh;
-  height: 140vh;
+  height: 100vh;
   max-height: 205vh;
   overflow-y: auto;
   position: static;
@@ -1304,6 +1304,8 @@ table tr{
   background-color: #ef8f8f;
   min-width: 10vw;
   min-height: 4vh;
+  font-weight: bolder;
+
 }
 
 
@@ -1312,12 +1314,13 @@ table tr{
   border-width: 2px;
   background-color: gainsboro;
   border-radius: 5px;
-  color: #242427;
+  color: #04044e;
   font-size: 17px;
   border-color: #0f83ef;
   background-color: #a6d2fb;
   min-width: 10vw;
   min-height: 4vh;
+  font-weight: bolder;
 }
 
 .BtnAddNote{
@@ -1326,11 +1329,13 @@ table tr{
   background-color: gainsboro;
   border-radius: 5px;
   background-color: #a5cdb3;
-  color: #242427;
+  color: #04510b;
   font-size: 17px;
   border-color: #02c245;
   min-width: 10vw;
   min-height: 4vh;
+  font-weight: bolder;
+
 }
 
 
