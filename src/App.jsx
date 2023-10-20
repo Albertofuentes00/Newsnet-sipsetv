@@ -20,7 +20,6 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 
 /* ESCALETAS SECTION */
 import EscaletasView from './Components/Escaletas/EscaletasView';
-import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 import Escaleta from './Components/Escaletas/Escaleta';
 import PromptBuilder from './Components/Escaletas/PromptBuilder';
 /* NOTAS SECTION */
@@ -48,7 +47,6 @@ import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 import React, {useState} from 'react';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
-import Prompt from './Components/Escaletas/PromptBuilder';
 
 
 function App() {
@@ -132,15 +130,10 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/UserManual" element={<PdfViewer/>}/>
 
-          <Route path='MainMenu' element={<Menu/>}/>
-
-
-            <Route path='ArmadoEscaleta/:id' element={<ArmadoEscaleta/>} />
-            
-
+          <Route path='MainMenu' element={<Menu/>}/>            
             <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
-            <Route path="Prompt" element={<PromptBuilder/>}/>
+            <Route path="Prompt/:id" element={<PromptBuilder/>}/>
 
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='LeerGuion/:id' element= {<LeerGuion/> } />

@@ -257,7 +257,7 @@ Val();
             }
             else{
               document.getElementById('modal-content-text').value = '';
-              document.getElementById('tag-modal').textContent = 'Nombre reportero';
+              document.getElementById('tag-modal').textContent = 'Nombre conductor';
               
               ObtenerNota(minipk);
             }
@@ -891,7 +891,7 @@ const recargarTabla = () => {
 
               <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
-              <Link to='/Prompt'>
+              <Link to={'/Prompt/' + id}>
               <button type='button' class='btn btn-danger'> Generar PROMPT </button>
               </Link>
             </div>

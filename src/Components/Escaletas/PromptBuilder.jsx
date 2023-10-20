@@ -7,6 +7,7 @@ import { show_alerta } from "../../Funciones"
 
 function Prompt() {
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
+  const [DatosRedacciones, SetRedacciones] = useState([]);
   const {id} = useParams()
   const tablaRef = useRef(null);
   useEffect(()=>{
@@ -17,7 +18,8 @@ function Prompt() {
 const GetDatosEscaleta = async()=>{
   var pkesc = document.getElementById('notaesc').value;
   try {
-      const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+pkesc);
+      // const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+pkesc);
+      const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+ id);
       console.log(respuesta.data.result);
       SetDatosEscaleta(respuesta.data.result);
       Obtenertabla();
@@ -25,6 +27,17 @@ const GetDatosEscaleta = async()=>{
   } catch (error) {
       
   }
+}
+
+const GetRedacciones = async() =>{
+  try{
+    const response = await axios.get('https://localhost:7201/Nota/');
+    console.log(response.data.result);
+    SetRedacciones (response.data.result);
+  }catch(error){
+    console.log(error);
+  }
+    
 }
 
 
