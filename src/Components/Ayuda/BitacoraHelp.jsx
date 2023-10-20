@@ -17,6 +17,7 @@ function BitacoraHelp() {
                         <br />
                         <div className="section">
                             <h4>Al ingresar a la bitácora observará la sección de la siguiente manera:</h4>
+                            <img src='./images/NewsnetHelp/Bitacora.PNG'/>
 
                             <h5>Si desea buscar una nota es especifico dirigase al buscador de la parte de arriba e ingrese las fechas para buscar las notas creadas durante esas fechas, tambien puede escribir palabras clave en el cuadro de texto para encontrar notas de acuerdo a su <u>Título, Categoría, Formato, Fuente y Reportero</u> </h5>
                             <h5>Considere que al entrar a la bitacora por primera vez se mostraran como fechas inicial y final las fechas de hoy y mañana, lo que facilitara encontrar las notas para las escaletas de hoy y mañana</h5>
@@ -28,7 +29,7 @@ function BitacoraHelp() {
                             <h3>Gestión de notas</h3>
                             <h5>Para crear una nota nueva:</h5>
                             <br />
-                            <h6>Haga click en el botón <u>Agregar Nota</u> e ingrese los datos que el sistema le pide posteriormente haga click en <u>Guardar</u> para publicar la nota.</h6>
+                            <h6>Haga click en el botón <u>Agregar Nota</u> e ingrese los datos que el sistema le pide y posteriormente haga click en <u>Guardar</u> para publicar la nota.</h6>
                             <br />
 
                             <h5>Para editar y/o corregir una nota existente:</h5>

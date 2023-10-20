@@ -812,7 +812,18 @@ const recargarTabla = () => {
           'BIENVENIDA',
           'DESPEDIDA',
           'BUMPER',
-          'CORTINILLA POLICIACA',
+          'CINTILLA COMERCIAL',
+          '-- CORTE COMERCIAL --',
+          '~ CORTINILLA CLIMA ~',
+          'CLIMA',
+          '*PREGUNTA DEL DIA*',
+          '*RESPUESTA DEL DIA*',
+          'ENTREVISTA',
+          'ENLACE',
+          'MEME DEL DIA',
+          '- CORTINILLA POLICIACA -',
+          '- TEASER -'
+
       ];
 
       // Función para actualizar la lista de resultados
