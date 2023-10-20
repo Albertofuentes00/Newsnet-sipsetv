@@ -56,7 +56,6 @@ function App() {
     sessionStorage.removeItem('paginaActual');
   };
 
-
   function loginwindow(){
     const rutaActual = window.location.pathname;
     if (rutaActual != '/') {
@@ -72,7 +71,7 @@ function App() {
         <Link to='/UserManual'>
           <a  onClick={()=>LimpiarSession()} href="#"> Manual de estilo</a>      
         </Link>
-         <a onClick={()=>LimpiarSession()} className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
+         <a className="links" onClick={() => {LimpiarSession();cerrarsesion();}}>Cerrar Sesión</a>
     </div>
       );
     }else{
