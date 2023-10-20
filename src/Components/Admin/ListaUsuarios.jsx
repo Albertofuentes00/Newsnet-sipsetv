@@ -80,18 +80,23 @@ const ListaUsuarios=()=>{
       setBotonDeshabilitado(true);
       if(nombre.trim()===''){
         show_alerta('Escribe el nombre','warning');
+        setBotonDeshabilitado(false);
       }
       else if(apellidos.trim()===''){
         show_alerta('Escribe los apellidos','warning');
+        setBotonDeshabilitado(false);
       }
       else if(nickName.trim()===''){
         show_alerta('Escribe el nombre de usuario','warning');
+        setBotonDeshabilitado(false);
       }
       else if(user_Password.trim()===''){
         show_alerta('Escribe la contraseña','warning');
+        setBotonDeshabilitado(false);
       }
       else if(fkRol===''){
         show_alerta('Escoge el cargo del usuario','warning');
+        setBotonDeshabilitado(false);
       }
   
       else{

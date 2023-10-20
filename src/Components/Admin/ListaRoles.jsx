@@ -62,6 +62,7 @@ const ListaRoles = () => {
     setBotonDeshabilitado(true);
     if(nombre_Rol.trim()===''){
       show_alerta('Escribe el nombre','warning');
+      setBotonDeshabilitado(false);
     }
     else{
       if(operation === 1){

@@ -1318,12 +1318,14 @@ table tr{
   border-style:dashed;
   border-width: 2px;
   background-color: gainsboro;
+  border-radius: 5px 0px 0px 5px;
   color: #04044e;
   font-size: 17px;
   border-color: #0f83ef;
   background-color: #a6d2fb;
   min-width: 10vw;
   min-height: 4vh;
+
   font-weight: bolder;
 }
 

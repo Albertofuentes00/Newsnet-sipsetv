@@ -60,6 +60,7 @@ const ListaFuentes = () => {
       setBotonDeshabilitado(true);
       if(nombre_Fuente.trim()===''){
         show_alerta('Escribe el nombre','warning');
+        setBotonDeshabilitado(false);
       }
       else{
         if(operation === 1){

@@ -59,6 +59,7 @@ const ListaFormatos = () =>{
       setBotonDeshabilitado(true);
       if(nombre_Formato.trim()===''){
         show_alerta('Escribe el nombre','warning');
+        setBotonDeshabilitado(false);
       }
       else{
         if(operation === 1){

@@ -20,6 +20,7 @@ const Bitacora=()=>{
   
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
+  const fechaMinima = '1900-01-01';
 
   function getFechaActualFI() {
     const fechaActual = new Date();
@@ -472,11 +473,16 @@ const Bitacora=()=>{
               type="date"
               className="input-search"
               value={fechaFI}
+              min={fechaMinima}
+              required
               onChange={(e) => setFechaFI(e.target.value)}
             />
             <div className="Grid">
               <label> Fecha Final</label>
-              <input id="FF" type="date" className="input-search" value={fechaFF}
+              <input id="FF" type="date" className="input-search" 
+              value={fechaFF}
+              min={fechaMinima}
+              required
               onChange={(e) => setFechaFF(e.target.value)}/>
             </div>
           </div>
@@ -503,7 +509,7 @@ const Bitacora=()=>{
           <div className='Auth-Maintable'>
             
             <div className="Row">
-              <h2>Bitácora de notas</h2>
+              <h3>Bitácora de notas</h3>
               <div>
                   <Link to='/MainMenu'>
                   <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>

@@ -65,9 +65,11 @@ const ListaProgramas=()=>{
     setBotonDeshabilitado(true);
     if(fkCategoria===''){
       show_alerta('Escoge la categoria','warning');
+      setBotonDeshabilitado(false);
     }
     else if(nombre_Programa.trim()===''){
       show_alerta('Escribe el nombre','warning');
+      setBotonDeshabilitado(false);
     }
     else{
       if(operation === 1){

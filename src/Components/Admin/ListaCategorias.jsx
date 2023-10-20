@@ -59,6 +59,7 @@ const ListaCategorias=()=>{
       setBotonDeshabilitado(true);
       if(nombre_Categoria.trim()===''){
         show_alerta('Escribe el nombre','warning');
+        setBotonDeshabilitado(false);
       }
       else{
         if(operation === 1){
