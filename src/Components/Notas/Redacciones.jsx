@@ -97,7 +97,6 @@ const GuionesNotas=()=>{
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const currentData = Datos.slice(startIndex, endIndex);
-    
       const [itemNumber, setItemNumber] = useState(0);
       useEffect(() => {
         const startIndex = (currentPage - 1) * itemsPerPage;
@@ -106,10 +105,24 @@ const GuionesNotas=()=>{
       }, [currentPage, itemsPerPage, Datos]);
 
 
+      const GuardarPaginaActual = () => {
+        sessionStorage.setItem('paginaActual', currentPage);
+      };
+      
+
+      useEffect(() => {
+        const paginaGuardada = sessionStorage.getItem('paginaActual');
+        if (paginaGuardada) {
+          setCurrentPage(parseInt(paginaGuardada, 10));
+        }
+      }, []);
 
 
+      const LimpiarSession = () => {
+        sessionStorage.removeItem('paginaActual');
+      };
 
-
+  
 
     return (
         
@@ -171,7 +184,7 @@ const GuionesNotas=()=>{
                     <h1>Notas</h1>
                     <div className="Button-form">
                         <Link to='/MainMenu'>
-                            <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
+                            <button type="button" class="btn btn-dark" onClick={()=>LimpiarSession()}> <FaAngleLeft size={20} color="white"/> Regresar</button>
                         </Link>
                     </div>
                 </div>
@@ -207,12 +220,13 @@ const GuionesNotas=()=>{
           type="button"
           className="acciones"
           disabled={Dato.redaccion === ""}
+          onClick={() => GuardarPaginaActual()}
         >
           <FaEye size={20} />
         </button>
       </Link>
       <Link to={'/EditarGuion/' + Dato.pkNota}>
-        <button type="button" className="acciones">
+        <button type="button" className="acciones" onClick={() => GuardarPaginaActual()} >
           <FaRegListAlt size={20} />
         </button>
       </Link>

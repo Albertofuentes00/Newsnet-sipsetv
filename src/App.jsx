@@ -52,6 +52,9 @@ import Prompt from './Components/Escaletas/PromptBuilder';
 
 
 function App() {
+  const LimpiarSession = () => {
+    sessionStorage.removeItem('paginaActual');
+  };
 
 
   function loginwindow(){
@@ -61,15 +64,15 @@ function App() {
       <div className="options">
 
       <Link to="/MainMenu">
-        <a   href="#">Menu</a>
+        <a  onClick={()=>LimpiarSession()} href="#">Menu</a>
       </Link>
       <Link to='/HelpDashboard/Introduccion'>
-         <a  href="#">Ayuda</a>
+         <a onClick={()=>LimpiarSession()}  href="#">Ayuda</a>
       </Link> 
         <Link to='/UserManual'>
-          <a href="#"> Manual de estilo</a>      
+          <a  onClick={()=>LimpiarSession()} href="#"> Manual de estilo</a>      
         </Link>
-         <a className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
+         <a onClick={()=>LimpiarSession()} className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
     </div>
       );
     }else{
