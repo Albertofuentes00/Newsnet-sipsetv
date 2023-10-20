@@ -23,31 +23,44 @@ function EscaletasHelp() {
                         </div>
 
                         <div className="section">
-                            <h3>Buscar Escaleta</h3>
-                            <h5>Para buscar una escaleta existente:</h5>
+                            <h5>Para editar una escaleta existente:</h5>
 
-                            <h6>Haga click en el boton <u>Buscar</u> e ingrese los datos que usted requiere, posteriormente haga click en <u>Buscar</u> para efectuar la búsqueda en el sistema </h6>            
+                            <h6>Haga click en el ícono de lapiz que se encuentra a un lado del ícono del bote de basura de la escaleta que usted desee editar, una vez hecho click el sistema le desplegará un formulario similar 
+                                al de <u>Crear Escaleta</u> y le pedirá que ingrese los nuevos datos que desee en sus respectivos campos, al terminar sus cambios haga click en el botón <u>Guardar</u> y usted verá reflejado los cambios hechos en la escaleta.
+                            </h6>           
                         </div>
 
                         <div className="section">
-                            <h3>Ver Escaleta</h3>
-                            <h5>Para leer una escaleta existente:</h5>
+                            <h5>Para eliminar una escaleta existente:</h5>
 
-                            <h6>Haga click en el boton <u>Ver</u> de la escaleta deseada para leer y editar los datos de esta</h6>            
+                            <h6>Haga click en el icono del bote de basura de la escaleta que usted desee eliminar, el sistema le preguntará si esta seguro de borrar la escaleta, si es asi, haga click en <u>Si, Eliminar</u> para eliminar por completo la escaleta. </h6>
+                            <h6><u>NOTA: Las escaletas eliminadas no podran ser recuperadas despues. </u> </h6>         
                         </div>
 
                         <div className="section">
-                            <h3>Ordenar notas</h3>
-                            <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
+                            <h3>Armado de Escaletas</h3>
+                            <h5>Para visualizar el contenido de una escaleta:</h5>
                             <br />
-                            <h3>Agregar notas a escaleta</h3>
+                            <h5>Haga click en el ícono de ojo de la escaleta que desee manipular para agregar notas e indicaciones</h5>
+                            <h5>Una vez dentro de la escaleta seleccionada, puede realizar las funciones que se explicarán a continuación:</h5>
+
+                            <h3>Indicaciones</h3>
+                            <h5>Si la escaleta es creada recientemente, observará tres indicaciones que vienen por default, las cuales son <u>BIENVENIDA, CORTE COMERCIAL Y DESPEDIDA</u></h5>
+                            <h5>Usted puede agregar mas indicaciones si lo desea: haga click en el botón <u>Agregar indicación</u>, donde definirá el nombre que tendrá la nueva indicación, haga click en <u>Guardar</u> y se reflejará en la escaleta la indicacion que agregó.</h5>
+                            <h5>Tambien puede editar las indicaciones, dando click en el nombre de la indicación que desee corregir </h5>
+
+
                             <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
 
-                            <h3>Agregar indicación</h3>
-                            <h5>Para agregar una indicacion a la escaleta, haga click en el boton <u>Agregar Indicacion</u> para agregar una nueva fila a la tabla con el nombre de INDICACION, usted puede realizar cambios en esta para renombrarla de acuerdo a sus necesidades</h5>
-
-                            <h3>Generar PDF</h3>
-                            <h5>Para generar un archivo PDF de la escaleta actual, haga click en el botón <u>Generar PDF</u> para abrir un archivo descargable que usted puede imprimir</h5>
+                            <h3>Notas</h3>
+                            <br />
+                            <h5>Para agregar una serie de notas en la escaleta actual, haga click en el botón <u>Agregar Notas</u>, el sistema le desplegara una ventana de la bitacora de las notas, donde dispondrá un buscador para 
+                            encontrar las notas que usted desee, puede hacer multiples selecciones de notas para agregarlas a la escaleta y una vez terminado puede hacer click en el botón <u>Agregar</u> para subir las notas a la escaleta</h5>
+                            <br />
+                            <h5>Para asignar un conductor a una nota, haga click en la columna de la nota que  desee e ingrese el nombre del conductor/conductora, esto le asignará un orden y un conductor a la nota en la escaleta.</h5>
+                            
+                            <h3>Eliminación de notas/indicaciones </h3>
+                            <h5>Si desea eliminar una nota o indicacion, puede seleccionar y arrastrar la fila donde se aloje al botón <u>Eliminar</u></h5>
 
                             <h3>Editar o Eliminar filas</h3>
                             <h5>Para eliminar una fila con una nota en una escaleta, haga click en <u>Eliminar</u> de la nota que desea. </h5>
