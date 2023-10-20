@@ -13,6 +13,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
 import html2pdf from 'html2pdf.js';
+import { FaFileAlt } from "react-icons/fa"
 
 
 function Table() {
@@ -42,7 +43,7 @@ const handleDownloadPDF = () => {
   const content = contentRef.current;
   const opt = {
     margin: 10,
-    filename: 'Escaleta.pdf',
+    filename: 'Escaleta'+'_'+ fechaFI +'.pdf',
     image: { type: 'jpeg', quality: 1 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -177,7 +178,7 @@ Val();
 <table className='tabla-armado' id="sortable-table">
     <thead>
         <tr>
-        <th scope="col">#</th>
+        <th scope="col" className='Invisible' >#</th>
          <th scope='col'>Orden</th>
          <th scope="col">Conductor</th>
          <th scope="col">Titulo</th>
@@ -188,7 +189,7 @@ Val();
     </thead>
     <tbody>
         <tr  className='indicacion'  draggable="true">
-            <td>1</td>
+            <td className='Invisible' >1</td>
             <td>-</td>
             <td>-</td>
             <td>BIENVENIDA</td>
@@ -197,7 +198,7 @@ Val();
             <td className='Invisible'>-</td>
         </tr>
         <tr className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
-        <td>2</td>
+        <td className='Invisible' >2</td>
             <td>-</td>
             <td>-</td>
             <td>CORTE COMERCIAL</td>
@@ -206,7 +207,7 @@ Val();
             <td className='Invisible'>-</td>
         </tr>
         <tr  className='indicacion' draggable="true" onDoubleClick={()=> Dobleclick(Datos)}>
-        <td>3</td>
+        <td className='Invisible' >3</td>
             <td>-</td>
             <td>-</td>
             <td>DESPEDIDA</td>
@@ -514,6 +515,7 @@ function closeModal() {
             if (i === 0) {
               const filas = tbody.querySelectorAll('tr');
               td.textContent = filas.length + 1;
+              td.classList.add('Invisible');
             } else if (i === 3) {
               td.textContent = fila.titulo;
             } else if (i === 4) {
@@ -561,7 +563,7 @@ function closeModal() {
         const filas = tbody.querySelectorAll('tr');
 
           td.textContent = filas.length + 1
-        
+          td.classList.add('Invisible');
         
       }
       else if(i === 6){
@@ -889,23 +891,26 @@ const recargarTabla = () => {
 
               <button type="button" class="btn btn-success" onClick={()=> ActualizarTablaEs()}> <FaSave size={20} color="white"/> Guardar </button>
               <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+              <Link to='/Prompt'>
+              <button type='button' class='btn btn-danger'> Generar PROMPT </button>
+              </Link>
             </div>
           </div>
 
           <div className='fila-botones-esc'>
             <div className='Centrado-bn-es'>
                 <div class="tooltip-container">
-                  <button className='BtnAddNote' data-bs-toggle='modal' data-bs-target='#modalselect' > <BsFillSignpostFill size={20} color='black'/> Agregar Notas</button>          
+                  <button className='BtnAddNote' data-bs-toggle='modal' data-bs-target='#modalselect' > <FaFileAlt size={20} /> Agregar Notas</button>          
                 <div class="tooltip-text">Agrega una o mas notas a la escaleta actual</div>
                 </div>
               
                 <div class="tooltip-container">
-                  <button className='BtnAddIndicacion' data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20} color='black'/> Agregar Indicación</button>          
+                  <button className='BtnAddIndicacion' data-bs-toggle='modal' data-bs-target='#modalIndicacion' > <BsFillSignpostFill size={20}/> Agregar Indicación</button>          
                 <div class="tooltip-text">Agrega una indicacion a la escaleta actual</div>
                 </div>
 
                 <div class="tooltip-container">
-                  <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20} color='black' /> Eliminar</button>
+                  <button id="botonEliminar" className='BtnEliminar'>  <FaTrash size={20}/> Eliminar</button>
                 <div class="tooltip-text">Arrastra un elemento para eliminarlo.</div>
                 </div>
             </div>
@@ -1088,7 +1093,10 @@ const recargarTabla = () => {
 
     <div id="myModal" class="modal">
   <div class="modal-content">
+    <div className='header-modal'>
     <button class="close" onClick={()=> closeModal()}>&times;</button>
+    </div>
+    
     <p id='tag-modal'>Asignar un conductor</p>
     <textarea id="modal-content-text" className='modal-input' value={text} onChange={handleInputChange}></textarea>
     <div className='modal-div' hidden={NotaAct.redaccion === "" }>

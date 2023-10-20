@@ -22,7 +22,7 @@ import Bitacora from './Components/Bitacora/BitacoraView';
 import EscaletasView from './Components/Escaletas/EscaletasView';
 import ArmadoEscaleta from './Components/Escaletas/ArmadoEscaleta';
 import Escaleta from './Components/Escaletas/Escaleta';
-
+import PromptBuilder from './Components/Escaletas/PromptBuilder';
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/Redacciones';
 import LeerGuion from './Components/Notas/VerRedaccion';
@@ -48,10 +48,13 @@ import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 import React, {useState} from 'react';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
+import Prompt from './Components/Escaletas/PromptBuilder';
 
 
 function App() {
-
+  const LimpiarSession = () => {
+    sessionStorage.removeItem('paginaActual');
+  };
 
   function loginwindow(){
     const rutaActual = window.location.pathname;
@@ -60,15 +63,15 @@ function App() {
       <div className="options">
 
       <Link to="/MainMenu">
-        <a   href="#">Menu</a>
+        <a  onClick={()=>LimpiarSession()} href="#">Menu</a>
       </Link>
       <Link to='/HelpDashboard/Introduccion'>
-         <a  href="#">Ayuda</a>
+         <a onClick={()=>LimpiarSession()}  href="#">Ayuda</a>
       </Link> 
         <Link to='/UserManual'>
-          <a href="#"> Manual de estilo</a>      
+          <a  onClick={()=>LimpiarSession()} href="#"> Manual de estilo</a>      
         </Link>
-         <a className="links" onClick={()=> cerrarsesion()}>Cerrar Sesión</a>
+         <a className="links" onClick={() => {LimpiarSession();cerrarsesion();}}>Cerrar Sesión</a>
     </div>
       );
     }else{
@@ -137,6 +140,7 @@ function App() {
 
             <Route path='Escaletas' element={<EscaletasView/>} />
             <Route path="Bitacora" element={<Bitacora />}/>
+            <Route path="Prompt" element={<PromptBuilder/>}/>
 
             <Route path="Notas" element={<GuionesNotas/>}/>
             <Route path='LeerGuion/:id' element= {<LeerGuion/> } />
