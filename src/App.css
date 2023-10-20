@@ -530,7 +530,7 @@ option{
 .Auth-form-PDFViewer {
   min-width: 70vw;
   min-height: 60vh;
-  height: 100vh;
+  height: 130vh;
   max-height: 205vh;
   overflow-y: auto;
   position: static;

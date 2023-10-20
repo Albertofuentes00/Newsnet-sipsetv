@@ -263,14 +263,14 @@ return (
 
            <div class="tooltip-container">
               <button id='agregar-celda' type="button" className="BtnAddIndicacion" onClick={agregarFila}>
-                <FaPlusSquare size={20} color="white" /> Agregar Celda
+                <FaPlusSquare size={20} color="black" /> Agregar Celda
               </button>
               <div class="tooltip-text">Agrega una celda al guión actual</div>
             </div>
 
             <div class="tooltip-container">
               <button id='quitar-celda' type="button" className="BtnEliminar" onClick={handleQuitarCeldaClick}>
-                <FaMinusSquare size={20} color="white" /> Quitar Celdas
+                <FaMinusSquare size={20} color="black" /> Quitar Celdas
               </button>
               <div class="tooltip-text">Elimina las celdas seleccionadas</div>
             </div>
