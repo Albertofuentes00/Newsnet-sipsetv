@@ -275,7 +275,7 @@ const Escaletas=()=>{
         <div className="Auth-form-table">
           <div className='Auth-Maintable'>
             <div className="Row">
-              <h1>Escaletas</h1>
+              <h2>Escaletas</h2>
                 <div>
                   <Link to='/MainMenu'>
                       <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>

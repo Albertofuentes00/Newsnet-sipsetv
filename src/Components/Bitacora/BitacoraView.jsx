@@ -135,19 +135,24 @@ const Bitacora=()=>{
         const rol = partess[2];
         if(titulo.trim()===''){
         show_alerta('Escribe el titulo','warning');
+        setBotonDeshabilitado(false);
         }
         else if(fkCategoria===''){
         show_alerta('Escoge una categoria','warning');
+        setBotonDeshabilitado(false);
         }
         else if(fkFormato===''){
         show_alerta('Seleccion un Formato','warning');
+        setBotonDeshabilitado(false);
         }
         else if(fkfuente===''){
         show_alerta('Seleccion una fuente','warning');
+        setBotonDeshabilitado(false);
         }
         else if(rol == "Responsable" || rol == "Administrador"){
           if(fkUsuario===''){
             show_alerta('Seleccion un reportero','warning');
+            setBotonDeshabilitado(false);
           }else{
             try {
               const fechaActual = new Date();
@@ -204,7 +209,9 @@ const Bitacora=()=>{
             console.log(respuesta.data.result);
             document.getElementById('btnCerrar').click();
             buscar();
-            setBotonDeshabilitado(false);
+            setTimeout(() => {
+              setBotonDeshabilitado(false);
+            }, 2000);
             setText('');
           })
           .catch(function(error){
@@ -226,16 +233,20 @@ const Bitacora=()=>{
         const rol = partes[2];
         if(titulo.trim()===''){
             show_alerta('Escribe el titulo','warning');
+            setBotonDeshabilitado(false);
         }
         else if(fkCategoria===''){
             show_alerta('Escoge una categoria','warning');
+            setBotonDeshabilitado(false);
         }
         else if(fkFormato===''){
             show_alerta('Seleccion un Formato','warning');
+            setBotonDeshabilitado(false);
         }
         else if(rol == "Responsable" || rol == "Administrador"){
           if(fkUsuario===''){
             show_alerta('Seleccion un reportero','warning');
+            setBotonDeshabilitado(false);
           }else{
             const cadena = Cookies.get('Usuario');
             const partes = cadena.split('/');
@@ -261,12 +272,15 @@ const Bitacora=()=>{
         }
         else if(fkfuente===''){
             show_alerta('Seleccion una fuente','warning');
+            setBotonDeshabilitado(false);
         }
         else if(fecha===''){
             show_alerta('Introduce la fecha','warning');
+            setBotonDeshabilitado(false);
         }
         else if(fkfuente===''){
           show_alerta('Seleccion una fuente','warning');
+          setBotonDeshabilitado(false);
         }
         else{
         var Varreportero;
@@ -489,7 +503,7 @@ const Bitacora=()=>{
           <div className='Auth-Maintable'>
             
             <div className="Row">
-              <h1>Bitácora de notas</h1>
+              <h2>Bitácora de notas</h2>
               <div>
                   <Link to='/MainMenu'>
                   <button type="button" class="btn btn-dark"> <FaAngleLeft size={20} color="white"/> Regresar</button>
@@ -525,7 +539,11 @@ const Bitacora=()=>{
                     <td>{Datos.nombre_Fuente}</td>
                     <td>{Datos.fecha.split(' ')[0]}</td>
                     <td>
-                    <button onClick={()=> OpenModal(2,Datos.pkNota,Datos.titulo,Datos.fecha,Datos.fkCategoria,Datos.fkFormato,Datos.fkFuente,Datos.fkUsuario)} 
+                    <button onClick={() => {
+  OpenModal(2, Datos.pkNota, Datos.titulo, Datos.fecha, Datos.fkCategoria, Datos.fkFormato, Datos.fkFuente, Datos.fkUsuario);
+  setText(Datos.titulo);
+}}
+
                      className="acciones" data-bs-toggle='modal' data-bs-target='#modaleditar'>
                       <i className="fa-solid fa-edit"></i>
                     </button>
@@ -636,7 +654,7 @@ const Bitacora=()=>{
                 
                 <div className="Button-form">
                   <div className="Row">
-                    <button onClick={()=> Validar()} className="btn btn-success">
+                    <button onClick={()=> Validar()} className="btn btn-success" disabled={botonDeshabilitado}>
                       <i className="fa-solid fa-floppy-disk"></i> Guardar
                     </button>
     
@@ -655,7 +673,7 @@ const Bitacora=()=>{
             <div className='modal-content'>
               <div className='modal-header'>
                 <label className="modal-title">Editar Nota</label>
-                <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close' onClick={() => setText('')}></button>
                 </div>
                 <br />
                 <h6>Ingresa los nuevos datos que requiere para editar la nota seleccionada</h6>
@@ -744,7 +762,7 @@ const Bitacora=()=>{
                           <i className="fa-solid fa-floppy-disk"></i> Guardar
                         </button>
 
-                        <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal'>
+                        <button type="button" id='btnCerrareditar' className="btn btn-danger" data-bs-dismiss='modal' onClick={() => setText('')}>
                           <i className="fa-solid fa-circle-xmark"/> Cancelar
                         </button>
                       </div>

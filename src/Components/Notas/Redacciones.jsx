@@ -5,6 +5,8 @@ import {FaAngleLeft} from 'react-icons/fa';
 import { FaEye } from 'react-icons/fa'
 import { FaSearch } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
 const GuionesNotas=()=>{
 
@@ -13,7 +15,9 @@ const GuionesNotas=()=>{
 
     const [fechaFI, setFechaFI] = useState(getFechaActualFI);
     const [fechaFF, setFechaFF] = useState(getFechaActualFF);
-  
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
     function getFechaActualFI() {
       const fechaActual = new Date();
       const year = fechaActual.getFullYear();
@@ -90,6 +94,16 @@ const GuionesNotas=()=>{
 
 
 
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const currentData = Datos.slice(startIndex, endIndex);
+    
+      const [itemNumber, setItemNumber] = useState(0);
+      useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setItemNumber(startIndex + 1);
+      }, [currentPage, itemsPerPage, Datos]);
 
 
 
@@ -150,7 +164,7 @@ const GuionesNotas=()=>{
 
 
 
-            <form className="Auth-form-table">
+            <div className="Auth-form-table">
             <div className='Auth-Maintable'>
 
                 <div className="Row">
@@ -178,9 +192,9 @@ const GuionesNotas=()=>{
                                 </tr>
                             </thead>
                             <tbody className="table-group-divider">
-                            {Datos.map((Dato, i) => (
+                            {currentData.map((Dato, i) => (
   <tr className={Dato.redaccion !== "" ? 'no-redac' : ''} key={Dato.fkNota}>
-    <td>{i + 1}</td>
+    <td>{(itemNumber + i)}</td>
     <td>{Dato.titulo}</td>
     <td>{Dato.nombre_Categoria}</td>
     <td>{Dato.nombre_Formato}</td>
@@ -208,11 +222,25 @@ const GuionesNotas=()=>{
 
                             </tbody>
                         </table>
-                        
+                        <div className="pagination-list">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+             <FaArrowAltCircleLeft size={20} />
+            </button>
+            <span>Página {currentPage}</span>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= Datos.length}
+            >
+              <FaArrowAltCircleRight size={20} />
+            </button>
+          </div>   
                     
                 </div>
             </div>
-        </form>
+        </div>
         
         </div>
 
