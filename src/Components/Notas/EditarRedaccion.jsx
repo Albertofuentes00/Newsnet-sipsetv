@@ -238,7 +238,11 @@ return (
 
     <div className="Auth-form-Escaletabotones">
       <div className='Row'>
-          <h2>Redactar guión</h2>
+        <div className='redaccion-nota'>
+        <h5>Redactar guión de: </h5>
+          <h7> {Datos.titulo}</h7>
+        </div>
+
           <div className='button-form'>
             <Link to="/Notas">
                 <button type="button" className="btn btn-dark">

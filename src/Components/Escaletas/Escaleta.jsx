@@ -894,7 +894,7 @@ const recargarTabla = () => {
       <div className="Auth-form-Escaletabotones">
         <div className='Grid'>
           <div className="fila-esc">
-            <h1>Armado de Escaleta</h1>
+            <h3>Armado de Escaleta</h3>
             <div >
               <Link to='/Escaletas'>
                 <button type="button" class="btn btn-dark"  > <FaAngleLeft size={20} color="white"/> Regresar</button>

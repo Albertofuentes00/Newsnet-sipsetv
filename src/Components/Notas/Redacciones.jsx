@@ -181,7 +181,7 @@ const GuionesNotas=()=>{
             <div className='Auth-Maintable'>
 
                 <div className="Row">
-                    <h1>Notas</h1>
+                    <h3>Notas</h3>
                     <div className="Button-form">
                         <Link to='/MainMenu'>
                             <button type="button" class="btn btn-dark" onClick={()=>LimpiarSession()}> <FaAngleLeft size={20} color="white"/> Regresar</button>
