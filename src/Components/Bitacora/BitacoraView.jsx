@@ -57,7 +57,7 @@ const Bitacora=()=>{
     const [operation, setOperation] = useState(1); 
     const [title, setTitle] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
+    const itemsPerPage = 3;
     const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
     useEffect(()=>{
       GetDatos();
