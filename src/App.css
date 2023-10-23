@@ -1576,6 +1576,7 @@ border-radius: 10px;
 
 .Texto-prompt{
   margin-bottom: 2%;
+  text-transform: uppercase;
 }
 .Nota-titulo-prompt{
   margin-bottom: 2%;
@@ -1586,6 +1587,7 @@ border-radius: 10px;
 .Nota-prompt{
   margin-bottom: 2%;
   text-align: justify;
+  text-transform: uppercase;
 }
 
 
