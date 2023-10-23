@@ -1087,7 +1087,7 @@ p{
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
     max-height: 85vh;
-    margin-left: -390px;
+    margin-left: -15vw;
 }
 
 .modal-tabla-notas-header{
@@ -1577,6 +1577,11 @@ border-radius: 10px;
 .Texto-prompt{
   margin-bottom: 2%;
 }
+.Nota-titulo-prompt{
+  margin-bottom: 2%;
+  font-weight: normal;
+}
+
 
 .Nota-prompt{
   margin-bottom: 2%;
