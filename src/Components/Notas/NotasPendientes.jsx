@@ -47,7 +47,7 @@ const GuionesNotas=()=>{
   
     const GetDatos = async ()=>{
         try {
-            const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+            const respuesta = await axios.get('https://localhost:7201/Nota/GetNoRel');
             console.log(respuesta.data.result);
             SetDatos(respuesta.data.result);
         } catch (error) {
@@ -131,46 +131,6 @@ const GuionesNotas=()=>{
 
         <div className="Grid">
 
-            
-           
-           
-
-
-
-
-        <div className="Auth-form-searchbar">
-      <div className="Row-searchbar">
-        <div className="Row">
-          <div className='buscador_admin'>
-          <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
-          </div>
-        </div>
-        <div className="Row">
-          <div className="Grid">
-            <label> Fecha Inicial</label>
-            <input
-              id="FI"
-              type="date"
-              className="input-search"
-              value={fechaFI}
-              onChange={(e) => setFechaFI(e.target.value)}
-            />
-            <div className="Grid">
-              <label> Fecha Final</label>
-              <input id="FF" type="date" className="input-search" value={fechaFF}
-              onChange={(e) => setFechaFF(e.target.value)}/>
-            </div>
-          </div>
-        </div>
-        <div className="Row">
-          <div className="Grid"></div>
-          <button className="btn btn-primary" onClick={()=> buscar()}>
-            <FaSearch size={20} color="white" /> Buscar
-          </button>
-        </div>
-      </div>
-    </div>
-
 
 
 
@@ -183,12 +143,8 @@ const GuionesNotas=()=>{
                 <div className="Row">
                     <h3>Notas</h3>
                     <div className="Button-form">
-                        <Link to='/MainMenu'>
+                        <Link to='/Notas'>
                             <button type="button" class="btn btn-dark" onClick={()=>LimpiarSession()}> <FaAngleLeft size={20} color="white"/> Regresar</button>
-                        </Link>
-
-                        <Link to='/Pendientes'>
-                            <button type="button" class="btn btn-danger" onClick={()=>LimpiarSession()}> Pendientes</button>
                         </Link>
                     </div>
                 </div>
