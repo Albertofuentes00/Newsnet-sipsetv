@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from "../../Funciones"
+import html2pdf from 'html2pdf.js';
+import {FaFilePdf} from 'react-icons/fa'
 
 
 function Prompt() {
@@ -188,6 +190,35 @@ function closeModal() {
   var modal = document.getElementById('myModal');
   modal.style.display = 'none';
 }
+const [fechaFI, setFechaFI] = useState(getFechaActualFI);
+
+function getFechaActualFI() {
+  const fechaActual = new Date();
+  const year = fechaActual.getFullYear();
+  const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+  const day = String(fechaActual.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+const contentRef = useRef(null);
+const handleDownloadPDF = () => {
+  const content = contentRef.current;
+  const opt = {
+    margin: 10,
+    filename: 'Prompter'+'_'+ fechaFI +'.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf(content, opt);
+
+
+};
+
+function goBack() {
+  window.history.back();
+}
 
 return (
   <div>
@@ -200,7 +231,10 @@ return (
     <div className="Auth-form-container">
         <form className="Auth-form-Guion">
           <div className="Auth-form-content">
-            <div id='Prompt' className='Hoja-prompt'>
+          <button type='button' onClick={()=>goBack()}>Volver</button>
+
+          <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+            <div ref={contentRef} id='Prompt' className='Hoja-prompt'>
 
 
 
