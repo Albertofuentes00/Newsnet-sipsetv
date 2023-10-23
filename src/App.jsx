@@ -25,6 +25,7 @@ import PromptBuilder from './Components/Escaletas/PromptBuilder';
 /* NOTAS SECTION */
 import GuionesNotas from './Components/Notas/Redacciones';
 import LeerGuion from './Components/Notas/VerRedaccion';
+import NotasPendientes from './Components/Notas/NotasPendientes';
 
 /* ADMIN SECTION */
 import Dashboard from './Components/Admin/Dashboard';
@@ -155,8 +156,7 @@ function App() {
               <Route path='AdminHelp' element={<AdminHelp/>} />
               <Route path='About' element={<About/>} />
           </Route>
-
-        
+            <Route path="Pendientes" element={<NotasPendientes/>}/>
             <Route path='Escaleta/:id' element={<Escaleta/>} />
         
       </Routes>
