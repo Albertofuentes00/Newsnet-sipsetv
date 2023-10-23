@@ -122,8 +122,6 @@ const GuionesNotas=()=>{
         sessionStorage.removeItem('paginaActual');
       };
 
-  
-
     return (
         
         
@@ -141,7 +139,7 @@ const GuionesNotas=()=>{
             <div className='Auth-Maintable'>
 
                 <div className="Row">
-                    <h3>Notas</h3>
+                    <h3>Notas Pendientes</h3>
                     <div className="Button-form">
                         <Link to='/Notas'>
                             <button type="button" class="btn btn-dark" onClick={()=>LimpiarSession()}> <FaAngleLeft size={20} color="white"/> Regresar</button>

@@ -230,7 +230,9 @@ const GetDatos = async () => {
 
 
 
-
+function goBack() {
+  window.history.back();
+}
 
 return (
   <div className="Auth-form-container">
@@ -244,11 +246,11 @@ return (
         </div>
 
           <div className='button-form'>
-            <Link to="/Notas">
-                <button type="button" className="btn btn-dark">
+      
+                <button onClick={()=> goBack()} type="button" className="btn btn-dark">
                   <FaAngleLeft size={20} color="white" /> Regresar
                 </button>
-            </Link>
+        
 
             <button type="button" className="btn btn-success" onClick={()=> InsertarRedaccion()}>
               <FaSave size={20} color="white" /> Guardar cambios

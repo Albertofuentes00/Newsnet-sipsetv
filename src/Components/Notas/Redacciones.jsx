@@ -188,7 +188,7 @@ const GuionesNotas=()=>{
                         </Link>
 
                         <Link to='/Pendientes'>
-                            <button type="button" class="btn btn-danger" onClick={()=>LimpiarSession()}> Pendientes</button>
+                            <button type="button" class="btn btn-danger" onClick={()=>LimpiarSession()}><i class="fa-solid fa-flag"></i> Pendientes de escaleta</button>
                         </Link>
                     </div>
                 </div>

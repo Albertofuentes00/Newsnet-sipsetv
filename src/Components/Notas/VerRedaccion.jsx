@@ -76,10 +76,13 @@ const handleDownloadPDF = () => {
   };
 
   html2pdf(content, opt);
+
 };
 
   
-  
+function goBack() {
+  window.history.back();
+}
   
   
   
@@ -95,9 +98,7 @@ const handleDownloadPDF = () => {
             <div className="Row">
               <h3>Redacción</h3>
               <div className="Button-form">
-                <Link to='/Notas'>
-                  <button type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
-                </Link>
+                  <button onClick={()=> goBack()} type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
                 <button type="button" id='btn-imprimir' className="btn btn-primary" onClick={handleDownloadPDF}>  <FaPrint size={20} color="white" /> Imprimir</button>
               </div>
             </div>
