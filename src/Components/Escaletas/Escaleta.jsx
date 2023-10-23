@@ -976,11 +976,11 @@ const recargarTabla = () => {
       <div className='modal-dialog'>
         <div className='modal-content-notas'>
           <div className='modal-header'>
-            <label className='h5'> </label>
+            <h3> Agregar notas a escaleta </h3> 
             <button type='btnCerrar' className='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
           </div>
           
-            <h1> Agregar notas a escaleta </h1> 
+            
             <div className="Auth-form-searchbar">
       <div className="Row-searchbar">
         <div className="Row">

@@ -143,9 +143,10 @@ const ConstruirPrompt = () => {
           titulo.textContent = '--- '+ row.cells[3].textContent + ' ---';
           
         hoja.appendChild(titulo);
+        titulo.classList.add('Texto-prompt');
         }else{
           //Es una nota
-          titulo.textContent = 'Nota ' + numNota + '  |  ' + row.cells[3].textContent + '   |   ' + row.cells[5].textContent;
+          titulo.textContent = 'NOTA ' + numNota + ' ' + row.cells[5].textContent + ' .- ' + row.cells[3].textContent;
           if(row.cells[5].textContent === 'TXT'){
             var Nota = document.getElementById('tabla-Nota-' + numNota);
             const filas = Nota.querySelectorAll("tr");
@@ -171,12 +172,13 @@ const ConstruirPrompt = () => {
           numNota = numNota + 1;
         hoja.appendChild(titulo);
         hoja.appendChild(contenido);
+        titulo.classList.add('Nota-titulo-prompt');
         }
-        titulo.classList.add('Texto-prompt');
+       
         
       })(rows[i]);
     }
-  show_alerta('Somebody´s Watching Me');
+  show_alerta('Prompter cargado exitosamente');
 
 };
 
