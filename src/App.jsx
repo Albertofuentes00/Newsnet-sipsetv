@@ -11,6 +11,7 @@ import SIPSENewsLogo from './images/noticias.png'
 import NewsnetLogo from './images/white-logo.png'
 import Beto from './images/LOGO_Scale.png'
 import Tommy from './images/LOGO_Tommy.png'
+import Leni from './images/LeniWizard.gif'
 import Welcome from './Components/Bienvenida';
 import Datetime from './Components/Datetime/DatetimeText'
 import Login from './Components/LoginView/LoginView';
@@ -170,13 +171,14 @@ function App() {
 
       <footer className='App-footer'>
         <br />
-          <h5>Televisora de Cancún SA de CV. © 2023 Todos los derechos reservados </h5>
+          <h5>Televisora de Cancún SA. de CV. © 2023 Todos los derechos reservados </h5>
           <div>
             <h7>Powered & Developed by UPQROO Software Team</h7>
             <h6> Beto, Tommy & Leni </h6>
             <div>
               <img src={Beto} className='Logo-BT' alt="logo" />
               <img src={Tommy} className='Logo-BT' alt='logo' /> 
+              <img src={Leni} className='Logo-BT' alt='logo' />
             </div>
           </div>
         <br />

@@ -305,7 +305,7 @@ a:visited {
 .Main{
   padding-top: 5%;
   padding-left: 1%;
-  height: 950px;
+  height: auto;
   max-height: 1000px;
   background: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
