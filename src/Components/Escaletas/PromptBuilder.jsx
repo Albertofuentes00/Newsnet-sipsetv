@@ -148,7 +148,7 @@ const ConstruirPrompt = () => {
         titulo.classList.add('Texto-prompt');
         }else{
           //Es una nota
-          titulo.textContent = 'NOTA ' + numNota + ' ' + row.cells[5].textContent + ' .- ' + row.cells[3].textContent;
+          titulo.textContent = row.cells[2].textContent + ' ' + 'NOTA ' + numNota + ' ' + row.cells[5].textContent + ' .- ' + row.cells[3].textContent;
           if(row.cells[5].textContent === 'TXT'){
             var Nota = document.getElementById('tabla-Nota-' + numNota);
             const filas = Nota.querySelectorAll("tr");
