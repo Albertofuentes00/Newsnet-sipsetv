@@ -138,15 +138,19 @@ const Escaletas=()=>{
     else if(operation === 2){
       if(hora_Inicio.trim()===''){
         show_alerta('Escribe la hora de inicio','warning');
+        setBotonDeshabilitado(false);
       }
       else if(fecha.trim()===''){
         show_alerta('Escribe la fecha de creacion','warning');
+        setBotonDeshabilitado(false);
       }
       else if(fkUsuario===''){
         show_alerta('Selecciona un usuario','warning');
+        setBotonDeshabilitado(false);
       }
       else if(fkPrograma===''){
         show_alerta('Inserta un programa','warning');
+        setBotonDeshabilitado(false);
       }
       else{
         var tabla = '';
