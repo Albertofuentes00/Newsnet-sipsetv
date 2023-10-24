@@ -1,5 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import BitacoraMain from './HelpImages/BitacoraMain.PNG'
+
+
 
 
 function BitacoraHelp() {
@@ -16,11 +19,15 @@ function BitacoraHelp() {
                         </h4>
                         <br />
                         <div className="section">
+                            <h2>Entorno de bitácora</h2>
                             <h4>Al ingresar a la bitácora observará la sección de la siguiente manera:</h4>
-                            <img src='./images/NewsnetHelp/Bitacora.PNG'/>
-
-                            <h5>Si desea buscar una nota es especifico dirigase al buscador de la parte de arriba e ingrese las fechas para buscar las notas creadas durante esas fechas, tambien puede escribir palabras clave en el cuadro de texto para encontrar notas de acuerdo a su <u>Título, Categoría, Formato, Fuente y Reportero</u> </h5>
-                            <h5>Considere que al entrar a la bitacora por primera vez se mostraran como fechas inicial y final las fechas de hoy y mañana, lo que facilitara encontrar las notas para las escaletas de hoy y mañana</h5>
+                            <br />
+                            <img src={BitacoraMain} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h4>Donde se mostrarán todas las notas registradas en el sistema, ordenadas por título, fecha, fuente y reportero.</h4>
+                            <h4><u>Considere que al entrar a la bitacora por primera vez se mostraran como fechas inicial y final las fechas de hoy y mañana, lo que facilitará encontrar las notas creadas durante ese lapso de tiempo</u></h4>
+                            <h4>Si desea buscar una nota es especifico dirigase al buscador de la parte de arriba e ingrese las fechas requeridas para buscar las notas creadas durante ese periodo, tambien puede escribir palabras clave en el cuadro de texto para encontrar notas de acuerdo a su <u>Título, Categoría, Formato, Fuente y Reportero</u> </h4>
                         </div>
                        
                             <br />

@@ -474,7 +474,15 @@ option{
   font-size: small;
 }
 
+.HelpImages{
+  height: 75vh;
+  width: auto;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  -webkit-box-shadow: 1px -2px 26px 10px rgba(0,0,0,0.42);
+  -moz-box-shadow: 1px -2px 26px 10px rgba(0,0,0,0.42);
+  box-shadow: 1px -2px 26px 10px rgba(0,0,0,0.42);
 
+}
 
 
 
