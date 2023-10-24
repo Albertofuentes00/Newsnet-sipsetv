@@ -490,8 +490,15 @@ function closeModal() {
     setBotonDeshabilitado(true);
 
     const filasParaGuardar = Datos.filter((fila) =>
-      filasSeleccionadas.includes(fila.pkNota)
+      filasSeleccionadas.includes(fila.pkNota),
+      setFilasSeleccionadas([])
     );
+    if (filasParaGuardar.length === 0) {
+      // Mostrar un mensaje o realizar alguna acción si no hay elementos seleccionados
+      console.log("No se han seleccionado notas para agregar.");
+      setBotonDeshabilitado(false);
+      return;
+  }
   
     const tabla = document.getElementById('sortable-table');
     const tbody = tabla.querySelector('tbody');
@@ -535,6 +542,7 @@ function closeModal() {
           setTimeout(() => {
             setBotonDeshabilitado(false);
           }, 1000);
+          console.log("Se agrego la nota");
         }
       } catch (error) {
         show_alerta('Error en la solicitud', 'error');
@@ -1092,7 +1100,7 @@ const recargarTabla = () => {
                 </div>
             </div>
             <div className="d-grid col-6 mx-auto">
-              <button id='AgregarNota' className="btn btn-success" onClick={()=> agregarIndicacion()} > 
+              <button id='AgregarIndicacion' className="btn btn-success" onClick={()=> agregarIndicacion()} > 
               <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
               <br />
