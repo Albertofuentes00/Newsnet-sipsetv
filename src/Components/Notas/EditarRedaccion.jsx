@@ -15,7 +15,7 @@ const EditarGuion = () => {
   const [Datos, SetDatos] = useState([]);
   const tablaRef = useRef(null);
   const [verdad,setverdad] = useState('');
-
+  const [cargado, Setcargado] = useState(0);
 
 
   const Autoguardado = () => {
@@ -182,7 +182,7 @@ const GetDatos = async () => {
     const respuesta = await axios.get('https://localhost:7201/Nota/GetByID/' + id);
     const elemento = document.querySelector('.Auth-form-Escaletabotones');
       const threshold = elemento.offsetTop;
-      
+      Setcargado(1);
       window.addEventListener('scroll', () => {
         if (window.scrollY >= threshold) {
           elemento.style.position = 'sticky';
@@ -218,7 +218,20 @@ const GetDatos = async () => {
 
 
 
-
+const mostrar=()=>{
+  if(cargado === 1){
+    return(
+  
+      <div className='redaccion-nota'>
+      <h5>Redactar guión de: </h5>
+        <h7>Titulo: {Datos.titulo}</h7>
+        <br></br>
+        <h7> Formato: {Datos.formato.nombre_Formato}</h7>
+      </div>
+    );
+  }
+    }
+  
 
 
 
@@ -240,10 +253,10 @@ return (
 
     <div className="Auth-form-Escaletabotones">
       <div className='Row'>
-        <div className='redaccion-nota'>
-        <h5>Redactar guión de: </h5>
-          <h7> {Datos.titulo}</h7>
-        </div>
+  
+
+{mostrar()}
+
 
           <div className='button-form'>
       
