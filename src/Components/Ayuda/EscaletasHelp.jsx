@@ -1,4 +1,12 @@
 import { Outlet } from "react-router-dom";
+import EscaletaMenuImage from './HelpImages/EscaletasMain.jpg'
+import CrearEscaleta from './HelpImages/CrearEscaleta.jpg'
+import CrearEscaleta2 from './HelpImages/CrearEscaleta2.jpg'
+import { FaPlusSquare } from "react-icons/fa";
+import EditarEscaleta from './HelpImages/EditarEscaleta.jpg'
+import EditarEscaleta2 from './HelpImages/EditarEscaleta2.jpg'
+import { FaEye } from "react-icons/fa";
+import VerEscaleta from './HelpImages/VerEscaleta.jpg'
 
 
 function EscaletasHelp() {
@@ -13,39 +21,84 @@ function EscaletasHelp() {
                         <h4 className="textIntroduction">
                         En esta sección hará gestión de las escaletas y su información, así como la edición, eliminación y exportación de estas; A continuación podrá consultar las funciones que usted puede en esta sección:
                         </h4>
+                        <br />
+                        <div className="section">
+                            <h2>Entorno de Escaletas</h2>
+                            <h4>Al ingresar a la opción de Escaletas observará la sección de la siguiente manera:</h4>
                             <br />
-                        
+                            <img src={EscaletaMenuImage} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h4>Donde podrá consultar las escaletas creadas dentro del sistema. </h4>
+                            <br />
+                            <h4><u>► Considere que al entrar a la pestaña de Escaletas por primera vez se mostraran como fechas inicial y final las fechas de hoy y mañana, lo que facilitará encontrar las escaletas creadas durante ese lapso de tiempo</u></h4>
+                            <br />
+                            <h4>► Tambien puede hacer uso de la barra de búsqueda de la parte superior de la pantalla para encontrar las escaletas por lapsos de tiempo y/o nombre.</h4>
+                        </div>
+
+                            <br />
+
+                        <h6 className="section">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</h6>    
+
+
                         <div className="section">
                             <h3>Gestion de Escaletas</h3>
                             <h5>Para crear una escaleta nueva:</h5>
-
-                            <h6>Haga click en el boton <u>Agregar Escaleta</u> e ingrese los datos requeridos, posteriormente haga Click en <u>Guardar</u> para crear la escaleta.</h6>
+                            <br />
+                            <img src={CrearEscaleta} className="HelpImages2"/>
+                            <br />
+                            <br />
+                            <h6>Haga click en el boton <button type="button" class="btn btn-success"> <FaPlusSquare size={20} color="white"/> Agregar Escaleta</button> e ingrese los datos requeridos.</h6>
+                            <br />
+                            <img src={CrearEscaleta2} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h6>Una vez que termine de llenar los datos haga Click en <button className="btn btn-success"> <i className="fa-solid fa-floppy-disk"></i> Guardar </button>para crear la escaleta.</h6>
+                            <h6><u>NOTA: La sección de Hora de inicio es opcional, puede crear la escaleta con o sin hora de inicio según lo desea.</u></h6>
                         </div>
-
+                        <br />
+                        <br />
                         <div className="section">
                             <h5>Para editar una escaleta existente:</h5>
-
-                            <h6>Haga click en el ícono de lapiz que se encuentra a un lado del ícono del bote de basura de la escaleta que usted desee editar, una vez hecho click el sistema le desplegará un formulario similar 
-                                al de <u>Crear Escaleta</u> y le pedirá que ingrese los nuevos datos que desee en sus respectivos campos, al terminar sus cambios haga click en el botón <u>Guardar</u> y usted verá reflejado los cambios hechos en la escaleta.
+                            <br />
+                            <img src={EditarEscaleta} className="HelpImages2" />
+                            <br />
+                            <br />
+                            <img src={EditarEscaleta2} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h6>Haga click en el ícono de lapiz <i className="fa-solid fa-edit"></i> que se encuentra a un lado del ícono del bote de basura de la escaleta que usted desee editar, una vez hecho click el sistema le desplegará un formulario similar 
+                                al de <u>Crear Escaleta</u> y le pedirá que ingrese los nuevos datos que desee en sus respectivos campos, al terminar sus cambios haga click en el botón <button className="btn btn-success"> <i className="fa-solid fa-floppy-disk"></i> Guardar </button> y usted verá reflejado los cambios hechos en la escaleta.
                             </h6>           
                         </div>
-
+                        <br />
+                        <br />
                         <div className="section">
                             <h5>Para eliminar una escaleta existente:</h5>
 
                             <h6>Haga click en el icono del bote de basura de la escaleta que usted desee eliminar, el sistema le preguntará si esta seguro de borrar la escaleta, si es asi, haga click en <u>Si, Eliminar</u> para eliminar por completo la escaleta. </h6>
-                            <h6><u>NOTA: Las escaletas eliminadas no podran ser recuperadas despues. </u> </h6>         
+                            <h6><u>NOTA: Las escaletas eliminadas no podran ser recuperadas despues. </u> </h6>  
+                            <br />
+                            <br />       
                         </div>
+
+                        <h6 className="section">---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</h6>    
 
                         <div className="section">
                             <h3>Armado de Escaletas</h3>
                             <h5>Para visualizar el contenido de una escaleta:</h5>
                             <br />
-                            <h5>Haga click en el ícono de ojo de la escaleta que desee manipular para agregar notas e indicaciones</h5>
+                            <img src={VerEscaleta} className="HelpImages2" />
+                            <br />
+                            <br />
+                            <h5>Haga click en el ícono de ojo <FaEye size={20} color="white"/> de la escaleta que desee leer para agregar notas e indicaciones</h5>
                             <h5>Una vez dentro de la escaleta seleccionada, puede realizar las funciones que se explicarán a continuación:</h5>
-
+                            <br />
+                            <br />
                             <h3>Indicaciones</h3>
+                            <br />
                             <h5>Si la escaleta es creada recientemente, observará tres indicaciones que vienen por default, las cuales son <u>BIENVENIDA, CORTE COMERCIAL Y DESPEDIDA</u></h5>
+                            <br />
                             <h5>Usted puede agregar mas indicaciones si lo desea: haga click en el botón <u>Agregar indicación</u>, donde definirá el nombre que tendrá la nueva indicación, haga click en <u>Guardar</u> y se reflejará en la escaleta la indicacion que agregó.</h5>
                             <h5>Tambien puede editar las indicaciones, dando click en el nombre de la indicación que desee corregir </h5>
 
