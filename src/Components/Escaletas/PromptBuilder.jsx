@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from '../../Funciones';
 import html2pdf from 'html2pdf.js';
@@ -8,7 +7,6 @@ import { FaFilePdf } from 'react-icons/fa';
 
 function Prompt() {
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
-  const [DatosRedacciones, SetRedacciones] = useState([]);
   const { id } = useParams();
   const tablaRef = useRef(null);
   const [cargado, Setcargado] = useState(false);
@@ -16,11 +14,6 @@ function Prompt() {
     var modal = document.getElementById('myModal');
     modal.style.display = 'block';
     GetDatosEscaleta();
-    //   Obtenertabla();
-    //   GetRedacciones();
-    // setTimeout(() => {
-    //   ConstruirPrompt();
-    // }, 2000);
     setTimeout(() => {
       closeModal();
     }, 3000);
@@ -103,7 +96,7 @@ function Prompt() {
 
   const Obtenertabla = () => {
     try {
-      if (DatosEscaleta.tabla != '') {
+      if (DatosEscaleta.tabla !== '') {
         return (
           <div id="Escaleta">
             <div

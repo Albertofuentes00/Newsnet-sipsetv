@@ -90,7 +90,6 @@ const GuionesNotas = () => {
   const [itemNumber, setItemNumber] = useState(0);
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
     setItemNumber(startIndex + 1);
   }, [currentPage, itemsPerPage, Datos]);
 

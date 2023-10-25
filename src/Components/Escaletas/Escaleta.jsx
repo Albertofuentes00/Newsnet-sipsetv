@@ -19,7 +19,6 @@ function Table() {
   const [filasSeleccionadas, setFilasSeleccionadas] = useState([]);
   const { id } = useParams();
   const tablaRef = useRef(null);
-  const modalRef = useRef();
   const [cargado, Setcargado] = useState(0);
   const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [DatosTabla, setDatosTabla] = useState([]);

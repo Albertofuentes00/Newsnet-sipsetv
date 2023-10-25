@@ -2,11 +2,9 @@ import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaSave } from 'react-icons/fa';
 import { FaMinusSquare } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import { show_alerta } from '../../Funciones';
 
 const EditarGuion = () => {

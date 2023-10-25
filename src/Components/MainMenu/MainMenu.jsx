@@ -4,7 +4,7 @@ import { FaList } from 'react-icons/fa';
 import { FaBook } from 'react-icons/fa';
 import { FaFileAlt } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function Menu() {

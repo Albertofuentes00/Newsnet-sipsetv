@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { FaAngleLeft } from 'react-icons/fa';
 import { FaPrint } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
@@ -11,7 +10,6 @@ const LeerGuion = () => {
   const [Datos, SetDatos] = useState([]);
   const { id } = useParams();
   const [cargado, Setcargado] = useState(0);
-  const tablaRef = useRef(null);
   useEffect(() => {
     GetDatos();
   }, []);

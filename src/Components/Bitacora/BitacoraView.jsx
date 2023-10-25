@@ -8,7 +8,6 @@ import { FaUser } from 'react-icons/fa';
 import { FaList } from 'react-icons/fa';
 import { FaMicrophone } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
-import SearchMenu from '../SearchMenu';
 import Swal from 'sweetalert2';
 import whitReactContent from 'sweetalert2-react-content';
 import Cookies from 'js-cookie';

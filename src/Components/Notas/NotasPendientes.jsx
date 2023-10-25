@@ -3,34 +3,13 @@ import axios from 'axios';
 import { FaRegListAlt } from 'react-icons/fa';
 import { FaAngleLeft } from 'react-icons/fa';
 import { FaEye } from 'react-icons/fa';
-import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 
 const GuionesNotas = () => {
-  const [fechaFI, setFechaFI] = useState(getFechaActualFI);
-  const [fechaFF, setFechaFF] = useState(getFechaActualFF);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
-  function getFechaActualFI() {
-    const fechaActual = new Date();
-    const year = fechaActual.getFullYear();
-    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
-    const day = String(fechaActual.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-  function getFechaActualFF() {
-    const fechaActual = new Date();
-    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
-
-    const year = fechaActual.getFullYear();
-    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
-    const day = String(fechaActual.getDate()).padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
-  }
 
   const [Datos, SetDatos] = useState([]);
   useEffect(() => {
@@ -47,50 +26,12 @@ const GuionesNotas = () => {
     }
   };
 
-  const buscar = async () => {
-    try {
-      var variable = document.getElementById('Buscador').value;
-      var fechaFI = document.getElementById('FI').value;
-      var fechaFF = document.getElementById('FF').value;
-      if (variable === '') {
-        try {
-          const respuesta = await axios.get(
-            'https://localhost:7201/Nota/BuscarDefault/' +
-              fechaFI +
-              '/' +
-              fechaFF
-          );
-
-          console.log(respuesta.data.result);
-          SetDatos(respuesta.data.result);
-        } catch (error) {}
-      } else {
-        try {
-          const respuesta = await axios.get(
-            'https://localhost:7201/Nota/Buscar/' +
-              variable +
-              '/' +
-              fechaFI +
-              '/' +
-              fechaFF
-          );
-
-          console.log(respuesta.data.result);
-          SetDatos(respuesta.data.result);
-        } catch (error) {}
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = Datos.slice(startIndex, endIndex);
   const [itemNumber, setItemNumber] = useState(0);
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
     setItemNumber(startIndex + 1);
   }, [currentPage, itemsPerPage, Datos]);
 
