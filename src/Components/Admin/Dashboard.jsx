@@ -10,9 +10,7 @@ import { FaList } from "react-icons/fa";
 import Cookies from "js-cookie";
 
 function AdminMenu(){
-
-
-
+    
     const cadena = Cookies.get('Usuario');
     const partes = cadena.split('/');
     const rol = partes[2];
