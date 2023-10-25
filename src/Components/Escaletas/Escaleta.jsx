@@ -941,25 +941,19 @@ const recargarTabla = () => {
 
 
 
-  <div className="Auth-form-escaletaArmado">
-  <div>
-    <div className='Row'>
-    </div>
+    <div className="Auth-form-escaletaArmado">
+      <div>
+      <div className='Row'>
+      </div>
       <br />
       <div ref={contentRef} class="container">
-     
       {mostrar()}
         {validacion()}
+      </div>
     </div>
-
-  </div>
       <br />
 
-
-
-
-
-      <div id="miModal" class="modal fade">
+    <div id="miModal" class="modal fade">
       <div className='modal-dialog'>
         <div className='modal-content-notas'>
           <div className='modal-header'>
@@ -1065,25 +1059,6 @@ const recargarTabla = () => {
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div id='modalIndicacion' className='modal fade' aria-hidden='true'>
       <div className='modal-dialog'>
         <div className='modal-content-indicacion'>
@@ -1111,33 +1086,26 @@ const recargarTabla = () => {
 
 
     <div id="myModal" class="modal">
-  <div class="modal-content">
-    <div className='header-modal'>
-    <button class="close" onClick={()=> closeModal()}>&times;</button>
+      <div class="modal-content">
+        <div className='header-modal'>
+          <button class="close" onClick={()=> closeModal()}>&times;</button>
+        </div>
+    
+        <p id='tag-modal'>Asignar un conductor</p>
+        <textarea id="modal-content-text" className='modal-input' value={text} onChange={handleInputChange}></textarea>
+        <div className='modal-div' hidden={NotaAct.redaccion === "" }>
+          <div  className='tabla-imprimir' dangerouslySetInnerHTML={{ __html: NotaAct.redaccion}} />
+          </div>
+          <button id='agregar-conductor' className="btn-modal" onClick={()=> obtenerConductor()}>
+            <i className="fa-solid fa-floppy-disk" ></i> Aceptar
+          </button> 
+        </div>
+      </div>
     </div>
-    
-    <p id='tag-modal'>Asignar un conductor</p>
-    <textarea id="modal-content-text" className='modal-input' value={text} onChange={handleInputChange}></textarea>
-    <div className='modal-div' hidden={NotaAct.redaccion === "" }>
-    <div  className='tabla-imprimir' dangerouslySetInnerHTML={{ __html: NotaAct.redaccion}} />
-    </div>
-    
-    <button id='agregar-conductor' className="btn-modal" onClick={()=> obtenerConductor()}>
-    <i className="fa-solid fa-floppy-disk" ></i> Aceptar
-      </button> 
-  </div>
-</div>
-    
-  
-  </div>
 </div>
 
-
-
-
-
-        );
-      };
+  );
+};
 
 
 

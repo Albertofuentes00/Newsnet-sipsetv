@@ -236,16 +236,16 @@ const Escaletas=()=>{
 
 
       <div className="Auth-form-searchbar">
-    <div className="Row-searchbar">
-      <div className="Row">
-        <div className='buscador_admin'>
-        <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
-        </div>
-      </div>
-      <div className="Row">
-        <div className="Grid">
-          <label> Fecha Inicial</label>
-          <input
+        <div className="Row-searchbar">
+          <div className="Row">
+            <div className='buscador_admin'>
+            <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
+            </div>
+          </div>
+        <div className="Row">
+          <div className="Grid">
+            <label> Fecha Inicial</label>
+            <input
             id="FI"
             type="date"
             className="input-search"

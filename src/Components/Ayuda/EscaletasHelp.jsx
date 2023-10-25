@@ -7,6 +7,15 @@ import EditarEscaleta from './HelpImages/EditarEscaleta.jpg'
 import EditarEscaleta2 from './HelpImages/EditarEscaleta2.jpg'
 import { FaEye } from "react-icons/fa";
 import VerEscaleta from './HelpImages/VerEscaleta.jpg'
+import EliminarEscaleta from './HelpImages/EliminarEscaleta.png'
+import EliminarEscaleta2 from './HelpImages/EliminarEscaleta2.png'
+import TresIndicaciones from './HelpImages/TresIndicaciones .png'
+import DefinirIndicacion from './HelpImages/DefinirIndicacion.png'
+import CrearIndicacion from './HelpImages/AgregarIndicacion.png'
+import EditarIndicacion from './HelpImages/EditarIndicacion.png'
+import { BsFillSignpostFill } from 'react-icons/bs'
+import { FaFileAlt } from 'react-icons/fa'
+import { BotonNotasEscaleta } from './HelpImages/AgregarNotasEscaleta.png'
 
 
 function EscaletasHelp() {
@@ -64,10 +73,12 @@ function EscaletasHelp() {
                             <img src={EditarEscaleta} className="HelpImages2" />
                             <br />
                             <br />
+                            <h6>Haga click en el ícono de lapiz <i className="fa-solid fa-edit"></i> que se encuentra a un lado del ícono del bote de basura de la escaleta que usted desee editar </h6>
+                            <br />
                             <img src={EditarEscaleta2} className="HelpImages" />
                             <br />
                             <br />
-                            <h6>Haga click en el ícono de lapiz <i className="fa-solid fa-edit"></i> que se encuentra a un lado del ícono del bote de basura de la escaleta que usted desee editar, una vez hecho click el sistema le desplegará un formulario similar 
+                            <h6>Una vez hecho click el sistema le desplegará un formulario similar 
                                 al de <u>Crear Escaleta</u> y le pedirá que ingrese los nuevos datos que desee en sus respectivos campos, al terminar sus cambios haga click en el botón <button className="btn btn-success"> <i className="fa-solid fa-floppy-disk"></i> Guardar </button> y usted verá reflejado los cambios hechos en la escaleta.
                             </h6>           
                         </div>
@@ -75,8 +86,16 @@ function EscaletasHelp() {
                         <br />
                         <div className="section">
                             <h5>Para eliminar una escaleta existente:</h5>
-
-                            <h6>Haga click en el icono del bote de basura de la escaleta que usted desee eliminar, el sistema le preguntará si esta seguro de borrar la escaleta, si es asi, haga click en <u>Si, Eliminar</u> para eliminar por completo la escaleta. </h6>
+                            <br />
+                            <img src={EliminarEscaleta} className="HelpImages2" />
+                            <br />
+                            <br />
+                            <h6>Haga click en el icono del bote de basura de la escaleta que usted desee eliminar. </h6>
+                            <br />
+                            <img src={EliminarEscaleta2} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h6>El sistema le preguntará si esta seguro de borrar la escaleta, si es asi, haga click en <u>Si, Eliminar</u> para eliminar por completo la escaleta.</h6>
                             <h6><u>NOTA: Las escaletas eliminadas no podran ser recuperadas despues. </u> </h6>  
                             <br />
                             <br />       
@@ -99,15 +118,30 @@ function EscaletasHelp() {
                             <br />
                             <h5>Si la escaleta es creada recientemente, observará tres indicaciones que vienen por default, las cuales son <u>BIENVENIDA, CORTE COMERCIAL Y DESPEDIDA</u></h5>
                             <br />
-                            <h5>Usted puede agregar mas indicaciones si lo desea: haga click en el botón <u>Agregar indicación</u>, donde definirá el nombre que tendrá la nueva indicación, haga click en <u>Guardar</u> y se reflejará en la escaleta la indicacion que agregó.</h5>
+                            <img src={TresIndicaciones} className="HelpImages2" />
+                            <br />
+                            <br />
+                            <h5>Usted puede agregar mas indicaciones si lo desea: haga click en el botón <button className='BtnAddIndicacion'> <BsFillSignpostFill size={20}/> Agregar Indicación</button>, donde definirá el nombre que tendrá la nueva indicación.</h5>
+                            <br />
+                            <img src={CrearIndicacion} className="HelpImages2" />
+                            <br />
+                            <br />
+                            <img src={DefinirIndicacion} className="HelpImages" />
+                            <br />
+                            <h5>Posteriormente haga click en <button id='AgregarIndicacion' className="btn btn-success"> <i className="fa-solid fa-floppy-disk" ></i> Agregar </button> y se reflejará en la escaleta la indicacion que agregó.</h5>
+                            <br />
+                            <br />
+                            <img src={EditarIndicacion} className="HelpImages" />
                             <h5>Tambien puede editar las indicaciones, dando click en el nombre de la indicación que desee corregir </h5>
-
-
+                            <br />
+                            
                             <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
-
+                            <br />
+                            <br />
                             <h3>Notas</h3>
                             <br />
-                            <h5>Para agregar una serie de notas en la escaleta actual, haga click en el botón <u>Agregar Notas</u>, el sistema le desplegara una ventana de la bitacora de las notas, donde dispondrá un buscador para 
+
+                            <h5>Para agregar una serie de notas en la escaleta actual, haga click en el botón  <button className='BtnAddNote'> <FaFileAlt size={20} /> Agregar Notas</button>, el sistema le desplegara una ventana de la bitacora de las notas, donde dispondrá un buscador para 
                             encontrar las notas que usted desee, puede hacer multiples selecciones de notas para agregarlas a la escaleta y una vez terminado puede hacer click en el botón <u>Agregar</u> para subir las notas a la escaleta</h5>
                             <br />
                             <h5>Para asignar un conductor a una nota, haga click en la columna de la nota que  desee e ingrese el nombre del conductor/conductora, esto le asignará un orden y un conductor a la nota en la escaleta.</h5>
