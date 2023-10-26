@@ -334,14 +334,14 @@ a:visited {
 }
 
 .Auth-form-Main {
-  width: 720px;
-  
+  width: 1400px;
+  height: 10px;
   margin-bottom: 10px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
-  background-color: rgb(196, 196, 196);
+  background-color: rgba(0, 0, 0, 0.74);
   padding: 10%;
   max-height:55vh;
   box-shadow: 1px -2px 26px 10px rgba(0,0,0,0.42);
@@ -1159,9 +1159,8 @@ p{
   font-size: larger;
 }
 
-
 .Main-Button{
-  min-width: 7vw;
+  min-width: 20vw;
   min-height: 10vh;
  
   background-color: #dfdfdf;
@@ -1697,3 +1696,32 @@ border-radius: 10px;
 		stroke-dashoffset: -358;
 	}
 }
+#darkb,
+        select {
+            @include transition;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.30);
+            height: 45px;
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            display: inline-block;
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+            appearance: none;
+
+            &:hover {
+              background: linear-gradient(-45deg, #EE7752, #E73C7E, #2344d5, #5823d5);
+            }
+
+            &:active {
+                background-color: black;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }

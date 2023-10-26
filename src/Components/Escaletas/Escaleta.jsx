@@ -457,7 +457,6 @@ function Table() {
       .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
       .then(function (respuesta) {
         recargarTabla();
-        GetDatos();
       })
       .catch(function (error) {
         show_alerta('Error en la solicitud', 'error');

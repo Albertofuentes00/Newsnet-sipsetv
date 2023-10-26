@@ -19,7 +19,7 @@ function Menu() {
           <div className="horizontal-list">
             <li>
               <Link to="/Bitacora">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaBook size={30} /> Bitácora
                 </button>
@@ -27,7 +27,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Escaletas">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaList size={30} /> Escaletas
                 </button>
@@ -35,7 +35,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Notas">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaFileAlt size={30} /> Notas
                 </button>
@@ -43,7 +43,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Admin/ListaUsuarios">
-                <button type="button" className="Main-Button">
+                <button type="button" id="darkb" className="Main-Button">
                   <FaUser size={30} /> Admin
                 </button>
               </Link>
@@ -55,7 +55,7 @@ function Menu() {
           <div className="horizontal-list">
             <li>
               <Link to="/Bitacora">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaBook size={30} /> Bitácora
                 </button>
@@ -63,7 +63,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Notas">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaFileAlt size={30} /> Notas
                 </button>
@@ -76,7 +76,7 @@ function Menu() {
           <div className="horizontal-list">
             <li>
               <Link to="/Bitacora">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaBook size={30} /> Bitácora
                 </button>
@@ -84,7 +84,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Escaletas">
-                <button type="button" class="Main-Button">
+                <button type="button" id="darkb" class="Main-Button">
                   {' '}
                   <FaList size={30} /> Escaletas
                 </button>
@@ -92,7 +92,7 @@ function Menu() {
             </li>
             <li>
               <Link to="/Notas">
-                <button type="button" class="Main-Button">
+                <button type="button"  id="darkb" class="Main-Button">
                   {' '}
                   <FaFileAlt size={30} /> Notas
                 </button>
@@ -108,20 +108,18 @@ function Menu() {
 
   return (
     <div className="Auth-form-MainMenu">
-      <form className="Auth-form-Main">
         <div className="Main-Welcome">
           <h3 className="Auth-form-title">
-            <Welcome name="Alberto" apellidos="Fuentes" />
+          LET'S WORK SIPSE TEAM
           </h3>
-          <h4 className="Auth-form-subtitle">Escoge una opción</h4>
-          <br />
+          <form /* className="Auth-form-Main" */>
           <div className="Menu-form">
             <div class="menu">
               <ul>{botonadmin(true)}</ul>
             </div>
           </div>
+          </form>
         </div>
-      </form>
     </div>
   );
 }
