@@ -15,7 +15,13 @@ import CrearIndicacion from './HelpImages/AgregarIndicacion.png'
 import EditarIndicacion from './HelpImages/EditarIndicacion.png'
 import { BsFillSignpostFill } from 'react-icons/bs'
 import { FaFileAlt } from 'react-icons/fa'
-import { BotonNotasEscaleta } from './HelpImages/AgregarNotasEscaleta.png'
+import BotonNotasEscaleta from './HelpImages/AgregarNotasEscaleta.png'
+import MoverFilas from './HelpImages/MoverFilas.gif'
+import CuadroNotas from './HelpImages/CuadroNotasEscaletas.jpg'
+import Conductor1 from './HelpImages/Conductor1.jpg'
+import Conductor2 from './HelpImages/Conductor2.jpg'
+import { FaFilePdf } from "react-icons/fa";
+
 
 
 function EscaletasHelp() {
@@ -115,10 +121,10 @@ function EscaletasHelp() {
                             <br />
                             <br />
                             <h3>Indicaciones</h3>
-                            <br />
+
                             <h5>Si la escaleta es creada recientemente, observará tres indicaciones que vienen por default, las cuales son <u>BIENVENIDA, CORTE COMERCIAL Y DESPEDIDA</u></h5>
                             <br />
-                            <img src={TresIndicaciones} className="HelpImages2" />
+                            <img src={TresIndicaciones} className="HelpImages3" />
                             <br />
                             <br />
                             <h5>Usted puede agregar mas indicaciones si lo desea: haga click en el botón <button className='BtnAddIndicacion'> <BsFillSignpostFill size={20}/> Agregar Indicación</button>, donde definirá el nombre que tendrá la nueva indicación.</h5>
@@ -128,69 +134,55 @@ function EscaletasHelp() {
                             <br />
                             <img src={DefinirIndicacion} className="HelpImages" />
                             <br />
+                            <br />
                             <h5>Posteriormente haga click en <button id='AgregarIndicacion' className="btn btn-success"> <i className="fa-solid fa-floppy-disk" ></i> Agregar </button> y se reflejará en la escaleta la indicacion que agregó.</h5>
                             <br />
                             <br />
                             <img src={EditarIndicacion} className="HelpImages" />
-                            <h5>Tambien puede editar las indicaciones, dando click en el nombre de la indicación que desee corregir </h5>
                             <br />
-                            
-                            <h5>Para ordenar las notas de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
+                            <br />
+                            <h5>Tambien puede editar las indicaciones, dando click en el nombre de la indicación que desee corregir, como se menciona anteriormente. </h5>
                             <br />
                             <br />
                             <h3>Notas</h3>
                             <br />
-
                             <h5>Para agregar una serie de notas en la escaleta actual, haga click en el botón  <button className='BtnAddNote'> <FaFileAlt size={20} /> Agregar Notas</button>, el sistema le desplegara una ventana de la bitacora de las notas, donde dispondrá un buscador para 
-                            encontrar las notas que usted desee, puede hacer multiples selecciones de notas para agregarlas a la escaleta y una vez terminado puede hacer click en el botón <u>Agregar</u> para subir las notas a la escaleta</h5>
+                            encontrar las notas que usted desee, puede hacer multiples selecciones de notas para agregarlas a la escaleta y una vez terminado puede hacer click en el botón <button id='AgregarNota' className="btn btn-success"> <i className="fa-solid fa-floppy-disk" ></i> Agregar </button> para subir las notas a la escaleta</h5>
                             <br />
-                            <h5>Para asignar un conductor a una nota, haga click en la columna de la nota que  desee e ingrese el nombre del conductor/conductora, esto le asignará un orden y un conductor a la nota en la escaleta.</h5>
-                            
+                            <img src={BotonNotasEscaleta} className="HelpImages2" /> 
+                            <br />
+                            <br />
+                            <img src={CuadroNotas} className="HelpImages" />
+                            <br />
+                            <br />
+                            <h5>Para asignar un conductor a una nota, haga click en la columna de <u>Conductor</u> de la nota que desee e ingrese el nombre del conductor/conductora, esto le asignará un orden y un conductor a la nota en la escaleta, de igual manera puede editar y/o corregir el nombre del conductor/conductora haciendo lo anteriormente mencionado.</h5>
+                            <br />
+                            <img src={Conductor1} className="HelpImages" />
+                            <br />
+                            <br />
+                            <img src={Conductor2} className="HelpImages3" />
+                            <br />
+                            <br />
+                            <br />
+                            <h3>Mover/Ordenar notas/indicaciones </h3>
+                            <h5>Para ordenar las notas o indicaciones de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
+                            <br />
+                            <img src={MoverFilas} className="HelpImage" />
+                            <br />
+                            <br />                     
                             <h3>Eliminación de notas/indicaciones </h3>
                             <h5>Si desea eliminar una nota o indicacion, puede seleccionar y arrastrar la fila donde se aloje al botón <u>Eliminar</u></h5>
-
-                            <h3>Editar o Eliminar filas</h3>
-                            <h5>Para eliminar una fila con una nota en una escaleta, haga click en <u>Eliminar</u> de la nota que desea. </h5>
-                            <h5>Para editar o renombrar una indicacion dentro de una escaleta, haga click en el boton <u>Editar</u> para renombrar dicha indicacion </h5>
-                            <h5>De igual manera puede eliminar una indicacion dando click en el boton <u>Eliminar</u> a un lado del boton de Eliminar </h5>
-                            
-                            
-                            
-                            <h6>Haga click en el boton <u>Ver</u> de la escaleta deseada para leer y editar los datos de esta</h6>            
+                            <br />
+                            <br />
+                            <h3>Otras funciones</h3>
+                            <h5>Usted puede hacer otras funcionalidades dentro de escaletas, a traves de los siguientes botones:</h5>
+                            <br />
+                            <h5> ►  <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button> El sistema genera un archivo PDF de la escaleta actual, para su descarga e impresión.</h5>
+                            <h5> ► <button type='button' class='btn btn-danger'> Generar Prompt </button> El sistema genera un prompt de la escaleta seleccionada, junto con su información relacionada (Notas con sus redacciones), además de generar el prompt en PDF.</h5>    
+                            <br />
+                            <br />
+                            <br />
                         </div>
-
-
-
-
-
-
-
-
-
-
-                        <h4 className="textIntroduction">Para crear una escaleta nueva haga click en el botón <u> Agregar Nueva Escaleta</u>, ingrese los datos requeridos
-                        para una escaleta (Programa y Fecha) da click en <u>Guardar</u> para crear la escaleta</h4>
-                            <br />
-                        <h4  className="textIntroduction" >Para realizar una busqueda personalizada de una escaleta, haga click en el botón <u>Buscar</u> e ingrese los
-                        datos que usted desee encontrar</h4>
-                            <br />
-                        <h4  className="textIntroduction" >Para acomodar las filas de la escaleta, basta con seleccionar la fila que usted desea mover y arrastra con 
-                        el cursor hasta el lugar donde desee reubicarla </h4>
-                            <br />
-                        <h4  className="textIntroduction" >Para visualizar la información de una escaleta haga click en el botón <u>Ver</u>de la escaleta deseada,
-                        a continuación se describirán las siguientes tareas que usted puede realizar: </h4>
-                            <br />
-                        <h5 className="textIntroduction"><u>►Agregar Nota</u>: Agrega una o más notas a traves de una lista de notas, donde el usuario seleccionará 
-                        las notas que desee</h5>
-                        <br />
-                        <h5 className="textIntroduction"><u>►Agregar Indicación</u>: Agrega una fila a la escaleta, sin ningun tipo de dato más que el nombre, 
-                        el cual el usuario puede editar para señalar una indicación dentro de la escaleta</h5>
-                        <br />
-                        <h5 className="textIntroduction"><u>►Generar PDF</u>: Genera un PDF de la escaleta abierta que el usuario puede descargar e imprimir</h5>
-                        <br />
-                        <h5 className="textIntroduction"><u>►Editar y eliminar</u>: Edita y elimina los datos de una fila respectivamente</h5>
-                        <br />
-                        <h5 className="textIntroduction"><u>►Guardar</u>: Guarda los cambios realizados en la escaleta respectivamente</h5>
                         <Outlet/>
                     </div>
                 </div>

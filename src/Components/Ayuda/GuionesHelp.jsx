@@ -5,6 +5,7 @@ import GuionesPantalla from './HelpImages/PantallaNotasGuiones.png'
 import RedaccionGuion from './HelpImages/RedaccionGuion.png'
 import LecturaGuion from './HelpImages/LecturadeGuion.png'
 import GuardarRedaccion from './HelpImages/GuardarRedaccion.png'
+import NotasPendientees from './HelpImages/NotasPendientes.png'
 
 import { FaEye } from "react-icons/fa";
 import { FaRegListAlt } from "react-icons/fa";
@@ -12,6 +13,8 @@ import { FaPrint } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
+import AgregarCeldas from './HelpImages/AgregarCeldas.gif'
+import EliminarCeldas from './HelpImages/EliminarCeldas.gif'
 
 
 function GuionesHelp() {
@@ -44,25 +47,37 @@ function GuionesHelp() {
                             <img src={NotasSombreado} className="HelpImages2" />
                             <br />
                             <br />
+                            <h5>Las notas que no se han insertado en una escaleta se mostrarán en la pestaña de Pendientes, dando click en el botón <button type="button" class="btn btn-danger"> Pendientes </button>.
+                            </h5>
+                            <br />
+                            <img src={NotasPendientees} className="HelpImages" />
+                            <br />
+                            <br />
                             <h3>Redactando una nota por primera vez</h3>
                             <h5>Para asignar y/o redactar un guión para una nota: </h5>
 
                             <h6>Haga click en el ícono <FaRegListAlt size={20} color="white"/> de la parte derecha de una nota, esto lo llevará a la pantalla donde redactará el guión en cuestión.</h6>
-                            <h6>De igual manera puede editar la redacción de una nota haciendo click en el ícono <FaRegListAlt size={20} color="white"/> mencionado anteriormente</h6>
+                            <h6>De igual manera puede editar la redacción de una nota haciendo click en el ícono <FaRegListAlt size={20} color="white"/> mencionado anteriormente.</h6>
                             <h6>Una vez hecho esto usted puede empezar a redactar la nota seleccionada escribiendo en las celdas de <u>Anotación</u> y <u>Descripción</u> respectivamente.</h6>
                             <br />
                             <img src={RedaccionGuion} className="HelpImages"/>
+                            <br />
+                            <br />
                             <h3>Gestión de celdas</h3>
                             <h5>Para agregar celdas a la redacción:</h5>
                             <h6>Haga click en el botón <button id='agregar-celda' type="button" className="BtnAddIndicacion"> <FaPlusSquare size={20} color="black" /> Agregar Celda </button>, el sistema agregará automaticamente las celdas que usted desee.</h6>
+                            <br />
+                            <img src={AgregarCeldas} className='HelpImages' />
+                            <br />
                             <br />
                             <h5>Para eliminar una o mas celdas a la redacción:</h5>
                             <h6>Haga click a las celdas que usted desee eliminar y posteriormente haga click al botón <button id='quitar-celda' type="button" className="BtnEliminar" > <FaMinusSquare size={20} color="black" /> Quitar Celdas </button>, esto eliminará por completo las celdas que usted seleccionó;
                             si usted hace click en <button id='quitar-celda' type="button" className="BtnEliminar" > <FaMinusSquare size={20} color="black" /> Quitar Celdas </button> el sistema alertará que no hay celdas seleccionadas para eliminar.</h6>
                             <br />
+                            <img src={EliminarCeldas} className="HelpImages" />
+                            <br />
                             <br />
                             <h5>Para guardar una redacción:</h5>
-                            <br />
                             <h6>Una vez que haya concluido con la redacción de la nota, haga click en  <button type="button" className="btn btn-success"> <FaSave size={20} color="white" /> Guardar cambios </button>, el sistema le informará que se guardó correctamente para que usted pueda leerlo.</h6>
                             <br />
                             <img src={GuardarRedaccion} className="HelpImages" />
