@@ -1696,32 +1696,32 @@ border-radius: 10px;
 		stroke-dashoffset: -358;
 	}
 }
-#darkb,
-        select {
-            @include transition;
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.30);
-            height: 45px;
-            width: 150px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            display: inline-block;
-            font-size: 15px;
-            text-align: center;
-            text-decoration: none;
-            appearance: none;
 
-            &:hover {
-              background: linear-gradient(-45deg, #EE7752, #E73C7E, #2344d5, #5823d5);
-            }
+#darkb{
+  @include transition;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.30);
+  height: 45px;
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  appearance: none;
 
-            &:active {
-                background-color: black;
-            }
+  &:hover {
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #2344d5, #5823d5);
+  }
 
-            &:focus {
-                outline: none;
-            }
-        }
+  &:active {
+      background-color: black;
+  }
+
+  &:focus {
+      outline: none;
+  }
+}
