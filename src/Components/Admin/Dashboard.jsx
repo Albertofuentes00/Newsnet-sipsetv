@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import {FaUsers} from 'react-icons/fa'
 import {FaAngleLeft} from 'react-icons/fa'
 import { BiCameraMovie } from 'react-icons/bi'
@@ -14,6 +15,15 @@ function AdminMenu(){
     const cadena = Cookies.get('Usuario');
     const partes = cadena.split('/');
     const rol = partes[2];
+
+
+    const [selectedButton, setSelectedButton] = useState(1);
+
+    const changeButtonClass = (buttonNumber) => {
+      setSelectedButton(buttonNumber);
+    };
+      
+      
     
     if (rol != "Administrador") {
 
@@ -25,26 +35,26 @@ function AdminMenu(){
             <body className="App-body">
             <header className="mainheader">
                 <div className="MenuHeader">
-                <Link to='/MainMenu'>
-                    <button type="button" class="btn btn-dark"> <FaAngleLeft size={30} color="white" /> Regresar</button>
+                <Link to='/MainMenu' className="linkbtnad">
+                    <button type="button" class="adminbtn"> <FaAngleLeft size={20} /> Regresar</button>
                 </Link>
-                <Link to='ListaUsuarios'>
-                    <button type="button" class="btn btn-primary"> <FaUsers size={30} color="white" /> Usuarios</button>
+                <Link to='ListaUsuarios' className={selectedButton === 1 ? 'active-admin-btn' : 'linkbtnad'} id="btn-1" onClick={()=> changeButtonClass(1)}>
+                    <button type="button" class="adminbtn" > <FaUsers size={20} /> Usuarios</button>
                 </Link >
-                <Link to='ListaProgramas'>
-                    <button type='button' class='btn btn-primary'> <BiCameraMovie size={30} color="white" /> Programas </button>
+                <Link to='ListaProgramas' className={selectedButton === 2 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-2" onClick={()=> changeButtonClass(2)}>
+                    <button type='button' class='adminbtn' > <BiCameraMovie size={20} /> Programas </button>
                 </Link>
-                <Link to='ListaCategorias'>
-                    <button type='button' class='btn btn-primary'> <BiCategory size={30} color="white" />  Categorías </button>
+                <Link to='ListaCategorias' className={selectedButton === 3 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-3" onClick={()=> changeButtonClass(3)}>
+                    <button type='button' class='adminbtn' > <BiCategory size={20}/>  Categorías </button>
                 </Link>
-                <Link to='ListaFormatos'>
-                    <button type="button" class='btn btn-primary'> <FaMicrophone size={30} color="white" /> Formatos </button>
+                <Link to='ListaFormatos' className={selectedButton === 4 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-4" onClick={()=> changeButtonClass(4)}>
+                    <button type="button" class='adminbtn'> <FaMicrophone size={20} /> Formatos </button>
                 </Link>  
-                <Link to='ListaRoles'>
-                    <button type="button" class='btn btn-primary'>  <FaUserCog size={30} color='white'/> Roles </button>
+                <Link to='ListaRoles' className={selectedButton === 5 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-5" onClick={()=> changeButtonClass(5)}>
+                    <button type="button" class='adminbtn' >  <FaUserCog size={20} /> Roles </button>
                 </Link>  
-                <Link to='ListaFuentes'>
-                    <button type="button" className="btn btn-primary"> <FaList size={30} color="white"/> Fuentes </button>
+                <Link to='ListaFuentes' className={selectedButton === 6 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-6" onClick={()=> changeButtonClass(6)}>
+                    <button type="button" class='adminbtn' > <FaList size={20} /> Fuentes </button>
                 </Link>
             </div>
             </header> 
