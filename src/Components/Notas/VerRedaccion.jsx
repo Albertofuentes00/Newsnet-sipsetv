@@ -80,41 +80,35 @@ const LeerGuion = () => {
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
     };
 
-    html2pdf(content, opt);
-  };
+  html2pdf(content, opt);
 
-  function goBack() {
-    window.history.back();
-  }
+};
 
-  return (
-    <div className="Auth-form-container">
-      <form className="Auth-form-Guion">
-        <div className="Auth-form-content">
-          <div className="Row">
-            <h3>Redacción</h3>
-            <div className="Button-form">
-              <button
-                onClick={() => goBack()}
-                type="button"
-                className="btn btn-dark"
-              >
-                {' '}
-                <FaAngleLeft size={20} color="white" /> Regresar
-              </button>
-              <button
-                type="button"
-                id="btn-imprimir"
-                className="btn btn-primary"
-                onClick={handleDownloadPDF}
-              >
-                {' '}
-                <FaPrint size={20} color="white" /> Imprimir
-              </button>
+  
+function goBack() {
+  window.history.back();
+}
+  
+  
+  
+  
+  
+
+
+  
+    return(
+        <div className="Auth-form-container">
+        <form className="Auth-form-Guion">
+          <div className="Auth-form-content">
+            <div className="Row">
+              <h3>Redacción</h3>
+              <div className="Button-form">
+                  <button onClick={()=> goBack()} type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
+                <button type="button" id='btn-imprimir' className="btn btn-primary" onClick={handleDownloadPDF}>  <FaPrint size={20} color="white" /> Imprimir</button>
+              </div>
             </div>
-          </div>
-          <br />
-          <div id="miDiv" className="Imprimir-div">
+            <br />
+            <div id="miDiv" className="Imprimir-div">
             <div ref={contentRef} className="hola">
               <div className="Grid">
                 <div className="Row">

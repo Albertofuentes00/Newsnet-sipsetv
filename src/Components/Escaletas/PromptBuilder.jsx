@@ -210,24 +210,14 @@ function Prompt() {
       <div className="Auth-form-container">
         <form className="Auth-form-Guion">
           <div className="Auth-form-content">
-            <button
-              type="button"
-              className="btn btn-dark"
-              onClick={() => goBack()}
-            >
-              {' '}
-              Volver
-            </button>
+          <button type='button' className="btn btn-dark" onClick={()=>goBack()} > Volver</button>
 
-            <button
-              type="button"
-              class="btn btn-danger"
-              onClick={handleDownloadPDF}
-            >
-              {' '}
-              <FaFilePdf size={20} color="white" /> Generar PDF{' '}
-            </button>
-            <div ref={contentRef} id="Prompt" className="Hoja-prompt"></div>
+          <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
+            <div ref={contentRef} id='Prompt' className='Hoja-prompt'>
+
+
+
+            </div>
           </div>
           <br />
         </form>

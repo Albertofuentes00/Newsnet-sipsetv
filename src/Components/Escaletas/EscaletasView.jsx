@@ -263,53 +263,52 @@ const Escaletas = () => {
   return (
     <div className="Auth-form-container">
       <div className="Grid">
-        <div className="Auth-form-searchbar">
-          <div className="Row-searchbar">
-            <div className="Row">
-              <div className="buscador_admin">
-                <input
-                  id="Buscador"
-                  type="search"
-                  className="inputbus"
-                  placeholder="Buscar..."
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      buscar();
-                    }
-                  }}
-                />
-              </div>
-            </div>
-            <div className="Row">
-              <div className="Grid">
-                <label> Fecha Inicial</label>
-                <input
-                  id="FI"
-                  type="date"
-                  className="input-search"
-                  value={fechaFI}
-                  onChange={(e) => setFechaFI(e.target.value)}
-                />
-                <div className="Grid">
-                  <label> Fecha Final</label>
-                  <input
-                    id="FF"
-                    type="date"
-                    className="input-search"
-                    value={fechaFF}
-                    onChange={(e) => setFechaFF(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="Row">
-              <div className="Grid"></div>
-              <button className="btn btn-primary" onClick={() => buscar()}>
-                <FaSearch size={20} color="white" /> Buscar
-              </button>
-            </div>
+
+        
+
+
+
+
+      <div className="Auth-form-searchbar">
+    <div className="Row-searchbar">
+      <div className="Row">
+        <div className='buscador_admin'>
+        <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
+        </div>
+      </div>
+      <div className="Row">
+        <div className="Grid">
+          <label> Fecha Inicial</label>
+          <input
+            id="FI"
+            type="date"
+            className="input-search"
+            value={fechaFI}
+            onChange={(e) => setFechaFI(e.target.value)}
+          />
+          <div className="Grid">
+            <label> Fecha Final</label>
+            <input id="FF" type="date" className="input-search" value={fechaFF}
+            onChange={(e) => setFechaFF(e.target.value)}/>
           </div>
         </div>
+      </div>
+      <div className="Row">
+        <div className="Grid"></div>
+        <button className="btn btn-primary" onClick={()=> buscar()}>
+          <FaSearch size={20} color="white" /> Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
 
         <div className="Auth-form-table">
           <div className="Auth-Maintable">

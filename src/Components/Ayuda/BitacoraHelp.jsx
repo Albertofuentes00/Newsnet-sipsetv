@@ -95,13 +95,13 @@ function BitacoraHelp() {
                             <img src={EliminarNota} className="HelpImages2" />
                             <br />
                             <br />
-                            <h6>Haga click en el icono del bote de basura <i className="fa-solid fa-trash"></i> de la nota que usted desee eliminar.</h6>
+                            <h6>Haga click en el ícono del bote de basura <i className="fa-solid fa-trash"></i> de la nota que usted desee eliminar.</h6>
                             <br />
                             <img src={EliminarNota2} className="HelpImages"/>
                             <br />
                             <br />
                             <h6>Posteriormente el sistema le preguntará si esta seguro de borrar la nota, si es asi, haga click en <u>Si, Eliminar</u> para eliminar por completo la nota. </h6>
-                            <h6><u>NOTA: Las notas eliminadas no podran ser recuperadas despues. </u> </h6>
+                            <h6><u>NOTA: Las notas eliminadas no podrán ser recuperadas despues. </u> </h6>
                         </div>
                             <br />
                             <br />
