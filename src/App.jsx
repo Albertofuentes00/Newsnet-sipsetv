@@ -38,6 +38,7 @@ import ListaCategorias from './Components/Admin/ListaCategorias';
 import ListaFormatos from './Components/Admin/ListaFormatos';
 import ListaRoles from './Components/Admin/ListaRoles';
 import ListaFuentes from './Components/Admin/ListaFuentes';
+import Main from './Components/MainMenu/Main';
 
 /* HELP SECTION */
 import HelpMenu from './Components/Ayuda/HelpDashboard';
@@ -124,6 +125,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/UserManual" element={<PdfViewer />} />
 
+          <Route path='Main' element={<Main/>}/>
           <Route path="MainMenu" element={<Menu />}/>
           <Route path="Admin" element={<Dashboard />}>
               <Route path="ListaProgramas" element={<ListaProgramas />} />
