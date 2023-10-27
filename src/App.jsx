@@ -106,7 +106,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="logo">
-          <img src={SIPSENewsLogo} alt="logo" />
+        <Link to="/Main"><img src={SIPSENewsLogo} alt="logo" /></Link>
           <span className="separator"></span>
           <img src={NewsnetLogo} alt="logo" />
         </div>
