@@ -21,7 +21,7 @@ function HelpMenu(){
         <div className="HelpMenu">
 
             <ul>
-                <Link to='/MainMenu'>
+                <Link to='/Main'>
                     <li> 
                     <a>Regresar</a> 
                     </li>
