@@ -182,7 +182,7 @@ const GuionesNotas = () => {
                       <td>{Dato.nombre}</td>
                       <td>{Dato.fecha.split(' ')[0]}</td>
                       <td className="buttons-th">
-                        <Link to={'/MainMenu/LeerGuion/' + Dato.pkNota}>
+                        <Link to={'/LeerGuion/' + Dato.pkNota}>
                           <button
                             id="ver"
                             type="button"
@@ -192,7 +192,7 @@ const GuionesNotas = () => {
                             <FaEye size={20} />
                           </button>
                         </Link>
-                        <Link to={'/MainMenu/EditarGuion/' + Dato.pkNota}>
+                        <Link to={'/EditarGuion/' + Dato.pkNota}>
                           <button
                             type="button"
                             className="acciones"

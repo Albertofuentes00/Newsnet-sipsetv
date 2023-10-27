@@ -20,9 +20,6 @@ const EditarGuion = () => {
       axios
         .patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros)
         .then(function (respuesta) {
-          console.log(respuesta.data.result);
-
-          show_alerta('El autoguardado se ejecuto', 'Guardado');
         })
         .catch(function (error) {
           console.log(error);
@@ -94,7 +91,8 @@ const EditarGuion = () => {
   useEffect(() => {
     GetDatos();
     try {
-      const intervalo = setInterval(Autoguardado, 6000000);
+      const intervalo = setInterval(Autoguardado, 300000);
+
 
       const handleSuprKeyPress = (event) => {
         if (event.key === 'Delete') {
