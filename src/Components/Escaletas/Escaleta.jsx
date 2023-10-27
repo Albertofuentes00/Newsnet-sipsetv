@@ -501,6 +501,8 @@ function closeModal() {
   
     const tabla = document.getElementById('sortable-table');
     const tbody = tabla.querySelector('tbody');
+
+    const Geneconductor = document.getElementById('General-conductor').value;
   
     for (const fila of filasParaGuardar) {
       try {
@@ -516,27 +518,55 @@ function closeModal() {
           console.log("Una nota no se agregó por duplicidad");
         } else {
           const nuevaFila = tabla.insertRow();
-          for (let i = 0; i < 7; i++) {
-            const td = nuevaFila.insertCell(i);
-            if (i === 0) {
-              const filas = tbody.querySelectorAll('tr');
-              td.textContent = filas.length + 1;
-              td.classList.add('Invisible');
-            } else if (i === 3) {
-              td.textContent = fila.titulo;
-            } else if (i === 4) {
-              td.textContent = fila.nombre;
-            } else if (i === 5) {
-              td.textContent = fila.nombre_Formato;
-
-            }else if(i == 6){
-              td.textContent = fila.pkNota;
-              td.classList.add('Invisible');
-            } 
-            else {
-              td.textContent = '-';
+          if(Geneconductor === ''){
+            for (let i = 0; i < 7; i++) {
+              const td = nuevaFila.insertCell(i);
+              if (i === 0) {
+                const filas = tbody.querySelectorAll('tr');
+                td.textContent = filas.length + 1;
+                td.classList.add('Invisible');
+              } else if (i === 3) {
+                td.textContent = fila.titulo;
+              } else if (i === 4) {
+                td.textContent = fila.nombre;
+              } else if (i === 5) {
+                td.textContent = fila.nombre_Formato;
+  
+              }else if(i == 6){
+                td.textContent = fila.pkNota;
+                td.classList.add('Invisible');
+              } 
+              else {
+                td.textContent = '-';
+              }
+            }
+          }else{
+            for (let i = 0; i < 7; i++) {
+              const td = nuevaFila.insertCell(i);
+              if (i === 0) {
+                const filas = tbody.querySelectorAll('tr');
+                td.textContent = filas.length + 1;
+                td.classList.add('Invisible');
+              } else if (i === 2) {
+                td.textContent = Geneconductor;
+              
+              } else if (i === 3) {
+                td.textContent = fila.titulo;
+              } else if (i === 4) {
+                td.textContent = fila.nombre;
+              } else if (i === 5) {
+                td.textContent = fila.nombre_Formato;
+  
+              }else if(i == 6){
+                td.textContent = fila.pkNota;
+                td.classList.add('Invisible');
+              } 
+              else {
+                td.textContent = '-';
+              }
             }
           }
+          OrdenNotas();
           makeRowDraggable(nuevaFila);
           setTimeout(() => {
             setBotonDeshabilitado(false);
@@ -1053,10 +1083,20 @@ const recargarTabla = () => {
               </table>   
                 </div>
             </div>
-            <div className="d-grid col-6 mx-auto">
-              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)} disabled={botonDeshabilitado}> 
+            <div className="">
+              <div className='Row'>
+              <div className='col-agregar'>
+              <button id='AgregarNota' className="btn-agregarnota" onClick={() => AgregarNota(Datos)} disabled={botonDeshabilitado}> 
               <i className="fa-solid fa-floppy-disk" ></i> Agregar
               </button>
+             
+              </div>
+            <div className='col-cond'>
+            <label>Añadir conductor</label>
+              <input id='General-conductor' className='inp-agre-cond' value={text} onChange={handleInputChange}/>
+            </div>
+              </div>
+    
               <br />
             </div>
         </div>
