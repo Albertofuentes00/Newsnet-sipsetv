@@ -147,8 +147,7 @@ const GuionesNotas = () => {
                     type="button"
                     class="btn btn-danger"
                   >
-                    {' '}
-                    Pendientes
+                    <i class="fa-solid fa-flag"/> Pendientes
                   </button>
                 </Link>
               </div>

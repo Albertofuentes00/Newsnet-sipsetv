@@ -261,6 +261,9 @@ const Bitacora = () => {
       } else if (fkFormato === '') {
         show_alerta('Seleccion un Formato', 'warning');
         setBotonDeshabilitado(false);
+      } else if (fecha === '') {
+        show_alerta('Introduce la fecha', 'warning');
+        setBotonDeshabilitado(false);
       } else if (rol == 'Responsable' || rol == 'Administrador') {
         if (fkUsuario === '') {
           show_alerta('Seleccion un reportero', 'warning');
