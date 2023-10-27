@@ -16,6 +16,8 @@ import Welcome from './Components/Bienvenida';
 import Datetime from './Components/Datetime/DatetimeText';
 import Login from './Components/LoginView/LoginView';
 
+import MainMenu from './Components/MainMenu/MainMenu';
+
 /* BITACORA SECTION */
 import Bitacora from './Components/Bitacora/BitacoraView';
 
@@ -46,7 +48,7 @@ import BitacoraHelp from './Components/Ayuda/BitacoraHelp';
 import GuionesHelp from './Components/Ayuda/GuionesHelp';
 import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
 
@@ -98,19 +100,6 @@ function App() {
     }
   }
 
-  //DESCARGA EL MANUAL DE ESTILO AL DAR CLICK
-  // const handleDownloadClick = () => {
-  //   const fileUrl = '/Descargas';
-
-  //   const link = document.createElement('a');
-  //   link.href = fileUrl;
-  //   link.download = "/Descargas/manual.doc";
-
-  //   document.body.appendChild(link)
-  //   link.click();
-
-  //   document.body.removeChild(link);
-  // }
   const cerrarsesion = () => {
     document.cookie =
       'Usuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -131,7 +120,7 @@ function App() {
 
       <header className="Datetime-header">
         <div className="Date-text">
-          <TextSample name="Alberto" apellidos="Fuentes" />
+          <TextSample/>
         </div>
       </header>
 
@@ -140,23 +129,25 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/UserManual" element={<PdfViewer />} />
 
-          <Route path="MainMenu" element={<Menu />} />
-          <Route path="Escaletas" element={<EscaletasView />} />
-          <Route path="Bitacora" element={<Bitacora />} />
-          <Route path="Prompt/:id" element={<PromptBuilder />} />
-
-          <Route path="Notas" element={<GuionesNotas />} />
-          <Route path="LeerGuion/:id" element={<LeerGuion />} />
-          <Route path="EditarGuion/:id" element={<EditarGuion />} />
-
-          <Route path="Admin" element={<Dashboard />}>
-            <Route path="ListaProgramas" element={<ListaProgramas />} />
-            <Route path="ListaCategorias" element={<ListaCategorias />} />
-            <Route path="ListaFormatos" element={<ListaFormatos />} />
-            <Route path="ListaRoles" element={<ListaRoles />} />
-            <Route path="ListaUsuarios" element={<ListaUsuarios />} />
-            <Route path="ListaFuentes" element={<ListaFuentes />} />
+          <Route path="MainMenu" element={<Menu />}>
+            <Route path="Escaletas" element={<EscaletasView />} />
+            <Route path="Bitacora" element={<Bitacora />} />
+            <Route path="Notas" element={<GuionesNotas />} />
+            <Route path="Pendientes" element={<NotasPendientes />} />
+            <Route path="LeerGuion/:id" element={<LeerGuion />} />
+            <Route path="EditarGuion/:id" element={<EditarGuion />} />
+            <Route path="Escaleta/:id" element={<Escaleta />} />
+            <Route path="Prompt/:id" element={<PromptBuilder />} />
+            <Route path="Admin" element={<Dashboard />}>
+              <Route path="ListaProgramas" element={<ListaProgramas />} />
+              <Route path="ListaCategorias" element={<ListaCategorias />} />
+              <Route path="ListaFormatos" element={<ListaFormatos />} />
+              <Route path="ListaRoles" element={<ListaRoles />} />
+              <Route path="ListaUsuarios" element={<ListaUsuarios />} />
+              <Route path="ListaFuentes" element={<ListaFuentes />} />
+            </Route>
           </Route>
+          
           <Route path="HelpDashboard" element={<HelpMenu />}>
             <Route path="Introduccion" element={<Introduccion />} />
             <Route path="BitacoraHelp" element={<BitacoraHelp />} />
@@ -165,8 +156,6 @@ function App() {
             <Route path="AdminHelp" element={<AdminHelp />} />
             <Route path="About" element={<About />} />
           </Route>
-          <Route path="Pendientes" element={<NotasPendientes />} />
-          <Route path="Escaleta/:id" element={<Escaleta />} />
         </Routes>
       </body>
 

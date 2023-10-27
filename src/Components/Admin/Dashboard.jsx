@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {FaUsers} from 'react-icons/fa'
 import {FaAngleLeft} from 'react-icons/fa'
 import { BiCameraMovie } from 'react-icons/bi'
@@ -35,9 +35,6 @@ function AdminMenu(){
             <body className="App-body">
             <header className="mainheader">
                 <div className="MenuHeader">
-                <Link to='/MainMenu' className="linkbtnad">
-                    <button type="button" class="adminbtn"> <FaAngleLeft size={20} /> Regresar</button>
-                </Link>
                 <Link to='ListaUsuarios' className={selectedButton === 1 ? 'active-admin-btn' : 'linkbtnad'} id="btn-1" onClick={()=> changeButtonClass(1)}>
                     <button type="button" class="adminbtn" > <FaUsers size={20} /> Usuarios</button>
                 </Link >

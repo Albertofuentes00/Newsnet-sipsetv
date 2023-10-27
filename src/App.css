@@ -148,8 +148,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 .menu {
-  display: grid;
-  grid-gap: 10px;
+  position: absolute;
+  top: 70px; /* Coloca el div en la parte superior de la página */
+  left: 0; /* Coloca el div en el lado izquierdo de la página */
 }
 
 .option {
@@ -258,7 +259,6 @@ a:visited {
   height: 11vh;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   flex-direction:inherit;
   font-size: calc(10px + 2vmin);
 }
@@ -318,14 +318,9 @@ a:visited {
 }
 
 .Auth-form-MainMenu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 45px;
-  padding-bottom: 45px;
-  width: auto;
-  height: auto;
-  margin: auto;
+  position: relative;
+  height: 600px; /* Altura del contenedor */
+  width: 1400px;
 }
 
 .Auth-form-container-Main{
@@ -1037,8 +1032,9 @@ width: 600px;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  position: sticky;
-  border-radius: 0px 0px 5px 5px;
+  position: relative;
+  top: 0;
+  border-radius: 5px;
 }
 
 /* CELDAS DE EXCEL */
@@ -1158,10 +1154,10 @@ p{
 }
 
 .Main-Button{
-  min-width: 20vw;
-  min-height: 10vh;
+  min-width: 5vw;
+  min-height: 5vh;
  
-  background-color: #dfdfdf;
+  background-color: #dfdfdf73;
   color: rgb(63, 63, 63);
   transition: 0.5s;
   padding: 0.6vw;
@@ -1696,27 +1692,27 @@ border-radius: 10px;
 }
 
 #darkb{
-  @include transition;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.30);
-  height: 45px;
-  width: 150px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  display: inline-block;
-  font-size: 15px;
-  text-align: center;
-  text-decoration: none;
-  appearance: none;
+  cursor: pointer; /* Cambia el cursor del mouse cuando pasa sobre el elemento*/
+  background-color: #09090f00;;
+  height: 40px; /* Establece la altura del elemento a 45 píxeles. */
+  width: 120px; /* Establece el ancho del elemento a 120 píxeles. */
+  padding: 10px; /* Agrega un espacio interno de 10 píxeles alrededor del contenido del elemento, proporcionando espacio entre el texto y el borde del elemento. */
+  border: none; /* Elimina el borde del elemento. */  
+  color: white; /* Establece el color del texto a blanco. */
+  display: inline-block; /* Hace que el elemento se comporte como un bloque en línea, lo que significa que ocupa solo el ancho necesario y permite que otros elementos estén en la misma línea. */
+  font-size: 15px; /* Establece el tamaño del texto a 15 píxeles. */
+  text-align: center; /* Centra el texto dentro del elemento en el eje horizontal. */
+  text-decoration: none; /* Elimina la decoración del texto predeterminada, como subrayado de enlaces. */
+  appearance: none; /* Establece la apariencia del elemento a "none", lo que significa que el navegador utilizará su estilo predeterminado para el elemento en lugar de cualquier estilo del sistema operativo. Esto es especialmente útil para restablecer estilos predeterminados en elementos de formulario en algunos navegadores. */
+  
 
   &:hover {
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #2344d5, #5823d5);
+    background-color: #0018a38a;
+    transition: 0.5s;
   }
 
   &:active {
-      background-color: black;
+      background-color: rgb(85, 85, 85);
   }
 
   &:focus {
@@ -1746,22 +1742,42 @@ color: black;
   background-color: #161616;
   transition: 0.5s;
   color: white;
-  }
+}
 
-  .linkbtnad:hover button{
-    color: white;
-    transition: 0.5s;
-    }
+.linkbtnad:hover button{
+  color: white;
+  transition: 0.5s;
+}
 
 
-    .active-admin-btn {
-      height: 100%;
-      background-color: #161616;
-      padding: 10px;
-      transition: 0.5s;
-    }
+.active-admin-btn {
+  height: 100%;
+  background-color: #161616;
+  padding: 10px;
+  transition: 0.5s;
+}
     
-    .active-admin-btn button {
-      color: rgb(255, 255, 255);
-      transition: 0.5s;
-    }
+  .active-admin-btn button {
+    color: rgb(255, 255, 255);
+    transition: 0.5s;
+}
+
+.adminbtn{
+  height: 100%;
+  background-color: transparent;
+  border-style: none;
+  font-size: 14px;
+}
+/*si*/
+
+/* .menubtn{
+  height: 100%;
+    background-color: transparent;
+  }
+  
+  .active-menu-btn {
+    height: 100%;
+    background-color: #1e0899;
+    padding: 6%;
+    transition: 0.5s;
+  } */

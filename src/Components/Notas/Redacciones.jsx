@@ -164,23 +164,13 @@ const GuionesNotas = () => {
             <div className="Row">
               <h3>Notas</h3>
               <div className="Button-form">
-                <Link to="/MainMenu">
-                  <button
-                    type="button"
-                    class="btn btn-dark"
-                    onClick={() => LimpiarSession()}
-                  >
-                    {' '}
-                    <FaAngleLeft size={20} color="white" /> Regresar
-                  </button>
-                </Link>
 
-                <Link to="/Pendientes">
+                <Link to="/MainMenu/Pendientes">
                   <button
                     type="button"
                     class="btn btn-danger"
                     onClick={() => LimpiarSession()}
-                  >
+                  ><i class="fa-solid fa-flag"></i>
                     {' '}
                     Pendientes
                   </button>
@@ -216,7 +206,7 @@ const GuionesNotas = () => {
                       <td>{Dato.nombre}</td>
                       <td>{Dato.fecha.split(' ')[0]}</td>
                       <td className="buttons-th">
-                        <Link to={'/LeerGuion/' + Dato.pkNota}>
+                        <Link to={'/MainMenu/LeerGuion/' + Dato.pkNota}>
                           <button
                             id="ver"
                             type="button"
@@ -227,7 +217,7 @@ const GuionesNotas = () => {
                             <FaEye size={20} />
                           </button>
                         </Link>
-                        <Link to={'/EditarGuion/' + Dato.pkNota}>
+                        <Link to={'/MainMenu/EditarGuion/' + Dato.pkNota}>
                           <button
                             type="button"
                             className="acciones"

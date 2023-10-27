@@ -315,12 +315,6 @@ const Escaletas = () => {
             <div className="Row">
               <h3>Escaletas</h3>
               <div>
-                <Link to="/MainMenu">
-                  <button type="button" class="btn btn-dark">
-                    {' '}
-                    <FaAngleLeft size={20} color="white" /> Regresar
-                  </button>
-                </Link>
                 <button
                   onClick={() => OpenModal(1)}
                   data-bs-toggle="modal"
@@ -353,7 +347,7 @@ const Escaletas = () => {
                       <td>{Datos.hora_Inicio}</td>
                       <td className="buttons-th">
                         <Link
-                          to={'/Escaleta/' + Datos.pkEscaleta}
+                          to={'/MainMenu/Escaleta/' + Datos.pkEscaleta}
                           className="acciones"
                         >
                           {' '}

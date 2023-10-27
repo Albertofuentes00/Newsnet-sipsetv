@@ -557,12 +557,6 @@ const Bitacora = () => {
             <div className="Row">
               <h3>Bitácora de notas</h3>
               <div>
-                <Link to="/MainMenu">
-                  <button type="button" class="btn btn-dark">
-                    {' '}
-                    <FaAngleLeft size={20} color="white" /> Regresar
-                  </button>
-                </Link>
                 <button
                   onClick={() => OpenModal(1)}
                   data-bs-toggle="modal"
