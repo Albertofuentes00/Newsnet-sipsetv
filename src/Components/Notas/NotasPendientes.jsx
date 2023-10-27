@@ -33,7 +33,7 @@ const GuionesNotas = () => {
             <div className="Row">
               <h3>Notas Pendientes</h3>
               <div className="Button-form">
-                <Link to="/MainMenu/Notas">
+                <Link to="/Notas">
                   <button
                     type="button"
                     class="btn btn-dark"

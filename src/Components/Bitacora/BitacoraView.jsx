@@ -98,9 +98,9 @@ const Bitacora = () => {
   ) => {
     setPkNota('');
     setTitulo('');
-    setFkFuente('');
-    setFkCategoria('');
-    setFkFormato('');
+    setFkFuente('1');
+    setFkCategoria('1');
+    setFkFormato('1');
     setFkUsuario('');
     setFecha('');
     setOperation(op);
@@ -671,7 +671,6 @@ const Bitacora = () => {
                         value={fkCategoria}
                         onChange={(e) => setFkCategoria(e.target.value)}
                       >
-                        <option></option>
                         {Categorias.map((Categorias) => (
                           <option value={Categorias.pkCategoria}>
                             {Categorias.nombre_Categoria}
@@ -696,7 +695,6 @@ const Bitacora = () => {
                         value={fkFormato}
                         onChange={(e) => setFkFormato(e.target.value)}
                       >
-                        <option></option>
                         {Formatos.map((Formatos) => (
                           <option value={Formatos.pkFormato}>
                             {Formatos.nombre_Formato}
@@ -723,7 +721,7 @@ const Bitacora = () => {
                             value={fkfuente}
                             onChange={(e) => setFkFuente(e.target.value)}
                           >
-                            <option></option>
+                            
                             {Fuentes.map((Fuentes) => (
                               <option value={Fuentes.pkFuente}>
                                 {Fuentes.nombre_Fuente}

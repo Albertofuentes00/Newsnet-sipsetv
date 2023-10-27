@@ -142,7 +142,7 @@ const GuionesNotas = () => {
               <h3>Notas</h3>
               <div className="Button-form">
 
-                <Link to="/MainMenu/Pendientes">
+                <Link to="/Pendientes">
                   <button
                     type="button"
                     class="btn btn-danger"

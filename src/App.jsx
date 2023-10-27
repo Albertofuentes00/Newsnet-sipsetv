@@ -183,10 +183,8 @@ const TextSample = (props) => {
        <MainMenu/>
       </div>
 
-      <div className="Grid">
+      <div className="Grid-bienvenida">
         <Welcome />
-      </div>
-      <div className="Grid">
         <Datetime />
       </div>
     </div>

@@ -31,10 +31,8 @@ export default function App() {
   }, []);
 
   return (
-    <div >
-      <div>
+    <div className="FechaBienvenida" >
         <p> Hoy es  {dateTime.day} / {dateTime.month} / {dateTime.year} | {dateTime.hours}:{dateTime.minutes}:{dateTime.seconds} </p> 
-      </div>
     </div>
   );
 }
