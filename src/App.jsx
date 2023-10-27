@@ -106,9 +106,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="logo">
+          <Link to="/Main">
           <img src={SIPSENewsLogo} alt="logo" />
           <span className="separator"></span>
           <img src={NewsnetLogo} alt="logo" />
+          </Link>
+          
+       
         </div>
 
         <div className="DateTime">{loginwindow(true)}</div>
