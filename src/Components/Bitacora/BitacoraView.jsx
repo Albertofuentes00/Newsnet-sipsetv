@@ -776,7 +776,6 @@ const Bitacora = () => {
                 onClick={() => setText('')}
               ></button>
             </div>
-            <br />
             <h6>
               Ingresa los nuevos datos que requiere para editar la nota
               seleccionada
