@@ -114,7 +114,6 @@ function Menu() {
   return (
     <div class="menu">
     <ul>{botonadmin(true)}</ul>
-    <Outlet/>
   </div>
   );
 }

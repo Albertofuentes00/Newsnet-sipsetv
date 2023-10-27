@@ -852,7 +852,7 @@ function Table() {
             <div className="fila-esc">
               <h3>Armado de Escaleta</h3>
               <div>
-                <Link to="/MainMenu/Escaletas">
+                <Link to="/Escaletas">
                   <button type="button" class="btn btn-dark">
                     {' '}
                     <FaAngleLeft size={20} color="white" /> Regresar
@@ -875,7 +875,7 @@ function Table() {
                   {' '}
                   <FaFilePdf size={20} color="white" /> Generar PDF{' '}
                 </button>
-                <Link to={'/MainMenu/Prompt/' + id}>
+                <Link to={'/Prompt/' + id}>
                   <button type="button" class="btn btn-danger">
                     {' '}
                     Generar Prompt{' '}

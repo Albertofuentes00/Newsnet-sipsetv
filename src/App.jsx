@@ -62,11 +62,6 @@ function App() {
     if (rutaActual != '/') {
       return (
         <div className="options">
-          <Link to="/MainMenu">
-            <a onClick={() => LimpiarSession()} href="#">
-              Menu
-            </a>
-          </Link>
           <Link to="/HelpDashboard/Introduccion">
             <a onClick={() => LimpiarSession()} href="#">
               Ayuda
@@ -129,16 +124,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/UserManual" element={<PdfViewer />} />
 
-          <Route path="MainMenu" element={<Menu />}>
-            <Route path="Escaletas" element={<EscaletasView />} />
-            <Route path="Bitacora" element={<Bitacora />} />
-            <Route path="Notas" element={<GuionesNotas />} />
-            <Route path="Pendientes" element={<NotasPendientes />} />
-            <Route path="LeerGuion/:id" element={<LeerGuion />} />
-            <Route path="EditarGuion/:id" element={<EditarGuion />} />
-            <Route path="Escaleta/:id" element={<Escaleta />} />
-            <Route path="Prompt/:id" element={<PromptBuilder />} />
-            <Route path="Admin" element={<Dashboard />}>
+          <Route path="MainMenu" element={<Menu />}/>
+          <Route path="Admin" element={<Dashboard />}>
               <Route path="ListaProgramas" element={<ListaProgramas />} />
               <Route path="ListaCategorias" element={<ListaCategorias />} />
               <Route path="ListaFormatos" element={<ListaFormatos />} />
@@ -146,7 +133,15 @@ function App() {
               <Route path="ListaUsuarios" element={<ListaUsuarios />} />
               <Route path="ListaFuentes" element={<ListaFuentes />} />
             </Route>
-          </Route>
+
+          <Route path="Escaletas" element={<EscaletasView />} />
+            <Route path="Bitacora" element={<Bitacora />} />
+            <Route path="Notas" element={<GuionesNotas />} />
+            <Route path="Pendientes" element={<NotasPendientes />} />
+            <Route path="LeerGuion/:id" element={<LeerGuion />} />
+            <Route path="EditarGuion/:id" element={<EditarGuion />} />
+            <Route path="Escaleta/:id" element={<Escaleta />} />
+            <Route path="Prompt/:id" element={<PromptBuilder />} />
           
           <Route path="HelpDashboard" element={<HelpMenu />}>
             <Route path="Introduccion" element={<Introduccion />} />
@@ -184,6 +179,10 @@ const TextSample = (props) => {
 
   return (
     <div className="Row-Date">
+      <div className='Grid'>
+       <MainMenu/>
+      </div>
+
       <div className="Grid">
         <Welcome />
       </div>

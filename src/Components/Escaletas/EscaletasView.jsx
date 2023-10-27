@@ -347,7 +347,7 @@ const Escaletas = () => {
                       <td>{Datos.hora_Inicio}</td>
                       <td className="buttons-th">
                         <Link
-                          to={'/MainMenu/Escaleta/' + Datos.pkEscaleta}
+                          to={'/Escaleta/' + Datos.pkEscaleta}
                           className="acciones"
                         >
                           {' '}
