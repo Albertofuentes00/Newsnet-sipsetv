@@ -146,7 +146,6 @@ const GuionesNotas = () => {
                   <button
                     type="button"
                     class="btn btn-danger"
-                    onClick={() => LimpiarSession()}
                   >
                     {' '}
                     Pendientes
