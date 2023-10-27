@@ -1810,3 +1810,33 @@ color: black;
   .FechaBienvenida {
     justify-content: space-between;
   }
+
+  .background-sipse {
+    background-image: url('./images/Sipse.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 85vh;
+    background-position: center center; /* Opcional: para centrar la imagen en la pantalla */
+}
+
+.Bienvenida-texto p{
+  margin: auto;
+  color: white;
+  font: 700 normal 2.5em 'tahoma';
+  text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.content-main-sip{
+  background-color: rgba(0, 0, 0, 0.692);
+  min-height: 85vh;
+  padding-top: 30vh;
+  
+}
