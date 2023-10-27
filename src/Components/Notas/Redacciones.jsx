@@ -84,29 +84,6 @@ const GuionesNotas = () => {
     }
   };
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentData = Datos.slice(startIndex, endIndex);
-  const [itemNumber, setItemNumber] = useState(0);
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    setItemNumber(startIndex + 1);
-  }, [currentPage, itemsPerPage, Datos]);
-
-  const GuardarPaginaActual = () => {
-    sessionStorage.setItem('paginaActual', currentPage);
-  };
-
-  useEffect(() => {
-    const paginaGuardada = sessionStorage.getItem('paginaActual');
-    if (paginaGuardada) {
-      setCurrentPage(parseInt(paginaGuardada, 10));
-    }
-  }, []);
-
-  const LimpiarSession = () => {
-    sessionStorage.removeItem('paginaActual');
-  };
 
   return (
     <div className="Auth-form-container">
@@ -170,7 +147,7 @@ const GuionesNotas = () => {
                     type="button"
                     class="btn btn-danger"
                     onClick={() => LimpiarSession()}
-                  ><i class="fa-solid fa-flag"></i>
+                  >
                     {' '}
                     Pendientes
                   </button>
@@ -194,12 +171,12 @@ const GuionesNotas = () => {
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
-                  {currentData.map((Dato, i) => (
+                  {Datos.map((Dato,i) => (
                     <tr
                       key={Dato.pkNota}
                       className={Dato.redaccion !== '' ? 'no-redac' : ''}
                     >
-                      <td>{itemNumber + i}</td>
+                      <td>{i + 1}</td>
                       <td>{Dato.titulo}</td>
                       <td>{Dato.nombre_Categoria}</td>
                       <td>{Dato.nombre_Formato}</td>
@@ -212,7 +189,6 @@ const GuionesNotas = () => {
                             type="button"
                             className="acciones"
                             disabled={Dato.redaccion === ''}
-                            onClick={() => GuardarPaginaActual()}
                           >
                             <FaEye size={20} />
                           </button>
@@ -221,7 +197,6 @@ const GuionesNotas = () => {
                           <button
                             type="button"
                             className="acciones"
-                            onClick={() => GuardarPaginaActual()}
                           >
                             <FaRegListAlt size={20} />
                           </button>
@@ -231,21 +206,6 @@ const GuionesNotas = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="pagination-list">
-                <button
-                  onClick={() => setCurrentPage(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
-                  <FaArrowAltCircleLeft size={20} />
-                </button>
-                <span>Página {currentPage}</span>
-                <button
-                  onClick={() => setCurrentPage(currentPage + 1)}
-                  disabled={endIndex >= Datos.length}
-                >
-                  <FaArrowAltCircleRight size={20} />
-                </button>
-              </div>
             </div>
           </div>
         </div>

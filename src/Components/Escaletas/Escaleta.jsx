@@ -503,7 +503,7 @@ function Table() {
 
     const tabla = document.getElementById('sortable-table');
     const tbody = tabla.querySelector('tbody');
-
+  
     for (const fila of filasParaGuardar) {
       try {
         const datosEnviar = {
@@ -533,10 +533,12 @@ function Table() {
               td.textContent = fila.nombre;
             } else if (i === 5) {
               td.textContent = fila.nombre_Formato;
-            } else if (i == 6) {
+
+            }else if(i == 6){
               td.textContent = fila.pkNota;
               td.classList.add('Invisible');
-            } else {
+            } 
+            else {
               td.textContent = '-';
             }
           }
@@ -1066,21 +1068,16 @@ function Table() {
                     </tbody>
                   </table>
                 </div>
-              </div>
-              <div className="d-grid col-6 mx-auto">
-                <button
-                  id="AgregarNota"
-                  className="btn btn-success"
-                  onClick={() => AgregarNota(Datos)}
-                  disabled={botonDeshabilitado}
-                >
-                  <i className="fa-solid fa-floppy-disk"></i> Agregar
-                </button>
-                <br />
-              </div>
             </div>
-          </div>
+            <div className="d-grid col-6 mx-auto">
+              <button id='AgregarNota' className="btn btn-success" onClick={() => AgregarNota(Datos)} disabled={botonDeshabilitado}> 
+              <i className="fa-solid fa-floppy-disk" ></i> Agregar
+              </button>
+              <br />
+            </div>
         </div>
+      </div>
+    </div>
 
         <div id="modalIndicacion" className="modal fade" aria-hidden="true">
           <div className="modal-dialog">

@@ -13,6 +13,8 @@ function Prompt() {
   useEffect(() => {
     var modal = document.getElementById('myModal');
     modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Desactivar el scroll
+  window.scrollTo(0, 0);
     GetDatosEscaleta();
     setTimeout(() => {
       closeModal();
@@ -173,6 +175,7 @@ function Prompt() {
   function closeModal() {
     var modal = document.getElementById('myModal');
     modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
 
