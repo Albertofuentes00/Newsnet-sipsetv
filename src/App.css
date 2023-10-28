@@ -423,14 +423,13 @@ a:visited {
 }
 
 .Row-searchbar{
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px; /* Separación entre botones */
   display: flex;
   margin-bottom: -5px; /* Espacio entre filas */
   margin-top: -15px;
   padding: 5px;
-  font-size: medium;
+  font-size: 12px;
   justify-content: center;
 }
 
@@ -540,8 +539,8 @@ option{
 
 .Auth-form-table {
   min-width: 80vw;
-  min-height: 70vh;
-  max-height: 70vh;
+  min-height: 65vh;
+  max-height: 65vh;
   height: auto;
   overflow-y: auto;
   position: static;
@@ -582,8 +581,7 @@ option{
 
 .Auth-form-searchbar {
   width: 800px;
-  height: 80px;
-  max-height: 550px;
+  max-height: 80px;
 
   align-self: center;
   margin: auto;
@@ -853,10 +851,7 @@ button.btn.btn-light:hover{
 }
 
 
-.Grid{
-  padding-left: 12px;
 
-}
 
 /* Formato de tablas */
 
@@ -1344,6 +1339,11 @@ margin-right: 2vw;
 .inp-agre-cond{
   font-size: 14px;
   padding: 2px;
+  max-width: 5vw;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(196, 196, 196);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 
@@ -1353,11 +1353,11 @@ margin-right: 2vw;
   background-color: gainsboro;
   border-radius: 0px 5px 5px 0px;
   color: #242427;
-  font-size: 17px;
+  font-size: 14px;
   border-color: #eb3d3d;
   background-color: #ef8f8f;
   min-width: 10vw;
-  min-height: 4vh;
+  min-height: 3.5vh;
   font-weight: bolder;
 
 }
@@ -1368,11 +1368,11 @@ margin-right: 2vw;
   border-width: 2px;
   background-color: gainsboro;
   color: #04044e;
-  font-size: 17px;
+  font-size: 14px;
   border-color: #0f83ef;
   background-color: #a6d2fb;
   min-width: 10vw;
-  min-height: 4vh;
+  min-height: 3.5vh;
 
   font-weight: bolder;
 }
@@ -1384,10 +1384,10 @@ margin-right: 2vw;
   border-radius: 5px 0px 0px 5px;
   background-color: #a5cdb3;
   color: #04510b;
-  font-size: 17px;
+  font-size: 14px;
   border-color: #02c245;
   min-width: 10vw;
-  min-height: 4vh;
+  min-height: 3.5vh;
   font-weight: bolder;
 
 }
@@ -1522,7 +1522,7 @@ margin-right: 2vw;
 
 
 .modal-content {
-  background-color: #dbdbdb;
+  background-color: #e7e7e7;
   margin: 0% auto;
   border: 1px solid #888;
   max-width: 50vw;
@@ -1542,7 +1542,6 @@ margin-right: 2vw;
 .modal-div{
 overflow: auto;
 padding: 40px;
-background-color: rgb(235, 235, 235);
 border-radius: 10px;
 }
 
@@ -1570,6 +1569,14 @@ border-radius: 10px;
   min-height: 10vh;
   margin-bottom: 3%;
   background-color: white;
+  padding: 2px;
+  max-width: 5vw;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(196, 196, 196);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 5px;
+  resize: none;
 }
 
 .btn-modal{
@@ -1710,9 +1717,23 @@ border-radius: 10px;
 	}
 }
 
-#darkb{
+.darkb button{
   cursor: pointer; /* Cambia el cursor del mouse cuando pasa sobre el elemento*/
   background-color: #09090f00;;
+  height: 40px; /* Establece la altura del elemento a 45 píxeles. */
+  width: 120px; /* Establece el ancho del elemento a 120 píxeles. */
+  padding: 10px; /* Agrega un espacio interno de 10 píxeles alrededor del contenido del elemento, proporcionando espacio entre el texto y el borde del elemento. */
+  border: none; /* Elimina el borde del elemento. */  
+  color: rgb(211, 211, 211); /* Establece el color del texto a blanco. */
+  display: inline-block; /* Hace que el elemento se comporte como un bloque en línea, lo que significa que ocupa solo el ancho necesario y permite que otros elementos estén en la misma línea. */
+  font-size: 15px; /* Establece el tamaño del texto a 15 píxeles. */
+  text-align: center; /* Centra el texto dentro del elemento en el eje horizontal. */
+  text-decoration: none; /* Elimina la decoración del texto predeterminada, como subrayado de enlaces. */
+  appearance: none; /* Establece la apariencia del elemento a "none", lo que significa que el navegador utilizará su estilo predeterminado para el elemento en lugar de cualquier estilo del sistema operativo. Esto es especialmente útil para restablecer estilos predeterminados en elementos de formulario en algunos navegadores. */
+}
+
+.darkb-active button{
+  cursor: pointer; /* Cambia el cursor del mouse cuando pasa sobre el elemento*/
   height: 40px; /* Establece la altura del elemento a 45 píxeles. */
   width: 120px; /* Establece el ancho del elemento a 120 píxeles. */
   padding: 10px; /* Agrega un espacio interno de 10 píxeles alrededor del contenido del elemento, proporcionando espacio entre el texto y el borde del elemento. */
@@ -1722,21 +1743,11 @@ border-radius: 10px;
   font-size: 15px; /* Establece el tamaño del texto a 15 píxeles. */
   text-align: center; /* Centra el texto dentro del elemento en el eje horizontal. */
   text-decoration: none; /* Elimina la decoración del texto predeterminada, como subrayado de enlaces. */
-  appearance: none; /* Establece la apariencia del elemento a "none", lo que significa que el navegador utilizará su estilo predeterminado para el elemento en lugar de cualquier estilo del sistema operativo. Esto es especialmente útil para restablecer estilos predeterminados en elementos de formulario en algunos navegadores. */
-  
-
-  &:hover {
-    background-color: #0018a38a;
-    transition: 0.5s;
-  }
-
-  &:active {
-      background-color: rgb(85, 85, 85);
-  }
-
-  &:focus {
-      outline: none;
-  }
+  appearance: none;
+  background-color: rgb(107, 14, 206);
+  border-style: none;
+  color: rgb(255, 255, 255);
+  height: 100%;
 }
 
 
@@ -1809,6 +1820,7 @@ color: black;
 
   .FechaBienvenida {
     justify-content: space-between;
+    margin-left: 20px;
   }
 
   .background-sipse {
@@ -1821,12 +1833,24 @@ color: black;
     background-position: center center; /* Opcional: para centrar la imagen en la pantalla */
 }
 
-.Bienvenida-texto p{
+.Bienvenida-texto p {
   margin: auto;
   color: white;
   font: 700 normal 2.5em 'tahoma';
-  text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7);
+  animation: neon 1.5s infinite alternate;
 }
+
+@keyframes neon {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.7);
+  }
+}
+
+
 
 @keyframes textclip {
   to {
@@ -1835,7 +1859,7 @@ color: black;
 }
 
 .content-main-sip{
-  background-color: rgba(0, 0, 0, 0.692);
+  background-color: rgba(0, 0, 0, 0.685);
   min-height: 85vh;
   padding-top: 30vh;
   

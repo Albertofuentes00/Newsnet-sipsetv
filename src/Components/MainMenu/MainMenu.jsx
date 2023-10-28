@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaList } from 'react-icons/fa';
 import { FaBook } from 'react-icons/fa';
 import { FaFileAlt } from 'react-icons/fa';
@@ -7,11 +7,19 @@ import { Outlet, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function Menu() {
-  const [selectedButton, setSelectedButton] = useState(1);
+  const initialSelectedButton = sessionStorage.getItem('selectedButton') || 1;
 
+  const [selectedButton, setSelectedButton] = useState(parseInt(initialSelectedButton));
+
+  // Función para cambiar la clase del botón
   const changeButtonClass = (buttonNumber) => {
     setSelectedButton(buttonNumber);
   };
+
+  useEffect(() => {
+    sessionStorage.setItem('selectedButton', selectedButton);
+  }, [selectedButton]);
+
   function botonadmin() {
     try {
       const cadena = Cookies.get('Usuario');
@@ -22,23 +30,23 @@ function Menu() {
         return (
           <div className="horizontal-list">
             <li>
-              <Link to="Bitacora" className={selectedButton === 2 ? 'active-menu-btn' : 'linkbtnad2'} id="btn-2" onClick={()=> changeButtonClass(2)} >
-                <button type="button" id="darkb" >
+              <Link to="Bitacora" className={selectedButton === 2 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(2)} >
+                <button type="button" id="darkb">
                   <FaBook size={25} /> Bitácora
                 </button>
               </Link>
             </li>
 
             <li>
-              <Link to="Notas" className={selectedButton === 3 ? 'active-menu-btn' : 'linkbtnad2'} id="btn-3" onClick={()=> changeButtonClass(3)}>
-                <button type="button" id="darkb" >
+              <Link to="Notas" className={selectedButton === 3 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(3)}>
+                <button type="button" id="darkb">
                   {' '}
                   <FaFileAlt size={25} /> Notas
                 </button>
               </Link>
             </li>            
             <li>
-              <Link to="Escaletas" className={selectedButton === 4 ? 'active-menu-btn' : 'linkbtnad2'} id="btn-4" onClick={()=> changeButtonClass(4)}>
+              <Link to="Escaletas" className={selectedButton === 4 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(4)}>
                 <button type="button" id="darkb">
                   {' '}
                   <FaList size={25} /> Escaletas
@@ -46,7 +54,7 @@ function Menu() {
               </Link>
             </li>
             <li>
-              <Link to="Admin/ListaUsuarios" className={selectedButton === 5 ? 'active-menu-btn' : 'linkbtnad2'} id="btn-5" onClick={()=> changeButtonClass(5)}>
+              <Link to="Admin/ListaUsuarios" className={selectedButton === 5 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(5)}>
                 <button type="button" id="darkb">
                   <FaUser size={25} /> Admin
                 </button>
@@ -56,18 +64,18 @@ function Menu() {
         );
       } else if (rol === 'Reportero') {
         return (
-          <div className="horizontal-list">
+          <div className="horizontal-list" > 
             <li>
-              <Link to="Bitacora">
-                <button type="button" id="darkb">
+              <Link to="Bitacora" className={selectedButton === 2 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(2)}>
+                <button type="button" id="darkb" className='darkb'>
                   {' '}
                   <FaBook size={25} /> Bitácora
                 </button>
               </Link>
             </li>
             <li>
-              <Link to="Notas">
-                <button type="button" id="darkb">
+              <Link to="Notas" className={selectedButton === 3 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(3)}>
+                <button type="button" id="darkb" className='darkb'>
                   {' '}
                   <FaFileAlt size={25} /> Notas
                 </button>
@@ -79,8 +87,8 @@ function Menu() {
         return (
           <div className="horizontal-list">
             <li>
-              <Link to="Bitacora">
-                <button type="button" id="darkb">
+              <Link to="Bitacora" className={selectedButton === 2 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(2)}>
+                <button type="button" id="darkb" className='darkb'>
                   {' '}
                   <FaBook size={25} /> Bitácora
                 </button>
@@ -88,16 +96,16 @@ function Menu() {
             </li>
 
             <li>
-              <Link to="Notas">
-                <button type="button" id="darkb">
+              <Link to="Notas" className={selectedButton === 3 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(3)}>
+                <button type="button" id="darkb" className='darkb'>
                   {' '}
                   <FaFileAlt size={25} /> Notas
                 </button>
               </Link>
             </li>            
             <li>
-              <Link to="Escaletas">
-                <button type="button" id="darkb">
+              <Link to="Escaletas" className={selectedButton === 4 ? 'darkb-active' : 'darkb'} onClick={()=> changeButtonClass(4)}>
+                <button type="button" id="darkb" className='darkb'>
                   {' '}
                   <FaList size={25} /> Escaletas
                 </button>

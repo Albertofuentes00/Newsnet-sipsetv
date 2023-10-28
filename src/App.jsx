@@ -55,8 +55,18 @@ import EditarGuion from './Components/Notas/EditarRedaccion';
 
 function App() {
   const LimpiarSession = () => {
-    sessionStorage.removeItem('paginaActual');
+    sessionStorage.removeItem('selectedButton');
   };
+
+
+  function cambiarClase() {
+    const elementos = document.querySelectorAll('.darkb-active');
+    elementos.forEach((elemento) => {
+      elemento.classList.remove('darkb-active');
+      elemento.classList.add('darkb');
+    });
+  }
+  
 
   function loginwindow() {
     const rutaActual = window.location.pathname;
@@ -64,12 +74,12 @@ function App() {
       return (
         <div className="options">
           <Link to="/HelpDashboard/Introduccion">
-            <a onClick={() => LimpiarSession()} href="#">
+            <a onClick={() => {LimpiarSession(); cambiarClase()}} href="#">
               Ayuda
             </a>
           </Link>
           <Link to="/UserManual">
-            <a onClick={() => LimpiarSession()} href="#">
+            <a onClick={() => {LimpiarSession(); cambiarClase()}} href="#">
               {' '}
               Manual de estilo
             </a>
@@ -106,7 +116,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="logo">
-          <Link to="/Main">
+          <Link to="/Main" onClick={() => cambiarClase()}>
           <img src={SIPSENewsLogo} alt="logo" />
           <span className="separator"></span>
           <img src={NewsnetLogo} alt="logo" />

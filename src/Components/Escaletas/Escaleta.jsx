@@ -15,6 +15,7 @@ import { show_alerta } from '../../Funciones';
 import html2pdf from 'html2pdf.js';
 import { FaFileAlt } from 'react-icons/fa';
 
+
 function Table() {
   const [filda, Setfilda] = useState('');
   const [fildaUpdated, setFildaUpdated] = useState(false);
@@ -171,7 +172,7 @@ function Table() {
         return (
           <div ref={tablaRef}>
             <table className="tabla-armado" id="sortable-table">
-              <thead>
+              <thead >
                 <tr>
                   <th scope="col" className="Invisible">
                     #
@@ -519,7 +520,6 @@ function Table() {
 
         if (respuesta.data.mensaje === 'Ya existe') {
           console.log(respuesta.data.result.mensaje);
-          console.log('Una nota no se agregó por duplicidad');
         } else {
           const nuevaFila = tabla.insertRow();
             if(Geneconductor === ''){
@@ -577,7 +577,6 @@ function Table() {
           setTimeout(() => {
             setBotonDeshabilitado(false);
           }, 1000);
-          console.log('Se agrego la nota');
         }
       } catch (error) {
         show_alerta('Error en la solicitud', 'error');
@@ -593,6 +592,8 @@ function Table() {
       setBotonDeshabilitado(false);
     }, 600);
   };
+
+  const botonCerrarRef = useRef(null);
 
   function agregarIndicacion() {
     const tabla = document.getElementById('sortable-table');
@@ -621,6 +622,10 @@ function Table() {
     var valor = 1;
     makeRowDraggable(nuevaFila, valor);
     ActualizarTablaEs();
+    if (botonCerrarRef.current) {
+      botonCerrarRef.current.click(); // Hace clic en el botón de cerrar
+    }
+    setText('');
   }
 
   try {
@@ -785,7 +790,6 @@ function Table() {
           'https://localhost:7201/Nota_Esca/EliminarNota/' + pkNota + '/' + id
         )
         .then(function (respuesta) {
-          show_alerta('Nota eliminada con exito');
           recargarTabla();
           ActualizarTablaEs();
         })
@@ -962,7 +966,6 @@ function Table() {
         <div className="Auth-form-escaletaArmado">
           <div>
             <div className="Row"></div>
-            <br />
             <div ref={contentRef} class="container">
               {mostrar()}
               {validacion()}
@@ -1126,17 +1129,19 @@ function Table() {
               <div className="modal-header">
                 <label className="h5"> </label>
                 <button
-                  type="btnCerrar"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+        type="btnCerrar"
+        className="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        id='cerrar-indica'
+        ref={botonCerrarRef}
+      ></button>
               </div>
 
               <h4>Definir Indicacion</h4>
               <div className="modal-body-table">
                 <div className="Auth-form-container-Main">
-                  <textarea className="nombre-indic" id="Nombre_indi" />
+                  <textarea className="nombre-indic" id="Nombre_indi" value={text} onChange={handleInputChange}/>
                   <ul id="resultados"></ul>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { FaAngleLeft } from 'react-icons/fa';
-import { FaPrint } from 'react-icons/fa';
+import { FaFilePdf } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import React, { useRef } from 'react';
@@ -104,7 +104,7 @@ function goBack() {
               <h3>Redacción</h3>
               <div className="Button-form">
                   <button onClick={()=> goBack()} type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
-                <button type="button" id='btn-imprimir' className="btn btn-primary" onClick={handleDownloadPDF}>  <FaPrint size={20} color="white" /> Imprimir</button>
+                <button type="button" id='btn-imprimir' className="btn btn-danger" onClick={handleDownloadPDF}>  <FaFilePdf size={20} color="white" /> Generar PDF</button>
               </div>
             </div>
             <br />

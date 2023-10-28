@@ -6,7 +6,7 @@ function Main() {
       <div className='content-main-sip'>
       <div className='Bienvenida-texto'>
 
-<p>Bienvenido equipo SIPSE</p>
+<p>El poder de la información</p>
         </div>
       </div>
 
