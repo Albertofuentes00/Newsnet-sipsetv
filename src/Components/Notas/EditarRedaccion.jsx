@@ -195,9 +195,9 @@ const EditarGuion = () => {
       return (
         <div className="redaccion-nota">
           <h5>Redactar guión de: </h5>
-          <h7>Titulo: {Datos.titulo}</h7>
+          <b><h7> <u>Título:</u> {Datos.titulo}</h7></b>
           <br></br>
-          <h7> Formato: {Datos.formato.nombre_Formato}</h7>
+          <b><h7> <u>Formato:</u> {Datos.formato.nombre_Formato}</h7></b>
         </div>
       );
     }
