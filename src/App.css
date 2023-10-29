@@ -614,6 +614,7 @@ option{
   padding-right: 15px;
   border-radius: 8px;
   background-color: #e7e7e7;
+  max-width: 80vw;
 }
 
 
@@ -1280,6 +1281,11 @@ table tr{
   border-collapse: separate;
   border-spacing: 2px 3px;
   transition: box-shadow 0.3s, transform 0.3s;
+  table-layout: fixed;
+}
+
+.tabla-armado-titulo {
+  width: 45vw;
 }
 
 .tabla-armado th,
@@ -1557,6 +1563,11 @@ padding: 40px;
 border-radius: 10px;
 }
 
+.cargando-notas{
+  min-height: 35vh;
+  padding: 10vw;
+}
+
 .close {
   color: #aaa;
   background-color: transparent;
@@ -1569,6 +1580,10 @@ border-radius: 10px;
   width: 8vw;
 }
 
+.id-tablas{
+  width: 50px;
+}
+
 .close:hover,
 .close:focus {
   color: black;
@@ -1576,13 +1591,12 @@ border-radius: 10px;
 }
 
 .modal-input{
-  min-width: 30vw;
+  min-width: 20vw;
   margin: auto;
   min-height: 2vh;
   margin-bottom: 3%;
   background-color: white;
   padding: 2px;
-  max-width: 5vw;
   border-style: solid;
   border-width: 1px;
   border-color: rgb(196, 196, 196);
@@ -1667,6 +1681,7 @@ border-radius: 10px;
 .redaccion-nota{
   font-size: 14px;
   text-align: left;
+  max-width: 50vw;
 }
 
 

@@ -331,7 +331,7 @@ const Escaletas = () => {
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" className='id-tablas'>#</th>
                     <th scope="col">Programa</th>
                     <th scope="col">Fecha Mes/Dia/Año</th>
                     <th scope="col">Hora de inicio</th>
@@ -341,7 +341,7 @@ const Escaletas = () => {
                 <tbody className="table-group-divider">
                   {Datos.map((Datos, i) => (
                     <tr>
-                      <td>{i + 1}</td>
+                      <td className='id-tablas'>{i + 1}</td>
                       <td>{Datos.nombre_Programa}</td>
                       <td>{Datos.fecha.split(' ')[0]}</td>
                       <td>{Datos.hora_Inicio}</td>

@@ -157,7 +157,7 @@ const GuionesNotas = () => {
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" className='id-tablas'>#</th>
                     <th scope="col" className="table-title">
                       Título
                     </th>
@@ -174,7 +174,7 @@ const GuionesNotas = () => {
                       key={Dato.pkNota}
                       className={Dato.redaccion !== '' ? 'no-redac' : ''}
                     >
-                      <td>{i + 1}</td>
+                      <td className='id-tablas'>{i + 1}</td>
                       <td>{Dato.titulo}</td>
                       <td>{Dato.nombre_Categoria}</td>
                       <td>{Dato.nombre_Formato}</td>

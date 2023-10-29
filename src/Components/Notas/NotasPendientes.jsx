@@ -31,7 +31,7 @@ const GuionesNotas = () => {
         <div className="Auth-form-table">
           <div className="Auth-Maintable">
             <div className="Row">
-              <h3>Notas Pendientes</h3>
+              <h3>Notas pendientes de escaleta</h3>
               <div className="Button-form">
                 <Link to="/Notas">
                   <button
@@ -49,7 +49,7 @@ const GuionesNotas = () => {
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" className='id-tablas'>#</th>
                     <th scope="col" className="table-title">
                       Título
                     </th>
@@ -66,7 +66,7 @@ const GuionesNotas = () => {
                       className={Dato.redaccion !== '' ? 'no-redac' : ''}
                       key={Dato.fkNota}
                     >
-                      <td>{i + 1}</td>
+                      <td className='id-tablas'>{i + 1}</td>
                       <td>{Dato.titulo}</td>
                       <td>{Dato.nombre_Categoria}</td>
                       <td>{Dato.nombre_Formato}</td>

@@ -572,7 +572,7 @@ const Bitacora = () => {
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" className='id-tablas'>#</th>
                     <th scope="col" className="table-title">
                       Título
                     </th>
@@ -587,7 +587,7 @@ const Bitacora = () => {
                 <tbody className="table-group-divider">
                   {Datos.map((Datos,i) => (
                     <tr key={Datos.pkNota}>
-                      <td>{i + 1}</td>
+                      <td className='id-tablas'>{i + 1}</td>
                       <td>{Datos.titulo}</td>
                       <td>{Datos.nombre_Categoria}</td>
                       <td>{Datos.nombre_Formato}</td>
@@ -665,7 +665,7 @@ const Bitacora = () => {
             </div>
 
             <div className="modal-body">
-              <label> Titulo </label>
+              <label> Titulo</label>
               <input type="hidden" id="id"></input>
               <div className="input-group mb-3">
                 <textarea
@@ -674,6 +674,7 @@ const Bitacora = () => {
                   className="form-control"
                   placeholder="Titulo"
                   value={text}
+                  maxLength="250"
                   onChange={handleInputChange}
                 ></textarea>
               </div>
@@ -815,6 +816,7 @@ const Bitacora = () => {
                       className="form-control"
                       placeholder="Titulo"
                       value={text}
+                      maxLength="250"
                       onChange={handleInputChange}
                     ></input>
                   </div>

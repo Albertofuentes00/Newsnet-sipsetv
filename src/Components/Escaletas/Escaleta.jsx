@@ -192,7 +192,7 @@ const LimpiarIndica = ()=>{
                 <tr>
                   <th scope="col">Orden</th>
                   <th scope="col">Conductor</th>
-                  <th scope="col">Titulo</th>
+                  <th scope="col" className='tabla-armado-titulo'>Titulo</th>
                   <th scope="col">Reportero</th>
                   <th scope="col">Formato</th>
                   <th scope="col" className="Invisible">
@@ -212,6 +212,7 @@ const LimpiarIndica = ()=>{
                 <tr
                   className="indicacion"
                   draggable="true"
+                 
                   onDoubleClick={() => Dobleclick(Datos)}
                 >
                   <td>-</td>
@@ -225,6 +226,7 @@ const LimpiarIndica = ()=>{
                   className="indicacion"
                   draggable="true"
                   onDoubleClick={() => Dobleclick(Datos)}
+                  
                 >
                   <td>-</td>
                   <td>-</td>
@@ -253,8 +255,10 @@ const LimpiarIndica = ()=>{
   const Dobleclick = (dato1) => {
     var modal = document.getElementById('myModal');
     modal.style.display = 'block';
+       
     Setfilda(dato1);
     setFildaUpdated(true);
+    
   };
 
   useEffect(() => {
@@ -272,12 +276,14 @@ const LimpiarIndica = ()=>{
             document.getElementById('tag-modal').textContent =
               'Editar conductor';
             ObtenerNota(minipk);
+            
           } else {
             document.getElementById('modal-content-text').value = '';
             document.getElementById('tag-modal').textContent =
               'Nombre conductor';
 
             ObtenerNota(minipk);
+       
           }
         } else {
           setTagModalText('Editar indicacion');
@@ -289,8 +295,11 @@ const LimpiarIndica = ()=>{
         }
 
         setFildaUpdated(false);
+       
       }
+      
     } catch (error) {}
+    
   }, [filda, fildaUpdated]);
 
   const ObtenerNota = async (pkNota) => {
@@ -300,6 +309,7 @@ const LimpiarIndica = ()=>{
       );
       setNotaAct(respuesta.data.result);
       console.log(respuesta.data.result);
+        
     } catch (error) {
       console.log(error);
     }
@@ -311,8 +321,13 @@ const LimpiarIndica = ()=>{
       var id = partes[0];
       var tipo = partes[1];
       var fila = document.querySelector('[data-index="' + id + '"]');
-      var conductor = document.getElementById('coductor-indicacion-e').value
-      var reportero = document.getElementById('reportero-indicacion-e').value
+      try {
+        var conductor = document.getElementById('coductor-indicacion-e').value
+        var reportero = document.getElementById('reportero-indicacion-e').value
+      } catch (error) {
+        
+      }
+
       if(reportero === '' && conductor === ''){
         reportero = '-';
         conductor = '-';
@@ -324,6 +339,7 @@ const LimpiarIndica = ()=>{
       if (tipo != '-' && tipo != '') {
         
         console.log('Se hizo doble clic en la fila: ' + id);
+        
         var reportero = document.getElementById('modal-content-text').value;
         if (reportero == '') {
           show_alerta('Ingresa el nombre de reportero', 'warning');
@@ -332,7 +348,6 @@ const LimpiarIndica = ()=>{
             fila.cells[1].textContent = reportero;
             OrdenNotas();
             var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
             document.getElementById('modal-content-text').value = '';
             setText('');
           } else {
@@ -341,6 +356,7 @@ const LimpiarIndica = ()=>{
             );
           }
         }
+        
       } else {
         console.log('Se hizo doble click en una indicación');
         var indicacion = document.getElementById('modal-content-text').value;
@@ -369,6 +385,7 @@ const LimpiarIndica = ()=>{
     }
     OrdenNotas();
     closeModal();
+    
   };
 
   // Función para cerrar el modal
@@ -525,7 +542,10 @@ const LimpiarIndica = ()=>{
   
   const AgregarNota = async () => {
     setBotonDeshabilitado(true);
-
+   var tabla_notas = document.getElementById('notas-table');
+   var cargando_notas = document.getElementById('cargando-notas');
+   tabla_notas.hidden = true;
+   cargando_notas.hidden = false;
     const filasParaGuardar = Datos.filter(
       (fila) => filasSeleccionadas.includes(fila.pkNota),
       setFilasSeleccionadas([])
@@ -533,6 +553,8 @@ const LimpiarIndica = ()=>{
     if (filasParaGuardar.length === 0) {
       // Mostrar un mensaje o realizar alguna acción si no hay elementos seleccionados
       console.log('No se han seleccionado notas para agregar.');
+      tabla_notas.hidden = false;
+    cargando_notas.hidden = true;
       setBotonDeshabilitado(false);
       return;
     }
@@ -615,6 +637,9 @@ const LimpiarIndica = ()=>{
     }
 
     ActualizarTablaEs();
+    cargando_notas.hidden = true;
+    tabla_notas.hidden = false;
+   
     setTimeout(() => {
       setBotonDeshabilitado(false);
     }, 600);
@@ -967,6 +992,7 @@ const LimpiarIndica = ()=>{
     }
   }
 
+
  
 
   return (
@@ -1150,7 +1176,11 @@ const LimpiarIndica = ()=>{
               <div className="modal-body-table">
                 <div className="Auth-form-container-Main">
                   <button class="btn btn-dark" onClick={seleccionarTodo} checked={filasSeleccionadas.includes(Datos.pkNota)}>Seleccionar todo</button>
-                  <table class="table">
+                  <div id='cargando-notas' className='cargando-notas' hidden>
+                    
+                    <h6>Agregando notas...</h6>
+                    </div>
+                  <table class="table" id='notas-table'>
                     <thead>
                       <tr>
                         <th className="Invisible" scope="col">
@@ -1293,12 +1323,16 @@ const LimpiarIndica = ()=>{
 
     <div className="modal-div" hidden={NotaAct.redaccion === ''}>
       <div
+        contentEditable={false}
         className="tabla-imprimir"
         dangerouslySetInnerHTML={{ __html: NotaAct.redaccion }}
       />
+      
+
     </div>
 
     <button
+   
       id="agregar-conductor"
       className="btn-modal"
       onClick={()=>obtenerConductor()}
