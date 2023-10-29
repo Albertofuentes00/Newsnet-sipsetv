@@ -54,11 +54,11 @@ function Prompt() {
           const row = rows[i];
 
           if (
-            row.cells[6].textContent !== '-' &&
-            row.cells[6].textContent !== ''
+            row.cells[5].textContent !== '-' &&
+            row.cells[5].textContent !== ''
           ) {
             const response = await axios.get(
-              'https://localhost:7201/Nota/GetByID/' + row.cells[6].textContent
+              'https://localhost:7201/Nota/GetByID/' + row.cells[5].textContent
             );
             console.log(response.data.result);
             tabla = response.data.result;
@@ -122,26 +122,26 @@ function Prompt() {
         var titulo = document.createElement('label');
         const contenidoColumnaDerecha = [];
         if (
-          row.cells[6].textContent === '-' ||
-          row.cells[6].textContent === ''
+          row.cells[5].textContent === '-' ||
+          row.cells[5].textContent === ''
         ) {
           //Es una indicacion
-          titulo.textContent = '--- ' + row.cells[3].textContent + ' ---';
+          titulo.textContent = '--- ' + row.cells[2].textContent + ' ---';
 
           hoja.appendChild(titulo);
           titulo.classList.add('Texto-prompt');
         } else {
           //Es una nota
           titulo.textContent =
-            row.cells[2].textContent +
+            row.cells[1].textContent +
             ' ' +
             'NOTA ' +
             numNota +
             ' ' +
-            row.cells[5].textContent +
+            row.cells[4].textContent +
             ' .- ' +
-            row.cells[3].textContent;
-          if (row.cells[5].textContent === 'TXT') {
+            row.cells[2].textContent;
+          if (row.cells[4].textContent === 'TX') {
             var Nota = document.getElementById('tabla-Nota-' + numNota);
             const filas = Nota.querySelectorAll('tr');
             filas.forEach((fila) => {

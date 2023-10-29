@@ -1253,10 +1253,22 @@ table tr{
   font-size: 16px;
   height: 65px;
   width: 460px;
+  border-color: rgb(196, 196, 196);
+  border-radius: 5px;
 }
 
+.cuerpo-indica{
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
 
-
+.c-input{
+ width: 10vw;
+ font-size: 14px;
+ 
+ 
+}
 
 .tabla-armado {
   width: 100%;
@@ -1525,7 +1537,7 @@ margin-right: 2vw;
   background-color: #e7e7e7;
   margin: 0% auto;
   border: 1px solid #888;
-  max-width: 50vw;
+  max-width: 40vw;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
   max-height: 80vh;
@@ -1564,9 +1576,9 @@ border-radius: 10px;
 }
 
 .modal-input{
-  min-width: 40vw;
+  min-width: 30vw;
   margin: auto;
-  min-height: 10vh;
+  min-height: 2vh;
   margin-bottom: 3%;
   background-color: white;
   padding: 2px;
@@ -1577,6 +1589,7 @@ border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 5px;
   resize: none;
+  font-size: 14px;
 }
 
 .btn-modal{
@@ -1748,6 +1761,7 @@ border-radius: 10px;
   border-style: none;
   color: rgb(255, 255, 255);
   height: 100%;
+  border-radius: 5px 5px 0px 0px;
 }
 
 

@@ -29,6 +29,7 @@ function Table() {
   const [DatosTabla, setDatosTabla] = useState([]);
   const [orden, setOrden] = useState(0);
   const [NotaAct, setNotaAct] = useState([]);
+  const [tagModalText, setTagModalText] = useState('Editar indicacion');
   useEffect(() => {
     GetDatosEscaleta();
   }, []);
@@ -48,10 +49,19 @@ function Table() {
   };
 
   const [text, setText] = useState('');
-
+  const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
   const handleInputChange = (event) => {
     const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
     setText(inputValue);
+  };
+  const handleInputChange2 = (event) => {
+    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+    setText2(inputValue);
+  };
+  const handleInputChange3 = (event) => {
+    const inputValue = event.target.value; // Convierte a mayúsculas
+    setText3(inputValue);
   };
 
   const GetDatosEscaleta = async () => {
@@ -163,6 +173,12 @@ function Table() {
     Val();
   }, []);
 
+
+const LimpiarIndica = ()=>{
+  setText('');
+  setText2('');
+  setText3('');
+}
   const Val = () => {
     validacion();
   };
@@ -174,9 +190,6 @@ function Table() {
             <table className="tabla-armado" id="sortable-table">
               <thead >
                 <tr>
-                  <th scope="col" className="Invisible">
-                    #
-                  </th>
                   <th scope="col">Orden</th>
                   <th scope="col">Conductor</th>
                   <th scope="col">Titulo</th>
@@ -189,7 +202,6 @@ function Table() {
               </thead>
               <tbody>
                 <tr className="indicacion" draggable="true">
-                  <td className="Invisible">1</td>
                   <td>-</td>
                   <td>-</td>
                   <td>BIENVENIDA</td>
@@ -202,7 +214,6 @@ function Table() {
                   draggable="true"
                   onDoubleClick={() => Dobleclick(Datos)}
                 >
-                  <td className="Invisible">2</td>
                   <td>-</td>
                   <td>-</td>
                   <td>CORTE COMERCIAL</td>
@@ -215,7 +226,6 @@ function Table() {
                   draggable="true"
                   onDoubleClick={() => Dobleclick(Datos)}
                 >
-                  <td className="Invisible">3</td>
                   <td>-</td>
                   <td>-</td>
                   <td>DESPEDIDA</td>
@@ -254,12 +264,13 @@ function Table() {
         var id = partes[0];
         var tipo = partes[1];
         var fila = document.querySelector('[data-index="' + id + '"]');
-        var minipk = fila.cells[6].textContent;
+        var minipk = fila.cells[5].textContent;
         if (tipo != '-' && tipo != '') {
-          if (fila && fila.cells[2].textContent !== '-') {
-            setText(fila.cells[2].textContent);
+          setTagModalText('Editar conductor');
+          if (fila && fila.cells[1].textContent !== '-') {
+            setText(fila.cells[1].textContent);
             document.getElementById('tag-modal').textContent =
-              'Editar reportero';
+              'Editar conductor';
             ObtenerNota(minipk);
           } else {
             document.getElementById('modal-content-text').value = '';
@@ -269,9 +280,12 @@ function Table() {
             ObtenerNota(minipk);
           }
         } else {
+          setTagModalText('Editar indicacion');
           document.getElementById('tag-modal').textContent =
             'Editar indicación';
-          setText(fila.cells[3].textContent);
+          setText(fila.cells[2].textContent);
+          setText2(fila.cells[1].textContent);
+          setText3(fila.cells[3].textContent);
         }
 
         setFildaUpdated(false);
@@ -297,14 +311,25 @@ function Table() {
       var id = partes[0];
       var tipo = partes[1];
       var fila = document.querySelector('[data-index="' + id + '"]');
+      var conductor = document.getElementById('coductor-indicacion-e').value
+      var reportero = document.getElementById('reportero-indicacion-e').value
+      if(reportero === '' && conductor === ''){
+        reportero = '-';
+        conductor = '-';
+      }else if(conductor === ''){
+        conductor = '-';
+      }else if(reportero === ''){
+        reportero = '-';
+      }
       if (tipo != '-' && tipo != '') {
+        
         console.log('Se hizo doble clic en la fila: ' + id);
         var reportero = document.getElementById('modal-content-text').value;
         if (reportero == '') {
           show_alerta('Ingresa el nombre de reportero', 'warning');
         } else {
           if (fila) {
-            fila.cells[2].textContent = reportero;
+            fila.cells[1].textContent = reportero;
             OrdenNotas();
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
@@ -323,11 +348,14 @@ function Table() {
           show_alerta('Ingresa el nombre de la indicación', 'warning');
         } else {
           if (fila) {
-            fila.cells[3].textContent = indicacion;
-            var modal = document.getElementById('myModal');
+            fila.cells[2].textContent = indicacion;
+            fila.cells[1].textContent = conductor;
+            fila.cells[3].textContent = reportero;
+            var modal = document.getElementById('modal-edit-indicacion');
             modal.style.display = 'none';
             document.getElementById('modal-content-text').value = '';
             setText('');
+         
           } else {
             console.log(
               'No se encontró una fila con el atributo data-index igual a ' + id
@@ -335,9 +363,12 @@ function Table() {
           }
         }
       }
+      
     } catch (error) {
       console.log(error);
     }
+    OrdenNotas();
+    closeModal();
   };
 
   // Función para cerrar el modal
@@ -347,6 +378,7 @@ function Table() {
     document.getElementById('modal-content-text').value = '';
     setNotaAct('');
     setText('');
+    LimpiarIndica();
   }
 
   const OrdenNotas = () => {
@@ -355,11 +387,14 @@ function Table() {
     var numero = 1;
     for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
-      var columna2 = row.cells[2].textContent;
+      var columna2 = row.cells[1].textContent;
       if (columna2 !== '-') {
-        row.cells[1].textContent = '[' + numero + ']';
-        row.cells[1].classList.add('resalta-orden');
+        row.cells[0].textContent = '[' + numero + ']';
+        row.cells[0].classList.add('resalta-orden');
         numero++;
+      }
+      else{
+        row.cells[0].textContent = '-';
       }
     }
   };
@@ -523,20 +558,16 @@ function Table() {
         } else {
           const nuevaFila = tabla.insertRow();
             if(Geneconductor === ''){
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 6; i++) {
               const td = nuevaFila.insertCell(i);
-              if (i === 0) {
-                const filas = tbody.querySelectorAll('tr');
-                td.textContent = filas.length + 1;
-                td.classList.add('Invisible');
-              } else if (i === 3) {
+              if (i === 2) {
                 td.textContent = fila.titulo;
-              } else if (i === 4) {
+              } else if (i === 3) {
                 td.textContent = fila.nombre;
-              } else if (i === 5) {
+              } else if (i === 4) {
                 td.textContent = fila.nombre_Formato;
 
-              }else if(i == 6){
+              }else if(i == 5){
                 td.textContent = fila.pkNota;
                 td.classList.add('Invisible');
               } 
@@ -545,23 +576,19 @@ function Table() {
               }
             }
           }else{
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 6; i++) {
               const td = nuevaFila.insertCell(i);
-              if (i === 0) {
-                const filas = tbody.querySelectorAll('tr');
-                td.textContent = filas.length + 1;
-                td.classList.add('Invisible');
-              } else if (i === 2) {
+              if (i === 1) {
                 td.textContent = Geneconductor;
 
-              } else if (i === 3) {
+              } else if (i === 2) {
                 td.textContent = fila.titulo;
-              } else if (i === 4) {
+              } else if (i === 3) {
                 td.textContent = fila.nombre;
-              } else if (i === 5) {
+              } else if (i === 4) {
                 td.textContent = fila.nombre_Formato;
 
-              }else if(i == 6){
+              }else if(i == 5){
                 td.textContent = fila.pkNota;
                 td.classList.add('Invisible');
               } 
@@ -599,33 +626,93 @@ function Table() {
     const tabla = document.getElementById('sortable-table');
     const tbody = tabla.querySelector('tbody');
     const Indicacion = document.getElementById('Nombre_indi').value;
+    var conductor = document.getElementById('coductor-indicacion').value
+    var reportero = document.getElementById('reportero-indicacion').value
     const nuevaFila = tabla.insertRow();
-    for (let i = 0; i < 7; i++) {
-      const td = nuevaFila.insertCell(i);
-      if (i === 0) {
-        const filas = tbody.querySelectorAll('tr');
-
-        td.textContent = filas.length + 1;
-        td.classList.add('Invisible');
-      } else if (i === 6) {
-        td.classList.add('Invisible');
-      } else if (i === 3) {
-        if (Indicacion === '') {
-          td.textContent = 'Indicacion';
+    if(reportero != '' && conductor !=''){
+      for (let i = 0; i < 6; i++) {
+        const td = nuevaFila.insertCell(i);
+        
+         if (i === 5) {
+          td.classList.add('Invisible');
+         }else if (i === 1){
+          td.textContent = conductor;
+         }else if (i === 3){
+          td.textContent = reportero;
+         } else if (i === 2) {
+          if (Indicacion === '') {
+            td.textContent = 'INDICACIÓN';
+          } else {
+            td.textContent = Indicacion;
+          }
         } else {
-          td.textContent = Indicacion;
+          td.textContent = '-';
         }
-      } else {
-        td.textContent = '-';
+      }
+    }else if(conductor != ''){
+      for (let i = 0; i < 6; i++) {
+        const td = nuevaFila.insertCell(i);
+        if (i === 1) {
+          td.textContent = conductor;
+         }
+         else if (i === 5) {
+          td.classList.add('Invisible');
+         } else if (i === 2) {
+          if (Indicacion === '') {
+            td.textContent = 'INDICACIÓN';
+          } else {
+            td.textContent = Indicacion;
+          }
+        } else {
+          td.textContent = '-';
+        }
+      }
+    }else if(reportero != ''){
+      for (let i = 0; i < 6; i++) {
+        const td = nuevaFila.insertCell(i);
+        if (i === 3) {
+          td.textContent = reportero;
+         }
+         else if (i === 5) {
+          td.classList.add('Invisible');
+         } else if (i === 2) {
+          if (Indicacion === '') {
+            td.textContent = 'INDICACIÓN';
+          } else {
+            td.textContent = Indicacion;
+          }
+        } else {
+          td.textContent = '-';
+        }
       }
     }
+    else{
+      for (let i = 0; i < 6; i++) {
+        const td = nuevaFila.insertCell(i);
+        
+         if (i === 5) {
+          td.classList.add('Invisible');
+         } else if (i === 2) {
+          if (Indicacion === '') {
+            td.textContent = 'INDICACIÓN';
+          } else {
+            td.textContent = Indicacion;
+          }
+        } else {
+          td.textContent = '-';
+        }
+      }
+    }
+
+   
     var valor = 1;
+    OrdenNotas();
     makeRowDraggable(nuevaFila, valor);
     ActualizarTablaEs();
     if (botonCerrarRef.current) {
       botonCerrarRef.current.click(); // Hace clic en el botón de cerrar
     }
-    setText('');
+    LimpiarIndica();
   }
 
   try {
@@ -758,7 +845,7 @@ function Table() {
           `[data-index="${draggedIndex}"]`
         );
         try {
-          const pknota = filaArrastrada.cells[6].textContent;
+          const pknota = filaArrastrada.cells[5].textContent;
           EliminarNota(pknota);
         } catch (error) {}
         OrdenNotas();
@@ -847,6 +934,7 @@ function Table() {
         li.textContent = coincidencia;
         li.addEventListener('click', function () {
           buscador.value = coincidencia;
+          setText(coincidencia);
           resultados.innerHTML = '';
         });
         resultados.appendChild(li);
@@ -872,12 +960,14 @@ function Table() {
       (function (row) {
         row.ondblclick = function () {
           var dataIndex = row.getAttribute('data-index');
-          var tipo = row.cells[6].textContent;
+          var tipo = row.cells[5].textContent;
           Dobleclick(dataIndex + ',' + tipo);
         };
       })(rows[i]);
     }
   }
+
+ 
 
   return (
     <div className="Auth-form-container">
@@ -1007,7 +1097,7 @@ function Table() {
                 ></button>
               </div>
 
-              <div className="Auth-form-searchbar">
+              <div>
                 <div className="Row-searchbar">
                   <div className="Row">
                     <div className="buscador_admin">
@@ -1135,6 +1225,7 @@ function Table() {
         aria-label="Close"
         id='cerrar-indica'
         ref={botonCerrarRef}
+        onClick={()=>LimpiarIndica()}
       ></button>
               </div>
 
@@ -1143,6 +1234,14 @@ function Table() {
                 <div className="Auth-form-container-Main">
                   <textarea className="nombre-indic" id="Nombre_indi" value={text} onChange={handleInputChange}/>
                   <ul id="resultados"></ul>
+                </div>
+                <div className='cuerpo-indica'>
+                <h6>Conductor</h6>
+                <h6>Reportero</h6>
+                </div>
+                <div className='cuerpo-indica'>
+                <input className='c-input' id='coductor-indicacion' value={text2} onChange={handleInputChange2}/>
+                <input className='c-input' id='reportero-indicacion' value={text3} onChange={handleInputChange3}/>
                 </div>
               </div>
               <div className="d-grid col-6 mx-auto">
@@ -1159,37 +1258,57 @@ function Table() {
           </div>
         </div>
 
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-            <div className="header-modal">
-              <button class="close" onClick={() => closeModal()}>
-                &times;
-              </button>
-            </div>
+        
+        
 
-            <p id="tag-modal">Asignar un conductor</p>
-            <textarea
-              id="modal-content-text"
-              className="modal-input"
-              value={text}
-              onChange={handleInputChange}
-            ></textarea>
-            <div className="modal-div" hidden={NotaAct.redaccion === ''}>
-              <div
-                className="tabla-imprimir"
-                dangerouslySetInnerHTML={{ __html: NotaAct.redaccion }}
-              />
-            </div>
 
-            <button
-              id="agregar-conductor"
-              className="btn-modal"
-              onClick={() => obtenerConductor()}
-            >
-              <i className="fa-solid fa-floppy-disk"></i> Aceptar
-            </button>
-          </div>
+        <div id="myModal" className="modal">
+  <div className="modal-content">
+    <div className="header-modal">
+      <button className="close" onClick={closeModal}>
+        &times;
+      </button>
+    </div>
+
+    <p id="tag-modal">Asignar un conductor</p>
+    <textarea
+      id="modal-content-text"
+      className="modal-input"
+      value={text}
+      onChange={handleInputChange}
+    ></textarea>
+
+    {tagModalText === 'Editar indicacion' && (
+      <div>
+        <div className="cuerpo-indica">
+          <h6>Conductor</h6>
+          <h6>Reportero</h6>
         </div>
+        <div className="cuerpo-indica">
+          <input className="c-input" id="coductor-indicacion-e" value={text2} onChange={handleInputChange2}/>
+          <input className="c-input" id="reportero-indicacion-e" value={text3} onChange={handleInputChange3}/>
+        </div>
+      </div>
+    )}
+
+    <div className="modal-div" hidden={NotaAct.redaccion === ''}>
+      <div
+        className="tabla-imprimir"
+        dangerouslySetInnerHTML={{ __html: NotaAct.redaccion }}
+      />
+    </div>
+
+    <button
+      id="agregar-conductor"
+      className="btn-modal"
+      onClick={()=>obtenerConductor()}
+    >
+      <i className="fa-solid fa-floppy-disk"></i> Aceptar
+    </button>
+  </div>
+</div>
+
+
       </div>
     </div>
   );

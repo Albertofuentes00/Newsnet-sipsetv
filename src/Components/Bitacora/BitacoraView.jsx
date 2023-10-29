@@ -355,7 +355,13 @@ const Bitacora = () => {
         axios
           .delete('https://localhost:7201/Nota/Delete/' + pkNota)
           .then(function (respuesta) {
-            buscar();
+            if (respuesta.data.mensaje === 'Esta relacionada') {
+              show_alerta(
+                'No se pudo cumplir la solicitud, esta nota se encuentra dentro de una escaleta'
+              );
+            } else {
+              buscar();
+            }
           })
           .catch(function (error) {
             show_alerta('Error en la solicitud', 'error');
@@ -621,6 +627,21 @@ const Bitacora = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="Row">
+              <h3></h3>
+              <div>
+                <button
+                  onClick={() => OpenModal(1)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modaldefault"
+                  type="button"
+                  class="btn btn-success"
+                >
+                  {' '}
+                  <FaPlusSquare size={20} color="white" /> Agregar Nota
+                </button>
+              </div>
             </div>
           </div>
         </div>
