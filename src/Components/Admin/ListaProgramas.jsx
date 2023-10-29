@@ -8,6 +8,7 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const ListaProgramas = () => {
   const [Datos, SetDatos] = useState([]);
@@ -27,9 +28,9 @@ const ListaProgramas = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Programa/Get');
+      const respuesta = await axios.get(API_KEY+'/Programa/Get');
       const respuesta2 = await axios.get(
-        'https://localhost:7201/Categoria/Get'
+        API_KEY+'/Categoria/Get'
       );
       SetDatos(respuesta.data.result);
       SetCategorias(respuesta2.data.result);
@@ -72,7 +73,7 @@ const ListaProgramas = () => {
           fkCategoria: fkCategoria.trim(),
         };
         axios
-          .post('https://localhost:7201/Programa/Post', parametros)
+          .post(API_KEY+'/Programa/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -92,7 +93,7 @@ const ListaProgramas = () => {
           fkCategoria: fkCategoria,
         };
         axios
-          .put('https://localhost:7201/Programa/Put/' + pkPrograma, parametros)
+          .put(API_KEY+'/Programa/Put/' + pkPrograma, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -121,7 +122,7 @@ const ListaProgramas = () => {
       if (result.isConfirmed) {
         setPkPrograma(pkPrograma);
         axios
-          .delete('https://localhost:7201/Programa/Delete/' + pkPrograma)
+          .delete(API_KEY+'/Programa/Delete/' + pkPrograma)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Está relacionado') {
               show_alerta(
@@ -157,7 +158,7 @@ const ListaProgramas = () => {
         GetDatos();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Programa/Buscar/' + variable
+          API_KEY+'/Programa/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);

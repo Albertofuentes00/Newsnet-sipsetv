@@ -7,6 +7,7 @@ import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const GuionesNotas = () => {
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
@@ -39,7 +40,7 @@ const GuionesNotas = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+      const respuesta = await axios.get(API_KEY+'/Nota/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
     } catch (error) {
@@ -55,7 +56,7 @@ const GuionesNotas = () => {
       if (variable === '') {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/BuscarDefault/' +
+            API_KEY+'/Nota/BuscarDefault/' +
               fechaFI +
               '/' +
               fechaFF
@@ -67,7 +68,7 @@ const GuionesNotas = () => {
       } else {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/Buscar/' +
+            API_KEY+'/Nota/Buscar/' +
               variable +
               '/' +
               fechaFI +

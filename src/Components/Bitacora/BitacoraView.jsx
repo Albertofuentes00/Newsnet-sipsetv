@@ -14,6 +14,7 @@ import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const Bitacora = () => {
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
@@ -68,14 +69,14 @@ const Bitacora = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Nota/Get');
+      const respuesta = await axios.get(API_KEY+'/Nota/Get');
       const respuesta2 = await axios.get(
-        'https://localhost:7201/Categoria/Get'
+        API_KEY+'/Categoria/Get'
       );
-      const respuesta3 = await axios.get('https://localhost:7201/Formato/Get');
-      const respuesta4 = await axios.get('https://localhost:7201/Fuente/Get');
+      const respuesta3 = await axios.get(API_KEY+'/Formato/Get');
+      const respuesta4 = await axios.get(API_KEY+'/Fuente/Get');
       const respuesta5 = await axios.get(
-        'https://localhost:7201/Usuario/Get/Obtener_Reporteros'
+        API_KEY+'/Usuario/Get/Obtener_Reporteros'
       );
       SetDatos(respuesta.data.result);
       SetCategorias(respuesta2.data.result);
@@ -178,7 +179,7 @@ const Bitacora = () => {
               fkCategoria: fkCategoria.trim(),
             };
             axios
-              .post('https://localhost:7201/Nota/Post', parametros)
+              .post(API_KEY+'/Nota/Post', parametros)
               .then(function (respuesta) {
                 console.log(respuesta.data.result);
                 document.getElementById('btnCerrar').click();
@@ -226,7 +227,7 @@ const Bitacora = () => {
             fkCategoria: fkCategoria.trim(),
           };
           axios
-            .post('https://localhost:7201/Nota/Post', parametros)
+            .post(API_KEY+'/Nota/Post', parametros)
             .then(function (respuesta) {
               console.log(respuesta.data.result);
               document.getElementById('btnCerrar').click();
@@ -287,7 +288,7 @@ const Bitacora = () => {
             fkUsuario: Varreportero,
           };
           axios
-            .put('https://localhost:7201/Nota/Put/' + pkNota, parametros)
+            .put(API_KEY+'/Nota/Put/' + pkNota, parametros)
             .then(function (respuesta) {
               document.getElementById('btnCerrareditar').click();
               buscar();
@@ -326,7 +327,7 @@ const Bitacora = () => {
           fkUsuario: fkUsuario,
         };
         axios
-          .put('https://localhost:7201/Nota/Put/' + pkNota, parametros)
+          .put(API_KEY+'/Nota/Put/' + pkNota, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrareditar').click();
             buscar();
@@ -353,7 +354,7 @@ const Bitacora = () => {
       if (result.isConfirmed) {
         setPkNota(pkNota);
         axios
-          .delete('https://localhost:7201/Nota/Delete/' + pkNota)
+          .delete(API_KEY+'/Nota/Delete/' + pkNota)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Esta relacionada') {
               show_alerta(
@@ -464,7 +465,7 @@ const Bitacora = () => {
       if (variable == '') {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/BuscarDefault/' +
+            API_KEY+'/Nota/BuscarDefault/' +
               fechaFI +
               '/' +
               fechaFF
@@ -476,7 +477,7 @@ const Bitacora = () => {
       } else {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/Buscar/' +
+            API_KEY+'/Nota/Buscar/' +
               variable +
               '/' +
               fechaFI +

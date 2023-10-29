@@ -8,6 +8,7 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const ListaCategorias = () => {
   const [Datos, SetDatos] = useState([]);
@@ -26,7 +27,7 @@ const ListaCategorias = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Categoria/Get');
+      const respuesta = await axios.get(API_KEY+'/Categoria/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
     } catch (error) {}
@@ -58,7 +59,7 @@ const ListaCategorias = () => {
       if (operation === 1) {
         parametros = { nombre_Categoria: nombre_Categoria.trim() };
         axios
-          .post('https://localhost:7201/Categoria/Post', parametros)
+          .post(API_KEY+'/Categoria/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -76,7 +77,7 @@ const ListaCategorias = () => {
         parametros = { nombre_Categoria: nombre_Categoria.trim() };
         axios
           .put(
-            'https://localhost:7201/Categoria/Put/' + pkCategoria,
+            API_KEY+'/Categoria/Put/' + pkCategoria,
             parametros
           )
           .then(function (respuesta) {
@@ -106,7 +107,7 @@ const ListaCategorias = () => {
       if (result.isConfirmed) {
         setPkCategoria(pkCategoria);
         axios
-          .delete('https://localhost:7201/Categoria/Delete/' + pkCategoria)
+          .delete(API_KEY+'/Categoria/Delete/' + pkCategoria)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Está relacionado') {
               show_alerta(
@@ -131,7 +132,7 @@ const ListaCategorias = () => {
         GetDatos();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Categoria/Buscar/' + variable
+          API_KEY+'/Categoria/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);

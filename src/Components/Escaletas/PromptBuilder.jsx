@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { show_alerta } from '../../Funciones';
 import html2pdf from 'html2pdf.js';
 import { FaFilePdf } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 function Prompt() {
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
@@ -25,7 +26,7 @@ function Prompt() {
     try {
       // const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+pkesc);
       const respuesta = await axios.get(
-        'https://localhost:7201/Escaleta/GetByID/' + id
+        API_KEY + '/Escaleta/GetByID/' + id
       );
       console.log(respuesta.data.result);
       SetDatosEscaleta(respuesta.data.result);
@@ -58,7 +59,7 @@ function Prompt() {
             row.cells[5].textContent !== ''
           ) {
             const response = await axios.get(
-              'https://localhost:7201/Nota/GetByID/' + row.cells[5].textContent
+              API_KEY + '/Nota/GetByID/' + row.cells[5].textContent
             );
             console.log(response.data.result);
             tabla = response.data.result;

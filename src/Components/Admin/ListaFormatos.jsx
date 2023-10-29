@@ -6,7 +6,7 @@ import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
-
+import { API_KEY } from '../API_URL';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 
@@ -26,7 +26,7 @@ const ListaFormatos = () => {
 
   const GetFormato = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Formato/Get');
+      const respuesta = await axios.get(API_KEY+'/Formato/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
     } catch (error) {}
@@ -60,7 +60,7 @@ const ListaFormatos = () => {
         console.log(nombre_Formato.trim());
 
         axios
-          .post('https://localhost:7201/Formato/Post', parametros)
+          .post(API_KEY+'/Formato/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -77,7 +77,7 @@ const ListaFormatos = () => {
         id = { pkFormato: pkFormato };
         parametros = { nombre_Formato: nombre_Formato.trim() };
         axios
-          .put('https://localhost:7201/Formato/Put/' + pkFormato, parametros)
+          .put(API_KEY+'/Formato/Put/' + pkFormato, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -105,7 +105,7 @@ const ListaFormatos = () => {
       if (result.isConfirmed) {
         setPkFormato(pkFormato);
         axios
-          .delete('https://localhost:7201/Formato/Delete/' + pkFormato)
+          .delete(API_KEY+'/Formato/Delete/' + pkFormato)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Está relacionado') {
               show_alerta(
@@ -130,7 +130,7 @@ const ListaFormatos = () => {
         GetFormato();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Formato/Buscar/' + variable
+          API_KEY+'/Formato/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);

@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { show_alerta } from '../../Funciones';
 import html2pdf from 'html2pdf.js';
 import { FaFileAlt } from 'react-icons/fa';
-
+import { API_KEY } from '../API_URL';
 
 function Table() {
   const [filda, Setfilda] = useState('');
@@ -67,7 +67,7 @@ function Table() {
   const GetDatosEscaleta = async () => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Escaleta/GetByID/' + id
+        API_KEY + '/Escaleta/GetByID/' + id
       );
       console.log(respuesta.data.result);
       SetDatosEscaleta(respuesta.data.result);
@@ -124,7 +124,7 @@ function Table() {
   const GetDatos = async () => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Nota/GetRel/' + id
+        API_KEY + '/Nota/GetRel/' + id
       );
       SetDatos(respuesta.data.result);
     } catch (error) {
@@ -140,7 +140,7 @@ function Table() {
       if (variable == '') {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/BuscarRelaDefault/' +
+            API_KEY + '/Nota/BuscarRelaDefault/' +
               id +
               '/' +
               fechaFI +
@@ -152,7 +152,7 @@ function Table() {
       } else {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Nota/Nota_EscaRelaBuscar/' +
+            API_KEY + '/Nota/Nota_EscaRelaBuscar/' +
               id +
               '/' +
               variable +
@@ -305,7 +305,7 @@ const LimpiarIndica = ()=>{
   const ObtenerNota = async (pkNota) => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Nota/GetByID/' + pkNota
+        API_KEY + '/Nota/GetByID/' + pkNota
       );
       setNotaAct(respuesta.data.result);
       console.log(respuesta.data.result);
@@ -497,7 +497,7 @@ const LimpiarIndica = ()=>{
       vTabla: tablaContenido,
     };
     axios
-      .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
+      .patch(API_KEY + '/Escaleta/PutTabla/' + id, datosEnviar)
       .then(function (respuesta) {})
       .catch(function (error) {
         show_alerta('Error en la solicitud', 'error');
@@ -511,7 +511,7 @@ const LimpiarIndica = ()=>{
     };
 
     axios
-      .patch('https://localhost:7201/Escaleta/PutTabla/' + id, datosEnviar)
+      .patch(API_KEY + '/Escaleta/PutTabla/' + id, datosEnviar)
       .then(function (respuesta) {
         recargarTabla();
       })
@@ -571,7 +571,7 @@ const LimpiarIndica = ()=>{
         };
 
         const respuesta = await axios.post(
-          'https://localhost:7201/Nota_Esca/Post',
+          API_KEY + '/Nota_Esca/Post',
           datosEnviar
         );
 
@@ -899,7 +899,7 @@ const LimpiarIndica = ()=>{
     try {
       axios
         .delete(
-          'https://localhost:7201/Nota_Esca/EliminarNota/' + pkNota + '/' + id
+          API_KEY + '/Nota_Esca/EliminarNota/' + pkNota + '/' + id
         )
         .then(function (respuesta) {
           recargarTabla();

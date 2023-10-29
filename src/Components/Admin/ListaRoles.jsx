@@ -9,6 +9,7 @@ import { show_alerta } from '../../Funciones';
 
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const ListaRoles = () => {
   const [Datos, SetDatos] = useState([]);
@@ -27,7 +28,7 @@ const ListaRoles = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Rol/Get');
+      const respuesta = await axios.get(API_KEY+'/Rol/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
     } catch (error) {}
@@ -60,7 +61,7 @@ const ListaRoles = () => {
       if (operation === 1) {
         parametros = { nombre_Rol: nombre_Rol.trim() };
         axios
-          .post('https://localhost:7201/Rol/Post', parametros)
+          .post(API_KEY+'/Rol/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -77,7 +78,7 @@ const ListaRoles = () => {
         id = { pkRolRol: pkRol };
         parametros = { nombre_Rol: nombre_Rol.trim() };
         axios
-          .put('https://localhost:7201/Rol/Put/' + pkRol, parametros)
+          .put(API_KEY+'/Rol/Put/' + pkRol, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -105,7 +106,7 @@ const ListaRoles = () => {
       if (result.isConfirmed) {
         setPkRol(pkRol);
         axios
-          .delete('https://localhost:7201/Rol/Delete/' + pkRol)
+          .delete(API_KEY+'/Rol/Delete/' + pkRol)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Está relacionado') {
               show_alerta(
@@ -134,7 +135,7 @@ const ListaRoles = () => {
         GetDatos();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Rol/Buscar/' + variable
+          API_KEY+'/Rol/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);

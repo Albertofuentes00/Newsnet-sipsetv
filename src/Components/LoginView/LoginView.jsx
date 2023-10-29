@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { API_KEY } from '../API_URL';
 
 function Login() {
   const cadena = Cookies.get('Usuario');
@@ -17,7 +18,7 @@ function Login() {
       var pass = document.getElementById('contra').value;
       if ((user !== '') & (pass !== '')) {
         const respuesta = await axios.put(
-          'https://localhost:7201/Usuario/Login/' + user + '/' + pass
+          API_KEY+'/Usuario/Login/' + user + '/' + pass
         );
         if (respuesta.data.result.length > 0) {
           setTimeout(function () {

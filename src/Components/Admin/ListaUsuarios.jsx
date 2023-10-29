@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import whitReactContent from 'sweetalert2-react-content';
 import { show_alerta } from '../../Funciones';
 import Cookies from 'js-cookie';
+import { API_KEY } from '../API_URL';
 
 const ListaUsuarios = () => {
   const [Datos, SetDatos] = useState([]);
@@ -25,6 +26,7 @@ const ListaUsuarios = () => {
   const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+  
 
   useEffect(() => {
     GetDatos();
@@ -32,8 +34,9 @@ const ListaUsuarios = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Usuario/Get');
-      const respuesta2 = await axios.get('https://localhost:7201/Rol/Get');
+      const respuesta = await axios.get(API_KEY+'/Usuario/Get');
+      
+      const respuesta2 = await axios.get(API_KEY+'/Rol/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
       SetRoles(respuesta2.data.result);
@@ -101,7 +104,7 @@ const ListaUsuarios = () => {
           fkRol: fkRol.trim(),
         };
         axios
-          .post('https://localhost:7201/Usuario/Post', parametros)
+          .post(API_KEY+'/Usuario/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -126,7 +129,7 @@ const ListaUsuarios = () => {
           fkRol: fkRol,
         };
         axios
-          .put('https://localhost:7201/Usuario/Put/' + pkUsuario, parametros)
+          .put(API_KEY+'/Usuario/Put/' + pkUsuario, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -164,7 +167,7 @@ const ListaUsuarios = () => {
           } else {
             setPkUsuario(pkUsuario);
             axios
-              .delete('https://localhost:7201/Usuario/Delete/' + pkUsuario)
+              .delete(API_KEY+'/Usuario/Delete/' + pkUsuario)
               .then(function (respuesta) {
                 if (respuesta.data.mensaje === 'Está relacionado') {
                   show_alerta(
@@ -194,7 +197,7 @@ const ListaUsuarios = () => {
         GetDatos();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Usuario/Buscar/' + variable
+          API_KEY+'/Usuario/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);

@@ -13,6 +13,7 @@ import whitReactContent from 'sweetalert2-react-content';
 import { BiCameraMovie } from 'react-icons/bi';
 import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const Escaletas = () => {
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
@@ -54,10 +55,10 @@ const Escaletas = () => {
   const GetDatos = async () => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Escaleta/GetHoy'
+        API_KEY + '/Escaleta/GetHoy'
       );
-      const respuesta2 = await axios.get('https://localhost:7201/Usuario/Get');
-      const respuesta3 = await axios.get('https://localhost:7201/Programa/Get');
+      const respuesta2 = await axios.get(API_KEY + '/Usuario/Get');
+      const respuesta3 = await axios.get(API_KEY + '/Programa/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
       SetUsuarios(respuesta2.data.result);
@@ -132,7 +133,7 @@ const Escaletas = () => {
             fkUsuario: user,
           };
           axios
-            .post('https://localhost:7201/Escaleta/Post', parametros)
+            .post(API_KEY + '/Escaleta/Post', parametros)
             .then(function (respuesta) {
               console.log(respuesta.data.result);
               document.getElementById('btnCerrar').click();
@@ -174,7 +175,7 @@ const Escaletas = () => {
           fkUsuario: fkUsuario,
         };
         axios
-          .put('https://localhost:7201/Escaleta/Put/' + pkEscaleta, parametros)
+          .put(API_KEY + '/Escaleta/Put/' + pkEscaleta, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrareditar').click();
             buscar();
@@ -203,7 +204,7 @@ const Escaletas = () => {
       if (result.isConfirmed) {
         setPkEscaleta(PkEscaleta);
         axios
-          .delete('https://localhost:7201/Escaleta/Delete/' + PkEscaleta)
+          .delete(API_KEY + '/Escaleta/Delete/' + PkEscaleta)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -222,7 +223,7 @@ const Escaletas = () => {
       var fechaFI = document.getElementById('FI').value;
       var fechaFF = document.getElementById('FF').value;
       console.log(
-        'https://localhost:7201/Escaleta/Buscar/' +
+        API_KEY + '/Escaleta/Buscar/' +
           variable +
           '/' +
           fechaFI +
@@ -232,7 +233,7 @@ const Escaletas = () => {
       if (variable === '') {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Escaleta/BuscarDefault/' +
+            API_KEY + '/Escaleta/BuscarDefault/' +
               fechaFI +
               '/' +
               fechaFF
@@ -244,7 +245,7 @@ const Escaletas = () => {
       } else {
         try {
           const respuesta = await axios.get(
-            'https://localhost:7201/Escaleta/Buscar/' +
+            API_KEY + '/Escaleta/Buscar/' +
               variable +
               '/' +
               fechaFI +

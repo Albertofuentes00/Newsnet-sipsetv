@@ -6,6 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { show_alerta } from '../../Funciones';
+import { API_KEY } from '../API_URL';
 
 const EditarGuion = () => {
   const [Datos, SetDatos] = useState([]);
@@ -18,7 +19,7 @@ const EditarGuion = () => {
     try {
       const parametros = { Vredaccion: tablaContenido };
       axios
-        .patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros)
+        .patch(API_KEY+'/Nota/PutRedaccion/' + id, parametros)
         .then(function (respuesta) {
         })
         .catch(function (error) {
@@ -54,7 +55,7 @@ const EditarGuion = () => {
     try {
       const parametros = { Vredaccion: tablaContenido };
       axios
-        .patch('https://localhost:7201/Nota/PutRedaccion/' + id, parametros)
+        .patch(API_KEY+'/Nota/PutRedaccion/' + id, parametros)
         .then(function (respuesta) {
           console.log(respuesta.data.result);
 
@@ -157,7 +158,7 @@ const EditarGuion = () => {
   const GetDatos = async () => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Nota/GetByID/' + id
+        API_KEY+'/Nota/GetByID/' + id
       );
       const elemento = document.querySelector('.Auth-form-Escaletabotones');
       const threshold = elemento.offsetTop;

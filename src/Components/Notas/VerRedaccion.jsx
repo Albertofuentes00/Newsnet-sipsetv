@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import React, { useRef } from 'react';
 import axios from 'axios';
 import html2pdf from 'html2pdf.js';
+import { API_KEY } from '../API_URL';
 
 const LeerGuion = () => {
   const [Datos, SetDatos] = useState([]);
@@ -17,7 +18,7 @@ const LeerGuion = () => {
   const GetDatos = async () => {
     try {
       const respuesta = await axios.get(
-        'https://localhost:7201/Nota/GetByID/' + id
+        API_KEY+'/Nota/GetByID/' + id
       );
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);

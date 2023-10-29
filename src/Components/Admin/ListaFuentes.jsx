@@ -9,6 +9,7 @@ import { FaSearch } from 'react-icons/fa';
 
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const ListaFuentes = () => {
   const [Datos, SetDatos] = useState([]);
@@ -28,7 +29,7 @@ const ListaFuentes = () => {
 
   const GetFuente = async () => {
     try {
-      const respuesta = await axios.get('https://localhost:7201/Fuente/Get');
+      const respuesta = await axios.get(API_KEY+'/Fuente/Get');
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
     } catch (error) {}
@@ -62,7 +63,7 @@ const ListaFuentes = () => {
         console.log(nombre_Fuente.trim());
 
         axios
-          .post('https://localhost:7201/Fuente/Post', parametros)
+          .post(API_KEY+'/Fuente/Post', parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -79,7 +80,7 @@ const ListaFuentes = () => {
         id = { pkFuente: pkFuente };
         parametros = { nombre_Fuente: nombre_Fuente.trim() };
         axios
-          .put('https://localhost:7201/Fuente/Put/' + pkFuente, parametros)
+          .put(API_KEY+'/Fuente/Put/' + pkFuente, parametros)
           .then(function (respuesta) {
             document.getElementById('btnCerrar').click();
             buscar();
@@ -107,7 +108,7 @@ const ListaFuentes = () => {
       if (result.isConfirmed) {
         setPkFuente(pkFuente);
         axios
-          .delete('https://localhost:7201/Fuente/Delete/' + pkFuente)
+          .delete(API_KEY+'/Fuente/Delete/' + pkFuente)
           .then(function (respuesta) {
             if (respuesta.data.mensaje === 'Está relacionado') {
               console.log(respuesta.data.result);
@@ -143,7 +144,7 @@ const ListaFuentes = () => {
         GetFuente();
       } else {
         const respuesta = await axios.get(
-          'https://localhost:7201/Fuente/Buscar/' + variable
+          API_KEY+'/Fuente/Buscar/' + variable
         );
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
