@@ -1768,7 +1768,6 @@ border-radius: 10px;
   border: none; /* Elimina el borde del elemento. */  
   color: white; /* Establece el color del texto a blanco. */
   display: inline-block; /* Hace que el elemento se comporte como un bloque en línea, lo que significa que ocupa solo el ancho necesario y permite que otros elementos estén en la misma línea. */
-  font-size: 15px; /* Establece el tamaño del texto a 15 píxeles. */
   text-align: center; /* Centra el texto dentro del elemento en el eje horizontal. */
   text-decoration: none; /* Elimina la decoración del texto predeterminada, como subrayado de enlaces. */
   appearance: none;
