@@ -1003,7 +1003,7 @@ const LimpiarIndica = ()=>{
                 <Link to={'/Prompt/' + id}>
                   <button type="button" class="btn btn-danger">
                     {' '}
-                    Generar Prompt{' '}
+                    Generar Prompter{' '}
                   </button>
                 </Link>
               </div>

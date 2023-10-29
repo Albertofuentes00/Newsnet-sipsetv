@@ -710,7 +710,7 @@ const Bitacora = () => {
                       <span className="input-group-text">
                         <i>
                           {' '}
-                          <FaMicrophone size={20} color="black" />
+                          <FaList size={20} color="black" />
                         </i>
                       </span>
                       <select
@@ -736,7 +736,7 @@ const Bitacora = () => {
                           <span className="input-group-text">
                             <i>
                               {' '}
-                              <FaList size={20} color="black" />
+                              <FaMicrophone size={20} color="black" />
                             </i>
                           </span>
                           <select
@@ -864,7 +864,7 @@ const Bitacora = () => {
                     <span className="input-group-text">
                       <i>
                         {' '}
-                        <FaMicrophone size={20} color="black" />
+                        <FaList size={20} color="black" />
                       </i>
                     </span>
                     <select
@@ -892,7 +892,7 @@ const Bitacora = () => {
                       <span className="input-group-text">
                         <i>
                           {' '}
-                          <FaList size={20} color="black" />
+                          <FaMicrophone size={20} color="black" />
                         </i>
                       </span>
                       <select

@@ -9,7 +9,7 @@ import NotasPendientees from './HelpImages/NotasPendientes.png'
 
 import { FaEye } from "react-icons/fa";
 import { FaRegListAlt } from "react-icons/fa";
-import { FaPrint } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { FaPlusSquare } from "react-icons/fa";
@@ -47,7 +47,7 @@ function GuionesHelp() {
                             <img src={NotasSombreado} className="HelpImages2" />
                             <br />
                             <br />
-                            <h5>Las notas que no se han insertado en una escaleta se mostrarán en la pestaña de Pendientes, dando click en el botón <button type="button" class="btn btn-danger"> Pendientes </button>.
+                            <h5>Las notas que no se han insertado en una escaleta se mostrarán en la pestaña de Pendientes, dando click en el botón <button type="button" class="btn btn-danger"> <i class="fa-solid fa-flag"/> Pendientes </button>.
                             </h5>
                             <br />
                             <img src={NotasPendientees} className="HelpImages" />
@@ -90,7 +90,7 @@ function GuionesHelp() {
                             <img src={LecturaGuion} className="HelpImages" />
                             <br />
                             <br />
-                            <h6>Si desea generar un PDF de la redacción o imprimirla haga click en  <button type="button" id='btn-imprimir' className="btn btn-primary"> <FaPrint size={20} color="white" /> Imprimir</button>, que le permitirá descargar un PDF con la información consultada para su comodidad.</h6>
+                            <h6>Si desea generar un PDF de la redacción o imprimirla haga click en  <button type="button" id='btn-imprimir' className="btn btn-danger">  <FaFilePdf size={20} color="white" /> Generar PDF</button> que le permitirá descargar un PDF con la información consultada para su comodidad.</h6>
 
                         </div>
                         <br />

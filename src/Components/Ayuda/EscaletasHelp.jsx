@@ -21,6 +21,9 @@ import CuadroNotas from './HelpImages/CuadroNotasEscaletas.jpg'
 import Conductor1 from './HelpImages/Conductor1.jpg'
 import Conductor2 from './HelpImages/Conductor2.jpg'
 import { FaFilePdf } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import SeleccionarTodo from './HelpImages/SeleccionarTodoConductor.png'
+import EliminarFilas from './HelpImages/EliminarFilas.gif'
 
 
 
@@ -163,6 +166,13 @@ function EscaletasHelp() {
                             <img src={Conductor2} className="HelpImages3" />
                             <br />
                             <br />
+                            <h5>Tambien puede seleccionar todas las notas con el botón <button class="btn btn-dark">Seleccionar todo</button> </h5>
+                            <br />
+                            <h5>De igual manera puede asignar un conductor a las notas seleccionadas como se muestra en la imagen.</h5>
+                            <br />
+                            <img src={SeleccionarTodo} className="HelpImage" />
+                            <br />
+
                             <br />
                             <h3>Mover/Ordenar notas/indicaciones </h3>
                             <h5>Para ordenar las notas o indicaciones de una escaleta, basta con seleccionar la fila que usted desea mover y arrastrar con el cursor hasta el lugar donde desee reubicarla</h5>
@@ -171,14 +181,17 @@ function EscaletasHelp() {
                             <br />
                             <br />                     
                             <h3>Eliminación de notas/indicaciones </h3>
-                            <h5>Si desea eliminar una nota o indicacion, puede seleccionar y arrastrar la fila donde se aloje al botón <u>Eliminar</u></h5>
+                            <h5>Si desea eliminar una nota o indicacion, puede seleccionar y arrastrar la fila donde se aloje al botón <button id="botonEliminar" className="BtnEliminar"> <FaTrash size={20} /> Eliminar </button></h5>
+                            <br />
+                            <img src={EliminarFilas} className="HelpImage" />
+                            <br />
                             <br />
                             <br />
                             <h3>Otras funciones</h3>
                             <h5>Usted puede hacer otras funcionalidades dentro de escaletas, a traves de los siguientes botones:</h5>
                             <br />
                             <h5> ►  <button type='button' class='btn btn-danger'> <FaFilePdf size={20} color='white'/> Generar PDF </button> El sistema genera un archivo PDF de la escaleta actual, para su descarga e impresión.</h5>
-                            <h5> ► <button type='button' class='btn btn-danger'> Generar Prompt </button> El sistema genera un prompt de la escaleta seleccionada, junto con su información relacionada (Notas con sus redacciones), además de generar el prompt en PDF.</h5>    
+                            <h5> ► <button type='button' class='btn btn-danger'> Generar Prompter </button> El sistema genera un prompter de la escaleta seleccionada, junto con su información relacionada (Notas con sus redacciones), además de generar el prompt en PDF.</h5>    
                             <br />
                             <br />
                             <br />
