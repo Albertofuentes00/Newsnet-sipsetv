@@ -1593,7 +1593,7 @@ border-radius: 10px;
 .modal-input{
   min-width: 20vw;
   margin: auto;
-  min-height: 2vh;
+  min-height: 5vh;
   margin-bottom: 3%;
   background-color: white;
   padding: 2px;
