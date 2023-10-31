@@ -26,7 +26,7 @@ const Bitacora = () => {
     const year = fechaActual.getFullYear();
     const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
     const day = String(fechaActual.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return `${year}-${month}-${day}`;  // Devuelve la fecha de hoy
   }
   function getFechaActualFF() {
     const fechaActual = new Date();
@@ -67,7 +67,7 @@ const Bitacora = () => {
     setTitulo(inputValue);
   };
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {  
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/Get');
       const respuesta2 = await axios.get(
@@ -132,7 +132,7 @@ const Bitacora = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => {  
     var parametros;
     setBotonDeshabilitado(true);
     if (operation === 1) {

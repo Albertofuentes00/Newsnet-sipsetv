@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from 'react';
 import {FaUsers} from 'react-icons/fa'
-import {FaAngleLeft} from 'react-icons/fa'
-import { BiCameraMovie } from 'react-icons/bi'
 import { FaMicrophone } from 'react-icons/fa'
 import { BiCategory } from 'react-icons/bi'
 import { FaUserCog } from 'react-icons/fa'
@@ -18,7 +16,7 @@ function AdminMenu(){
     const rol = partes[2];
 
 
-    const [selectedButton, setSelectedButton] = useState(1);
+    const [selectedButton, setSelectedButton] = useState(1); // Pestaña de usuarios como vista al entrar a Administrador
 
     const changeButtonClass = (buttonNumber) => {
       setSelectedButton(buttonNumber);
@@ -27,11 +25,9 @@ function AdminMenu(){
       
     
     if (rol != "Administrador") {
-
-        window.location.href = '/MainMenu';
-
+        window.location.href = '/MainMenu';    // Si el usuario no es administrador, no puede acceder al admin 
       }
-      else{
+      else{                                    // De lo contrario, se puede acceder 
         return(
             <body className="App-body">
             <header className="mainheader">
@@ -54,24 +50,15 @@ function AdminMenu(){
                 <Link to='ListaFuentes' className={selectedButton === 6 ? 'active-admin-btn' : 'linkbtnad'}  id="btn-6" onClick={()=> changeButtonClass(6)}>
                     <button type="button" class='adminbtn' > <FaMicrophone size={20} /> Fuentes </button>
                 </Link>
-            </div>
+                </div>
             </header> 
-            
             <Outlet />
-            </body>
-            
-           
-            
+            </body> 
         )
    
       }
 
     }
-
-
-
-
-
 
 
 export default AdminMenu
