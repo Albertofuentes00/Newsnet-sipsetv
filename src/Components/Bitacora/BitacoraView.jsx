@@ -1,22 +1,61 @@
+//dependencias e inmportaciones
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import whitReactContent from 'sweetalert2-react-content';
+import Cookies from 'js-cookie';
+import { API_KEY } from '../API_URL'; //linea de conexion a la api 
+//Iconos
 import { show_alerta } from '../../Funciones';
-import { Link } from 'react-router-dom';
-import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { FaList } from 'react-icons/fa';
 import { FaMicrophone } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
-import Swal from 'sweetalert2';
-import whitReactContent from 'sweetalert2-react-content';
-import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { FaArrowAltCircleRight } from 'react-icons/fa';
-import { API_KEY } from '../API_URL';
 
 const Bitacora = () => {
+  //Inicializacion de las variables a recopilar
+  const [Datos, SetDatos] = useState([]);
+  const [Categorias, SetCategorias] = useState([]);
+  const [Formatos, SetFormatos] = useState([]);
+  const [Fuentes, SetFuentes] = useState([]);
+  const [Usuarios, SetUsuarios] = useState([]);
+  const [pkNota, setPkNota] = useState('');
+  const [titulo, setTitulo] = useState('');
+  const [reportero, setReportero] = useState('');
+  const [fecha, setFecha] = useState('');
+  const [fkCategoria, setFkCategoria] = useState('');
+  const [fkFormato, setFkFormato] = useState('');
+  const [fkUsuario, setFkUsuario] = useState('');
+  const [fkfuente, setFkFuente] = useState('');
+  const [operation, setOperation] = useState(1);
+  const [title, setTitle] = useState('');
+  const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
+  useEffect(() => {
+    GetDatos();
+  }, []);
+
+  //Funcion para recuperar las notas y sus datos de la base de datos
+  const GetDatos = async () => {
+    try {
+      const respuesta = await axios.get(API_KEY+'/Nota/Get');
+      const respuesta2 = await axios.get(API_KEY+'/Categoria/Get');
+      const respuesta3 = await axios.get(API_KEY+'/Formato/Get');
+      const respuesta4 = await axios.get(API_KEY+'/Fuente/Get');
+      const respuesta5 = await axios.get(API_KEY+'/Usuario/Get/Obtener_Reporteros');
+      //asignar a las variables los resultados de la api
+      SetDatos(respuesta.data.result);
+      SetCategorias(respuesta2.data.result);
+      SetFormatos(respuesta3.data.result);
+      SetFuentes(respuesta4.data.result);
+      SetUsuarios(respuesta5.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Funciones para la obtencion de la fecha 
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
   const fechaMinima = '1900-01-01';
@@ -39,54 +78,16 @@ const Bitacora = () => {
     return `${year}-${month}-${day}`;
   }
 
-  const [Datos, SetDatos] = useState([]);
-  const [Categorias, SetCategorias] = useState([]);
-  const [Formatos, SetFormatos] = useState([]);
-  const [Fuentes, SetFuentes] = useState([]);
-  const [Usuarios, SetUsuarios] = useState([]);
-  const [pkNota, setPkNota] = useState('');
-  const [titulo, setTitulo] = useState('');
-  const [reportero, setReportero] = useState('');
-  const [fecha, setFecha] = useState('');
-  const [fkCategoria, setFkCategoria] = useState('');
-  const [fkFormato, setFkFormato] = useState('');
-  const [fkUsuario, setFkUsuario] = useState('');
-  const [fkfuente, setFkFuente] = useState('');
-  const [operation, setOperation] = useState(1);
-  const [title, setTitle] = useState('');
-  const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
-  useEffect(() => {
-    GetDatos();
-  }, []);
-
+  //Funcion para mostrar siempre las mayusculas de la nota
   const [text, setText] = useState('');
-
+  
   const handleInputChange = (event) => {
     const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
     setText(inputValue);
     setTitulo(inputValue);
   };
 
-  const GetDatos = async () => {
-    try {
-      const respuesta = await axios.get(API_KEY+'/Nota/Get');
-      const respuesta2 = await axios.get(
-        API_KEY+'/Categoria/Get'
-      );
-      const respuesta3 = await axios.get(API_KEY+'/Formato/Get');
-      const respuesta4 = await axios.get(API_KEY+'/Fuente/Get');
-      const respuesta5 = await axios.get(
-        API_KEY+'/Usuario/Get/Obtener_Reporteros'
-      );
-      SetDatos(respuesta.data.result);
-      SetCategorias(respuesta2.data.result);
-      SetFormatos(respuesta3.data.result);
-      SetFuentes(respuesta4.data.result);
-      SetUsuarios(respuesta5.data.result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //Asignar su funcion al abrir modal
   const OpenModal = (
     op,
     pkNota,
@@ -132,6 +133,8 @@ const Bitacora = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
+
+  //Validar que los datos se llenaron y mandar a la base de datos
   const Validar = () => {
     var parametros;
     setBotonDeshabilitado(true);
@@ -341,6 +344,7 @@ const Bitacora = () => {
     }
   };
 
+  //Borrar un registro
   const deleteDatos = (pkNota) => {
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
@@ -372,6 +376,7 @@ const Bitacora = () => {
     });
   };
 
+  //Comprueba el rol y filtra las opciones
   function rol() {
     try {
       const cadena = Cookies.get('Usuario');
@@ -414,6 +419,7 @@ const Bitacora = () => {
     }
   }
 
+  //Filtra la opcion de editar 
   function rolEditar() {
     try {
       const cadena = Cookies.get('Usuario');
@@ -457,6 +463,7 @@ const Bitacora = () => {
     }
   }
 
+  //Funcion de la busquedas de notas
   const buscar = async () => {
     try {
       var variable = document.getElementById('Buscador').value;
@@ -502,6 +509,7 @@ const Bitacora = () => {
         <div className="Auth-form-searchbar">
           <div className="Row-searchbar">
             <div className="Row">
+              //Buscador
               <div className="buscador_admin">
                 <input
                   id="Buscador"
@@ -551,6 +559,7 @@ const Bitacora = () => {
           </div>
         </div>
 
+        //Contenedor de notas
         <div className="Auth-form-table">
           <div className="Auth-Maintable">
             <div className="Row">
@@ -569,6 +578,7 @@ const Bitacora = () => {
               </div>
             </div>
 
+            //Tabla de notas
             <div className="Auth-form-container-Main">
               <table class="table">
                 <thead>
@@ -585,6 +595,7 @@ const Bitacora = () => {
                     <th scope="col"> </th>
                   </tr>
                 </thead>
+                //Mapeado de las notas de la base de datos
                 <tbody className="table-group-divider">
                   {Datos.map((Datos,i) => (
                     <tr key={Datos.pkNota}>
@@ -596,6 +607,7 @@ const Bitacora = () => {
                       <td>{Datos.nombre_Fuente}</td>
                       <td>{Datos.fecha.split(' ')[0]}</td>
                       <td>
+                        //botones de opciones
                         <button
                           onClick={() => {
                             OpenModal(
@@ -648,6 +660,7 @@ const Bitacora = () => {
         </div>
       </div>
 
+      //Modal para crear notas
       <div id="modaldefault" className="modal fade" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -787,6 +800,8 @@ const Bitacora = () => {
           </div>
         </div>
       </div>
+
+      //Modal para editar notas
       <div id="modaleditar" className="modal fade" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
