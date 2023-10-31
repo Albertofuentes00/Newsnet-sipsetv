@@ -25,7 +25,7 @@ const ListaCategorias = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {   // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Categoria/Get');
       console.log(respuesta.data.result);
@@ -33,12 +33,12 @@ const ListaCategorias = () => {
     } catch (error) {}
   };
 
-  const OpenModal = (op, pkCategoria, nombre_Categoria) => {
+  const OpenModal = (op, pkCategoria, nombre_Categoria) => {  // Abre una ventana para crear o editar categoria
     setPkCategoria('');
     setNombre_Categoria('');
     setOperation(op);
     if (op === 1) {
-      setTitle('Registrar Categoria');
+      setTitle('Registrar Categoria'); 
     } else if (op === 2) {
       setTitle('Actualizar Categoria');
       setPkCategoria(pkCategoria);
@@ -48,7 +48,7 @@ const ListaCategorias = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => {  // Valida y guarda los datos de la categoria
     var parametros;
     var id;
     setBotonDeshabilitado(true);
@@ -94,22 +94,22 @@ const ListaCategorias = () => {
       console.log('Se termino el consumo de la api');
     }
   };
-  const deleteDatos = (pkCategoria, nombre_Categoria) => {
+  const deleteDatos = (pkCategoria, nombre_Categoria) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: '¿Seguro que quieres borrar ' + nombre_Categoria + '?',
+      title: '¿Seguro que quieres borrar ' + nombre_Categoria + '?', // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podrá recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'Sí, Eliminar',
-      cancelbuttonText: 'Cancelar',
+      confirmButtonText: 'Sí, Eliminar',  // Boton de confirmacion
+      cancelbuttonText: 'Cancelar',       // Boton de rechazo
     }).then((result) => {
       if (result.isConfirmed) {
         setPkCategoria(pkCategoria);
         axios
           .delete(API_KEY+'/Categoria/Delete/' + pkCategoria)
           .then(function (respuesta) {
-            if (respuesta.data.mensaje === 'Está relacionado') {
+            if (respuesta.data.mensaje === 'Está relacionado') { // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse 
               show_alerta(
                 'No se pudo cumplir la solicitud, existen otros registros que contienen este elemento'
               );
@@ -125,7 +125,7 @@ const ListaCategorias = () => {
     });
   };
 
-  const buscar = async () => {
+  const buscar = async () => {     // Motor de busqueda de categorias
     try {
       var variable = document.getElementById('Buscador').value;
       if (variable == '') {
@@ -160,7 +160,7 @@ const ListaCategorias = () => {
           <div className="Row">
             <h3>Lista de categorías</h3>
             <div className="Button-form">
-              <div className="buscador_admin">
+              <div className="buscador_admin">  {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -169,8 +169,8 @@ const ListaCategorias = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>
-              <button
+              </div>                            {/* Buscador Fin */}
+              <button                                                    
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"
                 data-bs-target="#modaldefault"
@@ -178,7 +178,7 @@ const ListaCategorias = () => {
                 class="btn btn-success"
               >
                 {' '}
-                <FaPlusSquare size={20} color="white" /> Nueva Categoría
+                <FaPlusSquare size={20} color="white" /> Nueva Categoría  {/* Boton para nueva categoria */}
               </button>
             </div>
           </div>
@@ -192,7 +192,7 @@ const ListaCategorias = () => {
                   <th scope="col"> </th>
                 </tr>
               </thead>
-              <tbody className="table-group-divider">
+              <tbody className="table-group-divider">      {/* Tabla Inicio */}
                 {currentData.map((Datos, i) => (
                   <tr key={Datos.pkCategoria}>
                     <td>{itemNumber + i}</td>
@@ -224,12 +224,12 @@ const ListaCategorias = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody>                                      {/* Tabla Fin */}
             </table>
           </div>
         </div>
 
-        <div className="pagination-list">
+        <div className="pagination-list">   {/* Paginacion */}
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
@@ -246,7 +246,7 @@ const ListaCategorias = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="true">
+      <div id="modaldefault" className="modal fade" aria-hidden="true">  {/* Ventana Crear categoria */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

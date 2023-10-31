@@ -24,7 +24,7 @@ const ListaFormatos = () => {
     GetFormato();
   }, []);
 
-  const GetFormato = async () => {
+  const GetFormato = async () => {  // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Formato/Get');
       console.log(respuesta.data.result);
@@ -32,7 +32,7 @@ const ListaFormatos = () => {
     } catch (error) {}
   };
 
-  const OpenModal = (op, pkFormato, nombre_Formato) => {
+  const OpenModal = (op, pkFormato, nombre_Formato) => { // Abre una ventana para crear o editar formato
     setPkFormato('');
     setNombre_Formato('');
     setOperation(op);
@@ -47,7 +47,7 @@ const ListaFormatos = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => {  //  Valida y guarda los datos del formato
     var parametros;
     var id;
     setBotonDeshabilitado(true);
@@ -92,22 +92,22 @@ const ListaFormatos = () => {
       console.log('Se termino el consumo de la api');
     }
   };
-  const deleteDatos = (pkFormato, nombre_Formato) => {
+  const deleteDatos = (pkFormato, nombre_Formato) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: '¿Seguro que quieres borrar ' + nombre_Formato + '?',
+      title: '¿Seguro que quieres borrar ' + nombre_Formato + '?', // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podrá recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'Sí, Eliminar',
-      cancelbuttonText: 'Cancelar',
+      confirmButtonText: 'Sí, Eliminar',   // Boton de confirmacion
+      cancelbuttonText: 'Cancelar',        // Boton de rechazo 
     }).then((result) => {
       if (result.isConfirmed) {
         setPkFormato(pkFormato);
         axios
           .delete(API_KEY+'/Formato/Delete/' + pkFormato)
           .then(function (respuesta) {
-            if (respuesta.data.mensaje === 'Está relacionado') {
+            if (respuesta.data.mensaje === 'Está relacionado') {  // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse 
               show_alerta(
                 'No se pudo cumplir la solicitud, existen otros registros que contienen este elemento'
               );
@@ -123,7 +123,7 @@ const ListaFormatos = () => {
     });
   };
 
-  const buscar = async () => {
+  const buscar = async () => {    // Motor de busqueda de formatos
     try {
       var variable = document.getElementById('Buscador').value;
       if (variable == '') {

@@ -15,7 +15,28 @@ import { BiCategory } from 'react-icons/bi';
 import { FaSearch } from 'react-icons/fa';
 
 const Bitacora = () => {
-  //Inicializacion de las variables a recopilar
+  const [fechaFI, setFechaFI] = useState(getFechaActualFI);
+  const [fechaFF, setFechaFF] = useState(getFechaActualFF);
+  const fechaMinima = '1900-01-01';
+
+  function getFechaActualFI() {
+    const fechaActual = new Date();
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;  // Devuelve la fecha de hoy
+  }
+  function getFechaActualFF() {
+    const fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
+
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
   const [Datos, SetDatos] = useState([]);
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
@@ -36,8 +57,15 @@ const Bitacora = () => {
     GetDatos();
   }, []);
 
-  //Funcion para recuperar las notas y sus datos de la base de datos
-  const GetDatos = async () => {
+  const [text, setText] = useState('');
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+    setText(inputValue);
+    setTitulo(inputValue);
+  };
+
+  const GetDatos = async () => {  
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/Get');
       const respuesta2 = await axios.get(API_KEY+'/Categoria/Get');
@@ -133,9 +161,7 @@ const Bitacora = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-
-  //Validar que los datos se llenaron y mandar a la base de datos
-  const Validar = () => {
+  const Validar = () => {  
     var parametros;
     setBotonDeshabilitado(true);
     if (operation === 1) {

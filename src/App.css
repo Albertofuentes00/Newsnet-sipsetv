@@ -24,7 +24,8 @@
 
 
 table td{
-font-size: 14px;
+font-size: 12px;
+overflow: hidden;
 }
 
 
@@ -40,7 +41,7 @@ color: rgb(97, 97, 97);
   border-radius: 5px;
   border-style: none;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 17px;
   margin-right: 5%;
   color: rgb(97, 97, 97);
   transition: 1s;
@@ -1244,6 +1245,7 @@ vertical-align: top;
 
 table tr{
   border-style: none;
+  font-size: 15px;
 }
 
 .Invisible{
@@ -1295,6 +1297,7 @@ table tr{
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
+  overflow: hidden;
 }
 
 .tabla-armado th {
