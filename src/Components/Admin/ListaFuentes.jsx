@@ -95,22 +95,22 @@ const ListaFuentes = () => {
       console.log('Se termino el consumo de la api');
     }
   };
-  const deleteDatos = (pkFuente, nombre_Fuente) => {
+  const deleteDatos = (pkFuente, nombre_Fuente) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: '¿Seguro que quieres borrar ' + nombre_Fuente + '?',
+      title: '¿Seguro que quieres borrar ' + nombre_Fuente + '?',  // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podrá recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'Sí, Eliminar',
-      cancelbuttonText: 'Cancelar',
+      confirmButtonText: 'Sí, Eliminar',    // Boton de confirmacion
+      cancelbuttonText: 'Cancelar',         // Boton de rechazo
     }).then((result) => {
       if (result.isConfirmed) {
         setPkFuente(pkFuente);
         axios
           .delete(API_KEY+'/Fuente/Delete/' + pkFuente)
           .then(function (respuesta) {
-            if (respuesta.data.mensaje === 'Está relacionado') {
+            if (respuesta.data.mensaje === 'Está relacionado') {  // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse 
               console.log(respuesta.data.result);
               SetNotas(respuesta.data.result);
               const notasrelaModal = document.getElementById('notasrela');
@@ -130,14 +130,14 @@ const ListaFuentes = () => {
     });
   };
 
-  function closeModal() {
+  function closeModal() {   
     const notasrelaModal = document.getElementById('notasrela');
     notasrelaModal.classList.remove('show');
     notasrelaModal.style.display = 'none';
     document.body.classList.remove('modal-open');
   }
 
-  const buscar = async () => {
+  const buscar = async () => {      // Motor de busqueda de fuentes 
     try {
       var variable = document.getElementById('Buscador').value;
       if (variable == '') {
