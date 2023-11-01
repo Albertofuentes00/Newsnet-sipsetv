@@ -2,9 +2,13 @@
 
 function Default(){
     return(
-        <div className="Auth-form-table">
-            <div className="Auth-Maintable">
-                Parece que no has llegado a nada
+        <div className="Login-main">
+            <div className="Auth-form-container">
+                <form className="Auth-form">
+                    <div className="Auth-form-content">
+                     Error page not found
+                    </div>
+                </form>
             </div>
         </div>
     );
