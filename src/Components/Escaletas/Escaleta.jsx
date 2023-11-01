@@ -16,6 +16,7 @@ import html2pdf from 'html2pdf.js';
 import { FaFileAlt } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
+
 function Table() {
   const [filda, Setfilda] = useState('');
   const [fildaUpdated, setFildaUpdated] = useState(false);
@@ -42,7 +43,7 @@ function Table() {
       filename: 'Escaleta' + '_' + fechaFI + '.pdf',
       image: { type: 'jpeg', quality: 1 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
     };
 
     html2pdf(content, opt);
@@ -171,6 +172,7 @@ function Table() {
 
   useEffect(() => {
     Val();
+   
   }, []);
 
 
@@ -189,7 +191,7 @@ const LimpiarIndica = ()=>{
           <div ref={tablaRef}>
             <table className="tabla-armado" id="sortable-table">
               <thead >
-                <tr>
+                <tr draggable="false">
                   <th scope="col">Orden</th>
                   <th scope="col">Conductor</th>
                   <th scope="col" className='tabla-armado-titulo'>Titulo</th>
@@ -201,7 +203,7 @@ const LimpiarIndica = ()=>{
                 </tr>
               </thead>
               <tbody>
-                <tr className="indicacion" draggable="true">
+                <tr className="indicacion">
                   <td>-</td>
                   <td>-</td>
                   <td>BIENVENIDA</td>
@@ -539,7 +541,6 @@ const LimpiarIndica = ()=>{
       setFilasSeleccionadas(todasLasNotas);
     }
   };
-  
   const AgregarNota = async () => {
     setBotonDeshabilitado(true);
    var tabla_notas = document.getElementById('notas-table');
@@ -576,9 +577,17 @@ const LimpiarIndica = ()=>{
         );
 
         if (respuesta.data.mensaje === 'Ya existe') {
-          console.log(respuesta.data.result.mensaje);
+          console.log(respuesta.data.mensaje);
         } else {
-          const nuevaFila = tabla.insertRow();
+          console.log(respuesta.data.mensaje);
+          if(respuesta.data.mensaje === 'Esta escaleta ya no existe'){
+            show_alerta('Esta escaleta ya no existe', 'error');
+            setTimeout(() => {
+              window.location.href = '/Escaletas';
+            }, 4000);
+            
+          }else{
+            const nuevaFila = tabla.insertRow();
             if(Geneconductor === ''){
             for (let i = 0; i < 6; i++) {
               const td = nuevaFila.insertCell(i);
@@ -626,6 +635,8 @@ const LimpiarIndica = ()=>{
           setTimeout(() => {
             setBotonDeshabilitado(false);
           }, 1000);
+          }
+          
         }
       } catch (error) {
         show_alerta('Error en la solicitud', 'error');
@@ -637,6 +648,7 @@ const LimpiarIndica = ()=>{
     }
 
     ActualizarTablaEs();
+    setText('');
     cargando_notas.hidden = true;
     tabla_notas.hidden = false;
    
@@ -649,7 +661,6 @@ const LimpiarIndica = ()=>{
 
   function agregarIndicacion() {
     const tabla = document.getElementById('sortable-table');
-    const tbody = tabla.querySelector('tbody');
     const Indicacion = document.getElementById('Nombre_indi').value;
     var conductor = document.getElementById('coductor-indicacion').value
     var reportero = document.getElementById('reportero-indicacion').value
@@ -738,7 +749,7 @@ const LimpiarIndica = ()=>{
       botonCerrarRef.current.click(); // Hace clic en el botón de cerrar
     }
     LimpiarIndica();
-  }
+  };
 
   try {
     const table = document.getElementById('sortable-table');
@@ -766,17 +777,28 @@ const LimpiarIndica = ()=>{
     });
 
     table.addEventListener('dragenter', function (event) {
-      const target = event.target.closest('tr');
-      if (target && target !== draggedRow) {
-        target.classList.add('dragged-over');
+      try {
+        const target = event.target.closest('tr');
+        if (target && target !== draggedRow) {
+          target.classList.add('dragged-over');
+        }
+      } catch (error) {
+        
       }
+
     });
 
     table.addEventListener('dragleave', function (event) {
-      const target = event.target.closest('tr');
-      if (target && target !== draggedRow) {
-        target.classList.remove('dragged-over');
+
+      try {
+        const target = event.target.closest('tr');
+        if (target && target !== draggedRow) {
+          target.classList.remove('dragged-over');
+        }
+      } catch (error) {
+        
       }
+
     });
 
     table.addEventListener('drop', function (event) {
@@ -894,6 +916,9 @@ const LimpiarIndica = ()=>{
       botonEliminar.addEventListener('drop', handleDrop);
     }
   } catch (error) {}
+
+//Funcion para eliminar la nota que ha sido arrastrada al boton
+
 
   const EliminarNota = async (pkNota) => {
     try {

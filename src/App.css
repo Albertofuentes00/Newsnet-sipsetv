@@ -1669,6 +1669,7 @@ border-radius: 10px;
 .Nota-titulo-prompt{
   margin-bottom: 2%;
   font-weight: normal;
+  text-align: left;
 }
 
 
@@ -1761,6 +1762,11 @@ border-radius: 10px;
   text-align: center; /* Centra el texto dentro del elemento en el eje horizontal. */
   text-decoration: none; /* Elimina la decoración del texto predeterminada, como subrayado de enlaces. */
   appearance: none; /* Establece la apariencia del elemento a "none", lo que significa que el navegador utilizará su estilo predeterminado para el elemento en lugar de cualquier estilo del sistema operativo. Esto es especialmente útil para restablecer estilos predeterminados en elementos de formulario en algunos navegadores. */
+}
+
+
+.darkb:hover button{
+  color: white;
 }
 
 .darkb-active button{
@@ -1903,3 +1909,7 @@ color: black;
   padding-top: 30vh;
   
 }
+
+
+
+

@@ -94,6 +94,7 @@ function Login() {
                 Ingresar
               </div>
             </div>
+            <label>Esta es una version recien implementada, cualquier error favor de reportarlo en sistemas.</label>
           </div>
         </form>
       </div>
