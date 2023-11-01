@@ -83,37 +83,7 @@ const Bitacora = () => {
     }
   };
 
-  //Funciones para la obtencion de la fecha 
-  const [fechaFI, setFechaFI] = useState(getFechaActualFI);
-  const [fechaFF, setFechaFF] = useState(getFechaActualFF);
-  const fechaMinima = '1900-01-01';
-
-  function getFechaActualFI() {
-    const fechaActual = new Date();
-    const year = fechaActual.getFullYear();
-    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
-    const day = String(fechaActual.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-  function getFechaActualFF() {
-    const fechaActual = new Date();
-    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
-
-    const year = fechaActual.getFullYear();
-    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
-    const day = String(fechaActual.getDate()).padStart(2, '0');
-
-    return `${year}-${month}-${day}`;
-  }
-
-  //Funcion para mostrar siempre las mayusculas de la nota
-  const [text, setText] = useState('');
   
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
-    setText(inputValue);
-    setTitulo(inputValue);
-  };
 
   //Asignar su funcion al abrir modal
   const OpenModal = (
