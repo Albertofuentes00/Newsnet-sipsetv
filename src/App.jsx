@@ -52,6 +52,7 @@ import EscaletasHelp from './Components/Ayuda/EscaletasHelp';
 import React from 'react';
 import Introduccion from './Components/Ayuda/Introduction';
 import EditarGuion from './Components/Notas/EditarRedaccion';
+import Default from './Components/Default';
 
 function App() {
   const LimpiarSession = () => {
@@ -167,6 +168,7 @@ function App() {
             <Route path="AdminHelp" element={<AdminHelp />} />
             <Route path="About" element={<About />} />
           </Route>
+          <Route path="*" element={<Default />}></Route>
         </Routes>
       </body>
 
