@@ -1,20 +1,44 @@
-//dependencias e inmportaciones
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import whitReactContent from 'sweetalert2-react-content';
-import Cookies from 'js-cookie';
-import { API_KEY } from '../API_URL'; //linea de conexion a la api 
-//Iconos
 import { show_alerta } from '../../Funciones';
+import { Link } from 'react-router-dom';
+import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { FaList } from 'react-icons/fa';
 import { FaMicrophone } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
+import Swal from 'sweetalert2';
+import whitReactContent from 'sweetalert2-react-content';
+import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaArrowAltCircleRight } from 'react-icons/fa';
+import { API_KEY } from '../API_URL';
 
 const Bitacora = () => {
+  const [fechaFI, setFechaFI] = useState(getFechaActualFI);
+  const [fechaFF, setFechaFF] = useState(getFechaActualFF);
+  const fechaMinima = '1900-01-01';
+
+  function getFechaActualFI() {
+    const fechaActual = new Date();
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  function getFechaActualFF() {
+    const fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
+
+    const year = fechaActual.getFullYear();
+    const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const day = String(fechaActual.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
   const [Datos, SetDatos] = useState([]);
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
@@ -35,14 +59,25 @@ const Bitacora = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {  
+  const [text, setText] = useState('');
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+    setText(inputValue);
+    setTitulo(inputValue);
+  };
+
+  const GetDatos = async () => {
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/Get');
-      const respuesta2 = await axios.get(API_KEY+'/Categoria/Get');
+      const respuesta2 = await axios.get(
+        API_KEY+'/Categoria/Get'
+      );
       const respuesta3 = await axios.get(API_KEY+'/Formato/Get');
       const respuesta4 = await axios.get(API_KEY+'/Fuente/Get');
-      const respuesta5 = await axios.get(API_KEY+'/Usuario/Get/Obtener_Reporteros');
-      //asignar a las variables los resultados de la api
+      const respuesta5 = await axios.get(
+        API_KEY+'/Usuario/Get/Obtener_Reporteros'
+      );
       SetDatos(respuesta.data.result);
       SetCategorias(respuesta2.data.result);
       SetFormatos(respuesta3.data.result);
@@ -52,10 +87,6 @@ const Bitacora = () => {
       console.log(error);
     }
   };
-
-  
-
-  //Asignar su funcion al abrir modal
   const OpenModal = (
     op,
     pkNota,
@@ -101,7 +132,7 @@ const Bitacora = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {  
+  const Validar = () => {
     var parametros;
     setBotonDeshabilitado(true);
     if (operation === 1) {
@@ -310,7 +341,6 @@ const Bitacora = () => {
     }
   };
 
-  //Borrar un registro
   const deleteDatos = (pkNota) => {
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
@@ -342,7 +372,6 @@ const Bitacora = () => {
     });
   };
 
-  //Comprueba el rol y filtra las opciones
   function rol() {
     try {
       const cadena = Cookies.get('Usuario');
@@ -385,7 +414,6 @@ const Bitacora = () => {
     }
   }
 
-  //Filtra la opcion de editar 
   function rolEditar() {
     try {
       const cadena = Cookies.get('Usuario');
@@ -474,7 +502,6 @@ const Bitacora = () => {
         <div className="Auth-form-searchbar">
           <div className="Row-searchbar">
             <div className="Row">
-              //Buscador
               <div className="buscador_admin">
                 <input
                   id="Buscador"
@@ -569,7 +596,6 @@ const Bitacora = () => {
                       <td>{Datos.nombre_Fuente}</td>
                       <td>{Datos.fecha.split(' ')[0]}</td>
                       <td>
-                        //botones de opciones
                         <button
                           onClick={() => {
                             OpenModal(
@@ -761,7 +787,6 @@ const Bitacora = () => {
           </div>
         </div>
       </div>
-
       <div id="modaleditar" className="modal fade" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
