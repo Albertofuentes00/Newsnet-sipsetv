@@ -459,7 +459,6 @@ const Bitacora = () => {
     }
   }
 
-  //Funcion de la busquedas de notas
   const buscar = async () => {
     try {
       var variable = document.getElementById('Buscador').value;
@@ -555,7 +554,6 @@ const Bitacora = () => {
           </div>
         </div>
 
-        //Contenedor de notas
         <div className="Auth-form-table">
           <div className="Auth-Maintable">
             <div className="Row">
@@ -574,7 +572,6 @@ const Bitacora = () => {
               </div>
             </div>
 
-            //Tabla de notas
             <div className="Auth-form-container-Main">
               <table class="table">
                 <thead>
@@ -591,7 +588,6 @@ const Bitacora = () => {
                     <th scope="col"> </th>
                   </tr>
                 </thead>
-                //Mapeado de las notas de la base de datos
                 <tbody className="table-group-divider">
                   {Datos.map((Datos,i) => (
                     <tr key={Datos.pkNota}>
@@ -656,7 +652,6 @@ const Bitacora = () => {
         </div>
       </div>
 
-      //Modal para crear notas
       <div id="modaldefault" className="modal fade" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -797,7 +792,6 @@ const Bitacora = () => {
         </div>
       </div>
 
-      //Modal para editar notas
       <div id="modaleditar" className="modal fade" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
