@@ -9,7 +9,7 @@ function Login() {
   // Realizar una acción basada en la ruta actual
   if (!cadena) {
   } else {
-    window.location.href = '/Main';
+    window.location.href = 'src\Components\MainMenu\Main.jsx';
   }
 
   const buscarUsuario = async () => {
@@ -31,7 +31,7 @@ function Login() {
           const nickName = respuesta.data.result[0].nickName;
           const nombre_Rol = respuesta.data.result[0].rol.nombre_Rol;
           Cookies.set('Usuario', pkUsuario + '/' + nickName + '/' + nombre_Rol);
-          window.location.href = '/Main';
+          window.location.href = 'src\Components\MainMenu\Main.jsx';
         } else {
           console.log('ninguna coincidencia');
           document.getElementById('usuario').style.borderColor = 'red';

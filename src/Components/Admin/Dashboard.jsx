@@ -25,7 +25,7 @@ function AdminMenu(){
       
     
     if (rol != "Administrador") {
-        window.location.href = '/MainMenu';    // Si el usuario no es administrador, no puede acceder al admin 
+        window.location.href = 'src\Components\MainMenu\MainMenu.jsx';    // Si el usuario no es administrador, no puede acceder al admin 
       }
       else{                                    // De lo contrario, se puede acceder 
         return(
