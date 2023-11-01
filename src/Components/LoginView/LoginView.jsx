@@ -2,14 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { API_KEY } from '../API_URL';
+import {useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
   const cadena = Cookies.get('Usuario');
 
   // Realizar una acción basada en la ruta actual
   if (!cadena) {
   } else {
-    window.location.href = '/Main';
+    return(navigate('/Main'),
+    window.location.reload()) ;
   }
 
   const buscarUsuario = async () => {
@@ -31,7 +34,8 @@ function Login() {
           const nickName = respuesta.data.result[0].nickName;
           const nombre_Rol = respuesta.data.result[0].rol.nombre_Rol;
           Cookies.set('Usuario', pkUsuario + '/' + nickName + '/' + nombre_Rol);
-          window.location.href = '/Main';
+          navigate('/Main');
+          window.location.reload();
         } else {
           console.log('ninguna coincidencia');
           document.getElementById('usuario').style.borderColor = 'red';

@@ -1,6 +1,5 @@
 import React from 'react';
 function Main() {
-
   return (
     <div className='background-sipse'>
       <div className='content-main-sip'>

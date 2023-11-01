@@ -582,9 +582,6 @@ const LimpiarIndica = ()=>{
           console.log(respuesta.data.mensaje);
           if(respuesta.data.mensaje === 'Esta escaleta ya no existe'){
             show_alerta('Esta escaleta ya no existe', 'error');
-            setTimeout(() => {
-              window.location.href = 'src\Components\Escaletas\EscaletasView.jsx';
-            }, 4000);
             
           }else{
             const nuevaFila = tabla.insertRow();

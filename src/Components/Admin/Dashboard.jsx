@@ -4,13 +4,13 @@ import {FaUsers} from 'react-icons/fa'
 import { FaMicrophone } from 'react-icons/fa'
 import { BiCategory } from 'react-icons/bi'
 import { FaUserCog } from 'react-icons/fa'
-import { Outlet, Link } from "react-router-dom"
+import { Outlet, Link,useNavigate } from "react-router-dom"
 import { FaList } from "react-icons/fa";
 import { FaTv } from "react-icons/fa";
 import Cookies from "js-cookie";
 
 function AdminMenu(){
-    
+    const navigate = useNavigate();
     const cadena = Cookies.get('Usuario');
     const partes = cadena.split('/');
     const rol = partes[2];
@@ -25,9 +25,10 @@ function AdminMenu(){
       
     
     if (rol != "Administrador") {
-        window.location.href = '/MainMenu';    // Si el usuario no es administrador, no puede acceder al admin 
+        navigate('/MainMenu');    // Si el usuario no es administrador, no puede acceder al admin  
+        window.location.reload();      // De lo contrario, se puede acceder 
       }
-      else{                                    // De lo contrario, se puede acceder 
+      else{                                 
         return(
             <body className="App-body">
             <header className="mainheader">
