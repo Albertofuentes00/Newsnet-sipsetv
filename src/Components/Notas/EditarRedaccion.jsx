@@ -157,32 +157,28 @@ const EditarGuion = () => {
 
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get(
-        API_KEY+'/Nota/GetByID/' + id
-      );
+      const respuesta = await axios.get(API_KEY + '/Nota/GetByID/' + id);
       const elemento = document.querySelector('.Auth-form-Escaletabotones');
-      const threshold = elemento.offsetTop;
+      const threshold = elemento ? elemento.offsetTop : 0;
+  
       Setcargado(1);
+  
       window.addEventListener('scroll', () => {
-        if (window.scrollY >= threshold) {
+        if (elemento && window.scrollY >= threshold) {
           elemento.style.position = 'sticky';
           elemento.style.top = '0';
-        } else {
+        } else if (elemento) {
           elemento.style.position = 'static';
         }
       });
-
+  
       if (respuesta.data.result) {
         console.log(respuesta.data.result);
         SetDatos(respuesta.data.result);
         setverdad(1);
         console.log(verdad);
-
-        const tabla = document.getElementById('tabla-nota');
-        const filas = tabla.getElementsByTagName('tr');
-        for (let i = 2; i < filas.length; i++) {
-          filas[i].addEventListener('click', handleRowClick);
-        }
+  
+      
       } else {
         console.log('No se encontraron datos');
       }
@@ -190,6 +186,19 @@ const EditarGuion = () => {
       console.error('Error al obtener datos:', error);
     }
   };
+  
+
+  useEffect(() => {
+    const tabla = document.getElementById('tabla-nota');
+    if (tabla) {
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 2; i < filas.length; i++) {
+        filas[i].addEventListener('click', handleRowClick);
+      }
+    } else {
+      console.log('No se encontró la tabla-nota');
+    }
+  }, [Datos.redaccion]);
 
   const mostrar = () => {
     if (cargado === 1) {

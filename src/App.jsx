@@ -1,8 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Routes, Route ,Link} from 'react-router-dom';
 import Menu from './Components/MainMenu/MainMenu';
 import PdfViewer from './Components/pdftest';
 

@@ -15,25 +15,47 @@ const LeerGuion = () => {
     GetDatos();
   }, []);
 
+
+  function validacion() {
+    try {
+      if (Datos.redaccion != '') {
+        
+        return (
+          <div className="tabla-imprimir"
+            dangerouslySetInnerHTML={{ __html: Datos.redaccion }}
+          />
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const GetDatos = async () => {
     try {
-      const respuesta = await axios.get(
-        API_KEY+'/Nota/GetByID/' + id
-      );
+      const respuesta = await axios.get(API_KEY + '/Nota/GetByID/' + id);
       console.log(respuesta.data.result);
       SetDatos(respuesta.data.result);
       Setcargado(1);
-      falseEditable();
-    } catch (error) {}
-  };
-
-  function falseEditable() {
-    var table = document.getElementById('tabla-nota');
-    var cells = table.getElementsByTagName('tbody');
-    for (var i = 0; i < cells.length; i++) {
-      cells[i].setAttribute('contenteditable', 'false');
+    } catch (error) {
+      console.error('Error al obtener datos:', error);
     }
-  }
+  };
+  
+
+  useEffect(() => {
+    try {
+      const table = document.getElementById('tabla-nota');
+      var cells = table.getElementsByTagName('tbody');
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].setAttribute('contenteditable', 'false');
+      }
+    } catch (error) {
+      
+    }
+
+  }, [Datos.redaccion]);
+  
 
   const mostrar = () => {
     if (cargado === 1) {
@@ -58,6 +80,7 @@ const LeerGuion = () => {
       );
     }
   };
+
 
   function formatFecha(fechaString) {
     const fecha = new Date(fechaString);
@@ -122,10 +145,7 @@ function goBack() {
                 </div>
                 {mostrar()}
               </div>
-              <div
-                className="tabla-imprimir"
-                dangerouslySetInnerHTML={{ __html: Datos.redaccion }}
-              />
+              <div >{validacion(true)}</div>
             </div>
           </div>
         </div>

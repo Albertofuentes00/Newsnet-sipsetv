@@ -26,6 +26,7 @@ function Table() {
   const tablaRef = useRef(null);
   const modalRef = useRef();
   const [cargado, Setcargado] = useState(0);
+  const [DragT, setDragT] = useState(true);
   const [botonDeshabilitado, setBotonDeshabilitado] = useState(false);
   const [DatosTabla, setDatosTabla] = useState([]);
   const [orden, setOrden] = useState(0);
@@ -69,7 +70,7 @@ function Table() {
     try {
       const respuesta = await axios.get(
         API_KEY + '/Escaleta/GetByID/' + id
-      );
+      )
       console.log(respuesta.data.result);
       SetDatosEscaleta(respuesta.data.result);
       const eliminarFila = (filaId) => {
@@ -88,6 +89,7 @@ function Table() {
           elemento.style.position = 'static';
         }
       });
+     
       Setcargado(1);
     } catch (error) {}
   };
@@ -171,7 +173,7 @@ function Table() {
   };
 
   useEffect(() => {
-    Val();
+    validacion();
    
   }, []);
 
@@ -181,9 +183,6 @@ const LimpiarIndica = ()=>{
   setText2('');
   setText3('');
 }
-  const Val = () => {
-    validacion();
-  };
   const validacion = () => {
     try {
       if (DatosEscaleta.tabla === '') {
@@ -243,16 +242,25 @@ const LimpiarIndica = ()=>{
         );
       } else {
         return (
+          
           <div
             ref={tablaRef}
             dangerouslySetInnerHTML={{ __html: DatosEscaleta.tabla }}
           />
         );
+        
       }
+      
     } catch (error) {
       console.log(error);
     }
+
   };
+
+  useEffect(() => {
+    // Lógica para recargar la tabla cuando DatosEscaleta.tabla cambie
+    recargarTabla();
+  }, [DatosEscaleta.tabla]);
 
   const Dobleclick = (dato1) => {
     var modal = document.getElementById('myModal');
@@ -400,6 +408,8 @@ const LimpiarIndica = ()=>{
     LimpiarIndica();
   }
 
+
+
   const OrdenNotas = () => {
     var table = document.getElementById('sortable-table');
     var rows = table.getElementsByTagName('tr');
@@ -419,7 +429,7 @@ const LimpiarIndica = ()=>{
   };
 
   const mostrar = () => {
-    if (cargado === 1) {
+    if (cargado === 1) {     
       return (
         <div className="Grid">
           <div className="Row">
@@ -541,6 +551,8 @@ const LimpiarIndica = ()=>{
       setFilasSeleccionadas(todasLasNotas);
     }
   };
+
+  const btnCerrarNota = useRef(null);
   const AgregarNota = async () => {
     setBotonDeshabilitado(true);
    var tabla_notas = document.getElementById('notas-table');
@@ -632,6 +644,9 @@ const LimpiarIndica = ()=>{
           setTimeout(() => {
             setBotonDeshabilitado(false);
           }, 1000);
+          }
+          if (btnCerrarNota.current) {
+            btnCerrarNota.current.click(); // Hace clic en el botón de cerrar
           }
           
         }
@@ -1068,9 +1083,6 @@ const LimpiarIndica = ()=>{
                     {' '}
                     <FaFileAlt size={20} /> Agregar Notas
                   </button>
-                  <div class="tooltip-text">
-                    Agrega una o mas notas a la escaleta actual
-                  </div>
                 </div>
 
                 <div class="tooltip-container">
@@ -1082,9 +1094,6 @@ const LimpiarIndica = ()=>{
                     {' '}
                     <BsFillSignpostFill size={20} /> Agregar Indicación
                   </button>
-                  <div class="tooltip-text">
-                    Agrega una indicacion a la escaleta actual
-                  </div>
                 </div>
 
                 <div class="tooltip-container">
@@ -1092,9 +1101,6 @@ const LimpiarIndica = ()=>{
                     {' '}
                     <FaTrash size={20} /> Eliminar
                   </button>
-                  <div class="tooltip-text">
-                    Arrastra un elemento para eliminarlo.
-                  </div>
                 </div>
               </div>
             </div>
@@ -1142,6 +1148,7 @@ const LimpiarIndica = ()=>{
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  ref={btnCerrarNota}
                 ></button>
               </div>
 
