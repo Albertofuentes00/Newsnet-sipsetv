@@ -80,7 +80,17 @@ const EditarGuion = () => {
     const celda2 = nuevaFila.insertCell(1);
     celda1.innerHTML = '';
     celda2.innerHTML = '';
+    nuevaFila.onpaste = function (event) {
+      handlePaste(event, this);
+    };
+
+
   };
+
+
+
+
+
   const seleccionarFila = (fila) => {
     if (fila.classList.contains('selected')) {
       fila.classList.remove('selected');
@@ -135,8 +145,8 @@ const EditarGuion = () => {
               </thead>
               <tbody contentEditable="true">
                 <tr>
-                  <td></td>
-                  <td></td>
+                  <td onPaste={handlePaste}></td>
+                  <td onPaste={handlePaste}></td>
                 </tr>
               </tbody>
             </table>
@@ -215,6 +225,13 @@ const EditarGuion = () => {
 
   function goBack() {
     window.history.back();
+  }
+
+
+  function handlePaste(event) {
+    event.preventDefault();
+    const text = (event.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('inserttext', false, text);
   }
 
   return (

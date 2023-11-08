@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { show_alerta } from '../../Funciones';
-import html2pdf from 'html2pdf.js';
-import { FaFilePdf } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
+import { FaFilePdf } from 'react-icons/fa';
+import { FaAngleLeft } from 'react-icons/fa';
+import { useReactToPrint } from 'react-to-print';
 
 function Prompt() {
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
@@ -21,6 +22,7 @@ function Prompt() {
       closeModal();
     }, 3000);
   }, []);
+
 
   const GetDatosEscaleta = async () => {
     try {
@@ -189,22 +191,21 @@ function Prompt() {
   }
 
   const contentRef = useRef(null);
-  const handleDownloadPDF = () => {
-    const content = contentRef.current;
-    const opt = {
-      margin: 10,
-      filename: 'Prompter' + '_' + fechaFI + '.pdf',
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    };
-
-    html2pdf(content, opt);
-  };
 
   function goBack() {
     window.history.back();
   }
+
+  const contentStyle = {
+    margin: '20px', // Puedes ajustar el valor del margen según tus necesidades
+  };
+
+
+  const handleDownloadPDF = useReactToPrint({
+    content: () => contentRef.current,
+  });
+
+
 
   return (
     <div>
@@ -214,10 +215,9 @@ function Prompt() {
       <div className="Auth-form-container">
         <form className="Auth-form-Guion">
           <div className="Auth-form-content">
-          <button type='button' className="btn btn-dark" onClick={()=>goBack()} > Volver</button>
-
-          <button type='button' class='btn btn-danger' onClick={handleDownloadPDF}> <FaFilePdf size={20} color='white'/> Generar PDF </button>
-            <div ref={contentRef} id='Prompt' className='Hoja-prompt'>
+          <button type='button' className="btn btn-dark" onClick={()=>goBack()} > <FaAngleLeft size={20} color="white" /> Volver</button>
+          <button type='button' className='btn btn-danger' onClick={handleDownloadPDF}><FaFilePdf size={20} /> Opciones de impresión</button>
+            <div ref={contentRef} style={contentStyle} id='Prompt' className='Hoja-prompt'>
 
 
 

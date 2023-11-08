@@ -205,9 +205,9 @@ const ListaFuentes = () => {
                 </tr>
               </thead>
               <tbody className="table-group-divider">
-                {Datos.map((Datos, i) => (
+                {currentData.map((Datos, i) => (
                   <tr key={Datos.pkFuente}>
-                    <td>{i + 1}</td>
+                    <td>{itemNumber + i}</td>
                     <td>{Datos.nombre_Fuente}</td>
                     <td>
                       <button

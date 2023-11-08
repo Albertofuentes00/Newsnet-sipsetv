@@ -15,7 +15,7 @@ import { show_alerta } from '../../Funciones';
 import html2pdf from 'html2pdf.js';
 import { FaFileAlt } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
-
+import { useReactToPrint } from 'react-to-print';
 
 function Table() {
   const [filda, Setfilda] = useState('');
@@ -502,6 +502,14 @@ const LimpiarIndica = ()=>{
       }
     });
   }
+
+
+
+  const handleDownloadPDF2 = useReactToPrint({
+    content: () => contentRef.current,
+  });
+
+
 
   const ActTablaS = () => {
     const tablaContenido = tablaRef.current.innerHTML;
@@ -1029,7 +1037,9 @@ const LimpiarIndica = ()=>{
     }
   }
 
-
+  const contentStyle = {
+    margin: '50px', 
+  };
  
 
   return (
@@ -1058,10 +1068,10 @@ const LimpiarIndica = ()=>{
                 <button
                   type="button"
                   class="btn btn-danger"
-                  onClick={handleDownloadPDF}
+                  onClick={handleDownloadPDF2}
                 >
                   {' '}
-                  <FaFilePdf size={20} color="white" /> Generar PDF{' '}
+                  <FaFilePdf size={20} color="white" /> Opciones de impresión{' '}
                 </button>
                 <Link to={'/Prompt/' + id}>
                   <button type="button" class="btn btn-danger">
@@ -1110,7 +1120,7 @@ const LimpiarIndica = ()=>{
         <div className="Auth-form-escaletaArmado">
           <div>
             <div className="Row"></div>
-            <div ref={contentRef} class="container">
+            <div ref={contentRef} style={contentStyle}>
               {mostrar()}
               {validacion()}
             </div>
