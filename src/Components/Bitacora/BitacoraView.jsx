@@ -589,7 +589,7 @@ const Bitacora = () => {
                   {Datos.map((Datos,i) => (
                     <tr key={Datos.pkNota}>
                       <td className='id-tablas'>{i + 1}</td>
-                      <td>{Datos.titulo}</td>
+                     <Link to={'/EditarGuion/' + Datos.pkNota}> <td>{Datos.titulo}</td></Link>
                       <td>{Datos.nombre_Categoria}</td>
                       <td>{Datos.nombre_Formato}</td>
                       <td>{Datos.nombre}</td>

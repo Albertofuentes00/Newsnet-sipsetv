@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import TVCUNLogo from '../../images/TVCUN_logo.png';
 import { API_KEY } from '../API_URL';
 import {useNavigate } from 'react-router-dom';
 
@@ -59,7 +60,7 @@ function Login() {
       <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Iniciar sesion</h3>
+            <img src={TVCUNLogo} alt="logo" className='tvcunlogo'/>
             <div className="form-group mt-3">
               <label>Username</label>
               <input

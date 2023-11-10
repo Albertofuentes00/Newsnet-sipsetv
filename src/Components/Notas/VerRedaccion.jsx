@@ -6,6 +6,7 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import html2pdf from 'html2pdf.js';
 import { API_KEY } from '../API_URL';
+import { useReactToPrint } from 'react-to-print';
 
 const LeerGuion = () => {
   const [Datos, SetDatos] = useState([]);
@@ -94,24 +95,29 @@ const LeerGuion = () => {
   }
 
   const contentRef = useRef(null);
-  const handleDownloadPDF = () => {
-    const content = contentRef.current;
-    const opt = {
-      margin: 10,
-      filename: 'Nota.pdf',
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    };
+//   const handleDownloadPDF = () => {
+//     const content = contentRef.current;
+//     const opt = {
+//       margin: 10,
+//       filename: 'Nota.pdf',
+//       image: { type: 'jpeg', quality: 1 },
+//       html2canvas: { scale: 2 },
+//       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+//     };
 
-  html2pdf(content, opt);
+//   html2pdf(content, opt);
 
-};
+// };
 
   
 function goBack() {
   window.history.back();
 }
+
+
+const handleDownloadPDF2 = useReactToPrint({
+  content: () => contentRef.current,
+});
   
   
   
@@ -123,7 +129,7 @@ function goBack() {
               <h3>Redacción</h3>
               <div className="Button-form">
                   <button onClick={()=> goBack()} type="button" className="btn btn-dark"> <FaAngleLeft size={20} color="white" /> Regresar</button>
-                <button type="button" id='btn-imprimir' className="btn btn-danger" onClick={handleDownloadPDF}>  <FaFilePdf size={20} color="white" /> Generar PDF</button>
+                <button type="button" id='btn-imprimir' className="btn btn-danger" onClick={handleDownloadPDF2}>  <FaFilePdf size={20} color="white" /> Opciones de impresión</button>
               </div>
             </div>
             <br />

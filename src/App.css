@@ -582,14 +582,14 @@ option{
 
 .Auth-form-searchbar {
   width: 800px;
-  max-height: 80px;
+  max-height: 8.5vh;
 
   align-self: center;
   margin: auto;
   position: static;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 8px;
@@ -620,8 +620,8 @@ option{
 
 
 .Auth-form-content {
-  padding-left: 12%;
-  padding-right: 12%;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 .Auth-form-title {
@@ -638,7 +638,9 @@ option{
   font-weight: normal;
 
 }
-
+.tvcunlogo{
+  max-height: 20vh;
+}
 .Auth-form-escaleta{
   width: 90vw;
   height: auto;
@@ -694,6 +696,9 @@ option{
  background-color: rgb(199, 199, 199);
 }
 
+.hola{
+  padding: 50px;
+}
 
 
 label {
