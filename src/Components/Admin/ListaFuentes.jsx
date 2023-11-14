@@ -6,12 +6,12 @@ import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
-
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const ListaFuentes = () => {
+    // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [Notas, SetNotas] = useState([]);
   const [pkFuente, setPkFuente] = useState('');
@@ -27,7 +27,7 @@ const ListaFuentes = () => {
     GetFuente();
   }, []);
 
-  const GetFuente = async () => {
+  const GetFuente = async () => { // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Fuente/Get');
       console.log(respuesta.data.result);
@@ -35,7 +35,7 @@ const ListaFuentes = () => {
     } catch (error) {}
   };
 
-  const OpenModal = (op, pkFuente, nombre_Fuente) => {
+  const OpenModal = (op, pkFuente, nombre_Fuente) => {  // Abre una ventana para crear o editar fuente
     setPkFuente('');
     setNombre_Fuente('');
     setOperation(op);
@@ -50,7 +50,7 @@ const ListaFuentes = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => { // Valida y guarda los datos
     var parametros;
     var id;
     setBotonDeshabilitado(true);
@@ -172,7 +172,7 @@ const ListaFuentes = () => {
           <div className="Row">
             <h3>Lista de fuentes</h3>
             <div className="Button-form">
-              <div className="buscador_admin">
+              <div className="buscador_admin">  {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -181,7 +181,7 @@ const ListaFuentes = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>
+              </div>                                      {/* Buscador Fin */}
               <button
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"
@@ -190,7 +190,7 @@ const ListaFuentes = () => {
                 class="btn btn-success"
               >
                 {' '}
-                <FaPlusSquare size={20} color="white" /> Nueva Fuente
+                <FaPlusSquare size={20} color="white" /> Nueva Fuente              {/* Boton para nueva categoria */}
               </button>
             </div>
           </div>
@@ -204,7 +204,7 @@ const ListaFuentes = () => {
                   <th scope="col"> </th>
                 </tr>
               </thead>
-              <tbody className="table-group-divider">
+              <tbody className="table-group-divider">   {/* Tabla Inicio */}
                 {currentData.map((Datos, i) => (
                   <tr key={Datos.pkFuente}>
                     <td>{itemNumber + i}</td>
@@ -231,12 +231,12 @@ const ListaFuentes = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))}                             {/* Tabla Fin */}
               </tbody>
             </table>
           </div>
         </div>
-        <div className="pagination-list">
+        <div className="pagination-list">         {/* Paginacion */}
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
@@ -253,7 +253,7 @@ const ListaFuentes = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="false">
+      <div id="modaldefault" className="modal fade" aria-hidden="false">    {/* Ventana Crear categoria */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -309,7 +309,7 @@ const ListaFuentes = () => {
         </div>
       </div>
 
-      <div id="notasrela" className="modal fade" aria-hidden="false">
+      <div id="notasrela" className="modal fade" aria-hidden="false">  {/* Tabla de relaciones */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

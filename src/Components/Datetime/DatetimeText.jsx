@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 
 const date = new Date();
-
+//Exporta la hora en tiempo real al header
 export default function App() {
   const [dateTime, setDateTime] = useState({
     day: date.getDate(),

@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import { API_KEY } from '../API_URL';
 
 const ListaUsuarios = () => {
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [Roles, SetRoles] = useState([]);
   const [pkUsuario, setPkUsuario] = useState('');
@@ -32,7 +33,7 @@ const ListaUsuarios = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {  // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Usuario/Get');
       
@@ -43,7 +44,7 @@ const ListaUsuarios = () => {
     } catch (e) {}
   };
 
-  const OpenModal = (
+  const OpenModal = (   // Abre una ventana para crear o editar 
     op,
     pkUsuario,
     nombre,
@@ -74,7 +75,7 @@ const ListaUsuarios = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => {     // Valida y guarda los datos
     var parametros;
     var id;
     setBotonDeshabilitado(true);
@@ -146,14 +147,14 @@ const ListaUsuarios = () => {
     }
   };
 
-  const deleteDatos = (pkUsuario, nombre) => {
+  const deleteDatos = (pkUsuario, nombre) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: 'Seguro que quieres borrar a ' + nombre + '?',
+      title: 'Seguro que quieres borrar a ' + nombre + '?',    // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podra recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'Sí, Eliminar',
+      confirmButtonText: 'Sí, Eliminar',   // Botones de confirmacion
       cancelbuttonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -169,7 +170,7 @@ const ListaUsuarios = () => {
             axios
               .delete(API_KEY+'/Usuario/Delete/' + pkUsuario)
               .then(function (respuesta) {
-                if (respuesta.data.mensaje === 'Está relacionado') {
+                if (respuesta.data.mensaje === 'Está relacionado') {   // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse 
                   show_alerta(
                     'No se pudo cumplir la solicitud, existen otros registros que contienen este elemento'
                   );
@@ -190,7 +191,7 @@ const ListaUsuarios = () => {
     });
   };
 
-  const buscar = async () => {
+  const buscar = async () => {  // Motor de busqueda
     try {
       var variable = document.getElementById('Buscador').value;
       if (variable == '') {
@@ -231,7 +232,7 @@ const ListaUsuarios = () => {
             <h3>Lista de usuarios</h3>
 
             <div className="Button-form">
-              <div className="buscador_admin">
+              <div className="buscador_admin">          {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -240,7 +241,7 @@ const ListaUsuarios = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>
+              </div>                                  {/* Buscador Fin */}
               <button
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"
@@ -249,7 +250,7 @@ const ListaUsuarios = () => {
                 class="btn btn-success"
               >
                 {' '}
-                <FaPlusSquare size={20} color="white" /> Nuevo Usuario
+                <FaPlusSquare size={20} color="white" /> Nuevo Usuario     {/* Boton para nuevo regsitro */}
               </button>
             </div>
           </div>
@@ -266,7 +267,7 @@ const ListaUsuarios = () => {
                   <th scope="col"> </th>
                 </tr>
               </thead>
-              <tbody className="table-group-divider">
+              <tbody className="table-group-divider">           {/* Tabla Inicio */}
                 {currentData.map((Datos, i) => (
                   <tr key={Datos.pkUsuario}>
                     <td>{itemNumber + i}</td>
@@ -304,10 +305,10 @@ const ListaUsuarios = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))}                 {/* Tabla Fin */}
               </tbody>
             </table>
-            <div className="pagination-list">
+            <div className="pagination-list">   {/* Paginacion */}
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -326,7 +327,7 @@ const ListaUsuarios = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="true">
+      <div id="modaldefault" className="modal fade" aria-hidden="true"> {/* Ventana Crear registro */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

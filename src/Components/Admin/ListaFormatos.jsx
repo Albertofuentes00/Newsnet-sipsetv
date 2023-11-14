@@ -10,7 +10,8 @@ import { API_KEY } from '../API_URL';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 
-const ListaFormatos = () => {
+const ListaFormatos = () => { 
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [pkFormato, setPkFormato] = useState('');
   const [nombre_Formato, setNombre_Formato] = useState('');
@@ -158,7 +159,7 @@ const ListaFormatos = () => {
           <div className="Row">
             <h3>Lista de formatos</h3>
             <div className="Button-form">
-              <div className="buscador_admin">
+              <div className="buscador_admin">  {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -167,7 +168,7 @@ const ListaFormatos = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>
+              </div>                  {/* Buscador Fin */}
               <button
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"
@@ -176,7 +177,7 @@ const ListaFormatos = () => {
                 class="btn btn-success"
               >
                 {' '}
-                <FaPlusSquare size={20} color="white" /> Nuevo Formato
+                <FaPlusSquare size={20} color="white" /> Nuevo Formato      {/* Boton para nueva categoria */}
               </button>
             </div>
           </div>
@@ -190,7 +191,7 @@ const ListaFormatos = () => {
                   <th scope="col"> </th>
                 </tr>
               </thead>
-              <tbody className="table-group-divider">
+              <tbody className="table-group-divider">       {/* Tabla Inicio */}
                 {currentData.map((Datos, i) => (
                   <tr key={Datos.pkFormato}>
                     <td>{itemNumber + i}</td>
@@ -217,13 +218,13 @@ const ListaFormatos = () => {
                       </button>
                     </td>
                   </tr>
-                ))}
+                ))}                 {/* Tabla Fin */}
               </tbody>
             </table>
           </div>
         </div>
 
-        <div className="pagination-list">
+        <div className="pagination-list">       {/* Paginacion */}
           <button
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
@@ -240,7 +241,7 @@ const ListaFormatos = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="false">
+      <div id="modaldefault" className="modal fade" aria-hidden="false">  {/* Ventana Crear categoria */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

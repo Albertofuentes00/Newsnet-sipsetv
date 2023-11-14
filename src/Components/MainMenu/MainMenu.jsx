@@ -20,7 +20,7 @@ function Menu() {
     sessionStorage.setItem('selectedButton', selectedButton);
   }, [selectedButton]);
 
-  function botonadmin() {
+  function botonadmin() { //Asigna los botones correspondientes al rol
     try {
       const cadena = Cookies.get('Usuario');
       const partes = cadena.split('/');

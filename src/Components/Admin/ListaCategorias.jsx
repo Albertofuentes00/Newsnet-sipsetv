@@ -10,7 +10,8 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
-const ListaCategorias = () => {
+const ListaCategorias = () => { 
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [pkCategoria, setPkCategoria] = useState('');
   const [nombre_Categoria, setNombre_Categoria] = useState('');
@@ -169,7 +170,7 @@ const ListaCategorias = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>                            {/* Buscador Fin */}
+              </div>                              {/* Buscador Fin */}
               <button                                                    
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"

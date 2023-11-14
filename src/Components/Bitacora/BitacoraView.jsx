@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { show_alerta } from '../../Funciones';
 import { Link } from 'react-router-dom';
-import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { FaList } from 'react-icons/fa';
@@ -12,23 +11,22 @@ import Swal from 'sweetalert2';
 import whitReactContent from 'sweetalert2-react-content';
 import Cookies from 'js-cookie';
 import { FaSearch } from 'react-icons/fa';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
-import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const Bitacora = () => {
+  // Obtener la fecha actual
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
   const fechaMinima = '1900-01-01';
 
-  function getFechaActualFI() {
+  function getFechaActualFI() {   // Obtener la fecha actual inicial
     const fechaActual = new Date();
     const year = fechaActual.getFullYear();
     const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
     const day = String(fechaActual.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
-  function getFechaActualFF() {
+  function getFechaActualFF() {// Obtener la fecha actual final
     const fechaActual = new Date();
     fechaActual.setDate(fechaActual.getDate() + 1); // Suma 1 día para obtener la fecha de mañana
 
@@ -39,6 +37,7 @@ const Bitacora = () => {
     return `${year}-${month}-${day}`;
   }
 
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [Categorias, SetCategorias] = useState([]);
   const [Formatos, SetFormatos] = useState([]);
@@ -61,13 +60,13 @@ const Bitacora = () => {
 
   const [text, setText] = useState('');
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value.toUpperCase(); // Convierte a mayúsculas
+  const handleInputChange = (event) => {  // Convierte inputs a mayúsculas
+    const inputValue = event.target.value.toUpperCase(); 
     setText(inputValue);
     setTitulo(inputValue);
   };
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {  // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/Get');
       const respuesta2 = await axios.get(
@@ -87,7 +86,7 @@ const Bitacora = () => {
       console.log(error);
     }
   };
-  const OpenModal = (
+  const OpenModal = (   // Abre una ventana para crear o editar 
     op,
     pkNota,
     titulo,
@@ -132,7 +131,7 @@ const Bitacora = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => {   // Valida y guarda los datos
     var parametros;
     setBotonDeshabilitado(true);
     if (operation === 1) {
@@ -341,14 +340,14 @@ const Bitacora = () => {
     }
   };
 
-  const deleteDatos = (pkNota) => {
+  const deleteDatos = (pkNota) => {   // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: 'Seguro que quieres borrar esta Nota?',
+      title: 'Seguro que quieres borrar esta Nota?',  // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podra recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'si, eliminar',
+      confirmButtonText: 'si, eliminar',   // Botones de confirmacion
       cancelbuttonText: 'cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -356,7 +355,7 @@ const Bitacora = () => {
         axios
           .delete(API_KEY+'/Nota/Delete/' + pkNota)
           .then(function (respuesta) {
-            if (respuesta.data.mensaje === 'Esta relacionada') {
+            if (respuesta.data.mensaje === 'Esta relacionada') {   // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse
               show_alerta(
                 'No se pudo cumplir la solicitud, esta nota se encuentra dentro de una escaleta'
               );
@@ -372,7 +371,7 @@ const Bitacora = () => {
     });
   };
 
-  function rol() {
+  function rol() {  // Obtiene el rol del usuario actual y mapea las opciones visuales
     try {
       const cadena = Cookies.get('Usuario');
       const partes = cadena.split('/');
@@ -457,7 +456,7 @@ const Bitacora = () => {
     }
   }
 
-  const buscar = async () => {
+  const buscar = async () => {  // Motor de busqueda
     try {
       var variable = document.getElementById('Buscador').value;
       var fechaFI = document.getElementById('FI').value;
@@ -502,7 +501,7 @@ const Bitacora = () => {
         <div className="Auth-form-searchbar">
           <div className="Row-searchbar">
             <div className="Row">
-              <div className="buscador_admin">
+              <div className="buscador_admin">   {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -514,10 +513,10 @@ const Bitacora = () => {
                     }
                   }}
                 />
-              </div>
+              </div>                    {/* Buscador Fin */}
             </div>
-            <div className="Row">
-              <div className="Grid">
+            <div className="Row">                     {/* Inpust de fecha Inicio */}
+              <div className="Grid">                   
                 <label> Fecha Inicial</label>
                 <input
                   id="FI"
@@ -541,7 +540,7 @@ const Bitacora = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div>                                    {/* Inpust de fecha final */}
             <div className="Row">
               <div className="Grid"></div>
               <button className="btn btn-primary" onClick={() => buscar()}>
@@ -564,13 +563,13 @@ const Bitacora = () => {
                   class="btn btn-success"
                 >
                   {' '}
-                  <FaPlusSquare size={20} color="white" /> Agregar Nota
+                  <FaPlusSquare size={20} color="white" /> Agregar Nota     {/* Boton para nuevo regsitro */}
                 </button>
               </div>
             </div>
 
             <div className="Auth-form-container-Main">
-              <table class="table">
+              <table class="table">                                   {/* Tabla Inicio */}
                 <thead>
                   <tr>
                     <th scope="col" className='id-tablas'>#</th>
@@ -585,9 +584,9 @@ const Bitacora = () => {
                     <th scope="col"> </th>
                   </tr>
                 </thead>
-                <tbody className="table-group-divider">
-                  {Datos.map((Datos,i) => (
-                    <tr key={Datos.pkNota}>
+                <tbody className="table-group-divider">  {/* Mapeo de datos inicio */}
+                  {Datos.map((Datos,i) => (                     
+                    <tr key={Datos.pkNota}> 
                       <td className='id-tablas'>{i + 1}</td>
                      <Link to={'/EditarGuion/' + Datos.pkNota}> <td>{Datos.titulo}</td></Link>
                       <td>{Datos.nombre_Categoria}</td>
@@ -625,9 +624,9 @@ const Bitacora = () => {
                         </button>
                       </td>
                     </tr>
-                  ))}
+                  ))}                            {/* Mapeo de datos final */}
                 </tbody>
-              </table>
+              </table>                     {/* Tabla FInal */}
             </div>
             <div className="Row">
               <h3></h3>
@@ -648,7 +647,7 @@ const Bitacora = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="true">
+      <div id="modaldefault" className="modal fade" aria-hidden="true">   {/* Ventana Crear registro */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -787,7 +786,7 @@ const Bitacora = () => {
           </div>
         </div>
       </div>
-      <div id="modaleditar" className="modal fade" aria-hidden="true">
+      <div id="modaleditar" className="modal fade" aria-hidden="true">  {/* Ventana editar registro */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

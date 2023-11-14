@@ -6,6 +6,7 @@ import { API_KEY } from '../API_URL';
 import {useNavigate } from 'react-router-dom';
 
 function Login() {
+  //Obtener el rol de las cokies
   const navigate = useNavigate();
   const cadena = Cookies.get('Usuario');
 
@@ -15,6 +16,7 @@ function Login() {
     window.location.href = '/Main';  
   }
 
+  //Consulta el usuario a la base de datos
   const buscarUsuario = async () => {
     try {
       var user = document.getElementById('usuario').value;
@@ -23,10 +25,12 @@ function Login() {
         const respuesta = await axios.put(
           API_KEY+'/Usuario/Login/' + user + '/' + pass
         );
+        // Si obtiene un resultado
         if (respuesta.data.result.length > 0) {
           setTimeout(function () {
             console.log('Espera de 3 segundos');
           }, 8000);
+          // Asigna datos del usuario en las cokies
           document.getElementById('outmen').hidden = true;
           document.getElementById('usuario').style.borderColor = 'green';
           document.getElementById('contra').style.borderColor = 'green';
@@ -34,6 +38,7 @@ function Login() {
           const nickName = respuesta.data.result[0].nickName;
           const nombre_Rol = respuesta.data.result[0].rol.nombre_Rol;
           Cookies.set('Usuario', pkUsuario + '/' + nickName + '/' + nombre_Rol);
+          // redirige a la vista principal
           window.location.href = '/Main';  
         } else {
           console.log('ninguna coincidencia');
@@ -59,7 +64,7 @@ function Login() {
     <div className="Login-main">
       <div className="Auth-form-container">
         <form className="Auth-form">
-          <div className="Auth-form-content">
+          <div className="Auth-form-content"> {/* contenedor del login */}
             <img src={TVCUNLogo} alt="logo" className='tvcunlogo'/>
             <div className="form-group mt-3">
               <label>Username</label>

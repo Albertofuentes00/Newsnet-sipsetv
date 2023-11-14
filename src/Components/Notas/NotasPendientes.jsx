@@ -9,13 +9,13 @@ import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const GuionesNotas = () => {
-
+  //Inicializacion de datos
   const [Datos, SetDatos] = useState([]);
   useEffect(() => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => { //obtener datos de la api
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/GetNoRel');
       console.log(respuesta.data.result);
@@ -45,7 +45,7 @@ const GuionesNotas = () => {
                 </Link>
               </div>
             </div>
-
+            {/* mapeado de notas pendientes de escaltea */}
             <div className="Auth-form-container-Main">
               <table class="table">
                 <thead>

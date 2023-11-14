@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
-import { FaAngleLeft } from 'react-icons/fa';
 import { FaPlusSquare } from 'react-icons/fa';
 import { FaEye } from 'react-icons/fa';
 import { show_alerta } from '../../Funciones';
@@ -16,9 +15,11 @@ import { FaSearch } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const Escaletas = () => {
+    // Obtener la fecha actual
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
 
+  // Obtener la fecha actual inicial y final
   function getFechaActualFI() {
     const fechaActual = new Date();
     const year = fechaActual.getFullYear();
@@ -36,7 +37,7 @@ const Escaletas = () => {
 
     return `${year}-${month}-${day}`;
   }
-
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [Usuarios, SetUsuarios] = useState([]);
   const [Programas, SetPrograma] = useState([]);
@@ -52,7 +53,7 @@ const Escaletas = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {  // Obtiene los datos de la API 
     try {
       const respuesta = await axios.get(
         API_KEY + '/Escaleta/GetHoy'
@@ -68,7 +69,7 @@ const Escaletas = () => {
     }
   };
 
-  const OpenModal = (
+  const OpenModal = ( // Abre una ventana para crear o editar 
     op,
     pkEscaleta,
     hora_Inicio,
@@ -105,7 +106,7 @@ const Escaletas = () => {
     }, 500);
   };
 
-  const Validar = () => {
+  const Validar = () => { // Valida y guarda los datos
     var parametros;
     setBotonDeshabilitado(true);
     console.log('boton deshabilitado');
@@ -191,7 +192,7 @@ const Escaletas = () => {
     }
   };
 
-  const deleteDatos = (PkEscaleta) => {
+  const deleteDatos = (PkEscaleta) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
       title: 'Seguro que quieres borrar esta escaleta?',
@@ -217,7 +218,7 @@ const Escaletas = () => {
     });
   };
 
-  const buscar = async () => {
+  const buscar = async () => {   // Obtiene el rol del usuario actual y mapea las opciones visuales
     try {
       var variable = document.getElementById('Buscador').value;
       var fechaFI = document.getElementById('FI').value;
@@ -270,14 +271,14 @@ const Escaletas = () => {
 
 
 
-      <div className="Auth-form-searchbar">
+      <div className="Auth-form-searchbar"> {/* Buscador Inicio */}
     <div className="Row-searchbar">
       <div className="Row">
         <div className='buscador_admin'>
         <input id="Buscador" type="search" className="inputbus" placeholder="Buscar..." onKeyDown={(e) => {if (e.key === "Enter") {buscar(); }}}/>
         </div>
       </div>
-      <div className="Row">
+      <div className="Row">                 {/* Inpust de fecha Inicio */}
         <div className="Grid">
           <label> Fecha Inicial</label>
           <input
@@ -301,7 +302,7 @@ const Escaletas = () => {
         </button>
       </div>
     </div>
-  </div>
+  </div>    {/* Buscador Fin */}
 
 
 
@@ -315,7 +316,7 @@ const Escaletas = () => {
           <div className="Auth-Maintable">
             <div className="Row">
               <h3>Escaletas</h3>
-              <div>
+              <div> {/* Boton para nuevo regsitro */}
                 <button
                   onClick={() => OpenModal(1)}
                   data-bs-toggle="modal"
@@ -329,7 +330,7 @@ const Escaletas = () => {
               </div>
             </div>
             <div className="Auth-form-container-Main">
-              <table class="table">
+              <table class="table"> {/* Tabla Inicio */}
                 <thead>
                   <tr>
                     <th scope="col" className='id-tablas'>#</th>
@@ -339,7 +340,7 @@ const Escaletas = () => {
                     <th scope="col">Acciones</th>
                   </tr>
                 </thead>
-                <tbody className="table-group-divider">
+                <tbody className="table-group-divider"> {/* Mapeo de datos inicio */}
                   {Datos.map((Datos, i) => (
                     <tr>
                       <td className='id-tablas'>{i + 1}</td>
@@ -384,14 +385,14 @@ const Escaletas = () => {
                       </td>
                     </tr>
                   ))}
-                </tbody>
-              </table>
+                </tbody>  {/* Mapeo de datos final */}
+              </table>   {/* Tabla FInal */}
             </div>
           </div>
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="true">
+      <div id="modaldefault" className="modal fade" aria-hidden="true"> {/* Ventana Crear registro */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -471,7 +472,7 @@ const Escaletas = () => {
           </div>
         </div>
       </div>
-      <div id="modaleditar" className="modal fade" aria-hidden="true">
+      <div id="modaleditar" className="modal fade" aria-hidden="true">  {/* Ventana editar registro */}
         <div className="modal-dialog">
           <div className="modal-content-edit">
             <div className="modal-header">

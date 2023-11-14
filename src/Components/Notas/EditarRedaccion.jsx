@@ -9,12 +9,13 @@ import { show_alerta } from '../../Funciones';
 import { API_KEY } from '../API_URL';
 
 const EditarGuion = () => {
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const tablaRef = useRef(null);
   const [verdad, setverdad] = useState('');
   const [cargado, Setcargado] = useState(0);
 
-  const Autoguardado = () => {
+  const Autoguardado = () => { //Guarda la redaccion
     const tablaContenido = tablaRef.current.innerHTML;
     try {
       const parametros = { Vredaccion: tablaContenido };
@@ -31,7 +32,7 @@ const EditarGuion = () => {
     GetDatos();
   };
 
-  const quitarFila = () => {
+  const quitarFila = () => { //Quita las filas seleccionadas
     const tabla = document.getElementById('tabla-nota');
     const filasSeleccionadas = tabla.querySelectorAll('tr.selected');
     if (filasSeleccionadas.length > 0) {
@@ -49,7 +50,7 @@ const EditarGuion = () => {
 
   const { id } = useParams();
 
-  const InsertarRedaccion = () => {
+  const InsertarRedaccion = () => { // Guarda la tabla de redaccion
     const tablaContenido = tablaRef.current.innerHTML;
 
     try {
@@ -69,7 +70,7 @@ const EditarGuion = () => {
     }
   };
 
-  const agregarFila = () => {
+  const agregarFila = () => { //Agrega filas a las redacciones
     const tabla = document.getElementById('tabla-nota');
     const nuevaFila = tabla.insertRow();
     nuevaFila.onclick = function () {
@@ -102,7 +103,7 @@ const EditarGuion = () => {
   useEffect(() => {
     GetDatos();
     try {
-      const intervalo = setInterval(Autoguardado, 300000);
+      const intervalo = setInterval(Autoguardado, 300000); //Guarda cada 3 minutos
 
 
       const handleSuprKeyPress = (event) => {
@@ -130,7 +131,8 @@ const EditarGuion = () => {
       fila.classList.add('selected');
     }
   };
-
+  
+  //Valida que exista una redaccion
   function validacion() {
     try {
       if (Datos.redaccion === '') {
@@ -165,6 +167,7 @@ const EditarGuion = () => {
     }
   }
 
+  //Obtiene los datos de la redaccion
   const GetDatos = async () => {
     try {
       const respuesta = await axios.get(API_KEY + '/Nota/GetByID/' + id);
@@ -210,6 +213,7 @@ const EditarGuion = () => {
     }
   }, [Datos.redaccion]);
 
+  //contedor de los datos de la redaccion
   const mostrar = () => {
     if (cargado === 1) {
       return (
@@ -223,6 +227,7 @@ const EditarGuion = () => {
     }
   };
 
+  //Regresa una pagina atras
   function goBack() {
     window.history.back();
   }

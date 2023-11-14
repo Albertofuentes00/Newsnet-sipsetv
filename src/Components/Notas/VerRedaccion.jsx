@@ -9,6 +9,7 @@ import { API_KEY } from '../API_URL';
 import { useReactToPrint } from 'react-to-print';
 
 const LeerGuion = () => {
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const { id } = useParams();
   const [cargado, Setcargado] = useState(0);
@@ -16,7 +17,7 @@ const LeerGuion = () => {
     GetDatos();
   }, []);
 
-
+  //Valida que exista una redaccion en la base de datos
   function validacion() {
     try {
       if (Datos.redaccion != '') {
@@ -32,7 +33,7 @@ const LeerGuion = () => {
     }
   }
 
-  const GetDatos = async () => {
+  const GetDatos = async () => { //Obtiene los datos de la nota
     try {
       const respuesta = await axios.get(API_KEY + '/Nota/GetByID/' + id);
       console.log(respuesta.data.result);
@@ -58,6 +59,7 @@ const LeerGuion = () => {
   }, [Datos.redaccion]);
   
 
+  //Mapea los datos de la redaccion
   const mostrar = () => {
     if (cargado === 1) {
       return (

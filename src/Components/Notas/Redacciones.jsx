@@ -10,6 +10,7 @@ import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const GuionesNotas = () => {
+  //Obtener fechas actuales final e inicial
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +39,7 @@ const GuionesNotas = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => { // obtener datos de la api
     try {
       const respuesta = await axios.get(API_KEY+'/Nota/Get');
       console.log(respuesta.data.result);
@@ -48,7 +49,7 @@ const GuionesNotas = () => {
     }
   };
 
-  const buscar = async () => {
+  const buscar = async () => { // motor de busqueda
     try {
       var variable = document.getElementById('Buscador').value;
       var fechaFI = document.getElementById('FI').value;
@@ -106,7 +107,7 @@ const GuionesNotas = () => {
                 />
               </div>
             </div>
-            <div className="Row">
+            <div className="Row">                       {/* Contenedor de busqueda */}
               <div className="Grid">
                 <label> Fecha Inicial</label>
                 <input
@@ -155,7 +156,7 @@ const GuionesNotas = () => {
             </div>
 
             <div className="Auth-form-container-Main">
-              <table class="table">
+              <table class="table"> {/* tabla inicio */}
                 <thead>
                   <tr>
                     <th scope="col" className='id-tablas'>#</th>
@@ -169,7 +170,7 @@ const GuionesNotas = () => {
                     <th scope="col"> </th>
                   </tr>
                 </thead>
-                <tbody className="table-group-divider">
+                <tbody className="table-group-divider"> {/* Mapeo de datos inicio */}
                   {Datos.map((Dato,i) => (
                     <tr
                       key={Dato.pkNota}
@@ -202,9 +203,9 @@ const GuionesNotas = () => {
                         </Link>
                       </td>
                     </tr>
-                  ))}
+                  ))} {/* Mapeo de datos final */}
                 </tbody>
-              </table>
+              </table>{/* Mapeo de datos fin */}
             </div>
           </div>
         </div>

@@ -36,6 +36,7 @@ function Table() {
     GetDatosEscaleta();
   }, []);
 
+  //Funcion que captura zona para pdf
   const contentRef = useRef(null);
   const handleDownloadPDF = () => {
     const content = contentRef.current;
@@ -50,6 +51,7 @@ function Table() {
     html2pdf(content, opt);
   };
 
+  //Convertir inputs a mayusculas
   const [text, setText] = useState('');
   const [text2, setText2] = useState('');
   const [text3, setText3] = useState('');
@@ -66,7 +68,7 @@ function Table() {
     setText3(inputValue);
   };
 
-  const GetDatosEscaleta = async () => {
+  const GetDatosEscaleta = async () => {  // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(
         API_KEY + '/Escaleta/GetByID/' + id
@@ -94,17 +96,18 @@ function Table() {
     } catch (error) {}
   };
 
+    // Obtener la fecha actual
   const [fechaFI, setFechaFI] = useState(getFechaActualFI);
   const [fechaFF, setFechaFF] = useState(getFechaActualFF);
 
-  function getFechaActualFI() {
+  function getFechaActualFI() {   // Obtener la fecha actual inicial
     const fechaActual = new Date();
     const year = fechaActual.getFullYear();
     const month = String(fechaActual.getMonth() + 1).padStart(2, '0');
     const day = String(fechaActual.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
-  function getFechaActualFF() {
+  function getFechaActualFF() {   // Obtener la fecha actual final
     const fechaActual = new Date();
     fechaActual.setDate(fechaActual.getDate() + 1);
 
@@ -119,7 +122,6 @@ function Table() {
 
   const [dragItem, setDragItem] = useState();
   const [Datos, SetDatos] = useState([]);
-  // const [cargado, Setcargado] = useState(0);
 
   useEffect(() => {
     GetDatos();
@@ -135,7 +137,7 @@ function Table() {
     }
   };
 
-  const buscar = async () => {
+  const buscar = async () => {  // Motor de busqueda
     try {
       var variable = document.getElementById('Buscador').value;
       var fechaFI = document.getElementById('FI').value;
@@ -172,13 +174,13 @@ function Table() {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {  // Llama a validacion
     validacion();
    
   }, []);
 
 
-const LimpiarIndica = ()=>{
+const LimpiarIndica = ()=>{  //Limpia indicacion
   setText('');
   setText2('');
   setText3('');
@@ -312,6 +314,7 @@ const LimpiarIndica = ()=>{
     
   }, [filda, fildaUpdated]);
 
+  //Consulta notas de la api
   const ObtenerNota = async (pkNota) => {
     try {
       const respuesta = await axios.get(
@@ -325,6 +328,7 @@ const LimpiarIndica = ()=>{
     }
   };
 
+  //Define los conductores de las notas e indicaciones
   const obtenerConductor = () => {
     try {
       const partes = filda.split(',');
@@ -410,7 +414,7 @@ const LimpiarIndica = ()=>{
 
 
 
-  const OrdenNotas = () => {
+  const OrdenNotas = () => { // Otorga el orden de las notas
     var table = document.getElementById('sortable-table');
     var rows = table.getElementsByTagName('tr');
     var numero = 1;
@@ -453,6 +457,7 @@ const LimpiarIndica = ()=>{
     }
   };
 
+  //Hace las lineas arrastrables
   function makeRowDraggable(row, l) {
     row.setAttribute('draggable', true);
     row.ondblclick = function () {
@@ -510,7 +515,7 @@ const LimpiarIndica = ()=>{
   });
 
 
-
+  //Actualiza la estructura de la tabla por cada movimiento
   const ActTablaS = () => {
     const tablaContenido = tablaRef.current.innerHTML;
     const datosEnviar = {
@@ -541,6 +546,7 @@ const LimpiarIndica = ()=>{
       });
   };
 
+  //Fija la seleccion de las notas a agregar
   const toggleSeleccion = (pkNota) => {
     if (filasSeleccionadas.includes(pkNota)) {
       setFilasSeleccionadas(filasSeleccionadas.filter((id) => id !== pkNota));
@@ -679,6 +685,7 @@ const LimpiarIndica = ()=>{
 
   const botonCerrarRef = useRef(null);
 
+    //Agrega indicaion a la escaleta
   function agregarIndicacion() {
     const tabla = document.getElementById('sortable-table');
     const Indicacion = document.getElementById('Nombre_indi').value;
@@ -965,7 +972,7 @@ const LimpiarIndica = ()=>{
   const resultados = document.getElementById('resultados');
 
   if (buscador && resultados) {
-    // Lista de países predefinidos
+    // Lista de indicaciones predefinidos
     const indicaciones = [
       'CORTE COMERCIAL',
       'PROMOCION BURGER KING',
@@ -1063,7 +1070,7 @@ const LimpiarIndica = ()=>{
                   onClick={() => ActualizarTablaEs()}
                 >
                   {' '}
-                  <FaSave size={20} color="white" /> Guardar{' '}
+                  <FaSave size={20} color="white" /> Guardar{' '} {/* Boton de guardado */}
                 </button>
                 <button
                   type="button"
@@ -1071,10 +1078,10 @@ const LimpiarIndica = ()=>{
                   onClick={handleDownloadPDF2}
                 >
                   {' '}
-                  <FaFilePdf size={20} color="white" /> Opciones de impresión{' '}
+                  <FaFilePdf size={20} color="white" /> Opciones de impresión{' '} {/* Boton de PDF */}
                 </button>
                 <Link to={'/Prompt/' + id}>
-                  <button type="button" class="btn btn-danger">
+                  <button type="button" class="btn btn-danger"> {/* Boton para generar prompt */}
                     {' '}
                     Generar Prompter{' '}
                   </button>
@@ -1085,13 +1092,13 @@ const LimpiarIndica = ()=>{
             <div className="fila-botones-esc">
               <div className="Centrado-bn-es">
                 <div class="tooltip-container">
-                  <button
+                  <button                         
                     className="BtnAddNote"
                     data-bs-toggle="modal"
                     data-bs-target="#modalselect"
                   >
                     {' '}
-                    <FaFileAlt size={20} /> Agregar Notas
+                    <FaFileAlt size={20} /> Agregar Notas {/* Boton para agregar notas */}
                   </button>
                 </div>
 
@@ -1102,14 +1109,14 @@ const LimpiarIndica = ()=>{
                     data-bs-target="#modalIndicacion"
                   >
                     {' '}
-                    <BsFillSignpostFill size={20} /> Agregar Indicación
+                    <BsFillSignpostFill size={20} /> Agregar Indicación {/* Boton para agregar Indicacion */}
                   </button>
                 </div>
 
                 <div class="tooltip-container">
                   <button id="botonEliminar" className="BtnEliminar">
                     {' '}
-                    <FaTrash size={20} /> Eliminar
+                    <FaTrash size={20} /> Eliminar            {/* Boton para eliminar fila en escaleta */}
                   </button>
                 </div>
               </div>
@@ -1120,14 +1127,14 @@ const LimpiarIndica = ()=>{
         <div className="Auth-form-escaletaArmado">
           <div>
             <div className="Row"></div>
-            <div ref={contentRef} style={contentStyle}>
+            <div ref={contentRef} style={contentStyle}> {/* mapeo de escaleta */}
               {mostrar()}
               {validacion()}
             </div>
           </div>
           <br />
 
-          <div id="miModal" class="modal fade">
+          <div id="miModal" class="modal fade"> 
             <div className="modal-dialog">
               <div className="modal-content-notas">
                 <div className="modal-header">
@@ -1148,7 +1155,7 @@ const LimpiarIndica = ()=>{
           </div>
         </div>
 
-        <div id="modalselect" className="modal fade" aria-hidden="true">
+        <div id="modalselect" className="modal fade" aria-hidden="true">  {/* Ventana para agregar notas */}
           <div className="modal-dialog">
             <div className="modal-content-notas">
               <div className="modal-header">
@@ -1282,7 +1289,7 @@ const LimpiarIndica = ()=>{
       </div>
     </div>
 
-        <div id="modalIndicacion" className="modal fade" aria-hidden="true">
+        <div id="modalIndicacion" className="modal fade" aria-hidden="true"> {/* Ventana para agregar indicacion */}
           <div className="modal-dialog">
             <div className="modal-content-indicacion">
               <div className="modal-header">
@@ -1331,7 +1338,7 @@ const LimpiarIndica = ()=>{
         
 
 
-        <div id="myModal" className="modal">
+        <div id="myModal" className="modal">    {/* Ventana para asignar conductor */}
   <div className="modal-content">
     <div className="header-modal">
       <button className="close" onClick={closeModal}>

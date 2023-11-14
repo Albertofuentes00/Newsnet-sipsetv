@@ -8,6 +8,7 @@ import { FaAngleLeft } from 'react-icons/fa';
 import { useReactToPrint } from 'react-to-print';
 
 function Prompt() {
+  // Inicializacion de variables
   const [DatosEscaleta, SetDatosEscaleta] = useState([]);
   const { id } = useParams();
   const tablaRef = useRef(null);
@@ -24,7 +25,7 @@ function Prompt() {
   }, []);
 
 
-  const GetDatosEscaleta = async () => {
+  const GetDatosEscaleta = async () => {  // Obtiene los datos de la API 
     try {
       // const respuesta = await axios.get('https://localhost:7201/Escaleta/GetByID/'+pkesc);
       const respuesta = await axios.get(
@@ -45,7 +46,7 @@ function Prompt() {
     } catch (error) {}
   }, [cargado]);
 
-  const GetRedacciones = async () => {
+  const GetRedacciones = async () => {// Obtiene las redacciones de las notas
     if (cargado === 1) {
       try {
         var table = document.getElementById('sortable-table');
@@ -83,7 +84,7 @@ function Prompt() {
     }
   };
 
-  function asignarIdUnicoALasTablas() {
+  function asignarIdUnicoALasTablas() { 
     const notasDiv = document.getElementById('Notas');
 
     if (notasDiv) {

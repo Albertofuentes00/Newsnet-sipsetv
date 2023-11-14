@@ -6,12 +6,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import whitReactContent from 'sweetalert2-react-content';
 import { show_alerta } from '../../Funciones';
-
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import { API_KEY } from '../API_URL';
 
 const ListaRoles = () => {
+  // Inicializacion de variables
   const [Datos, SetDatos] = useState([]);
   const [pkRol, setPkRol] = useState('');
   const [nombre_Rol, setNombre_Rol] = useState('');
@@ -26,7 +26,7 @@ const ListaRoles = () => {
     GetDatos();
   }, []);
 
-  const GetDatos = async () => {
+  const GetDatos = async () => {  // Obtiene los datos de la API  
     try {
       const respuesta = await axios.get(API_KEY+'/Rol/Get');
       console.log(respuesta.data.result);
@@ -34,7 +34,7 @@ const ListaRoles = () => {
     } catch (error) {}
   };
 
-  const OpenModal = (op, pkRol, nombre_Rol) => {
+  const OpenModal = (op, pkRol, nombre_Rol) => { // Abre una ventana para crear o editar 
     setPkRol('');
     setNombre_Rol('');
     setOperation(op);
@@ -50,7 +50,7 @@ const ListaRoles = () => {
       document.getElementById('nombre').focus();
     }, 500);
   };
-  const Validar = () => {
+  const Validar = () => { // Valida y guarda los datos
     var parametros;
     var id;
     setBotonDeshabilitado(true);
@@ -93,14 +93,14 @@ const ListaRoles = () => {
       console.log('Se termino el consumo de la api');
     }
   };
-  const deleteDatos = (pkRol, nombre_Rol) => {
+  const deleteDatos = (pkRol, nombre_Rol) => {  // Borra datos
     const MySwal = whitReactContent(Swal);
     MySwal.fire({
-      title: 'Seguro que quieres borrar ' + nombre_Rol + '?',
+      title: 'Seguro que quieres borrar ' + nombre_Rol + '?',   // El sistema pregunta si desea borrar el elemento
       icon: 'question',
       text: 'No se podra recuperar despues',
       showCancelButton: true,
-      confirmButtonText: 'Sí, Eliminar',
+      confirmButtonText: 'Sí, Eliminar', // Botones de confirmacion
       cancelbuttonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -108,7 +108,7 @@ const ListaRoles = () => {
         axios
           .delete(API_KEY+'/Rol/Delete/' + pkRol)
           .then(function (respuesta) {
-            if (respuesta.data.mensaje === 'Está relacionado') {
+            if (respuesta.data.mensaje === 'Está relacionado') {  // Si el elemento a borrar esta relacionado con otros registros, no podra borrarse 
               show_alerta(
                 'No se pudo cumplir la solicitud, existen otros registros que contienen este elemento'
               );
@@ -128,7 +128,7 @@ const ListaRoles = () => {
     });
   };
 
-  const buscar = async () => {
+  const buscar = async () => {    // Motor de busqueda
     try {
       var variable = document.getElementById('Buscador').value;
       if (variable == '') {
@@ -163,7 +163,7 @@ const ListaRoles = () => {
           <div className="Row">
             <h3>Lista de Roles</h3>
             <div className="Button-form">
-              <div className="buscador_admin">
+              <div className="buscador_admin">  {/* Buscador Inicio */}
                 <input
                   id="Buscador"
                   type="search"
@@ -172,7 +172,7 @@ const ListaRoles = () => {
                   placeholder="Buscar..."
                 />
                 <FaSearch size={20} color="gray" />
-              </div>
+              </div>                      {/* Buscador Fin */}
               <button
                 onClick={() => OpenModal(1)}
                 data-bs-toggle="modal"
@@ -181,7 +181,7 @@ const ListaRoles = () => {
                 class="btn btn-success"
               >
                 {' '}
-                <FaPlusSquare size={20} color="white" /> Nuevo Rol
+                <FaPlusSquare size={20} color="white" /> Nuevo Rol    {/* Boton para nuevo regsitro */}
               </button>
             </div>
           </div>
@@ -195,7 +195,7 @@ const ListaRoles = () => {
                   <th scope="col"> </th>
                 </tr>
               </thead>
-              <tbody className="table-group-divider">
+              <tbody className="table-group-divider">              {/* Tabla Inicio */}
                 {currentData.map((Datos, i) => (
                   <tr key={Datos.pkRol}>
                     <td>{itemNumber + i}</td>
@@ -223,10 +223,10 @@ const ListaRoles = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody>                                          {/* Tabla Fin */}
             </table>
 
-            <div className="pagination-list">
+            <div className="pagination-list">        {/* Paginacion */}
               <button
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -245,7 +245,7 @@ const ListaRoles = () => {
         </div>
       </div>
 
-      <div id="modaldefault" className="modal fade" aria-hidden="true">
+      <div id="modaldefault" className="modal fade" aria-hidden="true">   {/* Ventana Crear registro */}
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

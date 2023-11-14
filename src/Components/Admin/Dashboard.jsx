@@ -10,6 +10,7 @@ import { FaTv } from "react-icons/fa";
 import Cookies from "js-cookie";
 
 function AdminMenu(){
+    //obtner el rol de la cookie
     const navigate = useNavigate();
     const cadena = Cookies.get('Usuario');
     const partes = cadena.split('/');
@@ -28,7 +29,7 @@ function AdminMenu(){
         navigate('/MainMenu');    // Si el usuario no es administrador, no puede acceder al admin  
         window.location.reload();      // De lo contrario, se puede acceder 
       }
-      else{                                 
+      else{   //Botones con la ruta correspondiente a las vistas                          
         return(
             <body className="App-body">
             <header className="mainheader">
